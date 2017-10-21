@@ -87,7 +87,7 @@ namespace Parrot_GH.Controls
             if (!DA.GetData(0, ref D)) return;
             
             wObject W = new wObject();
-                D.CastTo(out W);
+            D.CastTo(out W);
             DataSetCollection S = (DataSetCollection)W.Element;
 
             pCtrl.SetProperties(S, GridType, false, ResizeHorizontal, Sortable, AlternateGraphics, AddRows);

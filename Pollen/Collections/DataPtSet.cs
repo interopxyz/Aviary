@@ -38,26 +38,26 @@ namespace Pollen.Collections
 
         }
 
-        public DataPtSet(List<DataPt> DataSet)
+        public DataPtSet(List<DataPt> DataPointSet)
         {
-            Points = DataSet;
-            Count = DataSet.Count;
+            Points = DataPointSet;
+            Count = DataPointSet.Count;
             CalculateDataExtents();
         }
 
-        public DataPtSet(string CollectionTitle, List<DataPt> DataSet)
+        public DataPtSet(string CollectionTitle, List<DataPt> DataPointSet)
         {
             Title = CollectionTitle;
-            Points = DataSet;
-            Count = DataSet.Count;
+            Points = DataPointSet;
+            Count = DataPointSet.Count;
             CalculateDataExtents();
         }
 
-        public DataPtSet(string CollectionTitle, List<object> DataSet)
+        public DataPtSet(string CollectionTitle, List<object> DataPointSet)
         {
             Title = CollectionTitle;
-            Points = ObjectListToDataPointList(DataSet);
-            Count = DataSet.Count;
+            Points = ObjectListToDataPointList(DataPointSet);
+            Count = DataPointSet.Count;
         }
 
         private List<DataPt> ObjectListToDataPointList(List<object> objects)

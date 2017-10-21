@@ -125,3 +125,4 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\D
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Math.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.csprojResolveAssemblyReference.cache

@@ -46,7 +46,7 @@ namespace Wind_GH.Geometry
                 Box bBox = new Box();
                 RhinoCurve.GetBoundingBox(S.Plane,out bBox);
 
-                WindCurve = new wEllipse(new wPoint(S.Plane.Origin.X, S.Plane.Origin.Y), bBox.X.T1-bBox.X.T0, bBox.Y.T1 - bBox.Y.T0, Vector3d.VectorAngle( Vector3d.YAxis, S.Plane.YAxis,Plane.WorldXY)/Math.PI*180.0);
+                WindCurve = new wEllipse(new wPoint(S.Plane.Origin.X, S.Plane.Origin.Y), (bBox.X.T1-bBox.X.T0)/2, (bBox.Y.T1 - bBox.Y.T0)/2, Vector3d.VectorAngle( Vector3d.YAxis, S.Plane.YAxis,Plane.WorldXY)/Math.PI*180.0);
             }
             else if (RhinoCurve.IsLinear())
             {

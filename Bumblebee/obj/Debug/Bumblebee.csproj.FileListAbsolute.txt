@@ -8,3 +8,7 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee\bi
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee\obj\Debug\Bumblebee.csprojResolveAssemblyReference.cache
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee\obj\Debug\Bumblebee.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee\obj\Debug\Bumblebee.pdb
+C:\Users\LJobson\Documents\GitHub\Aviary\Bumblebee\bin\Debug\Bumblebee.dll
+C:\Users\LJobson\Documents\GitHub\Aviary\Bumblebee\bin\Debug\Bumblebee.pdb
+C:\Users\LJobson\Documents\GitHub\Aviary\Bumblebee\obj\Debug\Bumblebee.dll
+C:\Users\LJobson\Documents\GitHub\Aviary\Bumblebee\obj\Debug\Bumblebee.pdb

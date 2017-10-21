@@ -53,6 +53,7 @@ namespace Wind_GH.Geometry
 
             Curve[] Segments = C.DuplicateSegments();
 
+            // Check if is pline
             if (Segments.Count()>1)
             {
                 Polyline P = new Polyline();

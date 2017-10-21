@@ -5,3 +5,9 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\bin\Debug\SharpGL.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\obj\Debug\Flock.csprojResolveAssemblyReference.cache
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\obj\Debug\Flock.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\obj\Debug\Flock.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock\bin\Debug\Flock.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock\bin\Debug\Flock.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock\bin\Debug\SharpGL.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock\obj\Debug\Flock.csprojResolveAssemblyReference.cache
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock\obj\Debug\Flock.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock\obj\Debug\Flock.pdb

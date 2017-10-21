@@ -50,24 +50,24 @@ namespace Pollen.Collections
         {
         }
 
-        public DataSetCollection(List<string> Title, List<List<DataPt>> DataPointSet)
+        public DataSetCollection(List<string> Title, List<List<DataPt>> DataSet)
         {
-            Count = DataPointSet.Count;
+            Count = DataSet.Count;
             for (int i = 0; i < Count; i++)
             {
-                Sets.Add(new DataPtSet(Title[i], DataPointSet[i]));
+                Sets.Add(new DataPtSet(Title[i], DataSet[i]));
             }
         }
         
-        public DataSetCollection(string Title, List<DataPt> DataPointSet)
+        public DataSetCollection(string Title, List<DataPt> DataSet)
         {
-            Count = DataPointSet.Count;
-            Sets.Add(new DataPtSet(Title, DataPointSet));
+            Count = DataSet.Count;
+            Sets.Add(new DataPtSet(Title, DataSet));
         }
 
-        public DataSetCollection(List<string> Title, List<List<object>> DataPointSet)
+        public DataSetCollection(List<string> Title, List<List<object>> DataSet)
         {
-            Count = DataPointSet.Count;
+            Count = DataSet.Count;
 
             for (int i = (Title.Count-1); i < Count; i++)
             {
@@ -76,14 +76,14 @@ namespace Pollen.Collections
 
                 for (int i = 0; i < Count; i++)
             {
-                Sets.Add(new DataPtSet(Title[i], ObjectListToDataPointList(DataPointSet[i])));
+                Sets.Add(new DataPtSet(Title[i], ObjectListToDataPointList(DataSet[i])));
             }
         }
 
-        public DataSetCollection(string Title, List<object> DataPointSet)
+        public DataSetCollection(string Title, List<object> DataSet)
         {
-            Count = DataPointSet.Count;
-            Sets.Add(new DataPtSet(Title, ObjectListToDataPointList(DataPointSet)));
+            Count = DataSet.Count;
+            Sets.Add(new DataPtSet(Title, ObjectListToDataPointList(DataSet)));
         }
 
         public void SetAxis(int Mode, bool Grid, bool Label, int Spacing, wDomain YDomain)

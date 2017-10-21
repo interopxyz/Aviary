@@ -34,7 +34,7 @@ namespace Parrot.Controls
         public void SetProperties(DataSetCollection WindDataCollection, int GridType, bool ResizeRows, bool ResizeCols, bool Sortable, bool Alternate, bool AddRows)
         {
             DataTable Table = new DataTable();
-            DataSet DS = new DataSet();
+            System.Data.DataSet DS = new System.Data.DataSet();
 
             DS.Tables.Add(Table);
             for (int i = 0; i < WindDataCollection.Sets.Count; i++)
@@ -77,6 +77,7 @@ namespace Parrot.Controls
                 default:
                     Element.GridLinesVisibility = DataGridGridLinesVisibility.None;
                     break;
+
             }
 
             if (Alternate) {
@@ -89,7 +90,7 @@ namespace Parrot.Controls
                 Element.AlternatingRowBackground = Element.Background;
             }
 
-            Element.ItemsSource = DS.Tables[0].DefaultView;
+            Element.ItemsSource = Table.DefaultView;
             Element.AutoGenerateColumns = true;
         }
 

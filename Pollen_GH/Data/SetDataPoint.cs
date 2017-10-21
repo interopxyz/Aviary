@@ -94,25 +94,21 @@ namespace Pollen_GH.Data
                     double num = new double();
                     X.CastTo(out num);
                     DataObj.Number = num;
-                    DataObj.Text = num.ToString();
                     DataObj.Label = Convert.ToString(Math.Truncate(num * 1000) / 1000);
                     break;
                 case 2:
                     int intg = new int();
                     X.CastTo(out intg);
-                    DataObj.Text = intg.ToString();
                     DataObj.Integer = intg;
                     break;
                 case 3:
                     Interval domain = new Interval();
                     X.CastTo(out domain);
-                    DataObj.Text = domain.ToString();
                     DataObj.Domain = new Tuple<double, double>(domain.T0, domain.T1);
                     break;
                 case 4:
                     Point3d point = new Point3d();
                     X.CastTo(out point);
-                    DataObj.Text = point.ToString();
                     DataObj.Point = new wPoint(point.X,point.Y,point.Z);
                     break;
                 default:

@@ -1,3 +1,6 @@
 *.dll
 *.pdb
 *.cache
+*.gha
+*.xml
+Bumblebee/obj/Debug/Bumblebee.csproj.FileListAbsolute.txt

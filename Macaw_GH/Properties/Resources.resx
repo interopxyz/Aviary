@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Macaw_Adjust_Curves" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Adjust-Curves.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Adjust_Tint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Adjust_Tint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Analyze_Fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Analyze-Fill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Analyze_Threshold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Analyze-Threshold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Apply_Apply" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Apply-Apply.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Apply_Blend" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Apply-Blend.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Apply_Iterate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Apply-Iterate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Apply_Sequence" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Apply-Sequence.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Build_Build" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Build-Build.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Build_Compose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Build-Compose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Build_Layer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Build-Layer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Build_Mask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Build-Mask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Build_Modifiers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Build-Modifiers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Build_Sequence" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Build_Sequence.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Channels_ARGB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Channels-ARGB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Channels_ARGB_Channel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Channels-ARGB-Channel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Channels_HSL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Channels-HSL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Channels_Swap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Channels-Swap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Channels_YCbCr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Channels-YCbCr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Channels_YCbCr_Channel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Channels-YCbCr-Channel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Composite_Layer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Composite_Layer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Deconstruct_HSL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Deconstruct-HSL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Deconstruct_RGB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Deconstruct-RGB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Deconstruct_Sample" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Deconstruct-Sample.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Edit_Crop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Edit-Crop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Edit_CropRect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Edit-CropRect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Edit_Fit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Edit-Fit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Edit_Match" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Edit-Match.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Edit_Mirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Edit-Mirror.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Edit_Polar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Edit-Polar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Edit_Resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Edit-Resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Edit_Rotate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Edit-Rotate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Edit_Shrink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Edit-Shrink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Effect_Border" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Effect_Border.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Effect_Effect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Effect_Effect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Adjust" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Adjust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Blur" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Blur.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Brightness" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Brightness.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Dither" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Dither.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Edges" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Edges.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Extract" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Extract.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_ExtractChannel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_ExtractChannel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Flatten" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Flatten.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Grain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Grain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Levels" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Levels.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Mask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Filter-Mask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Normalize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Normalize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Regular.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Replace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Replace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Sharpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Sharpen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Smooth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Smooth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Filter_Streaks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw_Filter_Streaks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Texture_Apply" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Texture-Apply.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Texture_Filter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Texture-Filter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Texture_Morph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Texture-Morph.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macaw_Texture_Texture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Macaw-Texture-Texture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>

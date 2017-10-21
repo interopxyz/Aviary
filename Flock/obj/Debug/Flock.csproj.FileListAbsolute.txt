@@ -1,0 +1,7 @@
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\bin\Debug\Flock.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\bin\Debug\Flock.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\bin\Debug\SharpGL.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\obj\Debug\Flock.csprojResolveAssemblyReference.cache
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\obj\Debug\Flock.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Flock\obj\Debug\Flock.pdb

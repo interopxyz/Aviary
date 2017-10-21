@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{52909892-248A-429D-8CB3-96104197459D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Parrot</RootNamespace>
+    <AssemblyName>Parrot</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\pColorSets.cs" />
+    <Compile Include="Collections\pModifiers.cs" />
+    <Compile Include="Containers\pElement.cs" />
+    <Compile Include="Controls\pButton.cs" />
+    <Compile Include="Controls\pCalc.cs" />
+    <Compile Include="Controls\pPickDate.cs" />
+    <Compile Include="Displays\pGradient.cs" />
+    <Compile Include="Drawings\pDrawing.cs" />
+    <Compile Include="Drawings\pMeshViewer.cs" />
+    <Compile Include="Drawings\pViewMeshDirectX.cs" />
+    <Compile Include="Drawings\pViewMeshGL.cs" />
+    <Compile Include="Drawings\xMesh.cs" />
+    <Compile Include="Layouts\pCard.cs" />
+    <Compile Include="Controls\pChecklist.cs" />
+    <Compile Include="Controls\pColorCanvas.cs" />
+    <Compile Include="Controls\pColorPicker.cs" />
+    <Compile Include="Controls\pComboCheckList.cs" />
+    <Compile Include="Controls\pDateTime.cs" />
+    <Compile Include="Controls\pDropdownList.cs" />
+    <Compile Include="Controls\pGridView.cs" />
+    <Compile Include="Controls\pListBox.cs" />
+    <Compile Include="Controls\pListView.cs" />
+    <Compile Include="Controls\pPickTime.cs" />
+    <Compile Include="Controls\pScrollDate.cs" />
+    <Compile Include="Controls\pScrollTime.cs" />
+    <Compile Include="Controls\pRadio.cs" />
+    <Compile Include="Controls\pRangeSlider.cs" />
+    <Compile Include="Controls\pScrollNumber.cs" />
+    <Compile Include="Controls\pScrollValue.cs" />
+    <Compile Include="Controls\pCheck.cs" />
+    <Compile Include="Controls\pToggle.cs" />
+    <Compile Include="Controls\pTreeView.cs" />
+    <Compile Include="Controls\pSlider.cs" />
+    <Compile Include="Controls\pTextBox.cs" />
+    <Compile Include="Displays\pCanvas.cs" />
+    <Compile Include="Displays\pDocumentViewer.cs" />
+    <Compile Include="Displays\pFrame.cs" />
+    <Compile Include="Displays\pLabel.cs" />
+    <Compile Include="Displays\pLegend.cs" />
+    <Compile Include="Displays\pProgress.cs" />
+    <Compile Include="Displays\pScrollView.cs" />
+    <Compile Include="Displays\pSpacer.cs" />
+    <Compile Include="Displays\pWebBrowser.cs" />
+    <Compile Include="Layouts\pExpand.cs" />
+    <Compile Include="Layouts\pGroup.cs" />
+    <Compile Include="Layouts\pPanelDock.cs" />
+    <Compile Include="Layouts\pPanelGrid.cs" />
+    <Compile Include="Layouts\pPanelTabs.cs" />
+    <Compile Include="Layouts\pPanelWrap.cs" />
+    <Compile Include="Layouts\pPanelStack.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\pCapture.cs" />
+    <Compile Include="Utilities\pPrint.cs" />
+    <Compile Include="Windows\ParrotWindow.xaml.cs">
+      <DependentUpon>ParrotWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\pWindow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aviary_logo_uIB_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aviary-Logo.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\Mahapps\MahApps.Metro.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\Material Design Themes\MaterialDesignColors.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\Material Design Themes\MaterialDesignThemes.MahApps.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\Material Design Themes\MaterialDesignThemes.Wpf.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\WPFDXInterop\Microsoft.Wpf.Interop.DirectX.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Interop\Prototype\Parrot\ParrotWPF\bin\Debug\ParrotWPF.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\SharpGL\SharpGL.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\SharpGL\SharpGL.SceneGraph.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\SharpGL\SharpGL.WPF.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\Mahapps\System.Windows.Interactivity.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Wind\bin\Debug\Wind.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\WindowsBase.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\WindowsFormsIntegration.dll" />
+    <ReferencePath Include="C:\Users\dmans\Dropbox\Components\Libraries\Extended WPF Toolkit Binaries\Xceed.Wpf.Toolkit.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Parrot\obj\Debug\Windows\ParrotWindow.g.cs" />
+  </ItemGroup>
+</Project>

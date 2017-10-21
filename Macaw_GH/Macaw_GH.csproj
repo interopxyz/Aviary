@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug64</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{340DC584-9F32-4D34-A0EC-5396D3A6520A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Macaw_GH</RootNamespace>
+    <AssemblyName>Macaw_GH</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Macaw">
+      <HintPath>..\Macaw\bin\Debug\Macaw.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="RhinoCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Rhinoceros 5 (64-bit)\System\RhinoCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Grasshopper">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Common Files\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper (b45a29b1-4343-4035-989e-044e8580d9cf)\0.9.76.0\Grasshopper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GH_IO">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Common Files\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper (b45a29b1-4343-4035-989e-044e8580d9cf)\0.9.76.0\GH_IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Wind">
+      <HintPath>..\Wind\bin\Debug\Wind.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Build\Apply.cs" />
+    <Compile Include="Build\BuildBitmap.cs" />
+    <Compile Include="Build\Iterate.cs" />
+    <Compile Include="Build\Sequence.cs" />
+    <Compile Include="Compiling\Composition.cs" />
+    <Compile Include="Compiling\Modifiers.cs" />
+    <Compile Include="Compiling\Layer.cs" />
+    <Compile Include="Compiling\Mask.cs" />
+    <Compile Include="Composite\BlendImages.cs" />
+    <Compile Include="Composite\CompositeTexture.cs" />
+    <Compile Include="Composite\FilterMask.cs" />
+    <Compile Include="Composite\FilterTexture.cs" />
+    <Compile Include="Composite\SwapChannels.cs" />
+    <Compile Include="Edit\Crop.cs" />
+    <Compile Include="Edit\CropRectangle.cs" />
+    <Compile Include="Edit\Fit.cs" />
+    <Compile Include="Edit\Match.cs" />
+    <Compile Include="Edit\Mirror.cs" />
+    <Compile Include="Edit\Polar.cs" />
+    <Compile Include="Edit\Resize.cs" />
+    <Compile Include="Edit\Rotate.cs" />
+    <Compile Include="Edit\Shrink.cs" />
+    <Compile Include="Filtering\Adjust\Adjust.cs" />
+    <Compile Include="Filtering\Adjust\Curves.cs" />
+    <Compile Include="Filtering\Adjust\Fill.cs" />
+    <Compile Include="Filtering\Adjust\FilterHSL.cs" />
+    <Compile Include="Filtering\Adjust\FilterHSLLinear.cs" />
+    <Compile Include="Filtering\Adjust\FilterYCbCr.cs" />
+    <Compile Include="Filtering\Adjust\FilterYCbCrLinear.cs" />
+    <Compile Include="Filtering\Adjust\Flatten.cs" />
+    <Compile Include="Filtering\Adjust\Levels.cs" />
+    <Compile Include="Filtering\Adjust\Replace.cs" />
+    <Compile Include="Filtering\Adjust\FilterARGB.cs" />
+    <Compile Include="Filtering\Adjust\Threshold.cs" />
+    <Compile Include="Filtering\Adjust\Tint.cs" />
+    <Compile Include="Filtering\Analyze\Blobs.cs" />
+    <Compile Include="Filtering\Analyze\Corner.cs" />
+    <Compile Include="Filtering\Analyze\Quads.cs" />
+    <Compile Include="Filtering\Extract\BitmapProperties.cs" />
+    <Compile Include="Filtering\Extract\DeconstructARGB.cs" />
+    <Compile Include="Filtering\Extract\DeconstructHSL.cs" />
+    <Compile Include="Filtering\Extract\ExtractARGBChannel.cs" />
+    <Compile Include="Filtering\Extract\ExtractYCbCrChannel.cs" />
+    <Compile Include="Filtering\Object\Figure.cs" />
+    <Compile Include="Filtering\Stylize\Border.cs" />
+    <Compile Include="Filtering\Stylize\Dither.cs" />
+    <Compile Include="Filtering\Object\Edge.cs" />
+    <Compile Include="Filtering\Adjust\Grayscale.cs" />
+    <Compile Include="Filtering\Stylize\Effect.cs" />
+    <Compile Include="Filtering\Stylize\Noise.cs" />
+    <Compile Include="Filtering\Stylize\Sharpen.cs" />
+    <Compile Include="Filtering\Stylize\Smooth.cs" />
+    <Compile Include="Macaw_GHInfo.cs" />
+    <Compile Include="Filtering\Stylize\Blur.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Texture\GenerateTexture.cs" />
+    <Compile Include="Texture\TexturePresets.cs" />
+    <Compile Include="Utilities\SampleBitmap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Blur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Grain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Smooth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Build_Sequence.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Dither.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Streaks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Brightness.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Edges.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Adjust_Tint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Adjust.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Normalize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Composite_Layer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Extract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_ExtractChannel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Sharpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Levels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Adjust-Curves.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Effect_Effect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Effect_Border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Channels-ARGB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Channels-HSL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Channels-YCbCr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Edit-Shrink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Edit-Crop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Edit-CropRect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Edit-Fit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Edit-Match.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Edit-Mirror.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Edit-Rotate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Edit-Resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Edit-Polar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Analyze-Threshold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Analyze-Fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Apply-Sequence.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Apply-Apply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Apply-Blend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Apply-Iterate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Build-Build.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Channels-Swap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Deconstruct-RGB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Deconstruct-HSL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Deconstruct-Sample.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Channels-YCbCr-Channel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Channels-ARGB-Channel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Texture-Apply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Texture-Filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Texture-Morph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Texture-Texture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Filter-Mask.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Build-Modifiers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Build-Compose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Build-Layer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Build-Mask.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw_Filter_Flatten.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
+Erase "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FallbackCulture>en-US</FallbackCulture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
+    <StartProgram>C:\Program Files\Rhinoceros 5 (64-bit)\System\Rhino.exe</StartProgram>
+    <StartArguments>
+    </StartArguments>
+    <StartAction>Program</StartAction>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+</Project>

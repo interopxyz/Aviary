@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug64</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2DEB024B-74EA-4A83-8455-92984B6C82CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Parrot_GH</RootNamespace>
+    <AssemblyName>Parrot_GH</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HelixToolkit, Version=2015.1.715.0, Culture=neutral, PublicKeyToken=52aa3500039caf0d, processorArchitecture=MSIL">
+      <HintPath>..\packages\HelixToolkit.2015.1.715\lib\portable-net4+sl4+wp71+win8\HelixToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HelixToolkit.Wpf, Version=2015.1.715.0, Culture=neutral, PublicKeyToken=52aa3500039caf0d, processorArchitecture=MSIL">
+      <HintPath>..\packages\HelixToolkit.Wpf.2015.1.715\lib\net45\HelixToolkit.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.MahApps, Version=0.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.MahApps.0.0.10\lib\net45\MaterialDesignThemes.MahApps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.0.823, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.3.0.823\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Parrot">
+      <HintPath>..\Parrot\bin\Debug\Parrot.dll</HintPath>
+    </Reference>
+    <Reference Include="Pollen">
+      <HintPath>..\Pollen\bin\Debug\Pollen.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RhinoCommon">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Rhinoceros 5 (64-bit)\System\RhinoCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Grasshopper">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Common Files\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper (b45a29b1-4343-4035-989e-044e8580d9cf)\0.9.76.0\Grasshopper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GH_IO">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Common Files\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper (b45a29b1-4343-4035-989e-044e8580d9cf)\0.9.76.0\GH_IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Wind">
+      <HintPath>..\Wind\bin\Debug\Wind.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\Button.cs" />
+    <Compile Include="Controls\Calculator.cs" />
+    <Compile Include="Controls\Calendar.cs" />
+    <Compile Include="Controls\PickDate.cs" />
+    <Compile Include="Controls\PickTime.cs" />
+    <Compile Include="Displays\Gradient.cs" />
+    <Compile Include="Drawings\ComposeDrawing.cs" />
+    <Compile Include="Drawings\ComposeSVG.cs" />
+    <Compile Include="Drawings\ViewBasicMesh.cs" />
+    <Compile Include="Drawings\ViewOpenGLMesh.cs" />
+    <Compile Include="Drawings\ViewPointCloud.cs" />
+    <Compile Include="Layouts\Card.cs" />
+    <Compile Include="Controls\CheckList.cs" />
+    <Compile Include="Controls\ColorCanvas.cs" />
+    <Compile Include="Controls\ColorPicker.cs" />
+    <Compile Include="Controls\DropdownList.cs" />
+    <Compile Include="Controls\ListBox.cs" />
+    <Compile Include="Controls\Clock.cs" />
+    <Compile Include="Controls\ScrollDateTime.cs" />
+    <Compile Include="Controls\Radio.cs" />
+    <Compile Include="Controls\ScrollNumber.cs" />
+    <Compile Include="Controls\SliderRange.cs" />
+    <Compile Include="Controls\ScrollValue.cs" />
+    <Compile Include="Controls\SliderValue.cs" />
+    <Compile Include="Controls\TextBox.cs" />
+    <Compile Include="Controls\Check.cs" />
+    <Compile Include="Controls\Toggle.cs" />
+    <Compile Include="Controls\ViewGrid.cs" />
+    <Compile Include="Controls\ViewList.cs" />
+    <Compile Include="Controls\ViewTree.cs" />
+    <Compile Include="Displays\ScrollFrame.cs" />
+    <Compile Include="Displays\Frame.cs" />
+    <Compile Include="Displays\Label.cs" />
+    <Compile Include="Displays\Legend.cs" />
+    <Compile Include="Displays\Progress.cs" />
+    <Compile Include="Displays\Spacer.cs" />
+    <Compile Include="Displays\WebBrowser.cs" />
+    <Compile Include="Layouts\DockPanel.cs" />
+    <Compile Include="Layouts\Expander.cs" />
+    <Compile Include="Layouts\GridPanel.cs" />
+    <Compile Include="Layouts\GroupBox.cs" />
+    <Compile Include="Layouts\StackPanel.cs" />
+    <Compile Include="Layouts\TabPanel.cs" />
+    <Compile Include="Layouts\WrapPanel.cs" />
+    <Compile Include="Output\CaptureImage.cs" />
+    <Compile Include="Output\Print.cs" />
+    <Compile Include="Parrot_GHInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\ReturnValues.cs" />
+    <Compile Include="Utilities\SetComponentWindow.cs" />
+    <Compile Include="Utilities\SetTheme.cs" />
+    <Compile Include="Windows\Window.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\Parrot_TreeList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_TextBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Form.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Panel_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ValueScroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ValueScroller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Web.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Wrap_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Calculator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Checkbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_CheckList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ColorCanvas02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ColorPicker02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Dock_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Grid_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_GroupBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Label_LG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Legend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ListBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ListView-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Margins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_NumericScoller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Progress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Radio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_RangeSlider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Return_Value.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Slider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_SliderX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Snapshot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Tabs_W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Time02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ListView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_DateTimePicker2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Picture_Scroll-01a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_DateTimePicker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Toggle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Card_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ChartLine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ChartRadial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ChartRange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aviary-Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aviary_logo_uIB_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Pie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Points.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Range.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Pyramid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Guage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Gantt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Scatter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Heat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_MeshViewer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Drawing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_DateTime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ViewGrid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ViewMeshGL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_ViewMeshBasic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_PointViewer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hoopoe-CompileSVG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hoopoe\Hoopoe.csproj">
+      <Project>{4776E010-0059-4D08-8BF8-7AC68247462D}</Project>
+      <Name>Hoopoe</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
+Erase "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FallbackCulture>en-US</FallbackCulture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
+    <StartProgram>C:\Program Files\Rhinoceros 5 (64-bit)\System\Rhino.exe</StartProgram>
+    <StartArguments>
+    </StartArguments>
+    <StartAction>Program</StartAction>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+</Project>

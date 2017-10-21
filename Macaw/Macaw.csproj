@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{84FAD446-B4F6-44ED-85A4-D6ED88F7B324}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Macaw</RootNamespace>
+    <AssemblyName>Macaw</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SoundInTheory.DynamicImage, Version=3.1.1.0, Culture=neutral, PublicKeyToken=fa44558110383067, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicImage.3.1.1\lib\net40\SoundInTheory.DynamicImage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Wind">
+      <HintPath>..\Wind\bin\Debug\Wind.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analysis\mAnalyzeBlob.cs" />
+    <Compile Include="Analysis\mAnalyzeCornersMoravec.cs" />
+    <Compile Include="Analysis\mAnalyzeQuads.cs" />
+    <Compile Include="Analysis\mAnalyzeCornersSusan.cs" />
+    <Compile Include="App_Start\DynamicImage.cs" />
+    <Compile Include="Build\mApply.cs" />
+    <Compile Include="Build\mIterate.cs" />
+    <Compile Include="Build\mSequence.cs" />
+    <Compile Include="Build\mFilterTexture.cs" />
+    <Compile Include="Compiling\mBlends.cs" />
+    <Compile Include="Compiling\mComposition.cs" />
+    <Compile Include="Compiling\mModifiers.cs" />
+    <Compile Include="Compiling\Modifiers\mImageColor.cs" />
+    <Compile Include="Compiling\Modifiers\mModifier.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyBorder.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyColorTint.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyCurvesValues.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyFlatten.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyGrayscale.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyGaussian.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyFeather.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyEmboss.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyResize.cs" />
+    <Compile Include="Compiling\Modifiers\mModifySolarize.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyUnsharpen.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyVignette.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyInvert.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyContrast.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyBrightness.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyColorKey.cs" />
+    <Compile Include="Compiling\Modifiers\mQuickComposite.cs" />
+    <Compile Include="Compositing\Blends\mBlendMultiply.cs" />
+    <Compile Include="Compositing\mCompositeAdd.cs" />
+    <Compile Include="Compositing\mCompositeIntersect.cs" />
+    <Compile Include="Compositing\mCompositeFlatField.cs" />
+    <Compile Include="Compositing\mCompositeDifference.cs" />
+    <Compile Include="Compositing\mCompositeMerge.cs" />
+    <Compile Include="Compositing\mCompositeSubtract.cs" />
+    <Compile Include="Compositing\mCompositeMove.cs" />
+    <Compile Include="Compositing\mCompositeMorph.cs" />
+    <Compile Include="Build\mFilterMask.cs" />
+    <Compile Include="Compositing\mCompositeTextureMorph.cs" />
+    <Compile Include="Compiling\mLayer.cs" />
+    <Compile Include="Compiling\mLayerImage.cs" />
+    <Compile Include="Editing\Rotation\mMirror.cs" />
+    <Compile Include="Editing\Rotation\mRotateNearistNeighbor.cs" />
+    <Compile Include="Editing\Rotation\mRotateBicubic.cs" />
+    <Compile Include="Editing\Rotation\mRotateBilinear.cs" />
+    <Compile Include="Editing\Resizing\mCropCanvas.cs" />
+    <Compile Include="Editing\Morphs\mPolarToPolar.cs" />
+    <Compile Include="Editing\Morphs\mPolarToRect.cs" />
+    <Compile Include="Editing\Resizing\mCropRectangle.cs" />
+    <Compile Include="Editing\Resizing\mResizeNearistNeighbor.cs" />
+    <Compile Include="Editing\Resizing\mResizeBilinear.cs" />
+    <Compile Include="Editing\Resizing\mResizeBicubic.cs" />
+    <Compile Include="Editing\Resizing\mShrinkToColor.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustBradley.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustLevelsGray.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustLevels.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustSaturtation.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustHue.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustContrast.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustGamma.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustInvert.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustShift.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mSwapARGB.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mSwapRGB.cs" />
+    <Compile Include="Filtering\Adjustments\mFillMean.cs" />
+    <Compile Include="Filtering\Adjustments\mFillColor.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mFilterYCbCrLinear.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mFilterYCbCrColor.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mFilterYCbCrChannel.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mFilterEuclideanColor.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mFilterHSL.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mFilterHSLLinear.cs" />
+    <Compile Include="Filtering\Adjustments\mNormalizeHistogram.cs" />
+    <Compile Include="Filtering\Adjustments\mNormalizeExtents.cs" />
+    <Compile Include="Compositing\mDifferenceThreshold.cs" />
+    <Compile Include="Compositing\mDifferenceEuclidean.cs" />
+    <Compile Include="Filtering\Adjustments\mRemapColor.cs" />
+    <Compile Include="Filtering\Adjustments\Thresholds\mThresholdSimple.cs" />
+    <Compile Include="Filtering\Adjustments\Thresholds\mThresholdSIS.cs" />
+    <Compile Include="Filtering\Adjustments\Thresholds\mThresholdOtsu.cs" />
+    <Compile Include="Filtering\Adjustments\Thresholds\mThresholdIterative.cs" />
+    <Compile Include="Filtering\Filters\mExtractARGBChannel.cs" />
+    <Compile Include="Filtering\Filters\mExtractYCbCrChannel.cs" />
+    <Compile Include="Filtering\Objects\Edging\mEdgeSobel.cs" />
+    <Compile Include="Filtering\Objects\Edging\mEdgeHomogenity.cs" />
+    <Compile Include="Filtering\Objects\Erosions\mErosionHatBottom.cs" />
+    <Compile Include="Filtering\Objects\Erosions\mErosionClosing.cs" />
+    <Compile Include="Filtering\Objects\Erosions\mErosionFill.cs" />
+    <Compile Include="Filtering\Objects\Erosions\mErosionHitMiss.cs" />
+    <Compile Include="Filtering\Objects\Erosions\mErosionOpening.cs" />
+    <Compile Include="Filtering\Objects\Erosions\mErosionDilation.cs" />
+    <Compile Include="Filtering\Objects\Erosions\mErosionSkeleton.cs" />
+    <Compile Include="Filtering\Objects\Erosions\mErosionSimple.cs" />
+    <Compile Include="Filtering\Objects\Edging\mEdgeSimple.cs" />
+    <Compile Include="Filtering\Objects\Edging\mEdgeDifference.cs" />
+    <Compile Include="Filtering\Objects\Erosions\mErosionHatTop.cs" />
+    <Compile Include="Filtering\Objects\Figures\mFigureCorners.cs" />
+    <Compile Include="Filtering\Objects\Figures\mFigureBlob.cs" />
+    <Compile Include="Filtering\Objects\Figures\mFigureFilter.cs" />
+    <Compile Include="Filtering\Objects\Figures\mFigureUnique.cs" />
+    <Compile Include="Filtering\Stylized\Dithering\mDitherThresholdCarry.cs" />
+    <Compile Include="Filtering\Stylized\EffectFiltering\mEffectRipple.cs" />
+    <Compile Include="Filtering\Stylized\EffectFiltering\mEffectPosterization.cs" />
+    <Compile Include="Filtering\Stylized\EffectFiltering\mEffectDaube.cs" />
+    <Compile Include="Filtering\Stylized\EffectFiltering\mEffectPixelate.cs" />
+    <Compile Include="Filtering\Stylized\EffectFiltering\mEffectJitter.cs" />
+    <Compile Include="Filtering\Stylized\mPadding.cs" />
+    <Compile Include="Filtering\Stylized\Sharpening\mSharpenSimple.cs" />
+    <Compile Include="Filtering\Stylized\Sharpening\mSharpenGaussian.cs" />
+    <Compile Include="Filtering\Stylized\mPaintBayer.cs" />
+    <Compile Include="Filtering\Stylized\Blurring\mBlurGaussian.cs" />
+    <Compile Include="Filtering\Stylized\Blurring\mBlur.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustBrightness.cs" />
+    <Compile Include="Filtering\Stylized\Dithering\mDitherSierra.cs" />
+    <Compile Include="Filtering\Stylized\Dithering\mDitherBurkes.cs" />
+    <Compile Include="Filtering\Stylized\Dithering\mDitherFloydSteinberg.cs" />
+    <Compile Include="Filtering\Stylized\Dithering\mDitherJarvisJudiceNinke.cs" />
+    <Compile Include="Filtering\Stylized\Dithering\mDitherOrdered.cs" />
+    <Compile Include="Filtering\Stylized\Dithering\mDitherStucki.cs" />
+    <Compile Include="Filtering\Stylized\Dithering\mDitherBayer.cs" />
+    <Compile Include="Filtering\Objects\Edging\mEdgeCanny.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mFilterARGBChannel.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mFilterARGBColor.cs" />
+    <Compile Include="Filtering\Adjustments\FilterColor\mGrayscale.cs" />
+    <Compile Include="Filtering\Stylized\NoiseFiltering\mNoiseAdditive.cs" />
+    <Compile Include="Filtering\Stylized\NoiseFiltering\mNoiseSandP.cs" />
+    <Compile Include="Filtering\Stylized\Smoothing\mSmoothAdaptive.cs" />
+    <Compile Include="Filtering\Stylized\Smoothing\mSmoothMedian.cs" />
+    <Compile Include="Filtering\Stylized\Smoothing\mSmoothMean.cs" />
+    <Compile Include="Filtering\Stylized\Smoothing\mSmoothBilateral.cs" />
+    <Compile Include="Filtering\Stylized\Smoothing\mSmoothConservative.cs" />
+    <Compile Include="Filtering\mFilter.cs" />
+    <Compile Include="Filtering\Stylized\Streaking\mStreakHorizontal.cs" />
+    <Compile Include="Filtering\Stylized\Streaking\mStreakVertical.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Textures\Build\mTextureApply.cs" />
+    <Compile Include="Textures\mTexture.cs" />
+    <Compile Include="Textures\Presets\mTextureLabyrinth.cs" />
+    <Compile Include="Textures\Presets\mTextureClouds.cs" />
+    <Compile Include="Textures\Presets\mTextureMarble.cs" />
+    <Compile Include="Textures\Presets\mTextureTextile.cs" />
+    <Compile Include="Textures\Presets\mTextureWood.cs" />
+    <Compile Include="Utilities\mBuildBitmap.cs" />
+    <Compile Include="Utilities\mConvert.cs" />
+    <Compile Include="Utilities\mGetARGB.cs" />
+    <Compile Include="Utilities\mGetHSL.cs" />
+    <Compile Include="Utilities\mMatchBitmaps.cs" />
+    <Compile Include="Utilities\mFitScale.cs" />
+    <Compile Include="Utilities\mFitStretch.cs" />
+    <Compile Include="Utilities\mFitCrop.cs" />
+    <Compile Include="Utilities\mSampleBitmap.cs" />
+    <Compile Include="Utilities\mSetFormat.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WPFShaderEffects.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

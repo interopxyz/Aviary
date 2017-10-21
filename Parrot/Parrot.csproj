@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{52909892-248A-429D-8CB3-96104197459D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Parrot</RootNamespace>
+    <AssemblyName>Parrot</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HelixToolkit, Version=2015.1.715.0, Culture=neutral, PublicKeyToken=52aa3500039caf0d, processorArchitecture=MSIL">
+      <HintPath>..\packages\HelixToolkit.2015.1.715\lib\portable-net4+sl4+wp71+win8\HelixToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HelixToolkit.Wpf, Version=2015.1.715.0, Culture=neutral, PublicKeyToken=52aa3500039caf0d, processorArchitecture=MSIL">
+      <HintPath>..\packages\HelixToolkit.Wpf.2015.1.715\lib\net45\HelixToolkit.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.MahApps, Version=0.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.MahApps.0.0.10\lib\net45\MaterialDesignThemes.MahApps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.0.823, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.3.0.823\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Wpf.Interop.DirectX">
+      <HintPath>..\..\..\..\..\Components\Libraries\WPFDXInterop\Microsoft.Wpf.Interop.DirectX.dll</HintPath>
+    </Reference>
+    <Reference Include="ParrotWPF">
+      <HintPath>..\..\..\..\Prototype\Parrot\ParrotWPF\bin\Debug\ParrotWPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SharpGL">
+      <HintPath>..\..\..\..\..\Components\Libraries\SharpGL\SharpGL.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.SceneGraph">
+      <HintPath>..\..\..\..\..\Components\Libraries\SharpGL\SharpGL.SceneGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.WPF">
+      <HintPath>..\..\..\..\..\Components\Libraries\SharpGL\SharpGL.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Wind">
+      <HintPath>..\Wind\bin\Debug\Wind.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\pColorSets.cs" />
+    <Compile Include="Collections\pModifiers.cs" />
+    <Compile Include="Containers\pElement.cs" />
+    <Compile Include="Controls\pButton.cs" />
+    <Compile Include="Controls\pCalc.cs" />
+    <Compile Include="Controls\pCalendar.cs" />
+    <Compile Include="Controls\pControl.cs" />
+    <Compile Include="Displays\pGradient.cs" />
+    <Compile Include="Drawings\pDrawing.cs" />
+    <Compile Include="Drawings\pMeshViewer.cs" />
+    <Compile Include="Drawings\pPointCloudViewer.cs" />
+    <Compile Include="Drawings\pViewMeshDirectX.cs" />
+    <Compile Include="Drawings\pViewMeshGL.cs" />
+    <Compile Include="Drawings\xMesh.cs" />
+    <Compile Include="Layouts\pCard.cs" />
+    <Compile Include="Controls\pChecklist.cs" />
+    <Compile Include="Controls\pColorCanvas.cs" />
+    <Compile Include="Controls\pColorPicker.cs" />
+    <Compile Include="Controls\pComboCheckList.cs" />
+    <Compile Include="Controls\pDateTime.cs" />
+    <Compile Include="Controls\pDropdownList.cs" />
+    <Compile Include="Controls\pViewGrid.cs" />
+    <Compile Include="Controls\pListBox.cs" />
+    <Compile Include="Controls\pViewList.cs" />
+    <Compile Include="Controls\pClock.cs" />
+    <Compile Include="Controls\pPickDate.cs" />
+    <Compile Include="Controls\pPickTime.cs" />
+    <Compile Include="Controls\pRadio.cs" />
+    <Compile Include="Controls\pRangeSlider.cs" />
+    <Compile Include="Controls\pScrollNumber.cs" />
+    <Compile Include="Controls\pScrollValue.cs" />
+    <Compile Include="Controls\pCheck.cs" />
+    <Compile Include="Controls\pToggle.cs" />
+    <Compile Include="Controls\pViewTree.cs" />
+    <Compile Include="Controls\pSlider.cs" />
+    <Compile Include="Controls\pTextBox.cs" />
+    <Compile Include="Displays\pCanvas.cs" />
+    <Compile Include="Displays\pDocumentViewer.cs" />
+    <Compile Include="Displays\pFrame.cs" />
+    <Compile Include="Displays\pLabel.cs" />
+    <Compile Include="Displays\pLegend.cs" />
+    <Compile Include="Displays\pProgress.cs" />
+    <Compile Include="Displays\pScrollView.cs" />
+    <Compile Include="Displays\pSpacer.cs" />
+    <Compile Include="Displays\pWebBrowser.cs" />
+    <Compile Include="Layouts\pExpand.cs" />
+    <Compile Include="Layouts\pGroup.cs" />
+    <Compile Include="Layouts\pPanelDock.cs" />
+    <Compile Include="Layouts\pPanelGrid.cs" />
+    <Compile Include="Layouts\pPanelTabs.cs" />
+    <Compile Include="Layouts\pPanelWrap.cs" />
+    <Compile Include="Layouts\pPanelStack.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\pCapture.cs" />
+    <Compile Include="Utilities\pPrint.cs" />
+    <Compile Include="Utilities\Theme.xaml.cs">
+      <DependentUpon>Theme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ParrotWindow.xaml.cs">
+      <DependentUpon>ParrotWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\pWindow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Utilities\Theme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ParrotWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\aviary_logo_uIB_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aviary-Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pollen\Pollen.csproj">
+      <Project>{A6F7F36D-CA95-4E10-9B4B-E7F0892338D0}</Project>
+      <Name>Pollen</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

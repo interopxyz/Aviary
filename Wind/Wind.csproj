@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16C589B0-CBAE-46B1-BC46-24AD34DE87F6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wind</RootNamespace>
+    <AssemblyName>Wind</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\CompiledData.cs" />
+    <Compile Include="Collections\CompiledDataSet.cs" />
+    <Compile Include="Containers\wEffects.cs" />
+    <Compile Include="Containers\wGraphic.cs" />
+    <Compile Include="Containers\wObject.cs" />
+    <Compile Include="Effects\wBlur.cs" />
+    <Compile Include="Effects\wDropShadow.cs" />
+    <Compile Include="Geometry\Curves\Splines\wBezierSpans.cs" />
+    <Compile Include="Geometry\Curves\Splines\wBezierSpline.cs" />
+    <Compile Include="Geometry\Curves\Splines\wCatmullRom.cs" />
+    <Compile Include="Geometry\Curves\Splines\wCubicBezier.cs" />
+    <Compile Include="Geometry\Curves\wTextObject.cs" />
+    <Compile Include="Geometry\Curves\wCurve.cs" />
+    <Compile Include="Geometry\Curves\Splines\wPolycurve.cs" />
+    <Compile Include="Geometry\Curves\Splines\wPolyline.cs" />
+    <Compile Include="Geometry\Curves\Splines\wQuadraticBezier.cs" />
+    <Compile Include="Geometry\Curves\wShape.cs" />
+    <Compile Include="Geometry\Curves\wShapeCollection.cs" />
+    <Compile Include="Geometry\Meshes\wFace.cs" />
+    <Compile Include="Geometry\Meshes\wFaceCollection.cs" />
+    <Compile Include="Geometry\Meshes\wMesh.cs" />
+    <Compile Include="Geometry\Meshes\wNormal.cs" />
+    <Compile Include="Geometry\Meshes\wNormalCollection.cs" />
+    <Compile Include="Geometry\Meshes\wVertex.cs" />
+    <Compile Include="Geometry\Meshes\wVertexCollection.cs" />
+    <Compile Include="Geometry\Curves\Primitives\wArc.cs" />
+    <Compile Include="Geometry\Curves\Primitives\wCircle.cs" />
+    <Compile Include="Geometry\Curves\Primitives\wEllipse.cs" />
+    <Compile Include="Geometry\Curves\Primitives\wLine.cs" />
+    <Compile Include="Geometry\Curves\Primitives\wRectangle.cs" />
+    <Compile Include="Scene\Lights\wLightAmbient.cs" />
+    <Compile Include="Scene\Lights\wLightSpot.cs" />
+    <Compile Include="Scene\wCamera.cs" />
+    <Compile Include="Geometry\Shapes\wCompoundCurve.cs" />
+    <Compile Include="Geometry\Shapes\wPath.cs" />
+    <Compile Include="Geometry\Shapes\wText.cs" />
+    <Compile Include="Geometry\Vectors\wPlane.cs" />
+    <Compile Include="Geometry\Vectors\wPoint.cs" />
+    <Compile Include="Geometry\Vectors\wVector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\Lights\wLightDirectional.cs" />
+    <Compile Include="Scene\Lights\wLightLinear.cs" />
+    <Compile Include="Scene\Lights\wLightPoint.cs" />
+    <Compile Include="Scene\wLight.cs" />
+    <Compile Include="Scene\wShader.cs" />
+    <Compile Include="Types\wColor.cs" />
+    <Compile Include="Types\wDomain.cs" />
+    <Compile Include="Types\wFont.cs" />
+    <Compile Include="Types\wFontDrawing.cs" />
+    <Compile Include="Types\wFontMedia.cs" />
+    <Compile Include="Containers\wSize.cs" />
+    <Compile Include="Types\wGradient.cs" />
+    <Compile Include="Utilities\AdjustLuminance.cs" />
+    <Compile Include="Utilities\GetBitmap.cs" />
+    <Compile Include="Utilities\GUIDtoAlpha.cs" />
+    <Compile Include="Utilities\HSVtoRGB.cs" />
+    <Compile Include="Utilities\NOW.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

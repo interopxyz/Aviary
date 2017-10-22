@@ -45,6 +45,9 @@
       <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CsPotrace">
+      <HintPath>..\packages\Potrace-Vectorization.2.0.0\CsPotrace.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -84,28 +87,28 @@
     <Compile Include="Build\mIterate.cs" />
     <Compile Include="Build\mSequence.cs" />
     <Compile Include="Build\mFilterTexture.cs" />
-    <Compile Include="Compiling\mBlends.cs" />
-    <Compile Include="Compiling\mComposition.cs" />
-    <Compile Include="Compiling\mModifiers.cs" />
-    <Compile Include="Compiling\Modifiers\mImageColor.cs" />
-    <Compile Include="Compiling\Modifiers\mModifier.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyBorder.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyColorTint.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyCurvesValues.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyFlatten.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyGrayscale.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyGaussian.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyFeather.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyEmboss.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyResize.cs" />
-    <Compile Include="Compiling\Modifiers\mModifySolarize.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyUnsharpen.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyVignette.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyInvert.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyContrast.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyBrightness.cs" />
-    <Compile Include="Compiling\Modifiers\mModifyColorKey.cs" />
-    <Compile Include="Compiling\Modifiers\mQuickComposite.cs" />
+    <Compile Include="Build\Compiling\mBlends.cs" />
+    <Compile Include="Build\Compiling\mComposition.cs" />
+    <Compile Include="Build\Compiling\mModifiers.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mImageColor.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifier.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyBorder.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyColorTint.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyCurvesValues.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyFlatten.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyGrayscale.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyGaussian.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyFeather.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyEmboss.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyResize.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifySolarize.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyUnsharpen.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyVignette.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyInvert.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyContrast.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyBrightness.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mModifyColorKey.cs" />
+    <Compile Include="Build\Compiling\Modifiers\mQuickComposite.cs" />
     <Compile Include="Compositing\Blends\mBlendMultiply.cs" />
     <Compile Include="Compositing\mCompositeAdd.cs" />
     <Compile Include="Compositing\mCompositeIntersect.cs" />
@@ -117,8 +120,8 @@
     <Compile Include="Compositing\mCompositeMorph.cs" />
     <Compile Include="Build\mFilterMask.cs" />
     <Compile Include="Compositing\mCompositeTextureMorph.cs" />
-    <Compile Include="Compiling\mLayer.cs" />
-    <Compile Include="Compiling\mLayerImage.cs" />
+    <Compile Include="Build\Compiling\mLayer.cs" />
+    <Compile Include="Build\Compiling\mLayerImage.cs" />
     <Compile Include="Editing\Rotation\mMirror.cs" />
     <Compile Include="Editing\Rotation\mRotateNearistNeighbor.cs" />
     <Compile Include="Editing\Rotation\mRotateBicubic.cs" />

@@ -1,0 +1,18 @@
+EXPORTS
+    _Z10CeckParam115potrace_param_s @1
+    _Z11bm_writepbmP6_iobufP16potrace_bitmap_s @2
+    _Z12process_pathP14potrace_path_sPK15potrace_param_sP10progress_s @3
+    _Z13bmp_open_readPKcdPP16potrace_bitmap_s @4
+    _Z13pathlist_freeP14potrace_path_s @5
+    _Z14bm_to_pathlistPK16potrace_bitmap_sPP14potrace_path_sPK15potrace_param_sP10progress_s @6
+    _Z14privcurve_initP11privcurve_si @7
+    _Z18privcurve_to_curveP11privcurve_sP15potrace_curve_s @8
+    _Z7bm_readP6_iobufdPP16potrace_bitmap_s @9
+    _Z8bm_printP6_iobufP16potrace_bitmap_s @10
+    _Z8path_newv @11
+    _Z9path_freeP14potrace_path_s @12
+    bm_read_error @13 DATA
+    potrace_param_default @14
+    potrace_state_free @15
+    potrace_trace @16
+    potrace_version @17

@@ -75,3 +75,4 @@ C:\Users\LJobson\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.Properties.Resour
 C:\Users\LJobson\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.csproj.GenerateResource.Cache
 C:\Users\LJobson\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.dll
 C:\Users\LJobson\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.pdb
+C:\Users\LJobson\Documents\GitHub\Aviary\Macaw\bin\Debug\CsPotrace.dll

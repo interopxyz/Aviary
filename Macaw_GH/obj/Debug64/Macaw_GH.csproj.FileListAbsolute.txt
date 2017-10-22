@@ -83,3 +83,4 @@ C:\Users\LJobson\Documents\GitHub\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.csproj.Ge
 C:\Users\LJobson\Documents\GitHub\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.dll
 C:\Users\LJobson\Documents\GitHub\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.pdb
 C:\Users\LJobson\Documents\GitHub\Aviary\Macaw_GH\bin\Wind.dll
+C:\Users\LJobson\Documents\GitHub\Aviary\Macaw_GH\bin\CsPotrace.dll

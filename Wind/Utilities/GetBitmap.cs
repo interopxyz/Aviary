@@ -11,10 +11,12 @@ namespace Wind.Utilities
 
         public GetBitmap(string FilePath)
         {
-            BitmapObject = (Bitmap)Bitmap.FromFile(FilePath);
-
-            Width = BitmapObject.Width;
-            Height = BitmapObject.Height;
+            using (var fs = new System.IO.FileStream(FilePath, System.IO.FileMode.Open))
+            {
+                BitmapObject = new Bitmap(fs);
+                Width = BitmapObject.Width;
+                Height = BitmapObject.Height;
+            }
         }
     }
 }

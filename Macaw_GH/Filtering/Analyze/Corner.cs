@@ -14,6 +14,8 @@ using Macaw.Filtering.Stylized;
 using Macaw.Compiling;
 using Macaw.Analysis;
 using Wind.Geometry.Vectors;
+using Grasshopper.Kernel.Data;
+using Grasshopper;
 
 namespace Macaw_GH.Filtering.Analyze
 {
@@ -33,9 +35,12 @@ namespace Macaw_GH.Filtering.Analyze
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
+            pManager[0].Optional = false;
+            /*
             pManager[0].Optional = true;
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
             paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
+            */
 
             pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
@@ -62,6 +67,7 @@ namespace Macaw_GH.Filtering.Analyze
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
             pManager.AddGenericParameter("Filter", "F", "---", GH_ParamAccess.item);
             pManager.AddGenericParameter("Points", "P", "---", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Curves", "C", "---", GH_ParamAccess.list);
         }
 
         /// <summary>
@@ -89,7 +95,11 @@ namespace Macaw_GH.Filtering.Analyze
             Bitmap B = new Bitmap(A);
 
 
-        List<wPoint> Points = new List<wPoint>();
+            List<wPoint> Points = new List<wPoint>();
+            List<List<wPoint[]>> PointArr = new List<List<wPoint[]>>();
+
+            Points.Clear();
+            PointArr.Clear();
 
             mFilter Filter = new mFilter();
 
@@ -99,16 +109,15 @@ namespace Macaw_GH.Filtering.Analyze
                     mAnalyzeCornersSusan Scorner = new mAnalyzeCornersSusan(A, Y, D, G);
                     Points = Scorner.Points;
                     Filter = Scorner;
+                    PointArr = Scorner.VectorizedPointArray;
                     break;
                 case 1:
                     mAnalyzeCornersMoravec Mcorner = new mAnalyzeCornersMoravec(A, Y, D);
                     Points = Mcorner.Points;
                     Filter = Mcorner;
                     break;
-            }
-            
-            
-
+            }            
+           
             B = new mApply(A, Filter).ModifiedBitmap;
 
             wObject W = new wObject(Filter, "Macaw", Filter.Type);
@@ -120,9 +129,34 @@ namespace Macaw_GH.Filtering.Analyze
                 P.Add(new Point3d(X.X, X.Y, X.Z));
             }
 
+            List<List<Line>> CL = new List<List<Line>>();
+
+            foreach(var ptArrList in PointArr)
+            {
+                List<Line> C = new List<Line>();
+
+                foreach (var ptArr in ptArrList)
+                {
+                    C.Add(new Rhino.Geometry.Line(new Point3d(ptArr[0].X, ptArr[0].Y, 0), new Point3d(ptArr[1].X, ptArr[1].Y, 0)));
+                }
+                CL.Add(C);
+            }
+
+            var CL_Tree = new DataTree<GH_Line>();
+
+            for(int i = 0; i<CL.Count; i++)
+            {
+                var path = new GH_Path(i);
+                for (int j = 0; j<CL[i].Count; j++)
+                {
+                    CL_Tree.Add(new GH_Line(CL[i][j]), path);
+                }
+            }
+
             DA.SetData(0, B);
             DA.SetData(1, W);
             DA.SetDataList(2, P);
+            DA.SetDataTree(3, CL_Tree);
         }
 
         /// <summary>

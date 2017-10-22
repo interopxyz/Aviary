@@ -55,22 +55,16 @@
       <HintPath>..\packages\MaterialDesignThemes.2.3.0.823\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Wpf.Interop.DirectX">
-      <HintPath>..\..\..\..\..\Components\Libraries\WPFDXInterop\Microsoft.Wpf.Interop.DirectX.dll</HintPath>
-    </Reference>
-    <Reference Include="ParrotWPF">
-      <HintPath>..\..\..\..\Prototype\Parrot\ParrotWPF\bin\Debug\ParrotWPF.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SharpGL">
-      <HintPath>..\..\..\..\..\Components\Libraries\SharpGL\SharpGL.dll</HintPath>
+      <HintPath>..\packages\SharpGL\SharpGL.dll</HintPath>
     </Reference>
     <Reference Include="SharpGL.SceneGraph">
-      <HintPath>..\..\..\..\..\Components\Libraries\SharpGL\SharpGL.SceneGraph.dll</HintPath>
+      <HintPath>..\packages\SharpGL\SharpGL.SceneGraph.dll</HintPath>
     </Reference>
     <Reference Include="SharpGL.WPF">
-      <HintPath>..\..\..\..\..\Components\Libraries\SharpGL\SharpGL.WPF.dll</HintPath>
+      <HintPath>..\packages\SharpGL\SharpGL.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

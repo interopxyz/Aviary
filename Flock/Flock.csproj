@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SharpGL.SceneGraph">
-      <HintPath>..\..\..\..\..\Components\Libraries\SharpGL\SharpGL.SceneGraph.dll</HintPath>
+      <HintPath>..\packages\SharpGL\SharpGL.SceneGraph.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

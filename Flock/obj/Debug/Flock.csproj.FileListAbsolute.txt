@@ -16,3 +16,10 @@ C:\Users\LJobson\Documents\GitHub\Aviary\Flock\bin\Debug\Flock.pdb
 C:\Users\LJobson\Documents\GitHub\Aviary\Flock\obj\Debug\Flock.csprojResolveAssemblyReference.cache
 C:\Users\LJobson\Documents\GitHub\Aviary\Flock\obj\Debug\Flock.dll
 C:\Users\LJobson\Documents\GitHub\Aviary\Flock\obj\Debug\Flock.pdb
+C:\Users\Hanshen\Documents\GitHub\Aviary\Flock\bin\Debug\Flock.dll
+C:\Users\Hanshen\Documents\GitHub\Aviary\Flock\bin\Debug\Flock.pdb
+C:\Users\Hanshen\Documents\GitHub\Aviary\Flock\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\Hanshen\Documents\GitHub\Aviary\Flock\bin\Debug\SharpGL.dll
+C:\Users\Hanshen\Documents\GitHub\Aviary\Flock\obj\Debug\Flock.csprojResolveAssemblyReference.cache
+C:\Users\Hanshen\Documents\GitHub\Aviary\Flock\obj\Debug\Flock.dll
+C:\Users\Hanshen\Documents\GitHub\Aviary\Flock\obj\Debug\Flock.pdb

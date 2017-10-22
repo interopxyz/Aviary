@@ -89,6 +89,10 @@
     <Compile Include="Geometry\Curves\Primitives\wEllipse.cs" />
     <Compile Include="Geometry\Curves\Primitives\wLine.cs" />
     <Compile Include="Geometry\Curves\Primitives\wRectangle.cs" />
+    <Compile Include="Graphics\wFill.cs" />
+    <Compile Include="Graphics\wFillGradient.cs" />
+    <Compile Include="Graphics\wFillSolid.cs" />
+    <Compile Include="Graphics\wFillSwatch.cs" />
     <Compile Include="Scene\Lights\wLightAmbient.cs" />
     <Compile Include="Scene\Lights\wLightSpot.cs" />
     <Compile Include="Scene\wCamera.cs" />

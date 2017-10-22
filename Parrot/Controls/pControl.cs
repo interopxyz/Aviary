@@ -18,7 +18,12 @@ namespace Parrot.Controls
         {
 
         }
-        
+
+        public virtual void SetFill()
+        {
+
+        }
+
         public virtual void SetSolidFill()
         {
 

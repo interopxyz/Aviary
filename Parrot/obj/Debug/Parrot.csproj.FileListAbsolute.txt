@@ -347,3 +347,6 @@ C:\Users\LJobson\Documents\GitHub\Aviary\Parrot\obj\Debug\Parrot.Properties.Reso
 C:\Users\LJobson\Documents\GitHub\Aviary\Parrot\obj\Debug\Parrot.csproj.GenerateResource.Cache
 C:\Users\LJobson\Documents\GitHub\Aviary\Parrot\obj\Debug\Parrot.dll
 C:\Users\LJobson\Documents\GitHub\Aviary\Parrot\obj\Debug\Parrot.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\SharpGL.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\SharpGL.WPF.dll

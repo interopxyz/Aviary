@@ -146,8 +146,8 @@ namespace Parrot_GH.Drawings
             pCtrl.Graphics.Width = F.Width;
             pCtrl.Graphics.Height = F.Height;
 
-            pCtrl.group.Graphics.Width = F.Width;
-            pCtrl.group.Graphics.Height = F.Height;
+            pCtrl.group.Width = (int)F.Width;
+            pCtrl.group.Height = (int)F.Height;
 
             pCtrl.SetSize();
 
@@ -183,8 +183,7 @@ namespace Parrot_GH.Drawings
             DA.SetData(0, WindObject);
             DA.SetData(1, pCtrl.group);
             DA.SetData(2, pCtrl.GetBitmap());
-
-
+            
         }
 
         /// <summary>

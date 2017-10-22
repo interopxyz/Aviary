@@ -113,6 +113,7 @@ namespace Wind_GH.Formatting
             DwgBrush.TileMode = TileMode.Tile;
 
             G.WpfPattern = DwgBrush;
+            G.WpfFill = DwgBrush;
 
             W.Graphics = G;
 
@@ -122,8 +123,8 @@ namespace Wind_GH.Formatting
                     pElement E = (pElement)W.Element;
                     pControl C = (pControl)E.ParrotControl;
                     C.Graphics = G;
-                    
-                    C.SetPatternFill();
+
+                    C.SetFill();
 
                     break;
                 case "Pollen":

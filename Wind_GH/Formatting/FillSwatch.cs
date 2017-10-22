@@ -10,11 +10,16 @@ using System.Windows.Media;
 using Parrot.Containers;
 using Parrot.Controls;
 using Pollen.Collections;
+using Wind.Graphics;
+using System.Windows.Forms;
 
 namespace Wind_GH.Formatting
 {
     public class FillSwatch : GH_Component
     {
+
+        int TileTypeMode = 0;
+
         /// <summary>
         /// Initializes a new instance of the FillSwatch class.
         /// </summary>
@@ -65,25 +70,10 @@ namespace Wind_GH.Formatting
             wShapeCollection S = new wShapeCollection();
             if (Shps != null) { Shps.CastTo(out S); }
 
-            DrawingBrush DwgBrush = new DrawingBrush();
-            DrawingGroup DwgGroup = new DrawingGroup();
+            wFillSwatch Swatch = new wFillSwatch(S, Scale, TileTypeMode, S.Width, S.Height);
 
-            foreach (wShape Shp in S.Shapes)
-            {
-                GeometryDrawing dwgG = new GeometryDrawing(new SolidColorBrush(Shp.Graphic.Foreground.ToMediaColor()), new Pen(new SolidColorBrush(Shp.Graphic.StrokeColor.ToMediaColor()), Shp.Graphic.StrokeWeight[0]), Shp.GeometrySet);
-                dwgG.Pen.StartLineCap = (PenLineCap)Shp.Graphic.StrokeCap;
-                dwgG.Pen.EndLineCap = (PenLineCap)Shp.Graphic.StrokeCap;
-                DwgGroup.Children.Add(dwgG);
-            }
-
-            DwgGroup.ClipGeometry = new RectangleGeometry(new System.Windows.Rect(0, 0, 300, 300));
-
-            DwgBrush.Drawing = DwgGroup;
-            DwgBrush.Viewbox = new System.Windows.Rect(0, 0, 1, 1);
-            DwgBrush.Viewport = new System.Windows.Rect(0, 0, Scale, Scale);
-            DwgBrush.TileMode = TileMode.Tile;
-
-            G.WpfPattern = DwgBrush;
+            G.WpfPattern = Swatch.DwgBrush;
+            G.WpfFill = Swatch.DwgBrush;
 
             W.Graphics = G;
 
@@ -94,8 +84,7 @@ namespace Wind_GH.Formatting
                     pControl C = (pControl)E.ParrotControl;
                     C.Graphics = G;
 
-                            C.SetPatternFill();
-                            break;
+                            C.SetFill();
 
                     break;
                 case "Pollen":
@@ -130,6 +119,41 @@ namespace Wind_GH.Formatting
         public override GH_Exposure Exposure
         {
             get { return GH_Exposure.secondary; }
+        }
+
+        public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
+        {
+            base.AppendAdditionalMenuItems(menu);
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Tile", SetTile, true, (TileTypeMode == 4));
+            Menu_AppendItem(menu, "FlipX", SetFlipX, true, (TileTypeMode == 1));
+            Menu_AppendItem(menu, "FlipY", SetFlipY, true, (TileTypeMode == 2));
+            Menu_AppendItem(menu, "FlipXY", SetFlipXY, true, (TileTypeMode == 3));
+        }
+
+        private void SetTile(Object sender, EventArgs e)
+        {
+            TileTypeMode = 4;
+            this.ExpireSolution(true);
+        }
+
+        private void SetFlipX(Object sender, EventArgs e)
+        {
+            TileTypeMode = 1;
+            this.ExpireSolution(true);
+        }
+
+        private void SetFlipY(Object sender, EventArgs e)
+        {
+            TileTypeMode = 2;
+            this.ExpireSolution(true);
+        }
+
+        private void SetFlipXY(Object sender, EventArgs e)
+        {
+            TileTypeMode = 3;
+            this.ExpireSolution(true);
         }
 
         /// <summary>

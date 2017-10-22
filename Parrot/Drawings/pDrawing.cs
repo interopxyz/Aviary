@@ -56,6 +56,9 @@ namespace Parrot.Drawings
 
             Center = new Point((int)(Frame.Width/2),(int)(Frame.Height/2));
 
+            group.Boundary.Width = Frame.Width;
+            group.Boundary.Height = Frame.Height;
+
             Element.Width = Frame.Width;
             Element.Height = Frame.Height;
         }
@@ -144,8 +147,6 @@ namespace Parrot.Drawings
 
             X.Data = E;
 
-            //X.RenderTransform = Xform;
-            
             X = SetPathFill(X, Graphics);
             X = SetPathStroke(X, Graphics);
             X = SetPathEffects(X, ShapeEffects);
@@ -196,23 +197,19 @@ namespace Parrot.Drawings
             wEllipse C = (wEllipse)Shape;
             EllipseGeometry E = new EllipseGeometry();
 
-            E.Center = new System.Windows.Point((C.Center.X + C.RadiusX) * Scale, (C.Center.Y + C.RadiusY) * Scale);
+            E.Center = new System.Windows.Point((C.Center.X) * Scale, (C.Center.Y) * Scale);
             E.RadiusX = C.RadiusX * Scale;
             E.RadiusY = C.RadiusY * Scale;
 
-            X.Data = E;
+            E.Transform = new RotateTransform(C.Rotation, E.Center.X, E.Center.Y);
 
-            //TransformGroup LocalXform = new TransformGroup();
-            //LocalXform.Children.Add(new RotateTransform(C.Rotation, C.RadiusX * Scale, C.RadiusY * Scale));
-            //LocalXform.Children.Add(Xform);
-            //LocalXform.Children.Add(new TranslateTransform((C.Center.X * Scale - C.RadiusX * Scale), (C.Center.Y * Scale - C.RadiusY * Scale)));
-            //X.RenderTransform = LocalXform;
-            
+            X.Data = E;
+            X.RenderTransform = Xform;
+
             X = SetPathFill(X, Graphics);
             X = SetPathStroke(X, Graphics);
             X = SetPathEffects(X, ShapeEffects);
-
-
+            
             group.Shapes.Add(new wShape(E, Graphics));
             return X;
         }

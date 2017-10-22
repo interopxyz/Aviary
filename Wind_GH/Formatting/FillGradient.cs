@@ -12,6 +12,8 @@ using Wind.Containers;
 using Parrot.Containers;
 using Wind.Geometry.Curves;
 using Parrot.Controls;
+using System.Windows.Media;
+using Wind.Graphics;
 
 namespace Wind_GH.Formatting
 {
@@ -32,11 +34,11 @@ namespace Wind_GH.Formatting
         {
             pManager.AddGenericParameter("Object", "O", "Wind Objects", GH_ParamAccess.item);
             pManager[0].Optional = true;
-            pManager.AddColourParameter("Colors", "C", "---", GH_ParamAccess.list, new List<System.Drawing.Color>());
-            pManager.AddNumberParameter("Parameters", "P", "---", GH_ParamAccess.list, new List<double>());
-            pManager[2].Optional = false;
+            pManager.AddColourParameter("Colors", "C", "---", GH_ParamAccess.list, new List<System.Drawing.Color>() { System.Drawing.Color.LightSlateGray, System.Drawing.Color.SlateGray });
+            pManager.AddNumberParameter("Parameters", "P", "---", GH_ParamAccess.list, new List<double>() { 0, 1 });
+            pManager[2].Optional = true;
             pManager.AddIntegerParameter("Types", "T", "---", GH_ParamAccess.item,0);
-            pManager[3].Optional = false;
+            pManager[3].Optional = true;
             
             Param_Integer param = (Param_Integer)Params.Input[3];
             param.AddNamedValue("Linear", 0);
@@ -60,7 +62,7 @@ namespace Wind_GH.Formatting
         {
             IGH_Goo Element = null;
 
-            List<System.Drawing.Color> Colors = new List<System.Drawing.Color>(); ;
+            List<System.Drawing.Color> Colors = new List<System.Drawing.Color>() { System.Drawing.Color.LightSlateGray,System.Drawing.Color.SlateGray};
             List<double> Parameters = new List<double>();
             int GradientType = 0;
 
@@ -72,16 +74,26 @@ namespace Wind_GH.Formatting
             wObject W = new wObject();
             if (Element != null) { Element.CastTo(out W); }
             wGraphic G = W.Graphics;
-
+            
             if (Parameters.Count < 1)
             { 
             G.Gradient = new wGradient(Colors);
             }
             else
             {
-                G.Gradient = new wGradient(Colors,Parameters);
+                if (Parameters.Count<Colors.Count)
+                {
+                    for(int i = Parameters.Count;i<Colors.Count;i++)
+                    {
+                        Parameters.Add(Parameters[Parameters.Count - 1]);
+                    }
+                }
+
+                    G.Gradient = new wGradient(Colors,Parameters);
             }
-            
+
+            G.WpfFill = new wFillGradient(G.Gradient, GradientType).GrdBrush;
+
             W.Graphics = G;
 
             if (Element != null)
@@ -89,11 +101,12 @@ namespace Wind_GH.Formatting
                 switch (W.Type)
             {
                 case "Parrot":
-                    pElement E = (pElement)W.Element;
+                        pElement E = (pElement)W.Element;
                         pControl C = (pControl)E.ParrotControl;
+                        C.SetFill();
 
-                        C.Graphics = G;
-                        break;
+                    C.Graphics = G;
+                    break;
                 case "Pollen":
                     switch (W.SubType)
                     {

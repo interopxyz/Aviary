@@ -10,6 +10,7 @@ using Parrot.Containers;
 using Parrot.Controls;
 using Pollen.Collections;
 using Wind.Geometry.Curves;
+using Wind.Graphics;
 
 namespace Wind_GH.Formatting
 {
@@ -60,7 +61,9 @@ namespace Wind_GH.Formatting
 
             G.Background = new wColor(Background);
             G.Foreground = new wColor(Background);
-            
+
+            G.WpfFill = new wFillSolid(G.Background).FillBrush;
+
             W.Graphics = G;
 
             switch (W.Type)
@@ -69,8 +72,9 @@ namespace Wind_GH.Formatting
                     pElement E = (pElement)W.Element;
                     pControl C = (pControl)E.ParrotControl;
                     C.Graphics = G;
-                    
-                            C.SetSolidFill();
+
+                    C.SetFill();
+
                     break;
                 case "Pollen":
                     switch (W.SubType)

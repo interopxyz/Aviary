@@ -15,7 +15,9 @@ namespace Wind.Containers
         public wColor Foreground = new wColor().Black();
         public wColor StrokeColor = new wColor().Black();
 
+        public Brush WpfFill = new SolidColorBrush(Colors.White);
         public DrawingBrush WpfPattern = new DrawingBrush();
+
         public string FillPattern = "Solid";
 
         public double[] StrokeWeight = new double[4] { 0, 0, 0, 0 };

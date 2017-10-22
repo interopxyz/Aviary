@@ -13,6 +13,7 @@ using Grasshopper.Kernel.Types;
 using Wind.Collections;
 using Pollen.Collections;
 using System.Windows.Forms;
+using GH_IO.Serialization;
 
 namespace Parrot_GH.Controls
 {
@@ -21,12 +22,12 @@ namespace Parrot_GH.Controls
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
 
-        int GridType = 0;
-        bool ResizeHorizontal = false;
-        bool AddRows = false;
-        bool AlternateGraphics = false;
-        bool Sortable = true;
+        public int GridType = 0;
+        public bool ResizeHorizontal = false;
 
+        public bool AddlRows = false;
+        public bool AlternateGraphics = false;
+        public bool Sortable = true;
         /// <summary>
         /// Initializes a new instance of the ViewGrid class.
         /// </summary>
@@ -90,7 +91,7 @@ namespace Parrot_GH.Controls
                 D.CastTo(out W);
             DataSetCollection S = (DataSetCollection)W.Element;
 
-            pCtrl.SetProperties(S, GridType, false, ResizeHorizontal, Sortable, AlternateGraphics, AddRows);
+            pCtrl.SetProperties(S, GridType, false, ResizeHorizontal, Sortable, AlternateGraphics, AddlRows);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }
@@ -101,8 +102,18 @@ namespace Parrot_GH.Controls
             Elements[this.RunCount] = WindObject;
 
             DA.SetData(0, WindObject);
-
+            
         }
+
+
+ 
+
+
+
+
+     
+        
+
 
         public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
         {
@@ -120,7 +131,51 @@ namespace Parrot_GH.Controls
 
             Menu_AppendSeparator(menu);
             Menu_AppendItem(menu, "Alternate Rows", AltGraphic, true, AlternateGraphics);
-            Menu_AppendItem(menu, "Add Rows", AddRow, true, AddRows);
+            Menu_AppendItem(menu, "Additional Rows", AdditionalRows, true, AddlRows);
+            //Menu_AppendSeparator(menu);
+
+
+            
+
+            
+        }
+
+        /*
+        public int GridType = 0;
+        public bool ResizeHorizontal = false;
+        public bool AddRows = false;
+        public bool AlternateGraphics = false;
+        public bool Sortable = true;
+        */
+
+        public override bool Write(GH_IWriter writer)
+        {
+
+            writer.SetBoolean("alternateGraphics", AlternateGraphics);
+            writer.SetBoolean("Sortable", Sortable);
+            writer.SetBoolean("ResizeHorizontal", ResizeHorizontal);
+            writer.SetBoolean("AddlRows", AddlRows);
+            writer.SetInt32("GridType", GridType);
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+
+            AlternateGraphics = reader.GetBoolean("alternateGraphics");
+            Sortable = reader.GetBoolean("Sortable");
+            ResizeHorizontal = reader.GetBoolean("ResizeHorizontal");
+            AddlRows = reader.GetBoolean("AddlRows");
+            GridType = reader.GetInt32("GridType");
+
+            return base.Read(reader);
+        }
+
+
+        private void AdditionalRows(Object sender, EventArgs e)
+        {
+            AddlRows = ! AddlRows;
+            this.ExpireSolution(true);
         }
 
         private void AltGraphic(Object sender, EventArgs e)
@@ -135,11 +190,8 @@ namespace Parrot_GH.Controls
             this.ExpireSolution(true);
         }
 
-        private void AddRow(Object sender, EventArgs e)
-        {
-            AddRows = !AddRows;
-            this.ExpireSolution(true);
-        }
+        
+        
 
         private void ResizeRow(Object sender, EventArgs e)
         {
@@ -170,6 +222,10 @@ namespace Parrot_GH.Controls
             GridType = 3;
             this.ExpireSolution(true);
         }
+
+
+
+
 
 
         /// <summary>

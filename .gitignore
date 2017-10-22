@@ -1,3 +1,9 @@
 *.dll
 *.pdb
 *.cache
+*.gha
+*.xml
+Bumblebee/obj/Debug/Bumblebee.csproj.FileListAbsolute.txt
+.vs/Aviary/v14/.suo
+.vs/Aviary/v14/.suo
+.vs/Aviary/v14/.suo

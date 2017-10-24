@@ -28,7 +28,7 @@ namespace Wind_GH.Geometry
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddBrepParameter("Curve", "C", "Curve", GH_ParamAccess.item);
+            pManager.AddBrepParameter("Brep", "B", "Brep", GH_ParamAccess.item);
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 
 using Parrot.Containers;
 using Parrot.Collections;
+
 using System.Windows.Media;
 using Parrot.Controls;
 
@@ -56,6 +57,9 @@ namespace Parrot.Layouts
             Element.VerticalAlignment = Modify.Valign(vAlign);
         }
 
-
+        public override void SetFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
     }
 }

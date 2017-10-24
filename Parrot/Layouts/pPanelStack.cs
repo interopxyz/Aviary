@@ -46,5 +46,10 @@ namespace Parrot.Layouts
             Element.Children.Add(ParrotElement.Container);
         }
 
+        public override void SetFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
     }
 }

@@ -52,16 +52,13 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Grasshopper">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper {B45A29B1-4343-4035-989E-044E8580D9CF}\0.9.76.0\Grasshopper.dll</HintPath>
+      <HintPath>..\packages\Rhino Common\Grasshopper.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GH_IO">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper {B45A29B1-4343-4035-989E-044E8580D9CF}\0.9.76.0\GH_IO.dll</HintPath>
+      <HintPath>..\packages\Rhino Common\GH_IO.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="Wind">
-      <HintPath>..\Wind\bin\Debug\Wind.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -188,6 +185,10 @@
       <Project>{4776e010-0059-4d08-8bf8-7ac68247462d}</Project>
       <Name>Hoopoe</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wind\Wind.csproj">
+      <Project>{16C589B0-CBAE-46B1-BC46-24AD34DE87F6}</Project>
+      <Name>Wind</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Hoopoe_Read.png" />
@@ -214,6 +215,7 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
+Copy "$(TargetPath)" "$(SolutionDir)Aviary\Build\$(ProjectName).gha"
 Erase "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

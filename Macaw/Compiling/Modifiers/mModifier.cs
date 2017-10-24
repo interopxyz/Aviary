@@ -11,7 +11,6 @@ namespace Macaw.Compiling.Modifiers
 
     public class mModifier
     {
-        Filter FilterObject = null;
 
         public mModifier()
         {

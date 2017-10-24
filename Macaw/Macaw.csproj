@@ -45,6 +45,9 @@
       <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CsPotrace">
+      <HintPath>..\packages\Potrace-Vectorization.2.0.0\CsPotrace.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -69,14 +72,12 @@
       <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Wind">
-      <HintPath>..\Wind\bin\Debug\Wind.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analysis\mAnalyzeBlob.cs" />
     <Compile Include="Analysis\mAnalyzeCornersMoravec.cs" />
+    <Compile Include="Analysis\mAnalyzePotrace.cs" />
     <Compile Include="Analysis\mAnalyzeQuads.cs" />
     <Compile Include="Analysis\mAnalyzeCornersSusan.cs" />
     <Compile Include="App_Start\DynamicImage.cs" />
@@ -249,8 +250,16 @@
   <ItemGroup>
     <Content Include="WPFShaderEffects.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Wind\Wind.csproj">
+      <Project>{16C589B0-CBAE-46B1-BC46-24AD34DE87F6}</Project>
+      <Name>Wind</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(ProjectDir)bin\Debug\$(ProjectName).dll" "$(SolutionDir)Aviary\Build\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

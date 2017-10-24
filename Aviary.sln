@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parrot", "Parrot\Parrot.csproj", "{52909892-248A-429D-8CB3-96104197459D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -13,6 +13,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parrot_GH", "Parrot_GH\Parrot_GH.csproj", "{2DEB024B-74EA-4A83-8455-92984B6C82CE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{52909892-248A-429D-8CB3-96104197459D} = {52909892-248A-429D-8CB3-96104197459D}
+		{16C589B0-CBAE-46B1-BC46-24AD34DE87F6} = {16C589B0-CBAE-46B1-BC46-24AD34DE87F6}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wind_GH", "Wind_GH\Wind_GH.csproj", "{19233BAC-718A-4504-B07A-3ABF9C0F6050}"
@@ -28,6 +29,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollen_GH", "Pollen_GH\Pollen_GH.csproj", "{2A081C7F-2641-4084-8060-3ADE8E3649AC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A6F7F36D-CA95-4E10-9B4B-E7F0892338D0} = {A6F7F36D-CA95-4E10-9B4B-E7F0892338D0}
+		{16C589B0-CBAE-46B1-BC46-24AD34DE87F6} = {16C589B0-CBAE-46B1-BC46-24AD34DE87F6}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Macaw", "Macaw\Macaw.csproj", "{84FAD446-B4F6-44ED-85A4-D6ED88F7B324}"
@@ -38,6 +40,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Macaw_GH", "Macaw_GH\Macaw_GH.csproj", "{340DC584-9F32-4D34-A0EC-5396D3A6520A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{84FAD446-B4F6-44ED-85A4-D6ED88F7B324} = {84FAD446-B4F6-44ED-85A4-D6ED88F7B324}
+		{16C589B0-CBAE-46B1-BC46-24AD34DE87F6} = {16C589B0-CBAE-46B1-BC46-24AD34DE87F6}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hoopoe", "Hoopoe\Hoopoe.csproj", "{4776E010-0059-4D08-8BF8-7AC68247462D}"

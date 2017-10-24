@@ -21,8 +21,6 @@ namespace Macaw.Compiling.Modifiers
         public mModifyFlatten(Bitmap ForeImage, System.Drawing.Color BackColor)
             {
 
-            Bitmap BackImage = null;
-
             LayerA = new mLayerImage(ForeImage, 0, 0, 0, 100);
 
 

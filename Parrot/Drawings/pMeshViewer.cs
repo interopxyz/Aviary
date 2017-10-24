@@ -218,9 +218,9 @@ namespace Parrot.Drawings
         {
         }
 
-        public override void SetSolidFill()
+        public override void SetFill()
         {
-            ViewPort.Background = new SolidColorBrush(Graphics.Background.ToMediaColor());
+            Element.Background = Graphics.WpfFill;
         }
 
         public override void SetStroke()

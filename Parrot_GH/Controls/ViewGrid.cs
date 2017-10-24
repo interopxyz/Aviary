@@ -104,17 +104,7 @@ namespace Parrot_GH.Controls
             DA.SetData(0, WindObject);
             
         }
-
-
- 
-
-
-
-
-     
         
-
-
         public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
         {
             base.AppendAdditionalMenuItems(menu);
@@ -132,21 +122,12 @@ namespace Parrot_GH.Controls
             Menu_AppendSeparator(menu);
             Menu_AppendItem(menu, "Alternate Rows", AltGraphic, true, AlternateGraphics);
             Menu_AppendItem(menu, "Additional Rows", AdditionalRows, true, AddlRows);
-            //Menu_AppendSeparator(menu);
 
 
             
 
             
         }
-
-        /*
-        public int GridType = 0;
-        public bool ResizeHorizontal = false;
-        public bool AddRows = false;
-        public bool AlternateGraphics = false;
-        public bool Sortable = true;
-        */
 
         public override bool Write(GH_IWriter writer)
         {

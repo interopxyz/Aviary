@@ -23,9 +23,9 @@ namespace Parrot.Displays
             Type = "Canvas";
         }
 
-        public override void SetSolidFill()
+        public override void SetFill()
         {
-            Element.Background = new SolidColorBrush(Graphics.Background.ToMediaColor());
+            Element.Background = Graphics.WpfFill;
         }
 
         public override void SetStroke()

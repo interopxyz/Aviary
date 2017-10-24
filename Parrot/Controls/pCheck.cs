@@ -30,9 +30,9 @@ namespace Parrot.Controls
             Element.Content = Name;
         }
 
-        public override void SetSolidFill()
+        public override void SetFill()
         {
-            Element.Background = new SolidColorBrush(Graphics.Background.ToMediaColor());
+            Element.Background = Graphics.WpfFill;
         }
 
         public override void SetStroke()

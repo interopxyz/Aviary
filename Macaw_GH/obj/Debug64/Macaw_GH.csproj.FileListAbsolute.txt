@@ -103,3 +103,25 @@ C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.Propertie
 C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.csproj.GenerateResource.Cache
 C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.dll
 C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\Macaw_GH.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\Macaw_GH.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\Macaw.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\Wind.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\WebActivatorEx.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\AForge.Imaging.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\AForge.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\SoundInTheory.DynamicImage.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\CsPotrace.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\AForge.Math.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\Macaw.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\Wind.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\AForge.Imaging.xml
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\AForge.xml
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\AForge.Math.xml
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.csprojResolveAssemblyReference.cache
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.Properties.Resources.resources
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.csproj.GenerateResource.Cache
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\obj\Debug64\Macaw_GH.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw_GH\bin\CsPotrace.dll

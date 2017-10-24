@@ -41,11 +41,11 @@ namespace Parrot.Displays
             Web.Navigate(Address);
         }
 
-        public override void SetSolidFill()
+        public override void SetFill()
         {
-            Element.Background = new SolidColorBrush(Graphics.Background.ToMediaColor());
+            Element.Background = Graphics.WpfFill;
         }
-        
+
         public override void SetSize()
         {
             if (Graphics.Width < 1) { Element.Width = double.NaN; } else { Element.Width = Graphics.Width; }

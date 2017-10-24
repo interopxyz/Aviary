@@ -93,3 +93,23 @@ C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.Properties.Resour
 C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.csproj.GenerateResource.Cache
 C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.dll
 C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Macaw.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Macaw.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Imaging.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Math.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\CsPotrace.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\SoundInTheory.DynamicImage.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\WebActivatorEx.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Wind.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.xml
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Imaging.xml
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Math.xml
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Wind.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.csprojResolveAssemblyReference.cache
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.Properties.Resources.resources
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.csproj.GenerateResource.Cache
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\CsPotrace.dll

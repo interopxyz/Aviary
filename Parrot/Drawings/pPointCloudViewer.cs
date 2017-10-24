@@ -139,5 +139,10 @@ namespace Parrot.Drawings
             ViewPort.ShowCoordinateSystem = HasCoordinateSystem;
         }
 
+        public override void SetFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
     }
 }

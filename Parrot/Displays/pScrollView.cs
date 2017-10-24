@@ -62,6 +62,11 @@ namespace Parrot.Displays
             }
         }
 
+        public override void SetFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
         public void SetCorners(wGraphic Graphic)
         {
         }

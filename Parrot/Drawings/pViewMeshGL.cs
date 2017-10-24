@@ -132,6 +132,11 @@ namespace Parrot.Drawings
 
             ObjectGL.Disable(OpenGL.GL_CULL_FACE);
         }
-        
+
+        public override void SetFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
     }
 }

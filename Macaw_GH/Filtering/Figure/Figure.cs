@@ -13,7 +13,7 @@ using Macaw.Filtering.Objects.Figures;
 using Rhino.Geometry;
 using Wind.Types;
 
-namespace Macaw_GH.Filtering.Object
+namespace Macaw_GH.Filtering.Figure
 {
     public class Figure : GH_Component
     {
@@ -55,7 +55,6 @@ namespace Macaw_GH.Filtering.Object
             param.AddNamedValue("Streak Horizontal", 9);
             param.AddNamedValue("Unique", 10);
             param.AddNamedValue("Filter", 11);
-            param.AddNamedValue("Corners", 12);
         }
 
         /// <summary>
@@ -128,9 +127,6 @@ namespace Macaw_GH.Filtering.Object
                     break;
                 case 11:
                     Filter = new mFigureFilter(new wDomain(X.T0, X.T1), new wDomain(Y.T0, Y.T1));
-                    break;
-                case 12:
-                    Filter = new mFigureCorners(Color.Red);
                     break;
             }
 

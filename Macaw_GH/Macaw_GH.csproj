@@ -48,16 +48,13 @@
     </Reference>
     <Reference Include="Grasshopper">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper {B45A29B1-4343-4035-989E-044E8580D9CF}\0.9.76.0\Grasshopper.dll</HintPath>
+      <HintPath>..\packages\Rhino Common\Grasshopper.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GH_IO">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper {B45A29B1-4343-4035-989E-044E8580D9CF}\0.9.76.0\GH_IO.dll</HintPath>
+      <HintPath>..\packages\Rhino Common\GH_IO.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="Wind">
-      <HintPath>..\Wind\bin\Debug\Wind.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -99,15 +96,16 @@
     <Compile Include="Filtering\Analyze\Blobs.cs" />
     <Compile Include="Filtering\Analyze\Corner.cs" />
     <Compile Include="Filtering\Analyze\Quads.cs" />
+    <Compile Include="Filtering\Analyze\Trace.cs" />
     <Compile Include="Filtering\Extract\BitmapProperties.cs" />
     <Compile Include="Filtering\Extract\DeconstructARGB.cs" />
     <Compile Include="Filtering\Extract\DeconstructHSL.cs" />
     <Compile Include="Filtering\Extract\ExtractARGBChannel.cs" />
     <Compile Include="Filtering\Extract\ExtractYCbCrChannel.cs" />
-    <Compile Include="Filtering\Object\Figure.cs" />
+    <Compile Include="Filtering\Figure\Figure.cs" />
     <Compile Include="Filtering\Stylize\Border.cs" />
     <Compile Include="Filtering\Stylize\Dither.cs" />
-    <Compile Include="Filtering\Object\Edge.cs" />
+    <Compile Include="Filtering\Figure\Edge.cs" />
     <Compile Include="Filtering\Adjust\Grayscale.cs" />
     <Compile Include="Filtering\Stylize\Effect.cs" />
     <Compile Include="Filtering\Stylize\Noise.cs" />
@@ -305,7 +303,12 @@
   <ItemGroup>
     <None Include="Resources\Macaw_Filter_Flatten.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Wind\Wind.csproj">
+      <Project>{16C589B0-CBAE-46B1-BC46-24AD34DE87F6}</Project>
+      <Name>Wind</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -316,6 +319,7 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
+Copy "$(TargetPath)" "$(SolutionDir)Aviary\Build\$(ProjectName).gha"
 Erase "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

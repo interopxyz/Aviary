@@ -61,6 +61,11 @@ namespace Parrot.Layouts
             Panels[PanelIndex].Children.Add(ParrotElement.Container);
         }
 
+        public override void SetFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
         public void SetCorners(wGraphic Graphic)
         {
         }

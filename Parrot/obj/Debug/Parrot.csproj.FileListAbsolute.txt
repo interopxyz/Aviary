@@ -256,9 +256,6 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\D
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\AForge.Imaging.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\AForge.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\AForge.Math.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
@@ -350,3 +347,6 @@ C:\Users\LJobson\Documents\GitHub\Aviary\Parrot\obj\Debug\Parrot.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\SharpGL.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\SharpGL.SceneGraph.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\SharpGL.WPF.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\AForge.Imaging.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\AForge.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\AForge.Math.xml

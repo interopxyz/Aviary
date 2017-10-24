@@ -7,9 +7,11 @@ using System.Windows.Controls;
 
 using Wind.Containers;
 
+using Parrot.Controls;
+
 namespace Parrot.Displays
 {
-    public class pDocumentViewer
+    public class pDocumentViewer : pControl
     {
         public DocumentViewer Element;
         public string Type;
@@ -23,6 +25,11 @@ namespace Parrot.Displays
 
         public void SetProperties(string Address)
         {
+        }
+
+        public override void SetFill()
+        {
+            Element.Background = Graphics.WpfFill;
         }
 
         public void SetCorners(wGraphic Graphic)

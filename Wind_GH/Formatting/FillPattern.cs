@@ -146,6 +146,8 @@ namespace Wind_GH.Formatting
                     break;
                 case "Hoopoe":
                     wShapeCollection Shapes = (wShapeCollection)W.Element;
+                    Shapes.Graphics.WpfFill = G.WpfFill;
+
                     Shapes.Graphics.Background = new wColor(Background);
                     Shapes.Graphics.Foreground = new wColor(ForeGround);
 

@@ -39,5 +39,10 @@ namespace Parrot.Drawings
 
         }
 
+        public override void SetFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
     }
 }

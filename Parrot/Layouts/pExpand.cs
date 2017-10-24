@@ -43,6 +43,11 @@ namespace Parrot.Layouts
             Element.VerticalContentAlignment = VerticalAlignment.Stretch;
         }
 
+        public override void SetFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
         public void SetCorners(wGraphic Graphic)
         {
         }

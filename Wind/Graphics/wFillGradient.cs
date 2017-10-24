@@ -24,7 +24,10 @@ namespace Wind.Graphics
             { 
              gCollection.Add(new GradientStop(WindGradient.ColorSet[i].ToMediaColor(), WindGradient.ParameterSet[i]));
             }
-            
+
+            GrdBrush.MappingMode = BrushMappingMode.RelativeToBoundingBox;
+            GrdBrush.SpreadMethod = GradientSpreadMethod.Reflect;
+
             switch((GradientMode)SetGradientMode)
             {
                 case GradientMode.Linear:

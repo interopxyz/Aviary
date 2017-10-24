@@ -430,7 +430,7 @@ namespace Parrot.Drawings
 
         public Path SetPathFill(Path ShapePath, wGraphic ShapeGraphics)
         {
-            System.Windows.Media.Brush brushF = new SolidColorBrush(ShapeGraphics.Background.ToMediaColor());
+            System.Windows.Media.Brush brushF = ShapeGraphics.WpfFill;
 
             ShapePath.Fill = brushF;
 
@@ -447,9 +447,9 @@ namespace Parrot.Drawings
 
         //CONTROL GRAPHICS & EFFECTS
 
-        public override void SetSolidFill()
+        public override void SetFill()
         {
-            Element.Background = new SolidColorBrush(Graphics.Background.ToMediaColor());
+            Element.Background = Graphics.WpfFill;
         }
 
         public override void SetStroke()

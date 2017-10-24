@@ -9,7 +9,7 @@ using Grasshopper.Kernel.Types;
 using System.Drawing;
 using Macaw.Build;
 
-namespace Macaw_GH.Filtering.Object
+namespace Macaw_GH.Filtering.Figure
 {
     public class Edge : GH_Component
     {

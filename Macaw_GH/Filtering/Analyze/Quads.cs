@@ -56,13 +56,11 @@ namespace Macaw_GH.Filtering.Analyze
             IGH_Goo V = null;
             int D = 25;
             int G = 18;
-            Color Y = Color.Red;
 
             // Access the input parameters 
             if (!DA.GetData(0, ref V)) return;
             if (!DA.GetData(1, ref D)) return;
             if (!DA.GetData(2, ref G)) return;
-            if (!DA.GetData(3, ref Y)) return;
 
             Bitmap A = null;
             if (V != null) { V.CastTo(out A); }

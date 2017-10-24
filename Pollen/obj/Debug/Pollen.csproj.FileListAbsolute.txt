@@ -120,9 +120,6 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\D
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Wind.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Imaging.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Math.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.pdb
 C:\Users\LJobson\Documents\GitHub\Aviary\Pollen\bin\Debug\Pollen.dll
@@ -160,3 +157,6 @@ C:\Users\LJobson\Documents\GitHub\Aviary\Pollen\obj\Debug\Pollen.dll
 C:\Users\LJobson\Documents\GitHub\Aviary\Pollen\obj\Debug\Pollen.pdb
 C:\Users\LJobson\Documents\GitHub\Aviary\Pollen\obj\Debug\Pollen.csprojResolveAssemblyReference.cache
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.csprojResolveAssemblyReference.cache
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Imaging.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Math.xml

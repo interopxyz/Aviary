@@ -12,13 +12,14 @@ using Parrot.Controls;
 using Pollen.Collections;
 using Wind.Graphics;
 using System.Windows.Forms;
+using Wind.Types;
 
 namespace Wind_GH.Formatting
 {
     public class FillSwatch : GH_Component
     {
 
-        int TileTypeMode = 0;
+        int TileTypeMode = 4;
 
         /// <summary>
         /// Initializes a new instance of the FillSwatch class.
@@ -83,8 +84,7 @@ namespace Wind_GH.Formatting
                     pElement E = (pElement)W.Element;
                     pControl C = (pControl)E.ParrotControl;
                     C.Graphics = G;
-
-                            C.SetFill();
+                    C.SetFill();
 
                     break;
                 case "Pollen":
@@ -106,8 +106,7 @@ namespace Wind_GH.Formatting
                     break;
                 case "Hoopoe":
                     wShapeCollection Shapes = (wShapeCollection)W.Element;
-                    //Shapes.Graphics.Background = new wColor(Background);
-                    //Shapes.Graphics.Foreground = new wColor(ForeGround);
+                    Shapes.Graphics.WpfFill = G.WpfFill;
 
                     W.Element = Shapes;
                     break;

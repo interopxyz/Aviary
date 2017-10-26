@@ -65,6 +65,7 @@ namespace Wind_GH.Geometry
 
             Shapes.Graphics = new wGraphic().BlackFill();
             Shapes.Effects = new wEffects();
+            
 
             wObject WindObject = new wObject(Shapes, "Hoopoe", Shapes.Type);
 

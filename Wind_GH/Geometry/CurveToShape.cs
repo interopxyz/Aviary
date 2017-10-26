@@ -89,7 +89,7 @@ namespace Wind_GH.Geometry
             Shapes.Boundary = new wRectangle(Pln, B.Diagonal.X, B.Diagonal.Y);
             Shapes.Type = Crv.GetCurveType;
 
-            Shapes.Graphics = new wGraphic().BlackOutline();
+            if (C.IsClosed) { Shapes.Graphics = new wGraphic().BlackFill(); } else { Shapes.Graphics = new wGraphic().BlackOutline(); }
             Shapes.Effects = new wEffects();
 
 

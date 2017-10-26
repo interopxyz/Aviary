@@ -53,6 +53,8 @@ namespace Wind.Containers
             StrokeWeight[1] = Stroke;
             StrokeWeight[2] = Stroke;
             StrokeWeight[3] = Stroke;
+
+            WpfFill = new SolidColorBrush(Background.ToMediaColor());
         }
 
         public wGraphic(wColor BackColor, wColor ForeColor, wColor LineColor, double Stroke, double WidthValue, double HeightValue)
@@ -68,6 +70,8 @@ namespace Wind.Containers
 
             Width = WidthValue;
             Height = HeightValue;
+
+            WpfFill = new SolidColorBrush(Background.ToMediaColor());
         }
 
         public void SetPaddingFromCorners()

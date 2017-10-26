@@ -95,7 +95,6 @@
     <Compile Include="Filtering\Adjust\Tint.cs" />
     <Compile Include="Filtering\Analyze\Blobs.cs" />
     <Compile Include="Filtering\Analyze\Corner.cs" />
-    <Compile Include="Filtering\Analyze\Quads.cs" />
     <Compile Include="Filtering\Analyze\Trace.cs" />
     <Compile Include="Filtering\Extract\BitmapProperties.cs" />
     <Compile Include="Filtering\Extract\DeconstructARGB.cs" />
@@ -308,6 +307,15 @@
       <Project>{16C589B0-CBAE-46B1-BC46-24AD34DE87F6}</Project>
       <Name>Wind</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Object_Boundary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Object_Corners.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Macaw-Object_Trace.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

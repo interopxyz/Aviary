@@ -14,17 +14,23 @@ using Macaw.Filtering.Stylized;
 using Macaw.Compiling;
 using Macaw.Analysis;
 using Wind.Geometry.Vectors;
+using System.Windows.Forms;
+using GH_IO.Serialization;
 
 namespace Macaw_GH.Filtering.Analyze
 {
     public class Corner : GH_Component
     {
+
+        public int FilterMode = 0;
+
         /// <summary>
         /// Initializes a new instance of the Corner class.
         /// </summary>
         public Corner()
           : base("Figure Corner", "Corner", "---", "Aviary", "Image Build")
         {
+            this.UpdateMessage();
         }
 
         /// <summary>
@@ -36,22 +42,15 @@ namespace Macaw_GH.Filtering.Analyze
             pManager[0].Optional = true;
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
             paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
-
-            pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
+            
+            pManager.AddIntegerParameter("Difference", "D", "---", GH_ParamAccess.item, 25);
             pManager[1].Optional = true;
 
-            pManager.AddIntegerParameter("Difference", "D", "---", GH_ParamAccess.item, 25);
+            pManager.AddIntegerParameter("Geometry", "G", "---", GH_ParamAccess.item, 18);
             pManager[2].Optional = true;
 
-            pManager.AddIntegerParameter("Geometry", "G", "---", GH_ParamAccess.item, 18);
-            pManager[3].Optional = true;
-
             pManager.AddColourParameter("Highlight Color", "H", "---", GH_ParamAccess.item, Color.Red);
-            pManager[4].Optional = true;
-
-            Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("Susan", 0);
-            param.AddNamedValue("Moravec", 1);
+            pManager[3].Optional = true;
         }
 
         /// <summary>
@@ -72,17 +71,15 @@ namespace Macaw_GH.Filtering.Analyze
         {
             // Declare variables
             IGH_Goo V = null;
-            int M = 0;
             int D = 25;
             int G = 18;
             Color Y = Color.Red;
 
             // Access the input parameters 
             if (!DA.GetData(0, ref V)) return;
-            if (!DA.GetData(1, ref M)) return;
-            if (!DA.GetData(2, ref D)) return;
-            if (!DA.GetData(3, ref G)) return;
-            if (!DA.GetData(4, ref Y)) return;
+            if (!DA.GetData(1, ref D)) return;
+            if (!DA.GetData(2, ref G)) return;
+            if (!DA.GetData(3, ref Y)) return;
 
             Bitmap A = null;
             if (V != null) { V.CastTo(out A); }
@@ -93,7 +90,7 @@ namespace Macaw_GH.Filtering.Analyze
 
             mFilter Filter = new mFilter();
 
-            switch (M)
+            switch (FilterMode)
             {
                 case 0:
                     mAnalyzeCornersSusan Scorner = new mAnalyzeCornersSusan(A, Y, D, G);
@@ -125,6 +122,51 @@ namespace Macaw_GH.Filtering.Analyze
             DA.SetDataList(2, P);
         }
 
+
+        public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
+        {
+            base.AppendAdditionalMenuItems(menu);
+
+            Menu_AppendSeparator(menu);
+            Menu_AppendItem(menu, "Susan", ModeSusan, true, (FilterMode == 0));
+            Menu_AppendItem(menu, "Moravec", ModeMoravec, true, (FilterMode == 1));
+            
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("FilterMode", FilterMode);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            FilterMode = reader.GetInt32("FilterMode");
+
+            return base.Read(reader);
+        }
+        
+        private void ModeSusan(Object sender, EventArgs e)
+        {
+            FilterMode = 0;
+            this.UpdateMessage();
+            this.ExpireSolution(true);
+        }
+
+        private void ModeMoravec(Object sender, EventArgs e)
+        {
+            FilterMode = 1;
+            this.UpdateMessage();
+            this.ExpireSolution(true);
+        }
+        
+        private void UpdateMessage()
+        {
+            string[] arrMessage = { "Susan", "Moravec" };
+            Message = arrMessage[FilterMode];
+        }
+
         /// <summary>
         /// Set Exposure level for the component.
         /// </summary>
@@ -140,9 +182,7 @@ namespace Macaw_GH.Filtering.Analyze
         {
             get
             {
-                //You can add image files to your project resources and access them like this:
-                // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.Macaw_Object_Corners;
             }
         }
 

@@ -24,6 +24,8 @@ namespace Macaw.Analysis
             var crvs = new List<List<Pot.Curve>>();
             var output = new List<List<wPoint[]>>();
 
+            int H = InitialBitmap.Height;
+
             VectorizedPointArray.Clear();
             crvs.Clear();
             output.Clear();
@@ -47,7 +49,7 @@ namespace Macaw.Analysis
                 var list = new List<wPoint[]>();
                 foreach(var crv in crvList)
                 {
-                    var ptArr = new wPoint[] { new wPoint(crv.A.x, crv.A.y), new wPoint(crv.B.x, crv.B.y) };
+                    var ptArr = new wPoint[] { new wPoint(crv.A.x, H-crv.A.y), new wPoint(crv.B.x, H-crv.B.y) };
                     list.Add(ptArr);
                 }
                 VectorizedPointArray.Add(list);

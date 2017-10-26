@@ -22,7 +22,7 @@ namespace Macaw.Analysis
         {
             
 
-            BitmapType = 0;
+            BitmapType = 1;
 
             MoravecCornersDetector cMethod = new MoravecCornersDetector();
 
@@ -37,7 +37,7 @@ namespace Macaw.Analysis
 
             foreach (IntPoint corner in corners)
             {
-                Points.Add(new wPoint(corner.X, corner.Y));
+                Points.Add(new wPoint(corner.X, InitialBitmap.Height - corner.Y));
             }
 
             Sequence.Clear();

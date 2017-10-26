@@ -593,6 +593,36 @@ namespace Macaw_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Macaw_Object_Boundary {
+            get {
+                object obj = ResourceManager.GetObject("Macaw_Object_Boundary", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Macaw_Object_Corners {
+            get {
+                object obj = ResourceManager.GetObject("Macaw_Object_Corners", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Macaw_Object_Trace {
+            get {
+                object obj = ResourceManager.GetObject("Macaw_Object_Trace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Macaw_Texture_Apply {
             get {
                 object obj = ResourceManager.GetObject("Macaw_Texture_Apply", resourceCulture);

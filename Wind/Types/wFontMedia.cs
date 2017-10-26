@@ -29,6 +29,8 @@ namespace Wind.Types
         public VerticalAlignment VAlign = VerticalAlignment.Center;
         public TextAlignment TextAlign = TextAlignment.Left;
 
+        public Typeface TypeFace = new Typeface("WindFont");
+
         public wFontMedia()
         {
             updateStyle();
@@ -100,6 +102,11 @@ namespace Wind.Types
             if (IsStrikethrough) { Style.Add(TextDecorations.Strikethrough); }
         }
 
+        public Typeface GetTypeFace()
+        {
+            return new Typeface(Family, Italic, Bold, FontStretches.Normal);
+        }
+
         private System.Windows.HorizontalAlignment MediaHjust(int jst)
         {
 
@@ -117,6 +124,8 @@ namespace Wind.Types
                     return System.Windows.HorizontalAlignment.Left;
             }
         }
+
+
 
         private System.Windows.VerticalAlignment MediaVJust(int jst)
         {

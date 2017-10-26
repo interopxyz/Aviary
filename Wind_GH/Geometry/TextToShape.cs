@@ -58,6 +58,11 @@ namespace Wind_GH.Geometry
             wShape Shape = new wShape(TxtObj);
             wShapeCollection Shapes = new wShapeCollection(Shape);
 
+            Shapes.Type = "Text";
+
+            Shapes.Graphics = new wGraphic().BlackFill();
+            Shapes.Effects = new wEffects();
+
             wObject WindObject = new wObject(Shapes, "Hoopoe", Shapes.Type);
 
             DA.SetData(0, WindObject);

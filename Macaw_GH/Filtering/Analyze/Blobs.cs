@@ -17,7 +17,7 @@ namespace Macaw_GH.Filtering.Analyze
         /// Initializes a new instance of the Blobs class.
         /// </summary>
         public Blobs()
-          : base("Blob Detection", "Blobs", "---", "Aviary", "Image Build")
+          : base("Figure Bounds", "Bounds", "---", "Aviary", "Image Build")
         {
         }
 
@@ -71,7 +71,7 @@ namespace Macaw_GH.Filtering.Analyze
 
             foreach (Rectangle Z in Figures.ExtractBoundaries())
             {
-                P.Add(new Rectangle3d(new Plane(new Point3d(Z.X,Z.Y,0),Vector3d.XAxis,Vector3d.YAxis),Z.Width,Z.Height));
+                P.Add(new Rectangle3d(new Plane(new Point3d(Z.X, B.Height - Z.Y,0),Vector3d.XAxis,-Vector3d.YAxis),Z.Width,Z.Height));
             }
 
             DA.SetDataList(0, P);
@@ -92,9 +92,7 @@ namespace Macaw_GH.Filtering.Analyze
         {
             get
             {
-                //You can add image files to your project resources and access them like this:
-                // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.Macaw_Object_Boundary;
             }
         }
 

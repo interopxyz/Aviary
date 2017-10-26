@@ -48,7 +48,7 @@ namespace Macaw_GH.Filtering.Analyze
             paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
             */
 
-            pManager.AddNumberParameter("Threshold", "T", "Threshold (0.0-1.0)", GH_ParamAccess.item, 1.00);
+            pManager.AddNumberParameter("Threshold", "T", "Threshold (0.0-1.0)", GH_ParamAccess.item, 0.90);
             pManager[1].Optional = true;
 
             pManager.AddNumberParameter("Alpha", "A", "Threshold for detection of corners (0.0-1.3334)", GH_ParamAccess.item, 1.00);
@@ -77,8 +77,8 @@ namespace Macaw_GH.Filtering.Analyze
         {
             // Declare variables
             IGH_Goo V = null;
-            double T = 1;
-            double X = 1;
+            double T = 0.90;
+            double X = 1.00;
             int S = 2;
 
             // Access the input parameters 
@@ -228,9 +228,7 @@ namespace Macaw_GH.Filtering.Analyze
         {
             get
             {
-                //You can add image files to your project resources and access them like this:
-                // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.Macaw_Object_Trace;
             }
         }
 

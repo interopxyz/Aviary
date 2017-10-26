@@ -39,10 +39,10 @@ namespace Macaw.Analysis
 
             Effect = new ConnectedComponentsLabeling();
             Effect.MinWidth = (int)Width.T0;
-            Effect.MaxWidth = (int)Height.T0;
-            Effect.MinHeight = (int)Width.T1;
+            Effect.MaxWidth = (int)Width.T1;
+            Effect.MinHeight = (int)Height.T0;
             Effect.MaxHeight = (int)Height.T1;
-
+            
             Effect.Apply(BaseBitmap);
             Effect.BlobCounter.ProcessImage(BaseBitmap);
 

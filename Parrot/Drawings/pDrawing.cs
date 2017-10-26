@@ -11,11 +11,16 @@ using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Globalization;
+using System.Windows;
+
 using Wind.Containers;
 using Wind.Geometry.Curves;
 using Wind.Geometry.Curves.Primitives;
 using Wind.Geometry.Curves.Splines;
+using Wind.Geometry.Shapes;
 using Wind.Geometry.Vectors;
+using Wind.Types;
 
 namespace Parrot.Drawings
 {
@@ -28,7 +33,7 @@ namespace Parrot.Drawings
         public wRectangle Extents = new wRectangle();
         public wRectangle Frame = new wRectangle();
         public double Scale = 1;
-        public Point Center = new Point();
+        public System.Drawing.Point Center = new System.Drawing.Point();
         public TransformGroup Xform = new TransformGroup();
         public wShapeCollection group = new wShapeCollection();
         
@@ -54,7 +59,7 @@ namespace Parrot.Drawings
             Boundary = BoundaryRectangle;
             Frame = FrameRectangle;
 
-            Center = new Point((int)(Frame.Width/2),(int)(Frame.Height/2));
+            Center = new System.Drawing.Point((int)(Frame.Width/2),(int)(Frame.Height/2));
 
             group.Boundary.Width = Frame.Width;
             group.Boundary.Height = Frame.Height;
@@ -108,6 +113,9 @@ namespace Parrot.Drawings
                 case "BezierSpline":
                     Element.Children.Add(WpfSpline(Shapes.Shapes[0].Curve, Shapes.Graphics, Shapes.Effects));
                     break;
+                case "Text":
+                    Element.Children.Add(WpfText(Shapes.Shapes[0].Curve, Shapes.Graphics, Shapes.Effects));
+                    break;
                 default:
 
                     break;
@@ -115,10 +123,32 @@ namespace Parrot.Drawings
 
         }
 
-        public Path WpfLine(wCurve Shape, wGraphic Graphics, wEffects ShapeEffects)
+        public Path WpfText(wCurve Shp,wGraphic Graphics, wEffects ShapeEffects)
         {
             Path X = new Path();
-            wLine C = (wLine)Shape;
+            wTextObject Z = (wTextObject)Shp;
+            wText Y = Z.Text;
+            wFontMedia F = Y.Font.ToMediaFont();
+
+            FormattedText T = new FormattedText("Test", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Arial"), 24, new SolidColorBrush(Colors.Black));
+            //FormattedText T = new FormattedText(Y.Text,CultureInfo.GetCultureInfo("en-us"),FlowDirection.LeftToRight, F.GetTypeFace(),F.Size, Graphics.WpfFill);
+ 
+            X.Data = T.BuildGeometry(new System.Windows.Point(Z.Plane.Origin.X, Z.Plane.Origin.Y));
+
+            X.RenderTransform = Xform;
+
+            //X = SetPathFill(X, Graphics);
+            //X = SetPathEffects(X, ShapeEffects);
+            //X = SetPathStroke(X, Graphics);
+
+            group.Shapes.Add(new wShape(Shp, Graphics));
+            return X;
+        }
+
+        public Path WpfLine(wCurve Shp, wGraphic Graphics, wEffects ShapeEffects)
+        {
+            Path X = new Path();
+            wLine C = (wLine)Shp;
             LineGeometry L = new LineGeometry();
 
             L.StartPoint = new System.Windows.Point(C.Start.X * Scale, C.Start.Y * Scale);
@@ -135,30 +165,31 @@ namespace Parrot.Drawings
             return X;
         }
 
-        public Path WpfCircle(wCurve Shape, wGraphic Graphics, wEffects ShapeEffects)
+        public Path WpfCircle(wCurve Shp, wGraphic Graphics, wEffects ShapeEffects)
         {
             Path X = new Path();
-            wCircle C = (wCircle)Shape;
+            wCircle C = (wCircle)Shp;
+
             EllipseGeometry E = new EllipseGeometry();
 
-            E.Center = new System.Windows.Point(C.Center.X * Scale, C.Center.Y * Scale);
-            E.RadiusX = C.Radius* Scale;
+            E.Center = new System.Windows.Point((C.Center.X) * Scale, (C.Center.Y) * Scale);
+            E.RadiusX = C.Radius * Scale;
             E.RadiusY = C.Radius * Scale;
 
             X.Data = E;
+            X.RenderTransform = Xform;
 
             X = SetPathFill(X, Graphics);
             X = SetPathStroke(X, Graphics);
             X = SetPathEffects(X, ShapeEffects);
 
-
             group.Shapes.Add(new wShape(E, Graphics));
             return X;
         }
 
-        public Path WpfArc(wCurve Shape, wGraphic Graphics, wEffects ShapeEffects)
+        public Path WpfArc(wCurve Shp, wGraphic Graphics, wEffects ShapeEffects)
         {
-            wArc C = (wArc)Shape;
+            wArc C = (wArc)Shp;
             ArcSegment S = new ArcSegment();
                 S.Point = new System.Windows.Point(C.EndPoint.X * Scale, C.EndPoint.Y * Scale);
                 S.Size = new System.Windows.Size(C.Radius * Scale, C.Radius * Scale);
@@ -191,10 +222,10 @@ namespace Parrot.Drawings
         }
 
 
-        public Path WpfEllipse(wCurve Shape, wGraphic Graphics, wEffects ShapeEffects)
+        public Path WpfEllipse(wCurve Shp, wGraphic Graphics, wEffects ShapeEffects)
         {
             Path X = new Path();
-            wEllipse C = (wEllipse)Shape;
+            wEllipse C = (wEllipse)Shp;
             EllipseGeometry E = new EllipseGeometry();
 
             E.Center = new System.Windows.Point((C.Center.X) * Scale, (C.Center.Y) * Scale);
@@ -214,10 +245,10 @@ namespace Parrot.Drawings
             return X;
         }
 
-        public Path WpfPolyline(wCurve Shape, wGraphic Graphics, wEffects ShapeEffects)
+        public Path WpfPolyline(wCurve Shp, wGraphic Graphics, wEffects ShapeEffects)
         {
             Path X = new Path();
-            wPolyline C = (wPolyline)Shape;
+            wPolyline C = (wPolyline)Shp;
             PathFigure Pf = new PathFigure();
             PolyLineSegment S = new PolyLineSegment();
             PathGeometry G = new PathGeometry();
@@ -251,9 +282,9 @@ namespace Parrot.Drawings
             return X;
         }
 
-        public Path WpfSpline(wCurve Shape, wGraphic Graphics, wEffects ShapeEffects)
+        public Path WpfSpline(wCurve Shp, wGraphic Graphics, wEffects ShapeEffects)
         {
-            wBezierSpline C = (wBezierSpline)Shape;
+            wBezierSpline C = (wBezierSpline)Shp;
 
             PathFigure Pf = new PathFigure();
             PolyBezierSegment S = new PolyBezierSegment();
@@ -302,11 +333,11 @@ namespace Parrot.Drawings
 
             Fc.Clear();
 
-            foreach (wShape Shape in Shapes.Shapes)
+            foreach (wShape Shp in Shapes.Shapes)
             {
                 PathSegmentCollection Sc = new PathSegmentCollection();
                 PathFigure Pf = new PathFigure();
-                wCurve Crv = Shape.Curve;
+                wCurve Crv = Shp.Curve;
                 wPoint StartPoint = Crv.Points[0];
 
                 Pf.StartPoint = new System.Windows.Point(StartPoint.X * Scale, StartPoint.Y * Scale);
@@ -356,11 +387,11 @@ namespace Parrot.Drawings
 
             Fc.Clear();
 
-            foreach (wShape Shape in Shapes.Shapes)
+            foreach (wShape Shp in Shapes.Shapes)
             {
                 PathSegmentCollection Sc = new PathSegmentCollection();
                 PathFigure Pf = new PathFigure();
-                wBezierSpline C = (wBezierSpline)Shape.Curve;
+                wBezierSpline C = (wBezierSpline)Shp.Curve;
                 wPoint StartPoint = C.Points[0];
                 
                 PolyBezierSegment S = new PolyBezierSegment();
@@ -430,9 +461,7 @@ namespace Parrot.Drawings
 
         public Path SetPathFill(Path ShapePath, wGraphic ShapeGraphics)
         {
-            System.Windows.Media.Brush brushF = ShapeGraphics.WpfFill;
-
-            ShapePath.Fill = brushF;
+            ShapePath.Fill = ShapeGraphics.WpfFill;
 
             return ShapePath;
         }

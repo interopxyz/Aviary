@@ -22,7 +22,7 @@ namespace Macaw.Analysis
         {
             
 
-            BitmapType = 0;
+            BitmapType = 1;
 
             SusanCornersDetector cMethod = new SusanCornersDetector();
 
@@ -38,7 +38,7 @@ namespace Macaw.Analysis
 
             foreach (IntPoint corner in corners)
             {
-                Points.Add(new wPoint(corner.X, corner.Y));
+                Points.Add(new wPoint(corner.X, InitialBitmap.Height-corner.Y));
             }
 
             Sequence.Clear();

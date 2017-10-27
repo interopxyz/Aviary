@@ -31,7 +31,7 @@ namespace Parrot_GH.Displays
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Value", "V", "Value", GH_ParamAccess.list,"");
+            pManager.AddTextParameter("Values", "V", "Value", GH_ParamAccess.list,"");
             pManager.AddColourParameter("Colors", "C", "Colors", GH_ParamAccess.list, System.Drawing.Color.Black);
             pManager[1].Optional = true;
             pManager.AddBooleanParameter("Horizontal", "H", "---", GH_ParamAccess.item, false);
@@ -80,19 +80,16 @@ namespace Parrot_GH.Displays
 
             //Set Unique Control Properties
 
-            List<string> V = new List<string>();
-            List<System.Drawing.Color> E = new List<System.Drawing.Color>();
+            List<string> V = new List<string> { "" };
+            List<System.Drawing.Color> E = new List<System.Drawing.Color> { System.Drawing.Color.Black };
             int X = 0;
             bool D = false;
-            E.Add(System.Drawing.Color.Black);
 
             if (!DA.GetDataList(0, V)) return;
             if (!DA.GetDataList(1, E)) return;
             if (!DA.GetData(2, ref D)) return;
             if (!DA.GetData(3, ref X)) return;
-
-            if (E.Count < 1){E.Add(System.Drawing.Color.Black);}
-
+            
             int A = E.Count;
             int B = V.Count ;
 

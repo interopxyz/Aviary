@@ -32,7 +32,6 @@ namespace Macaw_GH.Filtering.Analyze
         public Trace()
           : base("Trace Bitmap", "Trace", "---", "Aviary", "Image Build")
         {
-            this.UpdateMessage();
         }
 
         /// <summary>
@@ -75,6 +74,8 @@ namespace Macaw_GH.Filtering.Analyze
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            this.UpdateMessage();
+
             // Declare variables
             IGH_Goo V = null;
             double T = 0.90;
@@ -166,14 +167,12 @@ namespace Macaw_GH.Filtering.Analyze
         private void ModeSmallest(Object sender, EventArgs e)
         {
             FilterMode = 0;
-            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void ModeLargest(Object sender, EventArgs e)
         {
             FilterMode = 1;
-            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
@@ -181,20 +180,17 @@ namespace Macaw_GH.Filtering.Analyze
         private void ModeDirection(Object sender, EventArgs e)
         {
             FilterMode = 2;
-            this.UpdateMessage();
             this.ExpireSolution(true);
         }
         private void ModeDark(Object sender, EventArgs e)
         {
             FilterMode = 3;
-            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void ModeLight(Object sender, EventArgs e)
         {
             FilterMode = 4;
-            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
@@ -204,8 +200,7 @@ namespace Macaw_GH.Filtering.Analyze
             this.UpdateMessage();
             this.ExpireSolution(true);
         }
-
-
+        
         private void UpdateMessage()
         {
             string[] arrMessage = { "Smallest", "Largest", "Direction", "Dark", "Light" };

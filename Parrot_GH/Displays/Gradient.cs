@@ -33,9 +33,9 @@ namespace Parrot_GH.Displays
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Gradient", "G", "Value", GH_ParamAccess.item);
-            pManager.AddTextParameter("Min Value", "0", "--", GH_ParamAccess.item, "Min");
+            pManager.AddTextParameter("Lower Value", "L", "--", GH_ParamAccess.item, "Min");
             pManager[1].Optional = true;
-            pManager.AddTextParameter("Max Value", "1", "---", GH_ParamAccess.item, "Max");
+            pManager.AddTextParameter("Upper Value", "U", "---", GH_ParamAccess.item, "Max");
             pManager[2].Optional = true;
             pManager.AddBooleanParameter("Horizontal", "H", "---", GH_ParamAccess.item, true);
             pManager[3].Optional = true;

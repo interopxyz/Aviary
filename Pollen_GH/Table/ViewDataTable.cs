@@ -125,7 +125,7 @@ namespace Pollen_GH.Table
         {
             get
             {
-                return Properties.Resources.Pollen_Range1;
+                return Properties.Resources.Pollen_Table1;
             }
         }
 

@@ -134,16 +134,16 @@ namespace Parrot.Controls
             switch (TickType)
             {
                 case 1:
-                    Slide.TickPlacement = System.Windows.Controls.Primitives.TickPlacement.TopLeft;
+                    Slide.TickPlacement = TickPlacement.TopLeft;
                     break;
                 case 2:
-                    Slide.TickPlacement = System.Windows.Controls.Primitives.TickPlacement.BottomRight;
+                    Slide.TickPlacement = TickPlacement.BottomRight;
                     break;
                 case 3:
-                    Slide.TickPlacement = System.Windows.Controls.Primitives.TickPlacement.Both;
+                    Slide.TickPlacement = TickPlacement.Both;
                     break;
                 default:
-                    Slide.TickPlacement = System.Windows.Controls.Primitives.TickPlacement.None;
+                    Slide.TickPlacement = TickPlacement.None;
                     break;
             }
         }
@@ -178,9 +178,9 @@ namespace Parrot.Controls
             Element.MinHeight = 200;
             Element.Width = 30;
             Element.VerticalAlignment = VerticalAlignment.Stretch;
-            Element.HorizontalAlignment = HorizontalAlignment.Center;
+            Element.HorizontalAlignment = HorizontalAlignment.Left;
 
-            Element.ColumnDefinitions[0].Width = new GridLength(100, GridUnitType.Star);
+            Element.ColumnDefinitions[0].Width = new GridLength(30, GridUnitType.Star);
             Element.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
 
             Element.RowDefinitions[0].Height = new GridLength(100, GridUnitType.Star);

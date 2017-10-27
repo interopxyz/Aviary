@@ -31,7 +31,7 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Values", "V", "Values", GH_ParamAccess.list);
+            pManager.AddTextParameter("Values", "V", "Values", GH_ParamAccess.list, new List<string> { "" });
             pManager.AddIntegerParameter("Index", "I", "Index", GH_ParamAccess.item, -1);
             pManager[1].Optional = true;
         }
@@ -75,7 +75,7 @@ namespace Parrot_GH.Controls
 
             //Set Unique Control Properties
 
-            List<string> V = new List<string>();
+            List<string> V = new List<string> { "" };
             int I = -1;
 
             if (!DA.GetDataList(0, V)) return;

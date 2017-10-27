@@ -15,11 +15,13 @@ using Parrot.Windows;
 using Parrot_GH.Utilities;
 using System.Windows.Forms;
 using System.Windows.Interop;
+using GH_IO.Serialization;
 
 namespace Parrot_GH.Windows
 {
     public class Window : GH_Component
     {
+
         int modeStatus = 1;
         pWindow window = new pWindow();
         string ID;
@@ -31,6 +33,8 @@ namespace Parrot_GH.Windows
         public Window()
           : base("Window", "Window", "---", "Aviary", "Layout")
         {
+            this.UpdateMessage();
+
             ID = this.Attributes.InstanceGuid.ToString();
             name = new GUIDtoAlpha(Convert.ToString(ID + Convert.ToString(this.RunCount)),false).Text;
             window = new pWindow(name);
@@ -65,7 +69,6 @@ namespace Parrot_GH.Windows
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-
             bool Launch = false;
             string Title = "";
             bool Scroll = false;
@@ -136,37 +139,66 @@ namespace Parrot_GH.Windows
             Menu_AppendItem(menu, "Grasshopper", GhMode, true, (modeStatus == 3));
         }
 
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("FilterMode", modeStatus);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            modeStatus = reader.GetInt32("FilterMode");
+
+            this.UpdateMessage();
+
+            return base.Read(reader);
+        }
+        
         private void NoneMode(Object sender, EventArgs e)
         {
             modeStatus = 0;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void TopMode(Object sender, EventArgs e)
         {
             modeStatus = 1;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void RhMode(Object sender, EventArgs e)
         {
             modeStatus = 2;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void GhMode(Object sender, EventArgs e)
         {
             modeStatus = 3;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
+        private void UpdateMessage()
+        {
+            string[] arrMessage = { "None", "On Top", "Rhino", "Grasshopper" };
+            Message = arrMessage[modeStatus];
+        }
 
         /// <summary>
         /// Set Exposure level for the component.
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.quinary; }
+            get { return GH_Exposure.primary; }
         }
 
         /// <summary>

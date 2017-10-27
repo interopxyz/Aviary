@@ -174,22 +174,22 @@ namespace Parrot_GH.Utilities
                                 }
                                 break;
                              case ("ColorCanvas"):
-                                 ColorCanvas C4 = (ColorCanvas)E.Element;
+                                 //ColorCanvas C4 = (ColorCanvas)E.Element;
                                  if (!keys.Contains(E.Element.Name))
                                  {
-                                     C4.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
-                                     C4.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
+                                     //C4.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
+                                     //C4.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
                                  }
-                                 OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C4.SelectedColor).ToDrawingColor()), P);
+                                 //OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C4.SelectedColor).ToDrawingColor()), P);
                                  break;
                              case ("ColorPicker"):
-                                 ColorPicker C5 = (ColorPicker)E.Element;
+                                 //ColorPicker C5 = (ColorPicker)E.Element;
                                  if (!keys.Contains(E.Element.Name))
                                  {
-                                     C5.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
-                                     C5.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
+                                     //C5.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
+                                     //C5.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
                                  }
-                                 OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C5.SelectedColor).ToDrawingColor()), P);
+                                 //OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C5.SelectedColor).ToDrawingColor()), P);
                                  break;
                             case ("CheckComboBox"):
                                 CheckComboBox C6 = (CheckComboBox)E.Element;

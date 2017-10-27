@@ -33,6 +33,8 @@ namespace Parrot_GH.Displays
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Bitmap", "B", "Bitmap", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Zoom", "Z", "---", GH_ParamAccess.item,100);
+            pManager[1].Optional = true;
         }
 
         /// <summary>

@@ -11,6 +11,7 @@ using Wind.Types;
 using Parrot.Containers;
 using Parrot.Displays;
 using System.Windows.Forms;
+using GH_IO.Serialization;
 
 namespace Parrot_GH.Displays
 {
@@ -19,7 +20,7 @@ namespace Parrot_GH.Displays
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
         wGraphic Graphic = new wGraphic();
-        int FontMode;
+        int FontMode = 0;
         bool IsCentered = false;
         int CenterMode = 0;
 
@@ -29,6 +30,8 @@ namespace Parrot_GH.Displays
         public Label()
           : base("Label", "Label", "---", "Aviary", "Display")
         {
+            this.UpdateMessage();
+
             Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColor().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 0;
         }
@@ -56,6 +59,7 @@ namespace Parrot_GH.Displays
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+
             string ID = this.Attributes.InstanceGuid.ToString();
             string name = new GUIDtoAlpha(Convert.ToString(ID + Convert.ToString(this.RunCount)), false).Text;
             int C = this.RunCount;
@@ -119,6 +123,24 @@ namespace Parrot_GH.Displays
             Menu_AppendItem(menu, "Subtext", ModeSubtext, true, (FontMode == 4));
 
         }
+        
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("FontMode", FontMode);
+            writer.SetBoolean("Centered", IsCentered);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            FontMode = reader.GetInt32("FontMode");
+            IsCentered = reader.GetBoolean("Centered");
+
+            this.UpdateMessage();
+
+            return base.Read(reader);
+        }
 
         private void ModeCenter(Object sender, EventArgs e)
         {
@@ -132,6 +154,8 @@ namespace Parrot_GH.Displays
         {
             Graphic.FontObject = new wFont("Swis721 Lt BT", 18, new wColor().DarkGray(), CenterMode, true, false, false, false);
             FontMode = 0;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
@@ -139,6 +163,8 @@ namespace Parrot_GH.Displays
         {
             Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColor().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 1;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
@@ -146,6 +172,8 @@ namespace Parrot_GH.Displays
         {
             Graphic.FontObject = new wFont("Swis721 Lt BT", 16, new wColor().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 2;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
@@ -153,6 +181,8 @@ namespace Parrot_GH.Displays
         {
             Graphic.FontObject = new wFont("Swis721 Lt BT", 10, new wColor().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 3;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
@@ -160,7 +190,15 @@ namespace Parrot_GH.Displays
         {
             Graphic.FontObject = new wFont("Swis721 Lt BT", 8, new wColor().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 4;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
+        }
+
+        private void UpdateMessage()
+        {
+            string[] arrMessage = { "Bold", "Title", "Subtitle", "Text", "Subtext" };
+            Message = arrMessage[FontMode];
         }
 
         /// <summary>

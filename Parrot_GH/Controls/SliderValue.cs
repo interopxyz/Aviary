@@ -12,6 +12,7 @@ using Wind.Utilities;
 using Parrot.Containers;
 using Parrot.Controls;
 using Grasshopper.Kernel.Parameters;
+using GH_IO.Serialization;
 
 namespace Parrot_GH.Controls
 {
@@ -29,6 +30,7 @@ namespace Parrot_GH.Controls
         public SliderValue()
           : base("Value Slider", "SlideV", "---", "Aviary", "Control")
         {
+
             boolDirection = true;
             boolLabel = true;
             boolTick = false;
@@ -119,6 +121,24 @@ namespace Parrot_GH.Controls
             Menu_AppendItem(menu, "Horizontal", Direction, true, boolDirection);
             Menu_AppendItem(menu, "Label", Label, true, boolLabel);
             Menu_AppendItem(menu, "Tick", Tick, true, boolTick);
+        }
+        
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetBoolean("Horizontal", boolDirection);
+            writer.SetBoolean("Label", boolLabel);
+            writer.SetBoolean("Tick", boolTick);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            boolDirection = reader.GetBoolean("Horizontal");
+            boolLabel = reader.GetBoolean("Label");
+            boolTick = reader.GetBoolean("Tick");
+
+            return base.Read(reader);
         }
 
         private void Direction(Object sender, EventArgs e)

@@ -16,7 +16,6 @@ namespace Parrot.Displays
     public class pFrame : pControl
     {
         public System.Windows.Controls.Image Element;
-        public string Type;
 
         public pFrame(string InstanceName)
         {

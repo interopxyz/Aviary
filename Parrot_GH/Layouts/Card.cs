@@ -31,8 +31,7 @@ namespace Parrot_GH.Layouts
     /// </summary>
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Elements", "E", "---", GH_ParamAccess.list);
-            pManager[0].Optional = true;
+            pManager.AddGenericParameter("Elements", "E", "---", GH_ParamAccess.item);
             pManager.AddTextParameter("Label", "L", "---", GH_ParamAccess.item, "");
             pManager[1].Optional = true;
         }
@@ -75,23 +74,19 @@ namespace Parrot_GH.Layouts
             }
 
             //Set Unique Control Properties
-            List<IGH_Goo> E = new List<IGH_Goo>();
+            IGH_Goo E = null;
             string L = "";
 
-            if (!DA.GetDataList(0, E)) return;
+            if (!DA.GetData(0, ref E)) return;
             if (!DA.GetData(1, ref L)) return;
+            
+            wObject W;
+            pElement Elem;
+            E.CastTo(out W);
+            Elem = (pElement)W.Element;
 
             pCtrl.SetProperties(L);
-
-            for (int i = 0; i < E.Count; i++)
-            {
-                wObject W;
-                pElement Elem;
-                E[i].CastTo(out W);
-                Elem = (pElement)W.Element;
-
-                pCtrl.AddElement(Elem);
-            }
+            pCtrl.SetElement(Elem);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }

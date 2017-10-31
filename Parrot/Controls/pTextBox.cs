@@ -14,7 +14,6 @@ namespace Parrot.Controls
 
         public TextBoxHelper tbox;
         public TextBox Element;
-        public string Type;
         
         public pTextBox(string InstanceName)
         {

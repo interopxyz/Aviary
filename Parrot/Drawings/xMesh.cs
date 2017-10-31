@@ -12,13 +12,13 @@ using SharpGL.SceneGraph.Shaders;
 using SharpGL.SceneGraph.Primitives;
 using Wind.Geometry.Meshes;
 using Wind.Types;
+using Parrot.Controls;
 
 namespace Parrot.Drawings
 {
-    public class xViewMeshGL
+    public class xViewMeshGL: pControl
     {
         public Canvas Element = new Canvas();
-        public string Type;
 
         public OpenGLControl ControlGL = new OpenGLControl();
         public OpenGL ObjectGL = new OpenGL();

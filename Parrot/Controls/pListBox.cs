@@ -14,7 +14,6 @@ namespace Parrot.Controls
     public class pListBox : pControl
     {
         public ListBox Element;
-        public string Type;
         
         public pListBox(string InstanceName)
         {

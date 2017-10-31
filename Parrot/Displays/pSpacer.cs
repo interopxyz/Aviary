@@ -15,7 +15,6 @@ namespace Parrot.Displays
     public class pSpacer : pControl
     {
         public Label Element;
-        public string Type;
 
         public pSpacer(string InstanceName)
         {

@@ -8,13 +8,13 @@ using System.Windows.Controls;
 using Parrot.Containers;
 using System.Windows.Media;
 using Parrot.Controls;
+using System.Windows;
 
 namespace Parrot.Layouts
 {
     public class pPanelDock : pControl
     {
         public DockPanel Element;
-        public string Type;
 
         public pPanelDock(string InstanceName)
         {
@@ -59,10 +59,21 @@ namespace Parrot.Layouts
             }
 
         }
-
+        
         public override void SetFill()
         {
             Element.Background = Graphics.WpfFill;
+        }
+
+        public override void SetSize()
+        {
+            if (Graphics.Width < 1) { Element.Width = double.NaN; } else { Element.Width = Graphics.Width; }
+            if (Graphics.Height < 1) { Element.Height = double.NaN; } else { Element.Height = Graphics.Height; }
+        }
+
+        public override void SetMargin()
+        {
+            Element.Margin = new Thickness(Graphics.Margin[0], Graphics.Margin[1], Graphics.Margin[2], Graphics.Margin[3]);
         }
 
     }

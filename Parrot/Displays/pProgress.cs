@@ -15,7 +15,6 @@ namespace Parrot.Displays
     public class pProgress : pControl
     {
         public ProgressBar Element;
-        public string Type;
 
         public pProgress(string InstanceName)
         {

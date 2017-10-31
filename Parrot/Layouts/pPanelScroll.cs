@@ -1,66 +1,64 @@
-﻿using System;
+﻿using Parrot.Containers;
+using Parrot.Controls;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-using Xceed.Wpf.Toolkit;
-
-using Wind.Containers;
-
-namespace Parrot.Controls
+namespace Parrot.Layouts
 {
-    public class pScrollValue : pControl
+    public class pPanelScroll : pControl
     {
-        public ButtonSpinner Element;
+        public ScrollViewer Element;
 
-        public string Value;
-        public List<string> ValueSet = new List<string>();
-        public int Index;
-        public int MinVal;
-        public int MaxVal;
-        public bool IsWrapped = false;
-
-        public pScrollValue(string InstanceName)
+        public pPanelScroll(string InstanceName)
         {
-            //Set Element info setup
-            Element = new ButtonSpinner();
+            Element = new ScrollViewer();
             Element.Name = InstanceName;
-            Type = "ScrollValue";
-            
-
-            Element.Spin -= (o, e) => { Element.Content = ValueSet[CapValue(e.Direction == SpinDirection.Increase)]; };
-            Element.Spin += (o, e) => { Element.Content = ValueSet[CapValue(e.Direction == SpinDirection.Increase)]; };
+            Type = "PlacePanel";
 
             //Set "Clear" appearance to all elements
             Element.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            Element.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            Element.BorderThickness = new Thickness(0);
         }
 
-        public void SetProperties(List<string> values, int index, bool Cycle)
+        public void SetProperties( bool HorizontalScroll, bool VerticalScroll, bool Auto)
         {
-            ValueSet = values;
-            MaxVal = ValueSet.Count-1;
-            MinVal = 0;
-            Index = index;
 
-            IsWrapped = Cycle;
+            Element.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            Element.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+            
+            if (HorizontalScroll){
+                if (Auto) { Element.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto; } else { Element.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible; }
+            }
+            else
+            {
+                Element.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            }
 
-            Element.MinWidth = 100;
-            Element.Content = values[Index];
+            if (VerticalScroll)
+            {
+                if (Auto) { Element.VerticalScrollBarVisibility = ScrollBarVisibility.Auto; } else { Element.VerticalScrollBarVisibility = ScrollBarVisibility.Visible; }
+            }
+            else
+            {
+                Element.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            }
             
         }
 
-        private int CapValue(bool dir)
+        public void SetElement(pElement ParrotElement)
         {
-            if (dir) { Index += 1; } else { Index -= 1; }
+            Element.Content = null;
 
-            if (Index < MinVal) { if (IsWrapped) { Index = MaxVal; } else { Index = MinVal; } }
-            if (Index > MaxVal) { if (IsWrapped) { Index = MinVal; } else { Index = MaxVal; } }
-            
-            return Index;
+            ParrotElement.DetachParent();
+            Element.Content = ParrotElement.Container;
+
         }
+
 
         public override void SetFill()
         {

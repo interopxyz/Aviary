@@ -3,32 +3,25 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-
 using Wind.Containers;
 using Wind.Utilities;
-
 using Parrot.Containers;
-using Parrot.Controls;
-using System.Windows.Forms;
-using GH_IO.Serialization;
+using Parrot.Layouts;
+using Grasshopper.Kernel.Types;
 
-namespace Parrot_GH.Controls
+namespace Parrot_GH.Layouts
 {
-    public class ScrollNumber : GH_Component
+    public class PlacementPanel : GH_Component
     {
-
-        public bool BoolCycle;
-
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
 
         /// <summary>
-        /// Initializes a new instance of the ScrollNumber class.
+        /// Initializes a new instance of the PlacementPanel class.
         /// </summary>
-        public ScrollNumber()
-          : base("Scroll Number", "Numeric", "Parrot Control Element. Numeric field and graphic spinner which allows for stepping up and down through a numeric domain by a given increment.", "Aviary", "Control")
+        public PlacementPanel()
+          : base("Placement Panel", "Place", "---", "Aviary", "Layout")
         {
-            this.UpdateMessage();
         }
 
         /// <summary>
@@ -36,12 +29,13 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Value", "V", "---", GH_ParamAccess.item, 0);
-            pManager[0].Optional = true;
-            pManager.AddIntervalParameter("Domain", "D", "Domain which sets the min and max value.", GH_ParamAccess.item, new Interval(0, 1));
+            pManager.AddGenericParameter("Elements", "E", "---", GH_ParamAccess.list);
+            pManager.AddIntervalParameter("Size", "S", "---", GH_ParamAccess.item, new Interval(600,600));
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Interval", "I", "The step interval value.", GH_ParamAccess.item, 0.1);
+            pManager.AddIntegerParameter("Horizontal Location", "X", "---", GH_ParamAccess.list, new List<int>());
             pManager[2].Optional = true;
+            pManager.AddIntegerParameter("Vertical Location", "Y", "---", GH_ParamAccess.list, new List<int>());
+            pManager[3].Optional = true;
         }
 
         /// <summary>
@@ -49,7 +43,7 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Element", "E", "Parrot WPF Control Element", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Elements", "E", "Parrot WPF Layout Element", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -59,22 +53,22 @@ namespace Parrot_GH.Controls
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             string ID = this.Attributes.InstanceGuid.ToString();
-            string name = new GUIDtoAlpha(Convert.ToString(ID + Convert.ToString(this.RunCount)), false).Text;
+            string name = new GUIDtoAlpha(Convert.ToString(ID + Convert.ToString(this.RunCount)), true).Text;
             int C = this.RunCount;
 
             wObject WindObject = new wObject();
             pElement Element = new pElement();
             bool Active = Elements.ContainsKey(C);
 
-            var pCtrl = new pScrollNumber(name);
-            if (Elements.ContainsKey(C)) { Active = true; }
+            var pCtrl = new pPanelPlace(name);
+            
 
             //Check if control already exists
             if (Active)
             {
                 WindObject = Elements[C];
                 Element = (pElement)WindObject.Element;
-                pCtrl = (pScrollNumber)Element.ParrotControl;
+                pCtrl = (pPanelPlace)Element.ParrotControl;
             }
             else
             {
@@ -82,17 +76,28 @@ namespace Parrot_GH.Controls
             }
 
             //Set Unique Control Properties
+            List<IGH_Goo> E = new List<IGH_Goo>();
+            Interval S = new Interval(600, 600);
+            List < int> Xv = new List<int>();
+            List < int> Yv = new List<int>();
 
-            double V = 0.0;
-            Interval D = new Interval(0, 1);
-            double I = 0.1;
+            if (!DA.GetDataList(0, E)) return;
+            if (!DA.GetData(1, ref S)) return;
+            if (!DA.GetDataList(2,  Xv)) return;
+            if (!DA.GetDataList(3,  Yv)) return;
 
-            if (!DA.GetData(0, ref V)) return;
-            if (!DA.GetData(1, ref D)) return;
-            if (!DA.GetData(2, ref I)) return;
+            pCtrl.SetProperties((int)S.T0,(int)S.T1);
+            pCtrl.ClearChildren();
 
-            pCtrl.SetProperties(V, D.T0, D.T1, I);
+            for (int i = 0; i < E.Count; i++)
+            {
+                wObject W;
+                pElement Elem;
+                E[i].CastTo(out W);
+                Elem = (pElement)W.Element;
 
+                pCtrl.AddElement(Elem, Xv[i], Yv[i]);
+            }
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }
@@ -105,49 +110,13 @@ namespace Parrot_GH.Controls
             DA.SetData(0, WindObject);
 
         }
-        
-        public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
-        {
-            base.AppendAdditionalMenuItems(menu);
-            Menu_AppendSeparator(menu);
-
-            Menu_AppendItem(menu, "Cycle", SetCycle, true, BoolCycle);
-        }
-
-        public override bool Write(GH_IWriter writer)
-        {
-            writer.SetBoolean("Cycle", BoolCycle);
-
-            return base.Write(writer);
-        }
-
-        public override bool Read(GH_IReader reader)
-        {
-            BoolCycle = reader.GetBoolean("Cycle");
-
-            this.UpdateMessage();
-            return base.Read(reader);
-        }
-
-        private void SetCycle(Object sender, EventArgs e)
-        {
-            BoolCycle = !BoolCycle;
-
-            this.UpdateMessage();
-            this.ExpireSolution(true);
-        }
-
-        private void UpdateMessage()
-        {
-            if (BoolCycle) { Message = "Cycle"; } else { Message = "Limit"; } 
-        }
 
         /// <summary>
         /// Set Exposure level for the component.
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.primary; }
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>
@@ -157,16 +126,17 @@ namespace Parrot_GH.Controls
         {
             get
             {
-                return Properties.Resources.Parrot_NumericScoller;
+                return Properties.Resources.Parrot_Panel_Placement1;
             }
         }
+
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("{e622729d-043d-46ff-8381-a66170c28982}"); }
+            get { return new Guid("4f290c39-cb83-47d3-8222-7c67479643be"); }
         }
     }
 }

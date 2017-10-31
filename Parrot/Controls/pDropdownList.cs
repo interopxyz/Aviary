@@ -13,7 +13,6 @@ namespace Parrot.Controls
     public class pDropdownList : pControl
     {
         public ComboBox Element;
-        public string Type;
 
         public List<string> values = new List<string>();
 

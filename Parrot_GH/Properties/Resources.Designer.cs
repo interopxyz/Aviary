@@ -363,6 +363,26 @@ namespace Parrot_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Parrot_Panel_Placement {
+            get {
+                object obj = ResourceManager.GetObject("Parrot_Panel_Placement", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Parrot_Panel_Placement1 {
+            get {
+                object obj = ResourceManager.GetObject("Parrot_Panel_Placement1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Parrot_Panel_W {
             get {
                 object obj = ResourceManager.GetObject("Parrot_Panel_W", resourceCulture);
@@ -446,6 +466,16 @@ namespace Parrot_GH.Properties {
         internal static System.Drawing.Bitmap Parrot_Return_Value {
             get {
                 object obj = ResourceManager.GetObject("Parrot_Return_Value", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Parrot_Scroll_Panel {
+            get {
+                object obj = ResourceManager.GetObject("Parrot_Scroll_Panel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

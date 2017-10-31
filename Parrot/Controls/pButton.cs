@@ -19,7 +19,6 @@ namespace Parrot.Controls
     public class pButton : pControl
     {
         public Button Element;
-        public string Type;
         public bool Status;
 
         public pButton(string InstanceName)

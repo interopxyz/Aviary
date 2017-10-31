@@ -18,7 +18,6 @@ namespace Parrot.Controls
     public class pViewGrid : pControl
     {
         public DataGrid Element;
-        public string Type;
 
         public pViewGrid(string InstanceName)
         {

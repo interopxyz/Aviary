@@ -17,7 +17,6 @@ namespace Parrot.Controls
     public class pClock : pControl
     {
         public Clock Element;
-        public string Type;
         public pModifiers Modify = new pModifiers();
 
         public pClock(string InstanceName)

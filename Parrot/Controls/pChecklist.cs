@@ -13,7 +13,6 @@ namespace Parrot.Controls
     public class pChecklist : pControl
     {
         public CheckListBox Element;
-        public string Type;
 
         public pChecklist(string InstanceName)
         {

@@ -14,7 +14,6 @@ namespace Parrot.Displays
     public class pDocumentViewer : pControl
     {
         public DocumentViewer Element;
-        public string Type;
 
         public pDocumentViewer(string InstanceName)
         {

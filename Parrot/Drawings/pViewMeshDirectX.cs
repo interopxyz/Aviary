@@ -13,7 +13,6 @@ namespace Parrot.Drawings
     public class pViewMeshDirectX : pControl
     {
         public Canvas Element;
-        public string Type;
         public D3DImage IMG = new D3DImage(96, 96);
         
         public pViewMeshDirectX()

@@ -12,7 +12,6 @@ namespace Parrot.Controls
     public class pColorCanvas : pControl
     {
         public ColorCanvas Element;
-        public string Type;
 
         public pColorCanvas(string InstanceName)
         {

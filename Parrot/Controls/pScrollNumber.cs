@@ -11,7 +11,6 @@ namespace Parrot.Controls
     public class pScrollNumber : pControl
     {
         public NumericUpDown Element;
-        public string Type;
 
         public string Value;
         public bool IsCapped = true;

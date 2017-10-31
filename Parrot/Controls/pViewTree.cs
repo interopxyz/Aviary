@@ -16,7 +16,6 @@ namespace Parrot.Controls
     public class pViewTree : pControl
     {
         public TreeView Element;
-        public string Type;
 
         public pViewTree(string InstanceName)
         {

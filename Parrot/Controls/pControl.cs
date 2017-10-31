@@ -13,7 +13,9 @@ namespace Parrot.Controls
         public wGraphic Graphics = new wGraphic();
         public wEffects Effects = new wEffects();
         public wFont Font = new wFont();
-        
+
+        public string Type = "Control";
+
         public virtual void SetFont()
         {
 

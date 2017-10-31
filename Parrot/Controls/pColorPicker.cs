@@ -18,7 +18,6 @@ namespace Parrot.Controls
     public class pColorPicker : pControl
     {
         public ColorPicker Element;
-        public string Type;
 
         public pColorPicker(string InstanceName)
         {

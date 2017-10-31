@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the Radio class.
         /// </summary>
         public Radio()
-          : base("Radio", "Radio", "---", "Aviary", "Control")
+          : base("Radio", "Radio", "Parrot Control Element. Bound to a group through a group title, when one instance of this control is toggled to true, all others are false.", "Aviary", "Control")
         {
         }
 
@@ -31,11 +31,11 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Text", "T", "T", GH_ParamAccess.item, "");
+            pManager.AddTextParameter("Text", "T", "Display Text", GH_ParamAccess.item, "");
             pManager[0].Optional = true;
-            pManager.AddBooleanParameter("State", "S", "---", GH_ParamAccess.item, false);
+            pManager.AddBooleanParameter("State", "S", "The initial toggle state for the radio button. Note: If multiple states belonging to a group are toggled to true. The last instance in the list will remain true. All other instances will be toggled to false.", GH_ParamAccess.item, false);
             pManager[1].Optional = true;
-            pManager.AddTextParameter("Group", "G", "The Group ID for the Text Box", GH_ParamAccess.item, "Group 1");
+            pManager.AddTextParameter("Group", "G", "Group title the instance of the radio button is bound to.", GH_ParamAccess.item, "Group 1");
             pManager[2].Optional = true;
         }
 
@@ -44,7 +44,7 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Element", "E", "WPF Control Element", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Element", "E", "Parrot WPF Control Element", GH_ParamAccess.item);
         }
 
         /// <summary>

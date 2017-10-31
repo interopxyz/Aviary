@@ -15,7 +15,6 @@ namespace Parrot.Controls
     public class pToggle : pControl
     {
         public ToggleButton Element;
-        public string Type;
 
 
         public pToggle(string InstanceName)

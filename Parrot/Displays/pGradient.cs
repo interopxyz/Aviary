@@ -14,7 +14,6 @@ namespace Parrot.Displays
         public Grid Element;
         public Label MinLabel;
         public Label MaxLabel;
-        public string Type;
 
         public pGradient(string InstanceName)
         {

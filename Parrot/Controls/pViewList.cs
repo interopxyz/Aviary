@@ -16,7 +16,6 @@ namespace Parrot.Controls
     public class pViewList : pControl
     {
         public ListView Element;
-        public string Type;
         public Point startPoint;
 
         public ObservableCollection<string> ItemsList = new ObservableCollection<string>();

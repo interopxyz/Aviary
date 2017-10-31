@@ -21,7 +21,6 @@ namespace Parrot.Drawings
     public class pViewMeshGL : pControl
     {
         public Canvas Element = new Canvas();
-        public string Type;
         public OpenGLControl ControlGL = new OpenGLControl();
         public OpenGL ObjectGL = new OpenGL();
 

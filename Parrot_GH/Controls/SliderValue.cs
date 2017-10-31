@@ -28,7 +28,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the SliderValue class.
         /// </summary>
         public SliderValue()
-          : base("Value Slider", "SlideV", "---", "Aviary", "Control")
+          : base("Value Slider", "Slide V", "Parrot Control Element. A graphic slider and numeric input which allows for moving through a numeric domain at a specified increment.", "Aviary", "Control")
         {
 
             boolDirection = true;
@@ -41,11 +41,11 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Value", "V", "Value", GH_ParamAccess.item, 0);
+            pManager.AddNumberParameter("Value", "V", "Initial numeric value", GH_ParamAccess.item, 0);
             pManager[0].Optional = true;
-            pManager.AddIntervalParameter("Domain", "D", "Domain", GH_ParamAccess.item, new Interval(0, 1));
+            pManager.AddIntervalParameter("Domain", "D", "Domain which sets the min and max value", GH_ParamAccess.item, new Interval(0, 1));
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Interval", "I", "Interval", GH_ParamAccess.item, 0.0);
+            pManager.AddNumberParameter("Interval", "I", "The step interval value", GH_ParamAccess.item, 0.0);
             pManager[2].Optional = true;
         }
 
@@ -54,7 +54,7 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Element", "E", "WPF Control Element", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Element", "E", "Parrot WPF Control Element", GH_ParamAccess.item);
         }
 
         /// <summary>

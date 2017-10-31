@@ -15,7 +15,6 @@ namespace Parrot.Controls
     public class pSlider : pControl
     {
         public Grid Element;
-        public string Type;
 
         public bool IsHorizontal = true;
         public bool IsLabeled = true;

@@ -16,7 +16,6 @@ namespace Parrot.Displays
     {
         public Grid Element;
         public WebBrowser Web;
-        public string Type;
 
         public pWebBrowser(string InstanceName)
         {

@@ -15,7 +15,6 @@ namespace Parrot.Layouts
     public class pPanelGrid : pControl
     {
         public Grid Element;
-        public string Type;
         public int R = 0, C = 0;
 
         public pPanelGrid(string InstanceName)
@@ -69,11 +68,22 @@ namespace Parrot.Layouts
             Grid.SetRow(ParrotElement.Container, Ri);
             Element.Children.Add(ParrotElement.Container);
         }
-
+        
         public override void SetFill()
         {
             Element.Background = Graphics.WpfFill;
         }
 
+        public override void SetSize()
+        {
+            if (Graphics.Width < 1) { Element.Width = double.NaN; } else { Element.Width = Graphics.Width; }
+            if (Graphics.Height < 1) { Element.Height = double.NaN; } else { Element.Height = Graphics.Height; }
+        }
+
+        public override void SetMargin()
+        {
+            Element.Margin = new Thickness(Graphics.Margin[0], Graphics.Margin[1], Graphics.Margin[2], Graphics.Margin[3]);
+        }
+        
     }
 }

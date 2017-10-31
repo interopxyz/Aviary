@@ -26,7 +26,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ScrollRange class.
         /// </summary>
         public SliderRange()
-          : base("Range Slider", "Slide R", "---", "Aviary", "Control")
+          : base("Range Slider", "Slide R", "Parrot Control Element. A graphic slider which sets a low and high value within a numeric domain.", "Aviary", "Control")
         {
             boolDirection = true;
             boolLabel = true;
@@ -38,11 +38,11 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddIntervalParameter("Domain", "D", "---", GH_ParamAccess.item, new Interval(0, 100));
+            pManager.AddIntervalParameter("Selection", "S", "Domain which sets the initial min and max selected values within the given domain.", GH_ParamAccess.item, new Interval(25, 75));
             pManager[0].Optional = true;
-            pManager.AddIntervalParameter("Selection", "S", "---", GH_ParamAccess.item, new Interval(25, 75));
+            pManager.AddIntervalParameter("Domain", "D", "Domain which sets the min and max value", GH_ParamAccess.item, new Interval(0, 100));
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Interval", "I", "Interval", GH_ParamAccess.item, 0.1);
+            pManager.AddNumberParameter("Interval", "I", "The step interval value", GH_ParamAccess.item, 0.1);
             pManager[2].Optional = true;
         }
 
@@ -90,8 +90,8 @@ namespace Parrot_GH.Controls
             Interval Selection = new Interval(25, 75);
             double I = 1.0;
 
-            if (!DA.GetData(0, ref Domain)) return;
-            if (!DA.GetData(1, ref Selection)) return;
+            if (!DA.GetData(0, ref Selection)) return;
+            if (!DA.GetData(1, ref Domain)) return;
             if (!DA.GetData(2, ref I)) return;
 
             pCtrl.SetValue(Domain.T0, Domain.T1, Selection.T0, Selection.T1, I, boolDirection, boolLabel, boolTick);

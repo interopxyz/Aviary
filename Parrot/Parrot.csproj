@@ -157,6 +157,8 @@
     <Compile Include="Layouts\pGroup.cs" />
     <Compile Include="Layouts\pPanelDock.cs" />
     <Compile Include="Layouts\pPanelGrid.cs" />
+    <Compile Include="Layouts\pPanelPlace.cs" />
+    <Compile Include="Layouts\pPanelScroll.cs" />
     <Compile Include="Layouts\pPanelTabs.cs" />
     <Compile Include="Layouts\pPanelWrap.cs" />
     <Compile Include="Layouts\pPanelStack.cs" />

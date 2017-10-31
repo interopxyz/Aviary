@@ -27,7 +27,6 @@ namespace Parrot.Drawings
     {
 
         public Grid Element;
-        public string Type;
 
         public HelixViewport3D ViewPort = new HelixViewport3D();
 

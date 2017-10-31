@@ -21,7 +21,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the TextBox class.
         /// </summary>
         public TextBox()
-      : base("TextBox", "TextBox", "---","Aviary", "Control")
+      : base("TextBox", "TextBox", "Parrot Control Element. Field for input or editing of unformatted text.", "Aviary", "Control")
     {
     }
 
@@ -30,11 +30,11 @@ namespace Parrot_GH.Controls
     /// </summary>
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
-            pManager.AddTextParameter("Text", "T", "---", GH_ParamAccess.item, "");
+            pManager.AddTextParameter("Text", "T", "Initial text", GH_ParamAccess.item, "");
             pManager[0].Optional = true;
-            pManager.AddBooleanParameter("Wrap", "W", "---", GH_ParamAccess.item, true);
+            pManager.AddBooleanParameter("Wrap", "W", "Toggle which if true will wrap the text to the next line when it hits with width size limit.", GH_ParamAccess.item, true);
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Width", "S", "---", GH_ParamAccess.item, 300);
+            pManager.AddNumberParameter("Width", "S", "Optional limit on the width of the text box.", GH_ParamAccess.item, 300);
             pManager[2].Optional = true;
         }
 
@@ -43,7 +43,7 @@ namespace Parrot_GH.Controls
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-            pManager.AddGenericParameter("Elements", "E", "---", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Elements", "E", "Parrot WPF Control Element", GH_ParamAccess.item);
     }
 
     /// <summary>

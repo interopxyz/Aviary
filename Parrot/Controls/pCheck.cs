@@ -12,7 +12,6 @@ namespace Parrot.Controls
     public class pCheck : pControl
     {
         public CheckBox Element;
-        public string Type;
 
         public pCheck(string InstanceName)
         {

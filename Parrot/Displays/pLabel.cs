@@ -12,7 +12,6 @@ namespace Parrot.Displays
     public class pLabel : pControl
     {
         public Label Element;
-        public string Type;
 
         public pLabel(string InstanceName)
         {

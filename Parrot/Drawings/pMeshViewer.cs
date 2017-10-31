@@ -22,7 +22,6 @@ namespace Parrot.Drawings
     public class pMeshViewer : pControl
     {
         public Grid Element;
-        public string Type;
         
         public HelixViewport3D ViewPort = new HelixViewport3D();
         

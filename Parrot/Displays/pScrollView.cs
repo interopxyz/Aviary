@@ -18,7 +18,6 @@ namespace Parrot.Displays
     {
         public ScrollViewer Element;
         public System.Windows.Controls.Image ImageObject = new System.Windows.Controls.Image();
-        public string Type;
 
         public pScrollView(string InstanceName)
         {

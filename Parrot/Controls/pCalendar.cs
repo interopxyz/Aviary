@@ -12,7 +12,6 @@ namespace Parrot.Controls
     public class pCalendar : pControl
     {
         public Calendar Element;
-        public string Type;
         public pModifiers Modify = new pModifiers();
 
         public pCalendar(string InstanceName)

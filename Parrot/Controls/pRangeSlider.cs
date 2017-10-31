@@ -13,7 +13,6 @@ namespace Parrot.Controls
     public class pRangeSlider : pControl
     {
         public Grid Element;
-        public string Type;
 
         public RangeSlider Slide;
         public TextBox BlockA;

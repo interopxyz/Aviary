@@ -21,7 +21,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the Toggle class.
         /// </summary>
         public Toggle()
-          : base("Toggle", "Toggle", "---", "Aviary", "Control")
+          : base("Toggle", "Toggle", "Parrot Control Element. When clicked toggles between true and false.", "Aviary", "Control")
         {
         }
 
@@ -30,9 +30,9 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Text", "T", "Text", GH_ParamAccess.item, "");
+            pManager.AddTextParameter("Text", "T", "Display Text", GH_ParamAccess.item, "");
             pManager[0].Optional = true;
-            pManager.AddBooleanParameter("State", "S", "---", GH_ParamAccess.item, false);
+            pManager.AddBooleanParameter("State", "S", "The initial status of the toggle.", GH_ParamAccess.item, false);
             pManager[1].Optional = true;
         }
 
@@ -41,7 +41,7 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Element", "E", "WPF Control Element", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Element", "E", "Parrot WPF Control Element", GH_ParamAccess.item);
         }
 
         /// <summary>

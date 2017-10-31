@@ -14,7 +14,6 @@ namespace Parrot.Displays
     public class pCanvas : pControl
     {
         public Canvas Element;
-        public string Type;
 
         public pCanvas(string InstanceName)
         {

@@ -23,7 +23,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the Button class.
         /// </summary>
         public Button()
-          : base("Button", "Btn", "---", "Aviary", "Control")
+          : base("Button", "Btn", "Parrot Control Element. When pressed toggles a value to true, when released or at rest is false", "Aviary", "Control")
         {
         }
 
@@ -32,7 +32,7 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Text", "T", "Text", GH_ParamAccess.item, "OK");
+            pManager.AddTextParameter("Text", "T", "Display Text", GH_ParamAccess.item, "OK");
             pManager[0].Optional = true;
         }
 
@@ -41,7 +41,7 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Element", "E", "WPF Control Element", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Element", "E", "Parrot WPF Control Element", GH_ParamAccess.item);
         }
 
         /// <summary>

@@ -13,7 +13,6 @@ namespace Parrot.Controls
     public class pDateTime : pControl
     {
         public DateTimePicker Element;
-        public string Type;
 
         public pDateTime(string InstanceName)
         {

@@ -159,6 +159,8 @@
     <Compile Include="Layouts\Expander.cs" />
     <Compile Include="Layouts\GridPanel.cs" />
     <Compile Include="Layouts\GroupBox.cs" />
+    <Compile Include="Layouts\PlacementPanel.cs" />
+    <Compile Include="Layouts\ScrollPanel.cs" />
     <Compile Include="Layouts\StackPanel.cs" />
     <Compile Include="Layouts\TabPanel.cs" />
     <Compile Include="Layouts\WrapPanel.cs" />
@@ -397,6 +399,15 @@
       <Project>{16C589B0-CBAE-46B1-BC46-24AD34DE87F6}</Project>
       <Name>Wind</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Panel_Placement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Scroll_Panel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Panel-Placement.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

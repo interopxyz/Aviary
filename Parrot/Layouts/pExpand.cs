@@ -17,30 +17,36 @@ namespace Parrot.Layouts
 {
     public class pExpand : pControl
     {
-        public Expander Element;
-        public string Type;
+        public Expander Element = new Expander();
+        TextBlock tBlock = new TextBlock();
 
         public pExpand(string InstanceName)
         {
             Element = new Expander();
             Element.Name = InstanceName;
             Type = "Expander";
-
-            //Set "Clear" appearance to all elements
-            Element.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            Element.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
-            Element.BorderThickness = new Thickness(1);
         }
 
-        public void SetProperties(string Title, bool Expanded, pElement ParrotElement)
+        public void SetProperties(string Title, bool Expanded, int ExpanderDirection)
         {
-            ParrotElement.DetachParent();
+            tBlock = new TextBlock();
+            tBlock.Text = Title;
+            if (ExpanderDirection > 1) { tBlock.LayoutTransform = new RotateTransform(-90); }else { tBlock.LayoutTransform = new RotateTransform(0); }
 
-            Element.Header = Title;
+            Element.ExpandDirection = (ExpandDirection)ExpanderDirection;
+
+            Element.Header = tBlock;
             Element.IsExpanded = Expanded;
-            Element.Content = ParrotElement.Container;
-
+            
             Element.VerticalContentAlignment = VerticalAlignment.Stretch;
+        }
+
+        public void SetElement(pElement ParrotElement)
+        {
+            Element.Content = null;
+
+            ParrotElement.DetachParent();
+            Element.Content = ParrotElement.Container;
         }
 
         public override void SetFill()
@@ -48,16 +54,35 @@ namespace Parrot.Layouts
             Element.Background = Graphics.WpfFill;
         }
 
-        public void SetCorners(wGraphic Graphic)
+        public override void SetStroke()
         {
+            Element.BorderThickness = new Thickness(Graphics.StrokeWeight[0], Graphics.StrokeWeight[1], Graphics.StrokeWeight[2], Graphics.StrokeWeight[3]);
+            Element.BorderBrush = new SolidColorBrush(Graphics.StrokeColor.ToMediaColor());
         }
 
-        public void SetFont(wGraphic Graphic)
+        public override void SetSize()
         {
-            Element.FontFamily = Graphic.FontObject.ToMediaFont().Family;
-            Element.FontSize = Graphic.FontObject.Size;
-            Element.FontStyle = Graphic.FontObject.ToMediaFont().Italic;
-            Element.FontWeight = Graphic.FontObject.ToMediaFont().Bold;
+            if (Graphics.Width < 1) { Element.Width = double.NaN; } else { Element.Width = Graphics.Width; }
+            if (Graphics.Height < 1) { Element.Height = double.NaN; } else { Element.Height = Graphics.Height; }
+        }
+
+        public override void SetMargin()
+        {
+            Element.Margin = new Thickness(Graphics.Margin[0], Graphics.Margin[1], Graphics.Margin[2], Graphics.Margin[3]);
+        }
+
+        public override void SetPadding()
+        {
+            Element.Padding = new Thickness(Graphics.Padding[0], Graphics.Padding[1], Graphics.Padding[2], Graphics.Padding[3]);
+        }
+
+        public override void SetFont()
+        {
+            Element.Foreground = new SolidColorBrush(Graphics.FontObject.FontColor.ToMediaColor());
+            Element.FontFamily = Graphics.FontObject.ToMediaFont().Family;
+            Element.FontSize = Graphics.FontObject.Size;
+            Element.FontStyle = Graphics.FontObject.ToMediaFont().Italic;
+            Element.FontWeight = Graphics.FontObject.ToMediaFont().Bold;
         }
 
     }

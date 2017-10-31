@@ -11,7 +11,6 @@ namespace Parrot.Controls
     public class pCalc : pControl
     {
         public Calculator Element;
-        public string Type;
 
         public pCalc(string InstanceName)
         {

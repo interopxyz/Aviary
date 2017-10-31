@@ -27,7 +27,6 @@ namespace Parrot.Drawings
     public class pDrawing : pControl
     {
         public Canvas Element;
-        public string Type;
 
         public wRectangle Boundary = new wRectangle();
         public wRectangle Extents = new wRectangle();

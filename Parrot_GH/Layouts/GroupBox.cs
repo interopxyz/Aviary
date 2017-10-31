@@ -83,7 +83,8 @@ namespace Parrot_GH.Layouts
             element.CastTo(out W);
             E = (pElement)W.Element;
 
-            pCtrl.SetProperties(T,E);
+            pCtrl.SetProperties(T);
+            pCtrl.SetElement(E);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }

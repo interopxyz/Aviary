@@ -14,7 +14,6 @@ namespace Parrot.Displays
     public class pLegend : pControl
     {
         public WrapPanel Element;
-        public string Type;
 
         public pLegend(string InstanceName)
         {

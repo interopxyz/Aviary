@@ -13,7 +13,6 @@ namespace Parrot.Controls
     public class pRadio : pControl
     { 
         public RadioButton Element;
-        public string Type;
 
         public pRadio(string InstanceName)
         {

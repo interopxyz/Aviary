@@ -12,7 +12,6 @@ namespace Parrot.Controls
     public class pComboCheckList : pControl
     {
         public CheckComboBox Element;
-        public string Type;
 
         public pComboCheckList(string InstanceName)
         {

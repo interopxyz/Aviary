@@ -63,6 +63,16 @@ namespace Parrot_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _0_Parrot_Group_A {
+            get {
+                object obj = ResourceManager.GetObject("_0_Parrot_Group_A", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Aviary_Logo {
             get {
                 object obj = ResourceManager.GetObject("Aviary_Logo", resourceCulture);
@@ -136,6 +146,16 @@ namespace Parrot_GH.Properties {
         internal static System.Drawing.Bitmap Parrot_Card_02 {
             get {
                 object obj = ResourceManager.GetObject("Parrot_Card_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Parrot_Card_03 {
+            get {
+                object obj = ResourceManager.GetObject("Parrot_Card_03", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -476,6 +496,16 @@ namespace Parrot_GH.Properties {
         internal static System.Drawing.Bitmap Parrot_Scroll_Panel {
             get {
                 object obj = ResourceManager.GetObject("Parrot_Scroll_Panel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Parrot_Scroll_Panel2 {
+            get {
+                object obj = ResourceManager.GetObject("Parrot_Scroll_Panel2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

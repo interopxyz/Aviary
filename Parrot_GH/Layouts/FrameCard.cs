@@ -13,7 +13,7 @@ using Grasshopper.Kernel.Types;
 
 namespace Parrot_GH.Layouts
 {
-  public class Card : GH_Component
+  public class FrameCard : GH_Component
     {
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
@@ -21,7 +21,7 @@ namespace Parrot_GH.Layouts
         /// <summary>
         /// Initializes a new instance of the Card class.
         /// </summary>
-        public Card()
+        public FrameCard()
           : base("Card", "Card", "---", "Aviary", "Layout")
         {
     }
@@ -106,7 +106,7 @@ namespace Parrot_GH.Layouts
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Parrot_GH.Layouts
         {
             get
             {
-                return Properties.Resources.Parrot_Card_02;
+                return Properties.Resources.Parrot_Card_03;
             }
         }
 

@@ -114,7 +114,7 @@ namespace Wind_GH.Geometry
         {
             get
             {
-                return Properties.Resources.Wind_Shape_Curve_02;
+                return Properties.Resources.Wind_Shape_Curve_04;
             }
         }
 

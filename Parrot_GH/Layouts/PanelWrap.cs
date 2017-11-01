@@ -14,16 +14,16 @@ using Grasshopper.Kernel.Types;
 
 namespace Parrot_GH.Layouts
 {
-    public class DockPanel : GH_Component
+    public class PanelWrap : GH_Component
     {
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
 
         /// <summary>
-        /// Initializes a new instance of the DockPanel class.
+        /// Initializes a new instance of the WrapPanel class.
         /// </summary>
-        public DockPanel()
-          : base("DockPanel", "Dock", "---", "Aviary", "Layout")
+        public PanelWrap()
+          : base("WrapPanel", "Wrap", "---", "Aviary", "Layout")
         {
         }
 
@@ -33,14 +33,15 @@ namespace Parrot_GH.Layouts
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Elements", "E", "Elements", GH_ParamAccess.list);
-            pManager.AddIntegerParameter("Dock Direction", "D", "Dock Direction", GH_ParamAccess.list, 0);
+            pManager.AddBooleanParameter("Horizontal", "H", "---", GH_ParamAccess.item, true);
             pManager[1].Optional = true;
+            pManager.AddIntegerParameter("Align", "A", "Align", GH_ParamAccess.item, 1);
+            pManager[2].Optional = true;
 
-            Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("Top", 0);
-            param.AddNamedValue("Bottom", 1);
-            param.AddNamedValue("Left", 2);
-            param.AddNamedValue("Right", 3);
+            Param_Integer param = (Param_Integer)Params.Input[2];
+            param.AddNamedValue("Left / Top", 1);
+            param.AddNamedValue("Middle / Center", 2);
+            param.AddNamedValue("Right / Bottom", 3);
         }
 
         /// <summary>
@@ -65,43 +66,41 @@ namespace Parrot_GH.Layouts
             pElement Element = new pElement();
             bool Active = Elements.ContainsKey(C);
 
-            var pCtrl = new pPanelDock(name);
+            var pCtrl = new pPanelWrap(name);
 
             //Check if control already exists
             if (Active)
             {
                 WindObject = Elements[C];
                 Element = (pElement)WindObject.Element;
-                pCtrl = (pPanelDock)Element.ParrotControl;
+                pCtrl = (pPanelWrap)Element.ParrotControl;
             }
             else
             {
                 Elements.Add(C, WindObject);
             }
 
-            //Set Unique Control Properties
-            List<IGH_Goo> E = new List<IGH_Goo>();
-            List<int> D = new List<int>();
+            List<IGH_Goo> X = new List<IGH_Goo>();
+            int A = 0;
+            bool H = true;
 
-            if (!DA.GetDataList(0, E)) return;
-            if (!DA.GetDataList(1, D)) return;
+            // Access the input parameters 
+            if (!DA.GetDataList(0, X)) return;
+            if (!DA.GetData(1, ref H)) return;
+            if (!DA.GetData(2, ref A)) return;
 
-            pCtrl.SetProperties();
+            pCtrl.SetProperties(H,A);
 
             wObject W;
-            pElement Elem;
+            pElement E;
 
-            for (int i = 0; i < E.Count; i++)
+            foreach (IGH_Goo Y in X)
             {
-                E[i].CastTo(out W);
-                Elem = (pElement)W.Element;
-
-                pCtrl.AddElements(Elem,D[i]);
+                Y.CastTo(out W);
+                E = (pElement)W.Element;
+                pCtrl.AddElement(E);
             }
 
-            E[E.Count - 1].CastTo(out W);
-            Elem = (pElement)W.Element;
-            pCtrl.LastElement(Elem);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }
@@ -112,9 +111,6 @@ namespace Parrot_GH.Layouts
             Elements[this.RunCount] = WindObject;
 
             DA.SetData(0, WindObject);
-
-
-
         }
 
         /// <summary>
@@ -132,7 +128,7 @@ namespace Parrot_GH.Layouts
         {
             get
             {
-                return Properties.Resources.Parrot_Dock_W;
+                return Properties.Resources.Parrot_Wrap_W;
             }
         }
 
@@ -141,7 +137,7 @@ namespace Parrot_GH.Layouts
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("{3d36d811-c70c-4b2a-8834-e7ccedc64feb}"); }
+            get { return new Guid("{4b9a4c90-7cad-463d-bb80-2e125f5711b0}"); }
         }
     }
 }

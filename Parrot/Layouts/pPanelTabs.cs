@@ -12,6 +12,7 @@ using Wind.Containers;
 
 using Parrot.Containers;
 using Parrot.Controls;
+using Wind.Types;
 
 namespace Parrot.Layouts
 {
@@ -25,18 +26,18 @@ namespace Parrot.Layouts
         public pPanelTabs(string InstanceName)
         {
             Element = new TabControl();
-            Element.Name = InstanceName;
-            Type = "TabsPanel";
+            Panels = new List<StackPanel>();
+            Tabs = new List<TabItem>();
 
-            //Set "Clear" appearance to all elements
-            Element.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            Element.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            Element.BorderThickness = new Thickness(0);
+        Element.Name = InstanceName;
+            Type = "TabsPanel";
         }
 
         public void SetProperties()
         {
             Element.Items.Clear();
+            Panels = new List<StackPanel>();
+            Tabs = new List<TabItem>();
         }
 
         public void AddTab(string Name)
@@ -46,6 +47,10 @@ namespace Parrot.Layouts
             StackPanel pan = new StackPanel();
             pan.VerticalAlignment = VerticalAlignment.Stretch;
             pan.HorizontalAlignment = HorizontalAlignment.Stretch;
+            
+            tab.BorderBrush = new SolidColorBrush(new wColor().DarkGray().ToMediaColor());
+            tab.BorderThickness = new Thickness(0, 0, 0, 2);
+            tab.Margin = new Thickness(0, 0, 2, 0);
 
             tab.Content = pan;
             Element.Items.Add(tab);

@@ -3,24 +3,26 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
+
 using Wind.Containers;
 using Wind.Utilities;
+
 using Parrot.Containers;
 using Parrot.Layouts;
 using Grasshopper.Kernel.Types;
 
 namespace Parrot_GH.Layouts
 {
-    public class ScrollPanel : GH_Component
+    public class TabPanel : GH_Component
     {
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
 
         /// <summary>
-        /// Initializes a new instance of the ScrollPanel class.
+        /// Initializes a new instance of the TabPanel class.
         /// </summary>
-        public ScrollPanel()
-          : base("Scroll Panel", "Scroll", "---", "Aviary", "Layout")
+        public TabPanel()
+          : base("TabPanel", "Tabs", "---", "Aviary", "Layout")
         {
         }
 
@@ -29,10 +31,10 @@ namespace Parrot_GH.Layouts
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Elements", "E", "---", GH_ParamAccess.item);
-            pManager.AddBooleanParameter("Horizontal", "H", "---", GH_ParamAccess.item, true);
+            pManager.AddGenericParameter("Elements", "E", "Elements", GH_ParamAccess.list);
+            pManager.AddIntegerParameter("Index", "I", "Index", GH_ParamAccess.list, 0);
             pManager[1].Optional = true;
-            pManager.AddBooleanParameter("Vertical", "V", "---", GH_ParamAccess.item, true);
+            pManager.AddTextParameter("Names", "N", "Names", GH_ParamAccess.list, "Tab 0");
             pManager[2].Optional = true;
         }
 
@@ -41,7 +43,7 @@ namespace Parrot_GH.Layouts
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Elements", "E", "---", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Element", "E", "WPF Control Element", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -51,44 +53,70 @@ namespace Parrot_GH.Layouts
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             string ID = this.Attributes.InstanceGuid.ToString();
-            string name = new GUIDtoAlpha(Convert.ToString(ID + Convert.ToString(this.RunCount)), true).Text;
+            string name = new GUIDtoAlpha(Convert.ToString(ID + Convert.ToString(this.RunCount)), false).Text;
             int C = this.RunCount;
 
             wObject WindObject = new wObject();
             pElement Element = new pElement();
             bool Active = Elements.ContainsKey(C);
 
-            var pCtrl = new pPanelScroll(name);
-            
+            var pCtrl = new pPanelTabs(name);
+
             //Check if control already exists
             if (Active)
             {
                 WindObject = Elements[C];
                 Element = (pElement)WindObject.Element;
-                pCtrl = (pPanelScroll)Element.ParrotControl;
+                pCtrl = (pPanelTabs)Element.ParrotControl;
             }
             else
             {
                 Elements.Add(C, WindObject);
             }
 
-            //Set Unique Control Properties
-            IGH_Goo E = null;
-            bool H = true;
-            bool V = true;
+            List<string> T = new List<string>();
+            List<IGH_Goo> X = new List<IGH_Goo>();
+            List<int> I = new List<int>();
 
-            if (!DA.GetData(0, ref E)) return;
-            if (!DA.GetData(1, ref H)) return;
-            if (!DA.GetData(2, ref V)) return;
+            // Access the input parameters 
+            if (!DA.GetDataList(0, X)) return;
+            if (!DA.GetDataList(1, I)) return;
+            if (!DA.GetDataList(2, T)) return;
+
+            pCtrl.SetProperties();
+            
+            int k = I.Count;
+            for (int i = k; i < X.Count; i++)
+            {
+                I.Add(I[k - 1]);
+            }
+
+            int[] Indices = I.ToArray();
+            Array.Sort(Indices);
+
+            k = T.Count;
+            for (int i = k; i < Indices[I.Count-1]+1; i++)
+            {
+                T.Add(T[k - 1]);
+            }
+
+            for (int i = 0; i < T.Count; i++)
+            {
+                pCtrl.AddTab(T[i]);
+            }
 
             wObject W;
-            pElement Elem;
-            E.CastTo(out W);
-            Elem = (pElement)W.Element;
+            pElement E;
 
-            pCtrl.SetProperties(H, V, false);
+            for (int i = 0; i < X.Count; i++)
+            {
+                X[i].CastTo(out W);
+                E = (pElement)W.Element;
 
-            pCtrl.SetElement(Elem);
+                pCtrl.AddElement(I[i], E);
+
+            }
+
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }
@@ -116,7 +144,7 @@ namespace Parrot_GH.Layouts
         {
             get
             {
-                return Properties.Resources.Parrot_Scroll_Panel;
+                return Properties.Resources.Parrot_Tabs_W;
             }
         }
 
@@ -125,7 +153,7 @@ namespace Parrot_GH.Layouts
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("5be21db9-5d3d-46b6-8672-72fd9a4f8d75"); }
+            get { return new Guid("{a35b3130-27ca-4b7c-938d-a3f73aae5191}"); }
         }
     }
 }

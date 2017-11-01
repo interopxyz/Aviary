@@ -12,6 +12,7 @@ using Wind.Containers;
 
 using Parrot.Containers;
 using Parrot.Controls;
+using Wind.Types;
 
 namespace Parrot.Layouts
 {
@@ -25,6 +26,7 @@ namespace Parrot.Layouts
             Element = new Expander();
             Element.Name = InstanceName;
             Type = "Expander";
+            
         }
 
         public void SetProperties(string Title, bool Expanded, int ExpanderDirection)
@@ -33,10 +35,29 @@ namespace Parrot.Layouts
             tBlock.Text = Title;
             if (ExpanderDirection > 1) { tBlock.LayoutTransform = new RotateTransform(-90); }else { tBlock.LayoutTransform = new RotateTransform(0); }
 
+
+            Element.BorderBrush = new SolidColorBrush(new wColor().DarkGray().ToMediaColor());
+            switch (ExpanderDirection)
+            {
+                case 1:
+                    Element.BorderThickness = new Thickness(0, 1, 0, 0);
+                    break;
+                case 2:
+                    Element.BorderThickness = new Thickness(1, 0, 0, 0);
+                    break;
+                case 3:
+                    Element.BorderThickness = new Thickness(0, 0, 1, 0);
+                    break;
+                default:
+                    Element.BorderThickness = new Thickness(0, 0, 0, 1);
+                    break;
+            }
+
+
             Element.ExpandDirection = (ExpandDirection)ExpanderDirection;
 
             Element.Header = tBlock;
-            Element.IsExpanded = Expanded;
+            Element.IsExpanded = !Expanded;
             
             Element.VerticalContentAlignment = VerticalAlignment.Stretch;
         }
@@ -62,7 +83,8 @@ namespace Parrot.Layouts
 
         public override void SetSize()
         {
-            if (Graphics.Width < 1) { Element.Width = double.NaN; } else { Element.Width = Graphics.Width; }
+            if (Graphics.Width < 1) 
+{ Element.Width = double.NaN; } else { Element.Width = Graphics.Width; }
             if (Graphics.Height < 1) { Element.Height = double.NaN; } else { Element.Height = Graphics.Height; }
         }
 

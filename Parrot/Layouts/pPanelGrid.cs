@@ -14,7 +14,7 @@ namespace Parrot.Layouts
 {
     public class pPanelGrid : pControl
     {
-        public Grid Element;
+        public Grid Element = new Grid();
         public int R = 0, C = 0;
 
         public pPanelGrid(string InstanceName)
@@ -22,9 +22,6 @@ namespace Parrot.Layouts
             Element = new Grid();
             Element.Name = InstanceName;
             Type = "Grid";
-
-            //Set "Clear" appearance to all elements
-            Element.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
         }
 
         public void SetProperties()

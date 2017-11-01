@@ -162,7 +162,7 @@ namespace Wind_GH.Formatting
         {
             get
             {
-                return Properties.Resources.Wind_Fill_Swatch;
+                return Properties.Resources.Parrot_Swatches;
             }
         }
 

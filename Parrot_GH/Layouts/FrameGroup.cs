@@ -10,26 +10,20 @@ using Wind.Utilities;
 using Parrot.Containers;
 using Parrot.Layouts;
 using Grasshopper.Kernel.Types;
-using System.Windows.Forms;
-using GH_IO.Serialization;
 
 namespace Parrot_GH.Layouts
 {
-    public class Expander : GH_Component
-    { 
+    public class FrameGroup : GH_Component
+    {
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
 
-        public enum DirectionMode {Down,Up,Left,Right};
-        DirectionMode ModeDirection = DirectionMode.Down;
-
         /// <summary>
-        /// Initializes a new instance of the Expander class.
+        /// Initializes a new instance of the GroupBox class.
         /// </summary>
-        public Expander()
-          : base("Expander", "Expand", "---", "Aviary", "Layout")
+        public FrameGroup()
+          : base("GroupBox", "Group", "---", "Aviary", "Layout")
         {
-            this.UpdateMessage();
         }
 
         /// <summary>
@@ -37,11 +31,9 @@ namespace Parrot_GH.Layouts
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Element", "E", "---", GH_ParamAccess.item);
-            pManager.AddTextParameter("Name", "N", "Name", GH_ParamAccess.item, "");
+            pManager.AddGenericParameter("Element", "E", "The values", GH_ParamAccess.item);
+            pManager.AddTextParameter("Name", "N", "Name", GH_ParamAccess.item, "Group");
             pManager[1].Optional = true;
-            pManager.AddBooleanParameter("Closed", "C", "Closed", GH_ParamAccess.item, true);
-            pManager[2].Optional = true;
         }
 
         /// <summary>
@@ -66,14 +58,14 @@ namespace Parrot_GH.Layouts
             pElement Element = new pElement();
             bool Active = Elements.ContainsKey(C);
 
-            var pCtrl = new pExpand(name);
+            var pCtrl = new pGroup(name);
 
             //Check if control already exists
             if (Active)
             {
                 WindObject = Elements[C];
                 Element = (pElement)WindObject.Element;
-                pCtrl = (pExpand)Element.ParrotControl;
+                pCtrl = (pGroup)Element.ParrotControl;
             }
             else
             {
@@ -81,19 +73,17 @@ namespace Parrot_GH.Layouts
             }
 
             IGH_Goo element = null;
-            string N = "";
-            bool B = false;
+            string T = "Group";
 
             if (!DA.GetData(0, ref element)) return;
-            if (!DA.GetData(1, ref N)) return;
-            if (!DA.GetData(2, ref B)) return;
+            if (!DA.GetData(1, ref T)) return;
 
             wObject W;
             pElement E;
             element.CastTo(out W);
             E = (pElement)W.Element;
 
-            pCtrl.SetProperties(N, B, (int)ModeDirection);
+            pCtrl.SetProperties(T);
             pCtrl.SetElement(E);
 
             //Set Parrot Element and Wind Object properties
@@ -105,71 +95,7 @@ namespace Parrot_GH.Layouts
             Elements[this.RunCount] = WindObject;
 
             DA.SetData(0, WindObject);
-        }
 
-        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
-        {
-            base.AppendAdditionalMenuItems(menu);
-            Menu_AppendSeparator(menu);
-
-            Menu_AppendItem(menu, "Down", DirModeDown, true, (ModeDirection == DirectionMode.Down));
-            Menu_AppendItem(menu, "Up", DirModeUp, true, (ModeDirection == DirectionMode.Up));
-            Menu_AppendItem(menu, "Left", DirModeLeft, true, (ModeDirection == DirectionMode.Left));
-            Menu_AppendItem(menu, "Right", DirModeRight, true, (ModeDirection == DirectionMode.Right));
-        }
-
-        public override bool Write(GH_IWriter writer)
-        {
-            writer.SetInt32("Direction", (int)ModeDirection);
-
-            return base.Write(writer);
-        }
-
-        public override bool Read(GH_IReader reader)
-        {
-            ModeDirection = (DirectionMode)reader.GetInt32("Direction");
-
-            this.UpdateMessage();
-            return base.Read(reader);
-        }
-
-        private void DirModeDown(Object sender, EventArgs e)
-        {
-            ModeDirection = DirectionMode.Down;
-
-            this.UpdateMessage();
-            this.ExpireSolution(true);
-        }
-
-        private void DirModeUp(Object sender, EventArgs e)
-        {
-            ModeDirection = DirectionMode.Up;
-
-            this.UpdateMessage();
-            this.ExpireSolution(true);
-        }
-
-        private void DirModeLeft(Object sender, EventArgs e)
-        {
-            ModeDirection = DirectionMode.Left;
-
-            this.UpdateMessage();
-            this.ExpireSolution(true);
-        }
-
-        private void DirModeRight(Object sender, EventArgs e)
-        {
-            ModeDirection = DirectionMode.Right;
-
-            this.UpdateMessage();
-            this.ExpireSolution(true);
-        }
-
-        private void UpdateMessage()
-        {
-             Message = ModeDirection.ToString();
         }
 
         /// <summary>
@@ -187,7 +113,7 @@ namespace Parrot_GH.Layouts
         {
             get
             {
-                return Properties.Resources.Parrot_Expand;
+                return Properties.Resources._0_Parrot_Group_A;
             }
         }
 
@@ -196,7 +122,7 @@ namespace Parrot_GH.Layouts
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("{d9961a79-86f3-4049-b6c3-6ac06c1a9993}"); }
+            get { return new Guid("{d5d20d3b-a37f-40ae-b33b-84b581532c8b}"); }
         }
     }
 }

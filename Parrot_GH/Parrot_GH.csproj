@@ -129,7 +129,7 @@
     <Compile Include="Drawings\ViewBasicMesh.cs" />
     <Compile Include="Drawings\ViewOpenGLMesh.cs" />
     <Compile Include="Drawings\ViewPointCloud.cs" />
-    <Compile Include="Layouts\Card.cs" />
+    <Compile Include="Layouts\FrameCard.cs" />
     <Compile Include="Controls\CheckList.cs" />
     <Compile Include="Controls\ColorCanvas.cs" />
     <Compile Include="Controls\ColorPicker.cs" />
@@ -148,22 +148,21 @@
     <Compile Include="Controls\ViewGrid.cs" />
     <Compile Include="Controls\ViewList.cs" />
     <Compile Include="Controls\ViewTree.cs" />
-    <Compile Include="Displays\ScrollFrame.cs" />
     <Compile Include="Displays\Frame.cs" />
     <Compile Include="Displays\Label.cs" />
     <Compile Include="Displays\Legend.cs" />
     <Compile Include="Displays\Progress.cs" />
     <Compile Include="Displays\Spacer.cs" />
     <Compile Include="Displays\WebBrowser.cs" />
-    <Compile Include="Layouts\DockPanel.cs" />
-    <Compile Include="Layouts\Expander.cs" />
-    <Compile Include="Layouts\GridPanel.cs" />
-    <Compile Include="Layouts\GroupBox.cs" />
-    <Compile Include="Layouts\PlacementPanel.cs" />
-    <Compile Include="Layouts\ScrollPanel.cs" />
-    <Compile Include="Layouts\StackPanel.cs" />
-    <Compile Include="Layouts\TabPanel.cs" />
-    <Compile Include="Layouts\WrapPanel.cs" />
+    <Compile Include="Layouts\PanelDock.cs" />
+    <Compile Include="Layouts\FrameExpander.cs" />
+    <Compile Include="Layouts\PanelGrid.cs" />
+    <Compile Include="Layouts\FrameGroup.cs" />
+    <Compile Include="Layouts\PanelPlace.cs" />
+    <Compile Include="Layouts\FrameScroll.cs" />
+    <Compile Include="Layouts\PanelStack.cs" />
+    <Compile Include="Layouts\PanelTab.cs" />
+    <Compile Include="Layouts\PanelWrap.cs" />
     <Compile Include="Output\CaptureImage.cs" />
     <Compile Include="Output\Print.cs" />
     <Compile Include="Parrot_GHInfo.cs" />
@@ -408,6 +407,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Parrot_Panel-Placement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Scroll_Panel2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0_Parrot_Group-A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parrot_Card_03.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

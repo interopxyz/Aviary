@@ -14,7 +14,7 @@ using Parrot.Layouts;
 
 namespace Parrot_GH.Layouts
 {
-    public class StackPanel : GH_Component
+    public class PanelStack : GH_Component
     {
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
@@ -22,7 +22,7 @@ namespace Parrot_GH.Layouts
         /// <summary>
         /// Initializes a new instance of the StackPanel class.
         /// </summary>
-        public StackPanel()
+        public PanelStack()
           : base("StackPanel", "Stack", "---", "Aviary", "Layout")
         {
         }

@@ -24,7 +24,6 @@ namespace Pollen.Charts
         public WindowsFormsHost ChartHost;
         public SolidGauge ChartObject;
         public List<pPointSeries> ChartSeriesSet;
-        public string Type;
         public bool Status;
         public DataSetCollection DataGrid = new DataSetCollection();
 

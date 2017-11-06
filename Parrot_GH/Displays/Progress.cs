@@ -32,8 +32,8 @@ namespace Parrot_GH.Displays
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddNumberParameter("Value", "V", "Value", GH_ParamAccess.item, 0.5);
-            pManager.AddColourParameter("Color", "C", "Color", GH_ParamAccess.item, System.Drawing.Color.CornflowerBlue);
-            pManager[0].Optional = true;
+            pManager.AddBooleanParameter("Horizontal", "H", "---", GH_ParamAccess.item, true);
+            pManager[1].Optional = true;
         }
 
         /// <summary>
@@ -75,12 +75,12 @@ namespace Parrot_GH.Displays
 
             //Set Unique Control Properties
             double V = 0.0;
-            System.Drawing.Color D = System.Drawing.Color.CornflowerBlue;
+            bool H = true;
 
             if (!DA.GetData(0, ref V)) return;
-            if (!DA.GetData(1, ref D)) return;
+            if (!DA.GetData(1, ref H)) return;
 
-            pCtrl.SetProperties(V, new wColor(D).ToMediaColor());
+            pCtrl.SetProperties(V,H);
 
 
             //Set Parrot Element and Wind Object properties

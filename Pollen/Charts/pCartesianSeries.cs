@@ -19,8 +19,7 @@ namespace Pollen.Charts
         public ScatterSeries ChartSeries;
         public RowSeries GanttSeries;
         public DataPtSet DataList;
-
-        public string Type;
+        
         public bool Status;
         public int Mode;
 

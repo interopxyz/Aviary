@@ -13,6 +13,7 @@ namespace Wind.Types
         public List<wColor> ColorSet = new List<wColor>();
         public List<double> ParameterSet = new List<double>();
         public int Type = 0;
+        public bool IsInverted = false;
 
         GradientStopCollection MediaGradient = new GradientStopCollection();
 
@@ -66,6 +67,13 @@ namespace Wind.Types
             ColorSet = GradientColors;
         }
 
+        public wGradient(List<wColor> GradientColors, List<double> GradientParameters, bool Invert)
+        {
+            IsInverted = Invert;
+            ParameterSet = GradientParameters;
+            ColorSet = GradientColors;
+        }
+
         public wGradient(List<System.Drawing.Color> GradientColors, List<double> GradientParameters)
         {
             ColorSet.Clear();
@@ -102,10 +110,11 @@ namespace Wind.Types
         public GradientStopCollection ToMediaGradient()
         {
             MediaGradient.Clear();
-
+            int k = 0;
+            if (IsInverted) { k = 1; }
             for (int i = 0; i < ColorSet.Count; i++)
             {
-                MediaGradient.Add(new GradientStop(ColorSet[i].ToMediaColor(), ParameterSet[i]));
+                MediaGradient.Add(new GradientStop(ColorSet[i].ToMediaColor(), Math.Abs(k- ParameterSet[i])));
             }
             
             return MediaGradient;

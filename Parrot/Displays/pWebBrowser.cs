@@ -14,13 +14,15 @@ namespace Parrot.Displays
 {
     public class pWebBrowser : pControl
     {
-        public Grid Element;
-        public WebBrowser Web;
+        public Grid Element = new Grid();
+        public WebBrowser Web = new WebBrowser();
 
         public pWebBrowser(string InstanceName)
         {
             Element = new Grid();
             Web = new WebBrowser();
+
+            Element.Children.Add(Web);
 
             Element.Name = InstanceName;
             Type = "WebBrowser";
@@ -33,11 +35,17 @@ namespace Parrot.Displays
         {
             Element.VerticalAlignment = VerticalAlignment.Stretch;
             Element.HorizontalAlignment = HorizontalAlignment.Stretch;
-            Element.Children.Add(Web);
 
             Web.VerticalAlignment = VerticalAlignment.Stretch;
             Web.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            Element.Width = 900;
+            Element.Height = 450;
+            Web.Width = 900;
+            Web.Height = 450;
+
             Web.Navigate(Address);
+            
         }
 
         public override void SetFill()
@@ -47,8 +55,27 @@ namespace Parrot.Displays
 
         public override void SetSize()
         {
-            if (Graphics.Width < 1) { Element.Width = double.NaN; } else { Element.Width = Graphics.Width; }
-            if (Graphics.Height < 1) { Element.Height = double.NaN; } else { Element.Height = Graphics.Height; }
+            if (Graphics.Width < 1)
+            {
+                Element.Width = double.NaN;
+                Web.Width = double.NaN;
+            }
+            else
+            {
+                Element.Width = Graphics.Width;
+                Web.Width = Graphics.Width;
+            }
+
+            if (Graphics.Height < 1)
+            {
+                Element.Height = double.NaN;
+                Web.Height = double.NaN;
+            }
+            else
+            {
+                Element.Height = Graphics.Height;
+                Web.Height = Graphics.Height;
+            }
         }
 
         public override void SetMargin()

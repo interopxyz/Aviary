@@ -25,8 +25,7 @@ namespace Pollen.Charts
     {
         public Series ChartSeries;
         public DataPtSet DataList;
-
-        public string Type;
+        
         public bool Status;
 
         public pPointSeries(string InstanceName)

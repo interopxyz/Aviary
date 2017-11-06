@@ -93,7 +93,7 @@ namespace Wind_GH.Effects
         {
             get
             {
-                return Properties.Resources.Wind_Pattern;
+                return Properties.Resources.Wind_Effects_BlurA; 
             }
         }
 

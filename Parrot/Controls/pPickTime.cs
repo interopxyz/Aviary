@@ -20,31 +20,10 @@ namespace Parrot.Controls
             Element = new TimePicker();
             Element.Name = InstanceName;
             Type = "TimePicker";
-            
-            //Set "Clear" appearance to all elements
-            //Element.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            //Element.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            //Element.BorderThickness = new Thickness(0);
         }
 
         public void SetProperties(DateTime date, int mode, string format)
         {
-
-            //Element.SelectedTime = TimeSpan.;
-            //Element.Format = DateTimeFormat.Custom;
-
-            //Element.ShowButtonSpinner = true;
-            //Element.AllowSpin = true;
-            //Element.ButtonSpinnerLocation = Location.Left;
-
-            if (mode > 0)
-            {
-                //Element.FormatString = DateStructures(mode);
-            }
-            else
-            {
-                //Element.FormatString = format;
-            }
 
         }
 

@@ -6,14 +6,18 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-
+using System.Windows.Shapes;
 using Wind.Containers;
+using Wind.Types;
 
 namespace Parrot.Displays
 {
     public class pLegend : pControl
     {
         public WrapPanel Element;
+        public enum IconMode { Box, Dot, Bar, Fill, Underline}
+
+        public IconMode IconType = IconMode.Box;
 
         public pLegend(string InstanceName)
         {
@@ -31,41 +35,80 @@ namespace Parrot.Displays
             if (Horizontal)
             {
                 Element.Orientation = Orientation.Horizontal;
-                if (Distance > 0) { Element.Width = Distance; }
+                Element.Height = double.NaN;
+                Element.VerticalAlignment = VerticalAlignment.Stretch;
+                if (Distance > 0){Element.Width = Distance; } else { Element.Width = double.NaN; }
             }
             else
             {
                 Element.Orientation = Orientation.Vertical;
-                if (Distance > 0) { Element.Height = Distance; }
+                Element.Width = double.NaN;
+                Element.HorizontalAlignment = HorizontalAlignment.Stretch;
+                if (Distance > 0) { Element.Height = Distance; } else { Element.Height = double.NaN; }
             }
 
         }
 
-        public void SetItems(List<String> items, List<System.Drawing.Color> colors)
+        public void SetItems(List<String> items, List<System.Drawing.Color> colors, IconMode iconMode, bool IsLight)
         {
             Element.Children.Clear();
             for (int i = 0; i < items.Count; i++)
             {
-                Element.Children.Add(LegendItem(items[i], colors[i]));
+                Element.Children.Add(LegendItem(items[i], colors[i], (IconMode)iconMode, IsLight));
             }
         }
         
-        public Panel LegendItem(string I, System.Drawing.Color C)
+        public Panel LegendItem(string I, System.Drawing.Color C, IconMode iconMode, bool IsLight)
         {
-            Label canvas = new Label();
-            canvas.Background = new SolidColorBrush(Color.FromArgb(C.A, C.R, C.G, C.B));
-            canvas.Width = 10;
-            canvas.Height = 10;
-
+            StackPanel panel = new StackPanel();
+            Canvas canvas = new Canvas();
             Label text = new Label();
-            text.Content = I;
-
             Canvas spacer = new Canvas();
+
             spacer.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
             spacer.Width = 20;
             spacer.Height = 10;
 
-            StackPanel panel = new StackPanel();
+            canvas.Width = 12;
+            canvas.Height = 12;
+            Path X = new Path();
+
+            switch (iconMode)
+            {
+                case IconMode.Box:
+                    X.Data = new RectangleGeometry(new Rect(1, 1, 10, 10));
+                break;
+                case IconMode.Dot:
+                    X.Data = new EllipseGeometry(new Rect(1, 1, 10, 10));
+                    break;
+                case IconMode.Bar:
+                    X.Data = new RectangleGeometry(new Rect(0, 0, 4, 16));
+                    canvas.Width = 4;
+                    canvas.Height = 16;
+                    spacer.Width = 4;
+                    break;
+                case IconMode.Underline:
+                    canvas.Width = 0;
+                    spacer.Width = 4;
+                    text.BorderBrush = new SolidColorBrush(new wColor(C).ToMediaColor());
+                    text.BorderThickness = new Thickness(0, 0, 0, 4);
+                    break;
+                case IconMode.Fill:
+                    canvas.Width = 0;
+                    spacer.Width = 0;
+                    text.Background = new SolidColorBrush(new wColor(C).ToMediaColor());
+                    text.Margin = new Thickness(1);
+                    text.FontWeight = FontWeights.SemiBold;
+                    break;
+            }
+
+            if (IsLight) { text.Foreground = new SolidColorBrush(Color.FromArgb(255,250,250,250)); }
+
+            X.Fill = new SolidColorBrush(new wColor(C).ToMediaColor());
+            canvas.Children.Add(X);
+            
+            text.Content = I;
+            
             panel.Orientation = Orientation.Horizontal;
             panel.Children.Add(canvas);
             panel.Children.Add(text);

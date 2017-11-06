@@ -10,7 +10,8 @@ namespace Pollen.Charts
     public class pChart
     {
         public wGraphic Graphics;
-        
+        public string Type;
+
         public virtual void SetFont()
         {
 

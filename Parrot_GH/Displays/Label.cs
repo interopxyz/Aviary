@@ -88,7 +88,9 @@ namespace Parrot_GH.Displays
             string Text = "";
 
             if (!DA.GetData(0, ref Text)) return;
-            
+
+            SetGraphics();
+
             pCtrl.SetProperties(Text);
             pCtrl.Graphics = Graphic;
             pCtrl.SetFont();
@@ -138,21 +140,46 @@ namespace Parrot_GH.Displays
             IsCentered = reader.GetBoolean("Centered");
 
             this.UpdateMessage();
-
+            this.ExpireSolution(true);
             return base.Read(reader);
         }
 
         private void ModeCenter(Object sender, EventArgs e)
         {
             IsCentered = !IsCentered;
+
+            this.ExpireSolution(true);
+        }
+
+        private void SetGraphics()
+        {
+
+            switch(FontMode)
+            {
+                case 0:
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 18, new wColor().DarkGray(), CenterMode, true, false, false, false);
+                    break;
+                case 1:
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColor().DarkGray(), CenterMode, false, false, false, false);
+                    break;
+                case 2:
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 16, new wColor().DarkGray(), CenterMode, false, false, false, false);
+                    break;
+                case 3:
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 10, new wColor().DarkGray(), CenterMode, false, false, false, false);
+                    break;
+                case 4:
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 8, new wColor().DarkGray(), CenterMode, false, false, false, false);
+                    break;
+            }
+
             if (IsCentered) { CenterMode = 1; } else { CenterMode = 0; }
             Graphic.FontObject.Justify = CenterMode;
-            this.ExpireSolution(true);
+
         }
 
         private void ModeBold(Object sender, EventArgs e)
         {
-            Graphic.FontObject = new wFont("Swis721 Lt BT", 18, new wColor().DarkGray(), CenterMode, true, false, false, false);
             FontMode = 0;
 
             this.UpdateMessage();
@@ -161,7 +188,6 @@ namespace Parrot_GH.Displays
 
         private void ModeTitle(Object sender, EventArgs e)
         {
-            Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColor().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 1;
 
             this.UpdateMessage();
@@ -170,7 +196,6 @@ namespace Parrot_GH.Displays
 
         private void ModeSubtitle(Object sender, EventArgs e)
         {
-            Graphic.FontObject = new wFont("Swis721 Lt BT", 16, new wColor().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 2;
 
             this.UpdateMessage();
@@ -179,7 +204,6 @@ namespace Parrot_GH.Displays
 
         private void ModeText(Object sender, EventArgs e)
         {
-            Graphic.FontObject = new wFont("Swis721 Lt BT", 10, new wColor().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 3;
 
             this.UpdateMessage();
@@ -188,7 +212,6 @@ namespace Parrot_GH.Displays
 
         private void ModeSubtext(Object sender, EventArgs e)
         {
-            Graphic.FontObject = new wFont("Swis721 Lt BT", 8, new wColor().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 4;
 
             this.UpdateMessage();

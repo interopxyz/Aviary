@@ -11,19 +11,16 @@ using Xceed.Wpf.DataGrid;
 
 using Wind.Containers;
 using Wind.Collections;
+using Pollen.Collections;
+using Pollen.Charts;
 
 namespace Parrot.Controls
 {
-    public class pViewGrid : pControl
+    public class pDataGrid : pChart
     {
         public DataGrid Element;
 
-        DataTable Table = new DataTable();
-        DataSet DS = new DataSet();
-
-        List<string> GridTitles = new List<string>();
-
-        public pViewGrid(string InstanceName)
+        public pDataGrid(string InstanceName)
         {
             //Set Element info setup
             Element = new DataGrid();
@@ -34,18 +31,36 @@ namespace Parrot.Controls
         }
         
 
-        public void SetProperties(int GridType, bool ResizeRows, bool ResizeCols, bool Sortable, bool Alternate, bool AddRows)
+        public void SetProperties(DataSetCollection WindDataCollection, int GridType, bool ResizeRows, bool ResizeCols, bool Sortable, bool Alternate, bool AddRows)
         {
-            Table = new DataTable();
-            DS = new DataSet();
+            DataTable Table = new DataTable();
+            System.Data.DataSet DS = new System.Data.DataSet();
 
             DS.Tables.Add(Table);
-            
+            for (int i = 0; i < WindDataCollection.Sets.Count; i++)
+           {
+                if (WindDataCollection.Sets[i].Title == "") { WindDataCollection.Sets[i].Title = ("Title " + i.ToString()); }
+                DataColumn col = new DataColumn(WindDataCollection.Sets[i].Title.ToString(), typeof(string));
+                Table.Columns.Add(col);
+            }
+
+            for (int i = 0; i < WindDataCollection.Sets[0].Points.Count; i++)
+            {
+                System.Data.DataRow row = Table.NewRow();
+                for (int j = 0; j < WindDataCollection.Count; j++)
+                {
+                    row[WindDataCollection.Sets[j].Title] = WindDataCollection.Sets[j].Points[i].Text;
+                }
+                Table.Rows.Add(row);
+            }
+
             Element.CanUserResizeColumns = ResizeCols;
             Element.CanUserResizeRows = ResizeRows;
 
             Element.CanUserSortColumns = Sortable;
+
             Element.VerticalGridLinesBrush = Element.HorizontalGridLinesBrush;
+
             Element.CanUserAddRows = AddRows;
 
             switch (GridType)
@@ -62,6 +77,7 @@ namespace Parrot.Controls
                 default:
                     Element.GridLinesVisibility = DataGridGridLinesVisibility.None;
                     break;
+
             }
 
             if (Alternate) {
@@ -73,48 +89,9 @@ namespace Parrot.Controls
                 Element.AlternationCount = 0;
                 Element.AlternatingRowBackground = Element.Background;
             }
-            
-            Element.AutoGenerateColumns = true;
-        }
 
-        public void SetTitles(List<string> Titles)
-        {
-            GridTitles = Titles;
-            for (int i = 0; i < Titles.Count; i++)
-            {
-                DataColumn col = new DataColumn(Titles[i], typeof(string));
-                Table.Columns.Add(col);
-            }
-
-        }
-
-        public void SetRows(int TotalRows)
-        {
-            for (int i = 0; i < TotalRows; i++)
-            {
-                System.Data.DataRow row = Table.NewRow();
-                Table.Rows.Add(row);
-            }
-        }
-
-
-        public void AddRow(string Title,List<string> DataColumnValues)
-        {
-            
-                for (int i = 0; i < DataColumnValues.Count; i++)
-                {
-                    Table.Rows[i][Title] = DataColumnValues[i];
-                }
-        }
-
-        public void BuildTable()
-        {
             Element.ItemsSource = Table.DefaultView;
-        }
-
-        public override void SetFill()
-        {
-            Element.Background = Graphics.WpfFill;
+            Element.AutoGenerateColumns = true;
         }
 
         public override void SetStroke()

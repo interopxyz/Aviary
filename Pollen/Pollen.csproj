@@ -101,6 +101,7 @@
     <Compile Include="Collections\DataPtSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table\pDataTable.cs" />
+    <Compile Include="Table\pDataGrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

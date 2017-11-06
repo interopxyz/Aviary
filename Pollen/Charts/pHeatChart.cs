@@ -26,7 +26,6 @@ namespace Pollen.Charts
         public WindowsFormsHost ChartHost;
         public LiveCharts.WinForms.CartesianChart ChartObject;
         public List<pPointSeries> ChartSeriesSet;
-        public string Type;
         public bool Status;
 
         public DataSetCollection DataGrid;

@@ -75,6 +75,7 @@ namespace Parrot_GH.Displays
             string A = "https://www.google.com/";
 
             if (!DA.GetData(0, ref A)) return;
+
             pCtrl.SetProperties(A);
 
             //Set Parrot Element and Wind Object properties

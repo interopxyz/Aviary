@@ -9,14 +9,15 @@ using Wind.Utilities;
 
 using Parrot.Containers;
 using Parrot.Controls;
+using Grasshopper.Kernel.Types;
+using Wind.Collections;
+using Pollen.Collections;
 using System.Windows.Forms;
 using GH_IO.Serialization;
-using Grasshopper.Kernel.Types;
-using Grasshopper.Kernel.Data;
 
-namespace Parrot_GH.Controls
+namespace Pollen_GH.Table
 {
-    public class ViewGrid : GH_Component
+    public class ViewDataGrid : GH_Component
     {
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
@@ -27,12 +28,11 @@ namespace Parrot_GH.Controls
         public bool AddlRows = false;
         public bool AlternateGraphics = false;
         public bool Sortable = true;
-
         /// <summary>
         /// Initializes a new instance of the ViewGrid class.
         /// </summary>
-        public ViewGrid()
-          : base("View Grid", "Grid", "---", "Aviary", "Control")
+        public ViewDataGrid()
+          : base("Data Grid", "Data Grid", "---", "Aviary", "Chart")
         {
         }
 
@@ -41,9 +41,7 @@ namespace Parrot_GH.Controls
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Values", "V", "Values", GH_ParamAccess.tree);
-            pManager.AddTextParameter("Titles", "T", "Column Titles", GH_ParamAccess.list,"Title");
-            pManager[1].Optional = true;
+            pManager.AddGenericParameter("DataSets", "D", "Items", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -68,7 +66,7 @@ namespace Parrot_GH.Controls
             pElement Element = new pElement();
             bool Active = Elements.ContainsKey(C);
 
-            var pCtrl = new pViewGrid(name);
+            var pCtrl = new pDataGrid(name);
             if (Elements.ContainsKey(C)) { Active = true; }
 
             //Check if control already exists
@@ -76,7 +74,7 @@ namespace Parrot_GH.Controls
             {
                 WindObject = Elements[C];
                 Element = (pElement)WindObject.Element;
-                pCtrl = (pViewGrid)Element.ParrotControl;
+                pCtrl = (pDataGrid)Element.PollenControl;
             }
             else
             {
@@ -85,44 +83,15 @@ namespace Parrot_GH.Controls
 
             //Set Unique Control Properties
 
-            GH_Structure<GH_String> D = new GH_Structure<GH_String>();
-            List<string> T = new List<string>();
+            IGH_Goo D = null;
 
-            if (!DA.GetDataTree(0, out D)) return;
-            if (!DA.GetDataList(1, T)) return;
+            if (!DA.GetData(0, ref D)) return;
+            
+            wObject W = new wObject();
+                D.CastTo(out W);
+            DataSetCollection S = (DataSetCollection)W.Element;
 
-            int k = T.Count;
-            for (int i = k;i<D.PathCount;i++)
-            {
-                T.Add(T[k - 1] + i);
-            }
-           
-            pCtrl.SetProperties(GridType, false, ResizeHorizontal, Sortable, AlternateGraphics, AddlRows);
-            pCtrl.SetTitles(T);
-
-            List<List<string>> Rows = new List<List<string>>();
-
-            k = 0;
-            for (int i = 0; i < D.PathCount; i++)
-            {
-                if (D.Branches[i].Count > k) { k = D.Branches[i].Count; }
-
-                List<string> RowValues = new List<string>();
-                for (int j = 0; j < D.Branches[i].Count; j++)
-                {
-                    RowValues.Add(D.Branches[i][j].ToString());
-                }
-                Rows.Add(RowValues);
-            }
-
-            pCtrl.SetRows(k);
-
-            for (int i = 0;i<D.PathCount;i++)
-            {
-                pCtrl.AddRow(T[i],Rows[i]);
-            }
-
-            pCtrl.BuildTable();
+            pCtrl.SetProperties(S, GridType, false, ResizeHorizontal, Sortable, AlternateGraphics, AddlRows);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }
@@ -133,8 +102,9 @@ namespace Parrot_GH.Controls
             Elements[this.RunCount] = WindObject;
 
             DA.SetData(0, WindObject);
+            
         }
-
+        
         public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
         {
             base.AppendAdditionalMenuItems(menu);
@@ -152,6 +122,11 @@ namespace Parrot_GH.Controls
             Menu_AppendSeparator(menu);
             Menu_AppendItem(menu, "Alternate Rows", AltGraphic, true, AlternateGraphics);
             Menu_AppendItem(menu, "Additional Rows", AdditionalRows, true, AddlRows);
+
+
+            
+
+            
         }
 
         public override bool Write(GH_IWriter writer)
@@ -176,10 +151,11 @@ namespace Parrot_GH.Controls
 
             return base.Read(reader);
         }
-        
+
+
         private void AdditionalRows(Object sender, EventArgs e)
         {
-            AddlRows = !AddlRows;
+            AddlRows = ! AddlRows;
             this.ExpireSolution(true);
         }
 
@@ -194,7 +170,10 @@ namespace Parrot_GH.Controls
             Sortable = !Sortable;
             this.ExpireSolution(true);
         }
+
         
+        
+
         private void ResizeRow(Object sender, EventArgs e)
         {
             ResizeHorizontal = !ResizeHorizontal;
@@ -240,7 +219,7 @@ namespace Parrot_GH.Controls
         {
             get
             {
-                return Properties.Resources.Parrot_ViewGrid;
+                return Properties.Resources.Pollen_Table1;
             }
         }
 
@@ -249,7 +228,7 @@ namespace Parrot_GH.Controls
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("4840ec9d-4a01-4ecf-86e4-2a0da8cdfb7b"); }
+            get { return new Guid("{04b68edc-45d7-4e7d-87b2-a95360d3cdc7}"); }
         }
     }
 }

@@ -23,7 +23,6 @@ namespace Pollen.Charts
     public class pGaugeChartSeries : pChart
     {
         public WrapPanel Element;
-        public string Type;
 
         public pGaugeChartSeries(string InstanceName)
         {

@@ -6,20 +6,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-
+using System.Windows.Shapes;
 using Wind.Containers;
 
 namespace Parrot.Displays
 {
     public class pSpacer : pControl
     {
-        public Label Element;
+        public UniformGrid Element;
+
+        public bool IsHoriztonal = false;
+        public bool IsFill = true;
 
         public pSpacer(string InstanceName)
         {
             //Set Element info setup
-            Element = new Label();
+            Element = new UniformGrid();
             Element.Name = InstanceName;
             Type = "Spacer";
 
@@ -27,17 +31,78 @@ namespace Parrot.Displays
             Element.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
         }
 
-        public void SetProperties(System.Windows.Media.Color FillColor, double Width)
+        public void SetProperties(System.Windows.Media.Color FillColor, double Width, bool IsHorizontalAlignment, bool IsFilled)
         {
-            Element.Background = new SolidColorBrush(FillColor);
-            if (Width == 0)
+
+            Element.Children.Clear();
+            
+
+            IsHoriztonal = IsHorizontalAlignment;
+            IsFill = IsFilled;
+
+            if (IsHoriztonal)
             {
-                Element.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                Element.Width = double.NaN;
+                Element.HorizontalAlignment = HorizontalAlignment.Stretch;
+                if (Width == 0)
+                {
+                    Element.Height = double.NaN;
+                    Element.VerticalAlignment= VerticalAlignment.Stretch;
+                } else {
+                    Element.Height = Width;
+                }
             }
             else
             {
-                Element.Width = Width;
+                Element.Height = double.NaN;
+                Element.VerticalAlignment = VerticalAlignment.Stretch;
+                if (Width == 0)
+                {
+                    Element.Width = double.NaN;
+                    Element.HorizontalAlignment = HorizontalAlignment.Stretch;
+                }
+                else
+                {
+                    Element.Width = Width;
+                }
             }
+
+            if (IsFilled)
+            {
+                Element.Background = new SolidColorBrush(FillColor);
+            }
+            else
+            {
+                Element.Background = new SolidColorBrush(Colors.Transparent);
+
+                Label LabelA = new Label();
+                LabelA.BorderBrush = new SolidColorBrush(FillColor);
+
+                Element.Children.Add(LabelA);
+
+                if (IsHoriztonal)
+                {
+                    Element.Columns = 1;
+                    Element.Rows = 2;
+
+                    Grid.SetColumn(LabelA, 0);
+                    Grid.SetRow(LabelA, 0);
+
+                    LabelA.BorderThickness = new Thickness(0, 0, 0, 1);
+                }
+                else
+                {
+                    Element.Columns = 2;
+                    Element.Rows = 1;
+
+                    Grid.SetColumn(LabelA, 0);
+                    Grid.SetRow(LabelA, 0);
+
+                    LabelA.BorderThickness = new Thickness(0, 0,1, 0);
+                }
+
+            }
+
         }
 
         public override void SetFill()
@@ -47,8 +112,6 @@ namespace Parrot.Displays
 
         public override void SetStroke()
         {
-            Element.BorderThickness = new Thickness(Graphics.StrokeWeight[0], Graphics.StrokeWeight[1], Graphics.StrokeWeight[2], Graphics.StrokeWeight[3]);
-            Element.BorderBrush = new SolidColorBrush(Graphics.StrokeColor.ToMediaColor());
         }
 
         public override void SetSize()
@@ -64,16 +127,10 @@ namespace Parrot.Displays
 
         public override void SetPadding()
         {
-            Element.Padding = new Thickness(Graphics.Padding[0], Graphics.Padding[1], Graphics.Padding[2], Graphics.Padding[3]);
         }
 
         public override void SetFont()
         {
-            Element.Foreground = new SolidColorBrush(Graphics.FontObject.FontColor.ToMediaColor());
-            Element.FontFamily = Graphics.FontObject.ToMediaFont().Family;
-            Element.FontSize = Graphics.FontObject.Size;
-            Element.FontStyle = Graphics.FontObject.ToMediaFont().Italic;
-            Element.FontWeight = Graphics.FontObject.ToMediaFont().Bold;
         }
     }
 }

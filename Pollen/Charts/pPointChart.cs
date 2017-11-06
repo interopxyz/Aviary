@@ -24,7 +24,6 @@ namespace Pollen.Charts
         public Chart ChartObject;
         public List<pPointSeries> ChartSeriesSet;
         public ChartArea ChartAreas;
-        public string Type;
         public bool Status;
         public DataSetCollection DataGrid = new DataSetCollection();
 

@@ -10,6 +10,8 @@ using Wind.Utilities;
 
 using Parrot.Containers;
 using Parrot.Displays;
+using System.Windows.Forms;
+using GH_IO.Serialization;
 
 namespace Parrot_GH.Displays
 {
@@ -18,12 +20,17 @@ namespace Parrot_GH.Displays
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
 
+        public bool IsHorizontal = false;
+        public bool IsLight = false;
+        public int IconMode = 0;
+
         /// <summary>
         /// Initializes a new instance of the Legend class.
         /// </summary>
         public Legend()
           : base("Legend", "Legend", "---", "Aviary", "Display")
         {
+            this.UpdateMessage();
         }
 
         /// <summary>
@@ -31,13 +38,11 @@ namespace Parrot_GH.Displays
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Values", "V", "Value", GH_ParamAccess.list,"");
-            pManager.AddColourParameter("Colors", "C", "Colors", GH_ParamAccess.list, System.Drawing.Color.Black);
+            pManager.AddTextParameter("Values", "V", "Value", GH_ParamAccess.list);
+            pManager.AddColourParameter("Colors", "C", "Colors", GH_ParamAccess.list, System.Drawing.Color.DarkGray);
             pManager[1].Optional = true;
-            pManager.AddBooleanParameter("Horizontal", "H", "---", GH_ParamAccess.item, false);
-            pManager[2].Optional = true;
             pManager.AddIntegerParameter("Size", "S", "Size", GH_ParamAccess.item, 0);
-            pManager[3].Optional = true;
+            pManager[2].Optional = true;
 
         }
 
@@ -80,16 +85,16 @@ namespace Parrot_GH.Displays
 
             //Set Unique Control Properties
 
-            List<string> V = new List<string> { "" };
-            List<System.Drawing.Color> E = new List<System.Drawing.Color> { System.Drawing.Color.Black };
+            List<string> V = new List<string>();
+            List<System.Drawing.Color> E = new List<System.Drawing.Color>();
             int X = 0;
-            bool D = false;
 
             if (!DA.GetDataList(0, V)) return;
             if (!DA.GetDataList(1, E)) return;
-            if (!DA.GetData(2, ref D)) return;
-            if (!DA.GetData(3, ref X)) return;
-            
+            if (!DA.GetData(2, ref X)) return;
+
+            if (V.Count > 0) { if (E.Count < 1) { E.Add(System.Drawing.Color.Black); } }
+
             int A = E.Count;
             int B = V.Count ;
 
@@ -98,8 +103,8 @@ namespace Parrot_GH.Displays
                 E.Add(E[A-1]);
             }
 
-            pCtrl.SetDirection(X, D);
-            pCtrl.SetItems(V, E);
+            pCtrl.SetDirection(X, IsHorizontal);
+            pCtrl.SetItems(V, E,(pLegend.IconMode)IconMode, IsLight);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }
@@ -110,6 +115,103 @@ namespace Parrot_GH.Displays
                 Elements[this.RunCount] = WindObject;
 
             DA.SetData(0, WindObject);
+        }
+
+        public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
+        {
+            base.AppendAdditionalMenuItems(menu);
+
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Box", IconModeBox, true, (IconMode == 0));
+            Menu_AppendItem(menu, "Dot", IconModeDot, true, (IconMode == 1));
+            Menu_AppendItem(menu, "Bar", IconModeBar, true, (IconMode == 2));
+            Menu_AppendItem(menu, "Fill", IconModeFill, true, (IconMode == 3));
+            Menu_AppendItem(menu, "Underline", IconModeUnder, true, (IconMode == 4));
+
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Horizontal", ModeDirection, true, IsHorizontal);
+            
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Lighten", ModeLight, true, IsLight);
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("FontMode", IconMode);
+            writer.SetBoolean("Horizontal", IsHorizontal);
+            writer.SetBoolean("Light", IsLight);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            IconMode = reader.GetInt32("FontMode");
+            IsHorizontal = reader.GetBoolean("Horizontal");
+            IsLight = reader.GetBoolean("Light");
+
+            this.UpdateMessage();
+
+            return base.Read(reader);
+        }
+
+        private void ModeLight(Object sender, EventArgs e)
+        {
+            IsLight = !IsLight;
+            
+            this.ExpireSolution(true);
+        }
+
+        private void ModeDirection(Object sender, EventArgs e)
+        {
+            IsHorizontal = !IsHorizontal;
+
+            this.UpdateMessage();
+            this.ExpireSolution(true);
+        }
+
+        private void IconModeBox(Object sender, EventArgs e)
+        {
+            IconMode = 0;
+
+            this.ExpireSolution(true);
+        }
+
+        private void IconModeDot(Object sender, EventArgs e)
+        {
+            IconMode = 1;
+
+            this.ExpireSolution(true);
+        }
+
+        private void IconModeBar(Object sender, EventArgs e)
+        {
+            IconMode = 2;
+
+            this.ExpireSolution(true);
+        }
+
+        private void IconModeFill(Object sender, EventArgs e)
+        {
+            IconMode = 3;
+
+            this.ExpireSolution(true);
+        }
+
+        private void IconModeUnder(Object sender, EventArgs e)
+        {
+            IconMode = 4;
+
+            this.ExpireSolution(true);
+        }
+
+
+        private void UpdateMessage()
+        {
+            if (IsHorizontal) { Message = "Horizontal"; } else { Message = "Vertical"; }
         }
 
         /// <summary>

@@ -123,6 +123,7 @@
     <Compile Include="Controls\Calendar.cs" />
     <Compile Include="Controls\PickDate.cs" />
     <Compile Include="Controls\PickTime.cs" />
+    <Compile Include="Controls\ViewGrid.cs" />
     <Compile Include="Displays\Gradient.cs" />
     <Compile Include="Drawings\ComposeDrawing.cs" />
     <Compile Include="Drawings\ComposeSVG.cs" />
@@ -145,7 +146,6 @@
     <Compile Include="Controls\TextBox.cs" />
     <Compile Include="Controls\Check.cs" />
     <Compile Include="Controls\Toggle.cs" />
-    <Compile Include="Controls\ViewGrid.cs" />
     <Compile Include="Controls\ViewList.cs" />
     <Compile Include="Controls\ViewTree.cs" />
     <Compile Include="Displays\Frame.cs" />

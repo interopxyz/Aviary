@@ -183,6 +183,26 @@ namespace Wind_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Wind_Effects_BlurA {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Effects_BlurA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Wind_Effects_DropShadow {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Effects_DropShadow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Wind_Fill_Image {
             get {
                 object obj = ResourceManager.GetObject("Wind_Fill_Image", resourceCulture);

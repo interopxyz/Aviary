@@ -20,7 +20,6 @@ namespace Parrot.Controls
     public class pDataTable : pChart
     {
         public TableView dView = new TableView();
-        public string Type;
 
         public DataGridControl Element = new DataGridControl();
 

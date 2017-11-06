@@ -10,6 +10,8 @@ using Wind.Types;
 
 using Parrot.Containers;
 using Parrot.Displays;
+using System.Windows.Forms;
+using GH_IO.Serialization;
 
 namespace Parrot_GH.Displays
 {
@@ -18,12 +20,16 @@ namespace Parrot_GH.Displays
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
 
+        public bool IsHorizontal = false;
+        public bool IsFill = false;
+
         /// <summary>
         /// Initializes a new instance of the Spacer class.
         /// </summary>
         public Spacer()
           : base("Spacer", "Spacer", "---", "Aviary", "Display")
         {
+            this.UpdateMessage();
         }
 
         /// <summary>
@@ -81,7 +87,7 @@ namespace Parrot_GH.Displays
             if (!DA.GetData(0, ref color)) return;
             if (!DA.GetData(1, ref Width)) return;
 
-            pCtrl.SetProperties(new wColor(color).ToMediaColor(),Width);
+            pCtrl.SetProperties(new wColor(color).ToMediaColor(),Width, IsHorizontal,IsFill);
 
 
             //Set Parrot Element and Wind Object properties
@@ -93,6 +99,58 @@ namespace Parrot_GH.Displays
             Elements[this.RunCount] = WindObject;
 
             DA.SetData(0, WindObject);
+        }
+
+        public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
+        {
+            base.AppendAdditionalMenuItems(menu);
+
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Horizontal", ModeDirection, true, IsHorizontal);
+
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Fill", ModeFill, true, IsFill);
+
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetBoolean("Horizontal", IsHorizontal);
+            writer.SetBoolean("Extents", IsFill);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            IsHorizontal = reader.GetBoolean("Horizontal");
+            IsFill = reader.GetBoolean("Extents");
+
+            this.UpdateMessage();
+            this.ExpireSolution(true);
+            return base.Read(reader);
+        }
+
+        private void ModeDirection(Object sender, EventArgs e)
+        {
+            IsHorizontal = !IsHorizontal;
+
+            this.UpdateMessage();
+            this.ExpireSolution(true);
+        }
+
+        private void ModeFill(Object sender, EventArgs e)
+        {
+            IsFill = !IsFill;
+
+            this.ExpireSolution(true);
+        }
+
+        private void UpdateMessage()
+        {
+            if (IsHorizontal) { Message = "Horizontal"; } else { Message = "Vertical"; }
         }
 
         /// <summary>

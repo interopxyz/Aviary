@@ -21,20 +21,30 @@ namespace Parrot.Displays
             Element = new ProgressBar();
             Element.Name = InstanceName;
             Type = "ProgressBar";
-
-            //Set "Clear" appearance to all elements
         }
         
-        public void SetProperties(double value, Color FillColor)
+        public void SetProperties(double value, bool IsHorizontal)
         {
             Element.Value = value * 100;
-            Element.Height = 20;
+            if (IsHorizontal)
+            {
+                Element.Orientation = Orientation.Horizontal;
+                Element.Width = double.NaN;
+                Element.Height = 20;
+            }
+            else
+            {
+                Element.Orientation = Orientation.Vertical;
+                Element.Width = 200;
+                Element.Height = 20;
+            }
         }
 
 
         public override void SetFill()
         {
-            Element.Background = Graphics.WpfFill;
+            Element.Background = new SolidColorBrush(Graphics.Background.ToMediaColor());
+            Element.Foreground = new SolidColorBrush(Graphics.Foreground.ToMediaColor());
         }
 
         public override void SetStroke()
@@ -61,7 +71,6 @@ namespace Parrot.Displays
 
         public override void SetFont()
         {
-            Element.Foreground = new SolidColorBrush(Graphics.FontObject.FontColor.ToMediaColor());
             Element.FontFamily = Graphics.FontObject.ToMediaFont().Family;
             Element.FontSize = Graphics.FontObject.Size;
             Element.FontStyle = Graphics.FontObject.ToMediaFont().Italic;

@@ -101,6 +101,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Table\ViewDataTable.cs" />
+    <Compile Include="Table\ViewDataGrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pollen_Gantt.png" />

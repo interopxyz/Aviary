@@ -15,7 +15,7 @@ namespace Macaw_GH.Compose
         /// Initializes a new instance of the Mask class.
         /// </summary>
         public Mask()
-          : base("Layer Mask", "Mask", "---", "Aviary", "Image Build")
+          : base("Layer Mask", "Mask", "---", "Aviary", "Bitmap Build")
         {
         }
 

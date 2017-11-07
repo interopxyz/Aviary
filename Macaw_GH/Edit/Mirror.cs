@@ -17,7 +17,7 @@ namespace Macaw_GH.Edit
         /// Initializes a new instance of the Mirror class.
         /// </summary>
         public Mirror()
-          : base("Mirror", "Mirror", "---", "Aviary", "Image Edit")
+          : base("Mirror", "Mirror", "---", "Aviary", "Bitmap Edit")
         {
         }
 

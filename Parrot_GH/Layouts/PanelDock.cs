@@ -23,7 +23,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the DockPanel class.
         /// </summary>
         public PanelDock()
-          : base("DockPanel", "Dock", "---", "Aviary", "Layout")
+          : base("DockPanel", "Dock", "---", "Aviary", "Dashboard Layout")
         {
         }
 

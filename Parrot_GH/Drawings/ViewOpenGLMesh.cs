@@ -26,7 +26,7 @@ namespace Parrot_GH.Drawings
         /// Initializes a new instance of the ViewOpenGLMesh class.
         /// </summary>
         public ViewOpenGLMesh()
-          : base("View OpenGL Mesh", "OpenGL Mesh", "---", "Aviary", "Visualize")
+          : base("View OpenGL Mesh", "OpenGL Mesh", "---", "Aviary", "3D Scene")
         {
         }
 
@@ -133,7 +133,7 @@ namespace Parrot_GH.Drawings
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

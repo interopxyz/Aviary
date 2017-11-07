@@ -15,7 +15,7 @@ namespace Macaw_GH.Build
         /// Initializes a new instance of the Apply class.
         /// </summary>
         public Apply()
-          : base("Apply Filter", "Filter", "---", "Aviary", "Image Edit")
+          : base("Apply Filter", "Filter", "---", "Aviary", "Bitmap Edit")
         {
         }
 

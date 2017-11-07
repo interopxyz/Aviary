@@ -28,7 +28,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Legend class.
         /// </summary>
         public Legend()
-          : base("Legend", "Legend", "---", "Aviary", "Display")
+          : base("Legend", "Legend", "---", "Aviary", "Dashboard Display")
         {
             this.UpdateMessage();
         }

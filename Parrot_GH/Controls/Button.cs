@@ -23,7 +23,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the Button class.
         /// </summary>
         public Button()
-          : base("Button", "Btn", "Parrot Control Element. When pressed toggles a value to true, when released or at rest is false", "Aviary", "Control")
+          : base("Button", "Btn", "Parrot Control Element. When pressed toggles a value to true, when released or at rest is false", "Aviary", "Dashboard Control")
         {
         }
 

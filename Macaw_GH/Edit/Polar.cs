@@ -19,7 +19,7 @@ namespace Macaw_GH.Edit
         /// Initializes a new instance of the Polar class.
         /// </summary>
         public Polar()
-          : base("Polar", "Polar", "...", "Aviary", "Image Edit")
+          : base("Polar", "Polar", "...", "Aviary", "Bitmap Edit")
         {
         }
 

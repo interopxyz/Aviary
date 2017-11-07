@@ -15,7 +15,7 @@ namespace Macaw_GH.Build
         /// Initializes a new instance of the Iterate class.
         /// </summary>
         public Iterate()
-          : base("Iterate Filter", "Iterate", "---", "Aviary", "Image Edit")
+          : base("Iterate Filter", "Iterate", "---", "Aviary", "Bitmap Edit")
         {
         }
 

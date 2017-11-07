@@ -14,7 +14,7 @@ namespace Macaw_GH.Filtering.Extract
         /// Initializes a new instance of the BitmapProperties class.
         /// </summary>
         public BitmapProperties()
-          : base("BitmapProperties", "Properties", "---", "Category", "Subcategory")
+          : base("BitmapProperties", "Properties", "---", "Aviary", "Bitmap Edit")
         {
         }
 

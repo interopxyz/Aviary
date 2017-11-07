@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ListBox class.
         /// </summary>
         public ListBox()
-          : base("ListBox", "ListBox", "---", "Aviary", "Control")
+          : base("ListBox", "ListBox", "---", "Aviary", "Dashboard Control")
         {
         }
 

@@ -14,7 +14,7 @@ namespace Pollen_GH.Format
         /// Initializes a new instance of the Label class.
         /// </summary>
         public DataLabel()
-          : base("Label", "Label", "---", "Aviary", "Chart")
+          : base("Label", "Label", "---", "Aviary", "Charting & Data")
         {
 
         }
@@ -98,7 +98,7 @@ namespace Pollen_GH.Format
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

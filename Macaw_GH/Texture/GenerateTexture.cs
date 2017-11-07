@@ -14,7 +14,7 @@ namespace Macaw_GH.Texture
         /// Initializes a new instance of the GenerateTexture class.
         /// </summary>
         public GenerateTexture()
-          : base("Generate Texture", "Generate", "...", "Aviary", "Image Build")
+          : base("Generate Texture", "Generate", "...", "Aviary", "Bitmap Build")
         {
         }
 

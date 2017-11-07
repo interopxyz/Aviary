@@ -19,7 +19,7 @@ namespace Macaw_GH.Filtering.Stylize
         /// Initializes a new instance of the Sharpen class.
         /// </summary>
         public Sharpen()
-          : base("Sharpen", "Sharpen", "---", "Aviary", "Image Edit")
+          : base("Sharpen", "Sharpen", "---", "Aviary", "Bitmap Edit")
         {
         }
 

@@ -21,7 +21,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ViewTree class.
         /// </summary>
         public ViewTree()
-          : base("ViewTree", "Tree", "---", "Aviary", "Control")
+          : base("ViewTree", "Tree", "---", "Aviary", "Dashboard Control")
         {
         }
 

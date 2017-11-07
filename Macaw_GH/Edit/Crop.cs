@@ -17,7 +17,7 @@ namespace Macaw_GH.Edit
         /// Initializes a new instance of the Crop class.
         /// </summary>
         public Crop()
-          : base("Crop", "Crop", "---", "Aviary", "Image Edit")
+          : base("Crop", "Crop", "---", "Aviary", "Bitmap Edit")
         {
         }
 

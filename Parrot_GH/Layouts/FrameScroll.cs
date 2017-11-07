@@ -20,7 +20,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the ScrollPanel class.
         /// </summary>
         public FrameScroll()
-          : base("Scroll Panel", "Scroll", "---", "Aviary", "Layout")
+          : base("Scroll Panel", "Scroll", "---", "Aviary", "Dashboard Layout")
         {
         }
 

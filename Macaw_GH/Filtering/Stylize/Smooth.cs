@@ -17,7 +17,7 @@ namespace Macaw_GH.Filtering.Stylize
         /// Initializes a new instance of the Smooth class.
         /// </summary>
         public Smooth()
-          : base("Smooth", "Smooth", "---", "Aviary", "Image Edit")
+          : base("Smooth", "Smooth", "---", "Aviary", "Bitmap Edit")
         {
         }
 

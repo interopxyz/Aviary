@@ -21,7 +21,7 @@ namespace Pollen_GH.Charts
         /// Initializes a new instance of the ChartHeat class.
         /// </summary>
         public ChartHeat()
-          : base("Heat Chart", "Heat Chart", "---", "Aviary", "Chart")
+          : base("Heat Chart", "Heat Chart", "---", "Aviary", "Charting & Data")
         {
         }
 
@@ -122,7 +122,7 @@ namespace Pollen_GH.Charts
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace Macaw_GH.Filtering.Extract
         /// Initializes a new instance of the DeconstructARGB class.
         /// </summary>
         public DeconstructARGB()
-          : base("ARGB Values", "ARGBs", "---", "Aviary", "Image Build")
+          : base("ARGB Values", "ARGBs", "---", "Aviary", "Bitmap Build")
         {
         }
 

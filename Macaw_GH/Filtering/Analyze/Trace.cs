@@ -30,7 +30,7 @@ namespace Macaw_GH.Filtering.Analyze
         /// Initializes a new instance of the Trace class.
         /// </summary>
         public Trace()
-          : base("Trace Bitmap", "Trace", "---", "Aviary", "Image Build")
+          : base("Trace Bitmap", "Trace", "---", "Aviary", "Bitmap Build")
         {
         }
 

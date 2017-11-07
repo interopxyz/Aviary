@@ -22,7 +22,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Progress class.
         /// </summary>
         public Progress()
-          : base("Progress", "Progress", "---", "Aviary", "Display")
+          : base("Progress", "Progress", "---", "Aviary", "Dashboard Display")
         {
         }
 

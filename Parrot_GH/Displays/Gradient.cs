@@ -34,7 +34,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Gradient class.
         /// </summary>
         public Gradient()
-          : base("Gradient", "Gradient", "---", "Aviary", "Display")
+          : base("Gradient", "Gradient", "---", "Aviary", "Dashboard Display")
         {
         }
 

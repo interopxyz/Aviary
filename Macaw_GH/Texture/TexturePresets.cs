@@ -14,7 +14,7 @@ namespace Macaw_GH.Texture
         /// Initializes a new instance of the TexturePresets class.
         /// </summary>
         public TexturePresets()
-          : base("Texture Presets", "Textures", "...", "Aviary", "Image Build")
+          : base("Texture Presets", "Textures", "...", "Aviary", "Bitmap Build")
         {
         }
 

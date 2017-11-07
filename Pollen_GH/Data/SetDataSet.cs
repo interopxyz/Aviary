@@ -21,7 +21,7 @@ namespace Pollen_GH.Data
         bool modeStatus = false;
 
         public SetDataSet()
-          : base("Compile Data", "Data", "---", "Aviary", "Data")
+          : base("Compile Data", "Data", "---", "Aviary", "Charting & Data")
         {
             this.UpdateMessage();
         }

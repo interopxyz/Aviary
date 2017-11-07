@@ -18,7 +18,7 @@ namespace Pollen_GH.Format
         /// Initializes a new instance of the Axis class.
         /// </summary>
         public Axis()
-          : base("Format Axis", "Axis","---","Aviary", "Chart")
+          : base("Format Axis", "Axis","---","Aviary", "Charting & Data")
         {
         }
 
@@ -124,7 +124,7 @@ namespace Pollen_GH.Format
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

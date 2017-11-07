@@ -16,7 +16,7 @@ namespace Pollen_GH.Format
     /// Initializes a new instance of the Marker class.
     /// </summary>
     public Marker()
-      : base("Marker", "Mark", "---", "Aviary", "Chart")
+      : base("Marker", "Mark", "---", "Aviary", "Charting & Data")
     {
     }
 
@@ -94,7 +94,7 @@ namespace Pollen_GH.Format
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

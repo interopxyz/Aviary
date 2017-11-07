@@ -28,7 +28,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Label class.
         /// </summary>
         public Label()
-          : base("Label", "Label", "---", "Aviary", "Display")
+          : base("Label", "Label", "---", "Aviary", "Dashboard Display")
         {
             this.UpdateMessage();
 

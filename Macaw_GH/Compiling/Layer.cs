@@ -16,7 +16,7 @@ namespace Macaw_GH.Compose
         /// Initializes a new instance of the Layer class.
         /// </summary>
         public Layer()
-          : base("Layer", "Layer", "---", "Aviary", "Image Build")
+          : base("Layer", "Layer", "---", "Aviary", "Bitmap Build")
         {
         }
 

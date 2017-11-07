@@ -14,7 +14,7 @@ namespace Wind_GH.Scene
         /// Initializes a new instance of the SetCamera class.
         /// </summary>
         public Camera()
-          : base("Set Camera", "Camera", "---", "Aviary", "Scene")
+          : base("Set Camera", "Camera", "---", "Aviary", "3D Scene")
         {
 
         }
@@ -75,7 +75,7 @@ namespace Wind_GH.Scene
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.secondary; }
         }
 
         /// <summary>

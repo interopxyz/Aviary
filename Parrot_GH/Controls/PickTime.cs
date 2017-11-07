@@ -24,7 +24,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the PickTime class.
         /// </summary>
         public PickTime()
-          : base("Pick Time", "Time", "---", "Aviary", "Control")
+          : base("Pick Time", "Time", "---", "Aviary", "Dashboard Control")
         {
         }
 

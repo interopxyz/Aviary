@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the Toggle class.
         /// </summary>
         public Check()
-          : base("Check", "Check", "Parrot Control Element. When clicked toggles between true and false", "Aviary", "Control")
+          : base("Check", "Check", "Parrot Control Element. When clicked toggles between true and false", "Aviary", "Dashboard Control")
         {
         }
 

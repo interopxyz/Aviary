@@ -26,7 +26,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ScrollRange class.
         /// </summary>
         public SliderRange()
-          : base("Range Slider", "Slide R", "Parrot Control Element. A graphic slider which sets a low and high value within a numeric domain.", "Aviary", "Control")
+          : base("Range Slider", "Slide R", "Parrot Control Element. A graphic slider which sets a low and high value within a numeric domain.", "Aviary", "Dashboard Control")
         {
             boolDirection = true;
             boolLabel = true;

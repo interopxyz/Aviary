@@ -17,7 +17,7 @@ namespace Macaw_GH.Filtering.Stylize
         /// Initializes a new instance of the Dither class.
         /// </summary>
         public Dither()
-          : base("Dither", "Dither", "---", "Aviary", "Image Edit")
+          : base("Dither", "Dither", "---", "Aviary", "Bitmap Edit")
         {
         }
 

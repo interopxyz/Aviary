@@ -23,7 +23,7 @@ namespace Pollen_GH.Table
         /// Initializes a new instance of the ViewDataTable class.
         /// </summary>
         public ViewDataTable()
-          : base("Data Table", "Data Table", "---", "Aviary", "Chart")
+          : base("Data Table", "Data Table", "---", "Aviary", "Charting & Data")
         {
         }
 
@@ -115,7 +115,7 @@ namespace Pollen_GH.Table
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.primary; }
+            get { return GH_Exposure.secondary; }
         }
 
         /// <summary>

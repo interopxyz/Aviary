@@ -15,7 +15,7 @@ namespace Macaw_GH.Filtering.Extract
         /// Initializes a new instance of the DeconstructHSL class.
         /// </summary>
         public DeconstructHSL()
-          : base("HSL Values", "HSLs", "---", "Aviary", "Image Build")
+          : base("HSL Values", "HSLs", "---", "Aviary", "Bitmap Build")
         {
         }
 

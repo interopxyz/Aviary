@@ -16,7 +16,7 @@ namespace Macaw_GH.Build
         /// Initializes a new instance of the BuildBitmap class.
         /// </summary>
         public BuildBitmap()
-          : base("Build Bitmap", "Build", "---", "Aviary", "Image Build")
+          : base("Build Bitmap", "Build", "---", "Aviary", "Bitmap Build")
         {
         }
 

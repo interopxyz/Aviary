@@ -19,7 +19,7 @@ namespace Macaw_GH.Composite
         /// Initializes a new instance of the Composite class.
         /// </summary>
         public BlendImages()
-          : base("Quick Blend", "Blend", "...", "Aviary", "Image Build")
+          : base("Quick Blend", "Blend", "...", "Aviary", "Bitmap Build")
         {
         }
 

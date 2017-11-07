@@ -313,6 +313,16 @@ namespace Wind_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Wind_Shape_Bitmap {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Shape_Bitmap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Wind_Shape_Curve {
             get {
                 object obj = ResourceManager.GetObject("Wind_Shape_Curve", resourceCulture);

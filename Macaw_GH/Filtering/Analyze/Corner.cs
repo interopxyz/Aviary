@@ -28,7 +28,7 @@ namespace Macaw_GH.Filtering.Analyze
         /// Initializes a new instance of the Corner class.
         /// </summary>
         public Corner()
-          : base("Figure Corner", "Corner", "---", "Aviary", "Image Build")
+          : base("Figure Corner", "Corner", "---", "Aviary", "Bitmap Build")
         {
             this.UpdateMessage();
         }

@@ -21,7 +21,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the Calculator class.
         /// </summary>
         public Calculator()
-          : base("Calculator", "Calc", "---", "Aviary", "Control")
+          : base("Calculator", "Calc", "---", "Aviary", "Dashboard Control")
         {
         }
 

@@ -17,7 +17,7 @@ namespace Macaw_GH.Edit
         /// Initializes a new instance of the Shrink class.
         /// </summary>
         public Shrink()
-          : base("Shrink", "Shrink", "...", "Aviary", "Image Edit")
+          : base("Shrink", "Shrink", "...", "Aviary", "Bitmap Edit")
         {
         }
 

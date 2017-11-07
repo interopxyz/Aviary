@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the PickDateTime class.
         /// </summary>
         public ScrollDateTime()
-          : base("Scroll Date & Time", "D&T", "---", "Aviary", "Control")
+          : base("Scroll Date & Time", "D&T", "---", "Aviary", "Dashboard Control")
         {
         }
 

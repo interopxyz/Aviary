@@ -16,7 +16,7 @@ namespace Macaw_GH.Filtering.Stylize
         /// Initializes a new instance of the Noise class.
         /// </summary>
         public Noise()
-          : base("Noise", "Noise", "---", "Aviary", "Image Edit")
+          : base("Noise", "Noise", "---", "Aviary", "Bitmap Edit")
         {
         }
 

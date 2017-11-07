@@ -18,7 +18,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the Grayscale class.
         /// </summary>
         public Grayscale()
-          : base("Grayscale", "Grayscale", "---", "Aviary", "Image Edit")
+          : base("Grayscale", "Grayscale", "---", "Aviary", "Bitmap Edit")
         {
         }
 

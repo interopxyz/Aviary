@@ -21,7 +21,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the Fill class.
         /// </summary>
         public Fill()
-          : base("Fill", "Fill", "...", "Aviary", "Image Edit")
+          : base("Fill", "Fill", "...", "Aviary", "Bitmap Edit")
         {
         }
 

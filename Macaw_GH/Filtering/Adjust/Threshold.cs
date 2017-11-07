@@ -17,7 +17,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the Threshold class.
         /// </summary>
         public Threshold()
-          : base("Threshold","Threshold", "---", "Aviary", "Image Edit")
+          : base("Threshold","Threshold", "---", "Aviary", "Bitmap Edit")
         {
         }
 

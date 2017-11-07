@@ -21,7 +21,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the TextBox class.
         /// </summary>
         public TextBox()
-      : base("TextBox", "TextBox", "Parrot Control Element. Field for input or editing of unformatted text.", "Aviary", "Control")
+      : base("TextBox", "TextBox", "Parrot Control Element. Field for input or editing of unformatted text.", "Aviary", "Dashboard Control")
     {
     }
 

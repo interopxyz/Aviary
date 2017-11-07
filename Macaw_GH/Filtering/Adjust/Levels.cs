@@ -20,7 +20,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the Levels class.
         /// </summary>
         public Levels()
-          : base("Levels", "Levels", "...", "Aviary", "Image Edit")
+          : base("Levels", "Levels", "...", "Aviary", "Bitmap Edit")
         {
         }
 

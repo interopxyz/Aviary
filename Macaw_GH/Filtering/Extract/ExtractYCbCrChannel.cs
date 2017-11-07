@@ -17,7 +17,7 @@ namespace Macaw_GH.Filtering.Extract
         /// Initializes a new instance of the ExtractYCbCrChannel class.
         /// </summary>
         public ExtractYCbCrChannel()
-          : base("Extract YCbCr Channel", "YCbCr", "...", "Aviary", "Image Edit")
+          : base("Extract YCbCr Channel", "YCbCr", "...", "Aviary", "Bitmap Edit")
         {
         }
 

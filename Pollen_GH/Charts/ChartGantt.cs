@@ -21,7 +21,7 @@ namespace Pollen_GH.Charts
         /// Initializes a new instance of the ChartGantt class.
         /// </summary>
         public ChartGantt()
-      : base("Gantt Chart", "Gantt Chart", "---", "Aviary", "Chart")
+      : base("Gantt Chart", "Gantt Chart", "---", "Aviary", "Charting & Data")
     {
         }
 
@@ -119,7 +119,7 @@ namespace Pollen_GH.Charts
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>

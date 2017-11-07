@@ -30,7 +30,7 @@ namespace Parrot_GH.Utilities
         /// Initializes a new instance of the ReturnValues class.
         /// </summary>
         public ReturnValues()
-          : base("Return Values", "Get", "---", "Aviary", "Utility")
+          : base("Return Values", "Get", "---", "Aviary", "Dashboard Layout")
         {
         }
 
@@ -364,7 +364,7 @@ namespace Parrot_GH.Utilities
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.quinary; }
+            get { return GH_Exposure.primary; }
         }
 
         /// <summary>

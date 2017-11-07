@@ -19,7 +19,7 @@ namespace Macaw_GH.Filtering.Stylize
         /// Initializes a new instance of the GaussianBlur class.
         /// </summary>
         public Blur()
-          : base("Blur", "Blur", "---", "Aviary", "Image Edit")
+          : base("Blur", "Blur", "---", "Aviary", "Bitmap Edit")
         {
         }
 

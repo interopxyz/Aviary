@@ -17,7 +17,7 @@ namespace Macaw_GH.Filtering.Analyze
         /// Initializes a new instance of the Blobs class.
         /// </summary>
         public Blobs()
-          : base("Figure Bounds", "Bounds", "---", "Aviary", "Image Build")
+          : base("Figure Bounds", "Bounds", "---", "Aviary", "Bitmap Build")
         {
         }
 

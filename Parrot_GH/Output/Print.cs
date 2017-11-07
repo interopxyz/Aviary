@@ -22,7 +22,7 @@ namespace Parrot_GH.Output
         /// Initializes a new instance of the Print class.
         /// </summary>
         public Print()
-          : base("Print", "Print", "---", "Aviary", "Utility")
+          : base("Print", "Print", "---", "Aviary", "Dashboard Utility")
         {
         }
 

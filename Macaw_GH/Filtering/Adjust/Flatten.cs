@@ -16,7 +16,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the Flatten class.
         /// </summary>
         public Flatten()
-          : base("Flatten Bitmap", "Flatten", "---", "Aviary", "Image Edit")
+          : base("Flatten Bitmap", "Flatten", "---", "Aviary", "Bitmap Edit")
         {
         }
 

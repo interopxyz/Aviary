@@ -14,7 +14,7 @@ namespace Wind_GH.Scene
         /// Initializes a new instance of the CameraLinear class.
         /// </summary>
         public CameraLinear()
-          : base("Linear Camera", "Cam", "---", "Aviary", "Scene")
+          : base("Linear Camera", "Cam", "---", "Aviary", "3D Scene")
         {
 
         }
@@ -75,7 +75,7 @@ namespace Wind_GH.Scene
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.secondary; }
         }
 
         /// <summary>

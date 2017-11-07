@@ -19,7 +19,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the Filter class.
         /// </summary>
         public Filter()
-          : base("Filter ARGB", "ARGB", "---", "Aviary", "Image Edit")
+          : base("Filter ARGB", "ARGB", "---", "Aviary", "Bitmap Edit")
         {
         }
 

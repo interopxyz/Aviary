@@ -22,7 +22,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the GroupBox class.
         /// </summary>
         public FrameGroup()
-          : base("GroupBox", "Group", "---", "Aviary", "Layout")
+          : base("GroupBox", "Group", "---", "Aviary", "Dashboard Layout")
         {
         }
 

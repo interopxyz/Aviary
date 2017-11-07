@@ -19,7 +19,7 @@ namespace Wind_GH.Geometry
         /// Initializes a new instance of the BrepToShape class.
         /// </summary>
         public BrepToShape()
-          : base("BrepToShape", "Bshp", "---", "Aviary", "Shape")
+          : base("BrepToShape", "Bshp", "---", "Aviary", "2D Drawing")
         {
         }
 

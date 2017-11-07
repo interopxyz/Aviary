@@ -16,7 +16,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the Curves class.
         /// </summary>
         public Curves()
-          : base("Curves", "Curves", "...", "Aviary", "Image Edit")
+          : base("Curves", "Curves", "...", "Aviary", "Bitmap Edit")
         {
         }
 

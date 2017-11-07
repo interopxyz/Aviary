@@ -23,7 +23,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the WrapPanel class.
         /// </summary>
         public PanelWrap()
-          : base("WrapPanel", "Wrap", "---", "Aviary", "Layout")
+          : base("WrapPanel", "Wrap", "---", "Aviary", "Dashboard Layout")
         {
         }
 

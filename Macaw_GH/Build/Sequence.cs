@@ -15,7 +15,7 @@ namespace Macaw_GH.Build
         /// Initializes a new instance of the Sequence class.
         /// </summary>
         public Sequence()
-          : base("Sequence Filters", "Sequence", "---", "Aviary", "Image Edit")
+          : base("Sequence Filters", "Sequence", "---", "Aviary", "Bitmap Edit")
         {
         }
 

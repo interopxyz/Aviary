@@ -27,7 +27,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Spacer class.
         /// </summary>
         public Spacer()
-          : base("Spacer", "Spacer", "---", "Aviary", "Display")
+          : base("Spacer", "Spacer", "---", "Aviary", "Dashboard Display")
         {
             this.UpdateMessage();
         }

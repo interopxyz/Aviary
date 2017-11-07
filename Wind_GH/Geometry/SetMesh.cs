@@ -27,7 +27,7 @@ namespace Wind_GH.Geometry
         /// Initializes a new instance of the BuildMesh class.
         /// </summary>
         public SetMesh()
-          : base("Set Mesh", "Set Mesh", "---", "Aviary", "Shape")
+          : base("Set Mesh", "Set Mesh", "---", "Aviary", "3D Scene")
         {
         }
 
@@ -185,7 +185,7 @@ namespace Wind_GH.Geometry
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.primary; }
         }
 
         /// <summary>

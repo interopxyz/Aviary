@@ -19,7 +19,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the FilterHSL class.
         /// </summary>
         public FilterHSL()
-          : base("Filter HSL", "HSL", "...", "Aviary", "Image Edit")
+          : base("Filter HSL", "HSL", "...", "Aviary", "Bitmap Edit")
         {
         }
 

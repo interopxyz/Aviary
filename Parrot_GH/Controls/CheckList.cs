@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the CheckList class.
         /// </summary>
         public CheckList()
-          : base("CheckList", "ChckLst", "---", "Aviary", "Control")
+          : base("CheckList", "ChckLst", "---", "Aviary", "Dashboard Control")
         {
         }
 

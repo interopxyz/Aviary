@@ -21,7 +21,7 @@ namespace Macaw_GH.Filtering.Figure
         /// Initializes a new instance of the Erosion class.
         /// </summary>
         public Figure()
-          : base("Figure", "Figure", "...", "Aviary", "Image Edit")
+          : base("Figure", "Figure", "...", "Aviary", "Bitmap Edit")
         {
         }
 

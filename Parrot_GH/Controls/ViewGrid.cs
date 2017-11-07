@@ -32,7 +32,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ViewGrid class.
         /// </summary>
         public ViewGrid()
-          : base("View Grid", "Grid", "---", "Aviary", "Control")
+          : base("View Grid", "Grid", "---", "Aviary", "Dashboard Control")
         {
         }
 

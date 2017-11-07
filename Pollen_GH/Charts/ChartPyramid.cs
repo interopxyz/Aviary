@@ -24,7 +24,7 @@ namespace Pollen_GH.Charts
         /// Initializes a new instance of the RadialChart class.
         /// </summary>
         public ChartPyramid()
-          : base("Pyramid Chart", "Pyramid Chart", "---", "Aviary", "Chart")
+          : base("Pyramid Chart", "Pyramid Chart", "---", "Aviary", "Charting & Data")
         {
 
         }
@@ -138,7 +138,7 @@ namespace Pollen_GH.Charts
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>

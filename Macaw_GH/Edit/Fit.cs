@@ -18,7 +18,7 @@ namespace Macaw_GH.Edit
         /// Initializes a new instance of the Fit class.
         /// </summary>
         public Fit()
-          : base("Fit", "Fit", "...", "Aviary", "Image Edit")
+          : base("Fit", "Fit", "...", "Aviary", "Bitmap Edit")
         {
         }
 

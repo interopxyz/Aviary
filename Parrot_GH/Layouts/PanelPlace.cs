@@ -20,7 +20,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the PlacementPanel class.
         /// </summary>
         public PanelPlace()
-          : base("Placement Panel", "Place", "---", "Aviary", "Layout")
+          : base("Placement Panel", "Place", "---", "Aviary", "Dashboard Layout")
         {
         }
 

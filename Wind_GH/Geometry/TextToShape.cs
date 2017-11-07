@@ -17,7 +17,7 @@ namespace Wind_GH.Geometry
         /// Initializes a new instance of the TextToShape class.
         /// </summary>
         public TextToShape()
-          : base("TextToShape", "Tshp", "---", "Aviary", "Shape")
+          : base("TextToShape", "Tshp", "---", "Aviary", "2D Drawing")
         {
         }
 

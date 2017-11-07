@@ -16,7 +16,7 @@ namespace Macaw_GH.Utilities
         /// Initializes a new instance of the SampleBitmap class.
         /// </summary>
         public SampleBitmap()
-          : base("Sample Bitmap", "Sample", "---", "Aviary", "Image Build")
+          : base("Sample Bitmap", "Sample", "---", "Aviary", "Bitmap Build")
         {
         }
 

@@ -27,7 +27,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ColorPicker class.
         /// </summary>
         public ColorPicker()
-          : base("ColorPicker", "Picker", "---", "Aviary", "Control")
+          : base("ColorPicker", "Picker", "---", "Aviary", "Dashboard Control")
         {
         }
 

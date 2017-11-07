@@ -23,7 +23,7 @@ namespace Pollen_GH.Data
         /// Initializes a new instance of the DataPoint class.
         /// </summary>
         public SetDataPoint()
-          : base("DataPoint", "DataPt","---", "Aviary", "Data")
+          : base("DataPoint", "DataPt","---", "Aviary", "Charting & Data")
         {
 
         }

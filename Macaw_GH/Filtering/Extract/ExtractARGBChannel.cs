@@ -17,7 +17,7 @@ namespace Macaw_GH.Filtering.Extract
         /// Initializes a new instance of the Extract class.
         /// </summary>
         public ExtractARGBChannel()
-          : base("Extract ARGB Channel", "ARGB", "...", "Aviary", "Image Edit")
+          : base("Extract ARGB Channel", "ARGB", "...", "Aviary", "Bitmap Edit")
         {
         }
 

@@ -20,7 +20,7 @@ namespace Macaw_GH.Filtering.Stylize
         /// Initializes a new instance of the Border class.
         /// </summary>
         public Border()
-          : base("Border", "Border", "---", "Aviary", "Image Edit")
+          : base("Border", "Border", "---", "Aviary", "Bitmap Edit")
         {
         }
 

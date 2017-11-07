@@ -17,7 +17,7 @@ namespace Wind_GH.Geometry
         /// Initializes a new instance of the MeshToShape class.
         /// </summary>
         public MeshToShape()
-          : base("MeshToShape", "Mshp", "---", "Aviary", "Shape")
+          : base("MeshToShape", "Mshp", "---", "Aviary", "2D Drawing")
         {
         }
 

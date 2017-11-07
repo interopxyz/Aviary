@@ -24,7 +24,7 @@ namespace Parrot_GH.Drawings
         /// Initializes a new instance of the ComposeDrawing class.
         /// </summary>
         public ComposeDrawing()
-          : base("Compose Drawing", "Drawing", "---", "Aviary", "Visualize")
+          : base("Compose Drawing", "Drawing", "---", "Aviary", "2D Drawing")
         {
         }
 
@@ -191,7 +191,7 @@ namespace Parrot_GH.Drawings
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.primary; }
+            get { return GH_Exposure.secondary; }
         }
 
         /// <summary>

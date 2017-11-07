@@ -17,7 +17,7 @@ namespace Wind_GH.Geometry
         /// Initializes a new instance of the PointToShape class.
         /// </summary>
         public PointToShape()
-          : base("Point To Shape", "Pshp", "---", "Aviary", "Shape")
+          : base("Point To Shape", "Pshp", "---", "Aviary", "2D Drawing")
         {
         }
 

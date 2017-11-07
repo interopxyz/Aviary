@@ -23,7 +23,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Frame class.
         /// </summary>
         public Frame()
-          : base("Frame", "Frame", "---", "Aviary", "Display")
+          : base("Frame", "Frame", "---", "Aviary", "Dashboard Display")
         {
         }
 

@@ -14,7 +14,7 @@ namespace Macaw_GH.Compose
         /// Initializes a new instance of the Filters class.
         /// </summary>
         public Modifiers()
-          : base("Layer Modifiers", "Modify", "---", "Aviary", "Image Build")
+          : base("Layer Modifiers", "Modify", "---", "Aviary", "Bitmap Build")
         {
         }
 

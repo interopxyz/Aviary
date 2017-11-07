@@ -15,7 +15,7 @@ namespace Wind_GH.Scene
         /// Initializes a new instance of the LightPoint class.
         /// </summary>
         public LightPoint()
-          : base("Point Light", "Point", "---", "Aviary", "Scene")
+          : base("Point Light", "Point", "---", "Aviary", "3D Scene")
         {
         }
 

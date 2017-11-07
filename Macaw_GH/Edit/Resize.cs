@@ -17,7 +17,7 @@ namespace Macaw_GH.Edit
         /// Initializes a new instance of the Resize class.
         /// </summary>
         public Resize()
-          : base("Resize", "Resize", "...", "Aviary", "Image Edit")
+          : base("Resize", "Resize", "...", "Aviary", "Bitmap Edit")
         {
         }
 

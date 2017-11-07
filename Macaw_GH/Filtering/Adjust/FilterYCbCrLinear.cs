@@ -19,7 +19,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the FilterYCbCrLinear class.
         /// </summary>
         public FilterYCbCrLinear()
-          : base("Filter Linear YCbCr", "YCbCr Line", "...", "Aviary", "Image Edit")
+          : base("Filter Linear YCbCr", "YCbCr Line", "...", "Aviary", "Bitmap Edit")
         {
         }
 

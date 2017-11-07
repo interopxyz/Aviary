@@ -21,7 +21,7 @@ namespace Macaw_GH.Filtering.Stylize
         /// Initializes a new instance of the Effect class.
         /// </summary>
         public Effect()
-          : base("Effect", "Effect", "---", "Aviary", "Image Edit")
+          : base("Effect", "Effect", "---", "Aviary", "Bitmap Edit")
         {
         }
 

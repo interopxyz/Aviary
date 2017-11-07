@@ -15,7 +15,7 @@ namespace Macaw_GH.Edit
         /// Initializes a new instance of the Match class.
         /// </summary>
         public Match()
-          : base("Match", "Match", "---", "Aviary", "Image Edit")
+          : base("Match", "Match", "---", "Aviary", "Bitmap Edit")
         {
         }
 

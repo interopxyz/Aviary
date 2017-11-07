@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ColorCanvas class.
         /// </summary>
         public ColorCanvas()
-          : base("ColorCanvas", "Canvas", "---", "Aviary", "Control")
+          : base("ColorCanvas", "Canvas", "---", "Aviary", "Dashboard Control")
         {
         }
 

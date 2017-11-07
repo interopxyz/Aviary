@@ -18,7 +18,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the EuclideanFilter class.
         /// </summary>
         public Replace()
-          : base("Replace Color", "Replace", "...", "Aviary", "Image Edit")
+          : base("Replace Color", "Replace", "...", "Aviary", "Bitmap Edit")
         {
         }
 

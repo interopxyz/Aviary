@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ScrollValue class.
         /// </summary>
         public ScrollValue()
-          : base("Scroll Values", "Values", "---", "Aviary", "Control")
+          : base("Scroll Values", "Values", "---", "Aviary", "Dashboard Control")
         {
         }
 

@@ -22,7 +22,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the GridPanel class.
         /// </summary>
         public PanelGrid()
-          : base("GridPanel", "Grid", "---", "Aviary", "Layout")
+          : base("GridPanel", "Grid", "---", "Aviary", "Dashboard Layout")
         {
         }
 

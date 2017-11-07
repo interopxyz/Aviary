@@ -79,6 +79,7 @@
     <Compile Include="Formatting\Padding.cs" />
     <Compile Include="Formatting\Size.cs" />
     <Compile Include="Formatting\Stroke.cs" />
+    <Compile Include="Geometry\BitmapToShape.cs" />
     <Compile Include="Geometry\BrepToShape.cs" />
     <Compile Include="Geometry\CurveToShape.cs" />
     <Compile Include="Geometry\MeshToShape.cs" />
@@ -219,6 +220,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Wind_Effects_BlurA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Shape-Bitmap.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

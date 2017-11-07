@@ -19,7 +19,7 @@ namespace Wind_GH.Geometry
         /// Initializes a new instance of the CurveToShape class.
         /// </summary>
         public CurveToShape()
-          : base("CurveToShape", "Cshp", "---", "Aviary", "Shape")
+          : base("CurveToShape", "Cshp", "---", "Aviary", "2D Drawing")
         {
         }
 

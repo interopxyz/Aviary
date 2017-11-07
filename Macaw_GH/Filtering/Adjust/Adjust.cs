@@ -19,7 +19,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// Initializes a new instance of the Brightness class.
         /// </summary>
         public Adjust()
-          : base("Adjust", "Adjust", "---", "Aviary", "Image Edit")
+          : base("Adjust", "Adjust", "---", "Aviary", "Bitmap Edit")
         {
         }
 

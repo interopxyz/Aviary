@@ -24,7 +24,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the PickDate class.
         /// </summary>
         public PickDate()
-          : base("Pick Date", "Date", "---", "Aviary", "Control")
+          : base("Pick Date", "Date", "---", "Aviary", "Dashboard Control")
         {
         }
 

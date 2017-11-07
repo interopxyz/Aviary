@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ViewList class.
         /// </summary>
         public ViewList()
-          : base("ViewList", "List", "---", "Aviary", "Control")
+          : base("ViewList", "List", "---", "Aviary", "Dashboard Control")
         {
         }
 

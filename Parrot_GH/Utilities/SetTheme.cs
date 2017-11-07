@@ -16,7 +16,7 @@ namespace Parrot_GH.Utilities
         /// Initializes a new instance of the SetTheme class.
         /// </summary>
         public SetTheme()
-          : base("Set Theme", "Theme", "---", "Aviary", "Utility")
+          : base("Set Theme", "Theme", "---", "Aviary", "Dashboard Utility")
         {
         }
 

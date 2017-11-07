@@ -22,7 +22,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the TabPanel class.
         /// </summary>
         public TabPanel()
-          : base("TabPanel", "Tabs", "---", "Aviary", "Layout")
+          : base("TabPanel", "Tabs", "---", "Aviary", "Dashboard Layout")
         {
         }
 

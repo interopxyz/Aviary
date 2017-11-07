@@ -16,7 +16,7 @@ namespace Macaw_GH.Composite
         /// Initializes a new instance of the FilterTexture class.
         /// </summary>
         public FilterTexture()
-          : base("Filter Texture", "Filter Txtr", "...", "Aviary", "Image Build")
+          : base("Filter Texture", "Filter Txtr", "...", "Aviary", "Bitmap Build")
         {
         }
 

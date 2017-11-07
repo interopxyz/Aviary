@@ -85,8 +85,8 @@
     <Compile Include="Charts\ChartRadial.cs" />
     <Compile Include="Charts\ChartRange.cs" />
     <Compile Include="Charts\ChartScatter.cs" />
-    <Compile Include="Data\SetDataSet.cs" />
     <Compile Include="Data\SetDataPoint.cs" />
+    <Compile Include="Data\SetDataSet.cs" />
     <Compile Include="Format\Axis.cs" />
     <Compile Include="Format\DataLabel.cs" />
     <Compile Include="Format\Marker.cs" />

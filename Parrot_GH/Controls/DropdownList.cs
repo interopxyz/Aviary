@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the DropdownList class.
         /// </summary>
         public DropdownList()
-          : base("DropdownList", "Drop", "---", "Aviary", "Control")
+          : base("DropdownList", "Drop", "---", "Aviary", "Dashboard Control")
         {
         }
 

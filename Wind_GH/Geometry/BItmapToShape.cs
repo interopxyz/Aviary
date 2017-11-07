@@ -3,24 +3,22 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-using Grasshopper.Kernel.Parameters;
-using Grasshopper.Kernel.Types;
 using System.Drawing;
-using Macaw.Compiling;
-using Macaw.Compiling.Modifiers;
-using Wind.Types;
-using Macaw.Build;
+using Grasshopper.Kernel.Types;
+using Wind.Geometry.Vectors;
+using Wind.Geometry.Curves;
+using Wind.Geometry.Curves.Primitives;
 using Wind.Containers;
 
-namespace Macaw_GH.Filtering.Adjust
+namespace Wind_GH.Geometry
 {
-    public class Tint : GH_Component
+    public class BitmapToShape : GH_Component
     {
         /// <summary>
-        /// Initializes a new instance of the Tint class.
+        /// Initializes a new instance of the BItmapToShape class.
         /// </summary>
-        public Tint()
-          : base("Tint", "Tint", "---", "Aviary", "Bitmap Edit")
+        public BitmapToShape()
+          : base("Bitmap to Shape", "BMshp", "---", "Aviary", "2D Drawing")
         {
         }
 
@@ -30,14 +28,8 @@ namespace Macaw_GH.Filtering.Adjust
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
-            pManager[0].Optional = true;
-            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
-            
-            pManager.AddColourParameter("Color", "C", "...", GH_ParamAccess.item, Color.Blue);
+            pManager.AddRectangleParameter("Frame", "F", "---", GH_ParamAccess.item, new Rectangle3d(Plane.WorldXY,150,150));
             pManager[1].Optional = true;
-            pManager.AddIntegerParameter("Value", "V", "...", GH_ParamAccess.item, 30);
-            pManager[2].Optional = true;
         }
 
         /// <summary>
@@ -45,8 +37,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
-            pManager.AddGenericParameter("Modifier", "M", "---", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Shape", "SH", "Shape", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -55,32 +46,36 @@ namespace Macaw_GH.Filtering.Adjust
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            // Declare variables
             IGH_Goo Z = null;
-            Color C = Color.Red;
-            int V = 30;
-            Point3d P = new Point3d(1, 1, 0);
-
-            // Access the input parameters 
+            Rectangle3d R = new Rectangle3d(Plane.WorldXY, 150, 150);
             if (!DA.GetData(0, ref Z)) return;
-            if (!DA.GetData(1, ref C)) return;
-            if (!DA.GetData(2, ref V)) return;
+            if (!DA.GetData(0, ref R)) return;
 
             Bitmap A = null;
             if (Z != null) { Z.CastTo(out A); }
-            Bitmap B = new Bitmap(A);
-            
-            mModifiers Modifier = new mModifiers();
-            
-            Modifier = new mModifyColorTint(new wColor(C.A, C.R, C.G, C.B), V);
-            B = new Bitmap(new mQuickComposite(A, Modifier).ModifiedBitmap);
+
+            // Check if is pline
+            Curve C = R.ToNurbsCurve();
+
+            BoundingBox B = C.GetBoundingBox(true);
+            wPoint O = new wPoint(B.Center.X, B.Center.Y, B.Center.Z);
+
+            wShape Shape = new wShape(new wRectangle());
+            wShapeCollection Shapes = new wShapeCollection(Shape);
+
+            wPlane Pln = new wPlane().XYPlane();
+            Pln.Origin = O;
+
+            Shapes.Boundary = new wRectangle(Pln, B.Diagonal.X, B.Diagonal.Y);
+            //Shapes.Type = Crv.GetCurveType;
+
+            if (C.IsClosed) { Shapes.Graphics = new wGraphic().BlackFill(); } else { Shapes.Graphics = new wGraphic().BlackOutline(); }
+            Shapes.Effects = new wEffects();
 
 
-            wObject W = new wObject(Modifier, "Macaw", Modifier.Type);
+            wObject WindObject = new wObject(Shapes, "Hoopoe", Shapes.Type);
 
-
-            DA.SetData(0, B);
-            DA.SetData(1, W);
+            DA.SetData(0, WindObject);
         }
 
         /// <summary>
@@ -98,7 +93,7 @@ namespace Macaw_GH.Filtering.Adjust
         {
             get
             {
-                return Properties.Resources.Macaw_Adjust_Tint;
+                return Properties.Resources.Wind_Shape_Bitmap;
             }
         }
 
@@ -107,7 +102,7 @@ namespace Macaw_GH.Filtering.Adjust
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("7e8b92dd-4b8a-45f5-8ce2-6cc461d5a1c8"); }
+            get { return new Guid("808a05da-6d7b-493d-ae49-9e5dd0f4bb29"); }
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the SliderValue class.
         /// </summary>
         public SliderValue()
-          : base("Value Slider", "Slide V", "Parrot Control Element. A graphic slider and numeric input which allows for moving through a numeric domain at a specified increment.", "Aviary", "Control")
+          : base("Value Slider", "Slide V", "Parrot Control Element. A graphic slider and numeric input which allows for moving through a numeric domain at a specified increment.", "Aviary", "Dashboard Control")
         {
 
             boolDirection = true;

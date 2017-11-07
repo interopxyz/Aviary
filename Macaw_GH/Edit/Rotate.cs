@@ -17,7 +17,7 @@ namespace Macaw_GH.Edit
         /// Initializes a new instance of the Rotate class.
         /// </summary>
         public Rotate()
-          : base("Rotate", "Rotate", "---", "Aviary", "Image Edit")
+          : base("Rotate", "Rotate", "---", "Aviary", "Bitmap Edit")
         {
         }
 

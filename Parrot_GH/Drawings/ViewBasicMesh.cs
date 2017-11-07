@@ -42,7 +42,7 @@ namespace Parrot_GH.Drawings
         /// Initializes a new instance of the ViewMesh3D class.
         /// </summary>
         public ViewBasicMesh()
-          : base("View Basic Mesh", "Basic Mesh", "---", "Aviary", "Visualize")
+          : base("View Basic Mesh", "Basic Mesh", "---", "Aviary", "3D Scene")
         {
         }
 
@@ -470,7 +470,7 @@ namespace Parrot_GH.Drawings
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

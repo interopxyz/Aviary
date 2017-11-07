@@ -17,7 +17,7 @@ namespace Macaw_GH.Filtering.Figure
         /// Initializes a new instance of the Edge class.
         /// </summary>
         public Edge()
-          : base("Edge", "Edge", "...", "Aviary", "Image Edit")
+          : base("Edge", "Edge", "...", "Aviary", "Bitmap Edit")
         {
         }
 

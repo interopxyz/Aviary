@@ -27,7 +27,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the Expander class.
         /// </summary>
         public FrameExpander()
-          : base("Expander", "Expand", "---", "Aviary", "Layout")
+          : base("Expander", "Expand", "---", "Aviary", "Dashboard Layout")
         {
             this.UpdateMessage();
         }

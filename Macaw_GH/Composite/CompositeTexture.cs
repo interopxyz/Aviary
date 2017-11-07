@@ -20,7 +20,7 @@ namespace Macaw_GH.Composite
         /// Initializes a new instance of the CompositeTexture class.
         /// </summary>
         public CompositeTexture()
-          : base("Texture Morph", "Texture Morph", "...", "Aviary", "Image Build")
+          : base("Texture Morph", "Texture Morph", "...", "Aviary", "Bitmap Build")
         {
         }
 

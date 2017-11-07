@@ -32,7 +32,7 @@ namespace Pollen_GH.Table
         /// Initializes a new instance of the ViewGrid class.
         /// </summary>
         public ViewDataGrid()
-          : base("Data Grid", "Data Grid", "---", "Aviary", "Chart")
+          : base("Data Grid", "Data Grid", "---", "Aviary", "Charting & Data")
         {
         }
 
@@ -209,7 +209,7 @@ namespace Pollen_GH.Table
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

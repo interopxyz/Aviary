@@ -15,7 +15,7 @@ namespace Pollen_GH.Format
         /// Initializes a new instance of the Rotate3D class.
         /// </summary>
         public Rotate3D()
-          : base("Rotate3D", "R3D", "---", "Aviary", "Chart")
+          : base("Rotate3D", "R3D", "---", "Aviary", "Charting & Data")
         {
         }
 
@@ -95,7 +95,7 @@ namespace Pollen_GH.Format
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

@@ -22,7 +22,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the Card class.
         /// </summary>
         public FrameCard()
-          : base("Card", "Card", "---", "Aviary", "Layout")
+          : base("Card", "Card", "---", "Aviary", "Dashboard Layout")
         {
     }
 

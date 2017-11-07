@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the Radio class.
         /// </summary>
         public Radio()
-          : base("Radio", "Radio", "Parrot Control Element. Bound to a group through a group title, when one instance of this control is toggled to true, all others are false.", "Aviary", "Control")
+          : base("Radio", "Radio", "Parrot Control Element. Bound to a group through a group title, when one instance of this control is toggled to true, all others are false.", "Aviary", "Dashboard Control")
         {
         }
 

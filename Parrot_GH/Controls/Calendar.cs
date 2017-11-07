@@ -22,7 +22,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the Calendar class.
         /// </summary>
         public Calendar()
-          : base("Calendar", "Calendar", "---", "Aviary", "Control")
+          : base("Calendar", "Calendar", "---", "Aviary", "Dashboard Control")
         {
         }
 

@@ -16,7 +16,7 @@ namespace Macaw_GH.Composite
         /// Initializes a new instance of the FilterMask class.
         /// </summary>
         public FilterMask()
-          : base("Filter Mask", "Filter Mask", "...", "Aviary", "Image Edit")
+          : base("Filter Mask", "Filter Mask", "...", "Aviary", "Bitmap Edit")
         {
         }
 

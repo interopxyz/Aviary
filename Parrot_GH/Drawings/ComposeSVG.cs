@@ -24,7 +24,7 @@ namespace Parrot_GH.Drawings
         /// Initializes a new instance of the ComposeSVG class.
         /// </summary>
         public ComposeSVG()
-          : base("Compose SVG", "SVG", "---", "Aviary", "Visualize")
+          : base("Compose SVG", "SVG", "---", "Aviary", "2D Drawing")
         {
         }
 
@@ -188,7 +188,7 @@ namespace Parrot_GH.Drawings
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.primary; }
+            get { return GH_Exposure.secondary; }
         }
 
         /// <summary>

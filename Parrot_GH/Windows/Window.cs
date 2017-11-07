@@ -31,7 +31,7 @@ namespace Parrot_GH.Windows
         /// Initializes a new instance of the Window class.
         /// </summary>
         public Window()
-          : base("Window", "Window", "---", "Aviary", "Layout")
+          : base("Window", "Window", "---", "Aviary", "Dashboard Layout")
         {
             this.UpdateMessage();
 

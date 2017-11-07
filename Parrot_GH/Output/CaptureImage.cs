@@ -19,7 +19,7 @@ namespace Parrot_GH.Output
         /// Initializes a new instance of the CaptureImage class.
         /// </summary>
         public CaptureImage()
-          : base("CaptureImage", "Capture", "---", "Aviary", "Utility")
+          : base("CaptureImage", "Capture", "---", "Aviary", "Dashboard Utility")
         {
         }
 

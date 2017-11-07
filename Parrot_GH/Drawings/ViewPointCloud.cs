@@ -39,7 +39,7 @@ namespace Parrot_GH.Drawings
         /// Initializes a new instance of the ViewPointCloud class.
         /// </summary>
         public ViewPointCloud()
-      : base("ViewPointCloud", "Point Cloud", "---", "Aviary", "Visualize")
+      : base("ViewPointCloud", "Point Cloud", "---", "Aviary", "3D Scene")
         {
         }
         
@@ -336,7 +336,7 @@ namespace Parrot_GH.Drawings
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

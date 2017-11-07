@@ -16,7 +16,7 @@ namespace Wind_GH.Scene
         /// Initializes a new instance of the LightSpot class.
         /// </summary>
         public LightSpot()
-          : base("Spot Light", "Spot", "---", "Aviary", "Scene")
+          : base("Spot Light", "Spot", "---", "Aviary", "3D Scene")
         {
         }
 

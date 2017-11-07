@@ -11,7 +11,7 @@ namespace Macaw_GH.Edit
         /// Initializes a new instance of the CropRectangle class.
         /// </summary>
         public CropRectangle()
-          : base("Crop Rectangle", "Crop R", "---", "Aviary", "Image Edit")
+          : base("Crop Rectangle", "Crop R", "---", "Aviary", "Bitmap Edit")
         {
         }
 

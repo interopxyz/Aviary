@@ -23,7 +23,7 @@ namespace Parrot_GH.Layouts
         /// Initializes a new instance of the StackPanel class.
         /// </summary>
         public PanelStack()
-          : base("StackPanel", "Stack", "---", "Aviary", "Layout")
+          : base("StackPanel", "Stack", "---", "Aviary", "Dashboard Layout")
         {
         }
 

@@ -26,7 +26,7 @@ namespace Parrot_GH.Controls
         /// Initializes a new instance of the ScrollNumber class.
         /// </summary>
         public ScrollNumber()
-          : base("Scroll Number", "Numeric", "Parrot Control Element. Numeric field and graphic spinner which allows for stepping up and down through a numeric domain by a given increment.", "Aviary", "Control")
+          : base("Scroll Number", "Numeric", "Parrot Control Element. Numeric field and graphic spinner which allows for stepping up and down through a numeric domain by a given increment.", "Aviary", "Dashboard Control")
         {
             this.UpdateMessage();
         }

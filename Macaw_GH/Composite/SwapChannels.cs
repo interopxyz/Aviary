@@ -17,7 +17,7 @@ namespace Macaw_GH.Composite
         /// Initializes a new instance of the SwapChannels class.
         /// </summary>
         public SwapChannels()
-          : base("Swap Channels", "Swap", "---", "Aviary", "Image Edit")
+          : base("Swap Channels", "Swap", "---", "Aviary", "Bitmap Edit")
         {
         }
 

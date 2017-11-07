@@ -26,7 +26,7 @@ namespace Pollen_GH.Charts
         /// Initializes a new instance of the RadialChart class.
         /// </summary>
         public ChartRange()
-          : base("Range Chart", "Range Chart", "---", "Aviary", "Chart")
+          : base("Range Chart", "Range Chart", "---", "Aviary", "Charting & Data")
         {
 
         }
@@ -132,7 +132,7 @@ namespace Pollen_GH.Charts
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>

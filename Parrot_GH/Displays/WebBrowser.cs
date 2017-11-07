@@ -21,7 +21,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the WebBrowser class.
         /// </summary>
         public WebBrowser()
-          : base("WebBrowser", "Web", "---", "Aviary", "Display")
+          : base("WebBrowser", "Web", "---", "Aviary", "Dashboard Display")
         {
         }
 

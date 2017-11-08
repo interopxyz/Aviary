@@ -19,6 +19,7 @@ using MahApps.Metro.Controls;
 using Xceed.Wpf.Toolkit;
 using MaterialDesignThemes.Wpf;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace Parrot_GH.Utilities
 {
@@ -93,32 +94,17 @@ namespace Parrot_GH.Utilities
                         switch (type)
                         {
                             case ("Button"):
-                                pButton P0 = (pButton)E.ParrotControl;
-                                ColorZone C0 = (ColorZone)E.Wrapper;
+                                Button C0 = (Button)E.Element;
                                 if (!keys.Contains(E.Element.Name))
                                 {
-                                    C0.MouseLeave -= (o, e) => { };
-                                    C0.MouseLeave += (o, e) =>
-                                    {
-                                        P0.Status = false;
-                                        ExpireSolution(true);
-                                    };
+                                    C0.PreviewMouseDown -= (o, e) => {ExpireSolution(true);};
+                                    C0.PreviewMouseDown += (o, e) => {ExpireSolution(true);};
 
-                                    C0.MouseLeftButtonDown -= (o, e) => { };
-                                    C0.MouseLeftButtonDown += (o, e) =>
-                                    {
-                                        P0.Status = true;
-                                        ExpireSolution(true);
-                                    };
-
-                                    C0.MouseLeftButtonUp -= (o, e) => { };
-                                    C0.MouseLeftButtonUp += (o, e) =>
-                                    {
-                                        P0.Status = false;
-                                        ExpireSolution(true);
-                                    };
+                                    C0.PreviewMouseUp -= (o, e) => { ExpireSolution(true); };
+                                    C0.PreviewMouseUp += (o, e) => { ExpireSolution(true); };
                                 }
-                                OutPut.Append(new GH_ObjectWrapper(P0.Status), P);
+
+                                OutPut.Append(new GH_ObjectWrapper((Mouse.LeftButton == MouseButtonState.Pressed) & C0.IsMouseOver), P);
                                 break;
                             case ("Calculator"):
                                 Calculator C1 = (Calculator)E.Element;
@@ -174,22 +160,22 @@ namespace Parrot_GH.Utilities
                                 }
                                 break;
                              case ("ColorCanvas"):
-                                 //ColorCanvas C4 = (ColorCanvas)E.Element;
+                                 ColorCanvas C4 = (ColorCanvas)E.Element;
                                  if (!keys.Contains(E.Element.Name))
                                  {
-                                     //C4.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
-                                     //C4.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
+                                     C4.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
+                                     C4.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
                                  }
-                                 //OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C4.SelectedColor).ToDrawingColor()), P);
+                                 OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C4.SelectedColor).ToDrawingColor()), P);
                                  break;
                              case ("ColorPicker"):
-                                 //ColorPicker C5 = (ColorPicker)E.Element;
+                                 ColorPicker C5 = (ColorPicker)E.Element;
                                  if (!keys.Contains(E.Element.Name))
                                  {
-                                     //C5.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
-                                     //C5.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
+                                     C5.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
+                                     C5.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
                                  }
-                                 //OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C5.SelectedColor).ToDrawingColor()), P);
+                                 OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C5.SelectedColor).ToDrawingColor()), P);
                                  break;
                             case ("CheckComboBox"):
                                 CheckComboBox C6 = (CheckComboBox)E.Element;

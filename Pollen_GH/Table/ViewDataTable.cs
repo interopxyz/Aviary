@@ -23,7 +23,7 @@ namespace Pollen_GH.Table
         /// Initializes a new instance of the ViewDataTable class.
         /// </summary>
         public ViewDataTable()
-          : base("Data Table", "Data Table", "---", "Aviary", "Charting & Data")
+          : base("Data Table", "Table", "---", "Aviary", "Charting & Data")
         {
         }
 

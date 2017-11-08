@@ -32,10 +32,12 @@ namespace Wind.Containers
         public bool PadRadius = false;
 
         public enum StrokeCaps { Flat, Round,Square,Triangle};
-        public enum StrokeCorners { None, Sharp, Round, Mitre };
+        public enum StrokeCorners { Bevel, Mitre, Round};
+
+        public double[] StrokePattern = { 0 };
 
         public StrokeCaps StrokeCap = StrokeCaps.Flat;
-        public StrokeCorners StrokeCorner = StrokeCorners.None;
+        public StrokeCorners StrokeCorner = StrokeCorners.Bevel;
 
         public wFont FontObject;
 

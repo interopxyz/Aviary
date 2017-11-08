@@ -14,17 +14,20 @@ using Pollen.Collections;
 using Wind.Geometry.Curves;
 using Parrot.Controls;
 using System.Windows.Forms;
+using GH_IO.Serialization;
 
 namespace Wind_GH.Formatting
 {
   public class Stroke : GH_Component
   {
         int CapMode = 0;
+        int CornerMode = 0;
+        int PatternMode = 0;
 
-    /// <summary>
-    /// Initializes a new instance of the Stroke class.
-    /// </summary>
-    public Stroke()
+        /// <summary>
+        /// Initializes a new instance of the Stroke class.
+        /// </summary>
+        public Stroke()
       : base("Stroke", "Stroke", "---", "Aviary", "Format")
     {
     }
@@ -39,12 +42,9 @@ namespace Wind_GH.Formatting
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Weight", "W", "---", GH_ParamAccess.item, 1);
             pManager[2].Optional = true;
-            pManager.AddIntegerParameter("Pattern", "P", "---", GH_ParamAccess.item, 0);
+            pManager.AddNumberParameter("Pattern", "P", "---", GH_ParamAccess.list, 0);
             pManager[3].Optional = true;
-
-            Param_Integer param = (Param_Integer)Params.Input[3];
-            param.AddNamedValue("Solid", 0);
-            param.AddNamedValue("Dashed", 1);
+            
         }
 
         /// <summary>
@@ -66,12 +66,12 @@ namespace Wind_GH.Formatting
             IGH_Goo Element = null;
             System.Drawing.Color B = System.Drawing.Color.Black;
             double T = 1;
-            int P = 0;
+            List<double> P = new List<double>();
 
             if (!DA.GetData(0, ref Element)) return;
             if (!DA.GetData(1, ref B)) return;
             if (!DA.GetData(2, ref T)) return;
-            if (!DA.GetData(3, ref P)) return;
+            if (!DA.GetDataList(3, P)) return;
 
             wObject W = new wObject();
             if (Element != null) { Element.CastTo(out W); }
@@ -84,8 +84,43 @@ namespace Wind_GH.Formatting
             G.StrokeWeight[3] = T;
 
             G.StrokeCap = (wGraphic.StrokeCaps)CapMode;
+            G.StrokeCorner = (wGraphic.StrokeCorners)CornerMode;
+
+            switch(PatternMode)
+            {
+                case 0:
+                    if ((P.Count == 1) && (P[0] == 0)) { P = new List<double> { 1, 0 }; }
+                    break;
+                case 1:
+                    P = new List<double> { 2,3 };
+                    break;
+                case 2:
+                    P = new List<double> { 5 };
+                    break;
+                case 3:
+                    P = new List<double> { 15,10 };
+                    break;
+                case 4:
+                    P = new List<double> { 0.5, 2 };
+                    break;
+                case 5:
+                    P = new List<double> { 30, 5,10,5, };
+                    break;
+            }
+            
+
+            List<double> SP = new List<double>();
+
+            foreach (double PV in P)
+            {
+                SP.Add(PV / T);
+            }
+
+            G.StrokePattern = SP.ToArray();
 
             W.Graphics = G;
+
+
 
             switch (W.Type)
             {
@@ -101,32 +136,41 @@ namespace Wind_GH.Formatting
                     {
                         case "DataPoint":
                             DataPt tDataPt = (DataPt)W.Element;
-                            tDataPt.Graphics.StrokeColor = new wColor(B);
-                            tDataPt.Graphics.StrokeWeight[0] = T;
-                            tDataPt.Graphics.StrokeWeight[1] = T;
-                            tDataPt.Graphics.StrokeWeight[2] = T;
-                            tDataPt.Graphics.StrokeWeight[3] = T;
+                            tDataPt.Graphics.StrokeColor = G.StrokeColor;
+                            tDataPt.Graphics.StrokeWeight = G.StrokeWeight;
+
+                            tDataPt.Graphics.StrokePattern = G.StrokePattern;
+
+                            tDataPt.Graphics.StrokeCap = G.StrokeCap;
+                            tDataPt.Graphics.StrokeCorner = G.StrokeCorner;
+
                             W.Element = tDataPt;
                             break;
                         case "DataSet":
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
-                            tDataSet.Graphics.StrokeColor = new wColor(B);
-                            tDataSet.Graphics.StrokeWeight[0] = T;
-                            tDataSet.Graphics.StrokeWeight[1] = T;
-                            tDataSet.Graphics.StrokeWeight[2] = T;
-                            tDataSet.Graphics.StrokeWeight[3] = T;
+                            tDataSet.Graphics.StrokeColor = G.StrokeColor;
+                            tDataSet.Graphics.StrokeWeight = G.StrokeWeight;
+
+                            tDataSet.Graphics.StrokePattern = G.StrokePattern;
+
+                            tDataSet.Graphics.StrokeCap = G.StrokeCap;
+                            tDataSet.Graphics.StrokeCorner = G.StrokeCorner;
+
                             W.Element = tDataSet;
                             break;
                     }
                     break;
                 case "Hoopoe":
                     wShapeCollection Shapes = (wShapeCollection)W.Element;
-                    Shapes.Graphics.StrokeColor = new wColor(B);
-                    Shapes.Graphics.StrokeWeight[0] = T;
-                    Shapes.Graphics.StrokeWeight[1] = T;
-                    Shapes.Graphics.StrokeWeight[2] = T;
-                    Shapes.Graphics.StrokeWeight[3] = T;
+                    Shapes.Graphics.StrokeColor = G.StrokeColor;
+                    Shapes.Graphics.StrokeWeight = G.StrokeWeight;
+                    
 
+                    Shapes.Graphics.StrokePattern = G.StrokePattern;
+
+                    Shapes.Graphics.StrokeCap = G.StrokeCap;
+                    Shapes.Graphics.StrokeCorner = G.StrokeCorner;
+                    
                     W.Element = Shapes;
                     break;
 
@@ -147,7 +191,92 @@ namespace Wind_GH.Formatting
 
             Menu_AppendSeparator(menu);
 
-            Menu_AppendTextItem(menu, "Corners", null, null, false);
+            Menu_AppendItem(menu, "Bevel", CornerBevelMode, true, (CornerMode == 0));
+            Menu_AppendItem(menu, "Mitre", CornerMitreMode, true, (CornerMode == 1));
+            Menu_AppendItem(menu, "Round", CornerRoundMode, true, (CornerMode == 2));
+
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Custom", PatternCustomMode, true, (PatternMode == 0));
+            Menu_AppendItem(menu, "Dot", PatternDotMode, true, (PatternMode == 1));
+            Menu_AppendItem(menu, "Hidden", PatternHiddenMode, true, (PatternMode == 2));
+            Menu_AppendItem(menu, "Dash", PatternDashMode, true, (PatternMode == 3));
+            Menu_AppendItem(menu, "Hash", PatternHashMode, true, (PatternMode == 4));
+            Menu_AppendItem(menu, "Center", PatternCenterMode, true, (PatternMode == 5));
+
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("Cap", CapMode);
+            writer.SetInt32("Corner", CornerMode);
+            writer.SetInt32("Pattern", PatternMode);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            CapMode = reader.GetInt32("Cap");
+            CornerMode = reader.GetInt32("Corner");
+            PatternMode = reader.GetInt32("Pattern");
+
+            return base.Read(reader);
+        }
+
+        private void PatternCustomMode(Object sender, EventArgs e)
+        {
+            PatternMode = 0;
+            this.ExpireSolution(true);
+        }
+
+        private void PatternDotMode(Object sender, EventArgs e)
+        {
+            PatternMode = 1;
+            this.ExpireSolution(true);
+        }
+
+        private void PatternHiddenMode(Object sender, EventArgs e)
+        {
+            PatternMode = 2;
+            this.ExpireSolution(true);
+        }
+
+        private void PatternDashMode(Object sender, EventArgs e)
+        {
+            PatternMode = 3;
+            this.ExpireSolution(true);
+        }
+
+        private void PatternHashMode(Object sender, EventArgs e)
+        {
+            PatternMode = 4;
+            this.ExpireSolution(true);
+        }
+
+        private void PatternCenterMode(Object sender, EventArgs e)
+        {
+            PatternMode = 5;
+            this.ExpireSolution(true);
+        }
+
+
+        private void CornerBevelMode(Object sender, EventArgs e)
+        {
+            CornerMode = 0;
+            this.ExpireSolution(true);
+        }
+
+        private void CornerMitreMode(Object sender, EventArgs e)
+        {
+            CornerMode = 1;
+            this.ExpireSolution(true);
+        }
+
+        private void CornerRoundMode(Object sender, EventArgs e)
+        {
+            CornerMode = 2;
+            this.ExpireSolution(true);
         }
 
         private void CapFlatMode(Object sender, EventArgs e)
@@ -155,16 +284,19 @@ namespace Wind_GH.Formatting
             CapMode = 0;
             this.ExpireSolution(true);
         }
+
         private void CapSquareMode(Object sender, EventArgs e)
         {
             CapMode = 1;
             this.ExpireSolution(true);
         }
+
         private void CapRoundMode(Object sender, EventArgs e)
         {
             CapMode = 2;
             this.ExpireSolution(true);
         }
+
         private void CapTriangleMode(Object sender, EventArgs e)
         {
             CapMode = 3;

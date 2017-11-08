@@ -40,7 +40,7 @@ namespace Parrot.Controls
             for (int i = 0; i < WindDataCollection.Sets.Count; i++)
            {
                 if (WindDataCollection.Sets[i].Title == "") { WindDataCollection.Sets[i].Title = ("Title " + i.ToString()); }
-                DataColumn col = new DataColumn(WindDataCollection.Sets[i].Title.ToString(), typeof(string));
+                DataColumn col = new DataColumn(WindDataCollection.Sets[i].Title.ToString(), typeof(double));
                 Table.Columns.Add(col);
             }
 
@@ -49,7 +49,7 @@ namespace Parrot.Controls
                 System.Data.DataRow row = Table.NewRow();
                 for (int j = 0; j < WindDataCollection.Count; j++)
                 {
-                    row[WindDataCollection.Sets[j].Title] = WindDataCollection.Sets[j].Points[i].Text;
+                    row[WindDataCollection.Sets[j].Title] = WindDataCollection.Sets[j].Points[i].Number;
                 }
                 Table.Rows.Add(row);
             }

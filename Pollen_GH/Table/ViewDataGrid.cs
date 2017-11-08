@@ -32,7 +32,7 @@ namespace Pollen_GH.Table
         /// Initializes a new instance of the ViewGrid class.
         /// </summary>
         public ViewDataGrid()
-          : base("Data Grid", "Data Grid", "---", "Aviary", "Charting & Data")
+          : base("Data Grid", "Grid", "---", "Aviary", "Charting & Data")
         {
         }
 
@@ -88,7 +88,7 @@ namespace Pollen_GH.Table
             if (!DA.GetData(0, ref D)) return;
             
             wObject W = new wObject();
-                D.CastTo(out W);
+            D.CastTo(out W);
             DataSetCollection S = (DataSetCollection)W.Element;
 
             pCtrl.SetProperties(S, GridType, false, ResizeHorizontal, Sortable, AlternateGraphics, AddlRows);

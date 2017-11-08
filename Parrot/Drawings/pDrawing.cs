@@ -455,6 +455,15 @@ namespace Parrot.Drawings
             ShapePath.StrokeMiterLimit = 1.0;
             ShapePath.StrokeThickness = ShapeGraphics.StrokeWeight[0];
 
+            ShapePath.StrokeStartLineCap = (PenLineCap)(int)ShapeGraphics.StrokeCap;
+            ShapePath.StrokeEndLineCap = (PenLineCap)(int)ShapeGraphics.StrokeCap;
+
+            ShapePath.StrokeDashCap = (PenLineCap)(int)ShapeGraphics.StrokeCap;
+
+            ShapePath.StrokeLineJoin  = (PenLineJoin)(int)ShapeGraphics.StrokeCorner;
+
+            ShapePath.StrokeDashArray = new DoubleCollection(ShapeGraphics.StrokePattern);
+
             return ShapePath;
         }
 

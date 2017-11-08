@@ -11,6 +11,7 @@ using Wind.Containers;
 using Pollen.Collections;
 using System.Windows.Forms;
 using Wind.Geometry.Vectors;
+using GH_IO.Serialization;
 
 namespace Pollen_GH.Data
 {
@@ -34,7 +35,7 @@ namespace Pollen_GH.Data
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Value", "V", "---", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Data Type", "D", "---", GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter("Data Type", "D", "---", GH_ParamAccess.item, 1);
             pManager[1].Optional = true;
             pManager.AddIntegerParameter("Format", "F", "---", GH_ParamAccess.item, 0);
             pManager[2].Optional = true;
@@ -93,6 +94,7 @@ namespace Pollen_GH.Data
                 case 1:
                     double num = new double();
                     X.CastTo(out num);
+
                     DataObj.Number = num;
                     DataObj.Text = num.ToString();
                     DataObj.Label = Convert.ToString(Math.Truncate(num * 1000) / 1000);
@@ -100,24 +102,28 @@ namespace Pollen_GH.Data
                 case 2:
                     int intg = new int();
                     X.CastTo(out intg);
+
                     DataObj.Text = intg.ToString();
                     DataObj.Integer = intg;
                     break;
                 case 3:
                     Interval domain = new Interval();
                     X.CastTo(out domain);
+
                     DataObj.Text = domain.ToString();
                     DataObj.Domain = new Tuple<double, double>(domain.T0, domain.T1);
                     break;
                 case 4:
                     Point3d point = new Point3d();
                     X.CastTo(out point);
+
                     DataObj.Text = point.ToString();
                     DataObj.Point = new wPoint(point.X,point.Y,point.Z);
                     break;
                 default:
                     string text = "";
                     X.CastTo(out text);
+
                     DataObj.Text = text;
                     break;
             }
@@ -153,7 +159,23 @@ namespace Pollen_GH.Data
             Menu_AppendItem(menu, "Chart", ModeChart, true, (modeStatus == 1));
             Menu_AppendItem(menu, "Data Grid", ModeGrid, true, (modeStatus == 2));
             Menu_AppendItem(menu, "Excel", ModeExcel, true, (modeStatus == 3));
-            
+
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("Label", LabelStatus);
+            writer.SetInt32("Mode", modeStatus);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            LabelStatus = reader.GetInt32("Label");
+            modeStatus = reader.GetInt32("Mode");
+
+            return base.Read(reader);
         }
 
         private void ModeLabelNone(Object sender, EventArgs e)

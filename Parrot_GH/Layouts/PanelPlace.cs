@@ -32,9 +32,9 @@ namespace Parrot_GH.Layouts
             pManager.AddGenericParameter("Elements", "E", "---", GH_ParamAccess.list);
             pManager.AddIntervalParameter("Size", "S", "---", GH_ParamAccess.item, new Interval(600,600));
             pManager[1].Optional = true;
-            pManager.AddIntegerParameter("Horizontal Location", "X", "---", GH_ParamAccess.list, new List<int>());
+            pManager.AddIntegerParameter("Horizontal Location", "X", "---", GH_ParamAccess.list, 300);
             pManager[2].Optional = true;
-            pManager.AddIntegerParameter("Vertical Location", "Y", "---", GH_ParamAccess.list, new List<int>());
+            pManager.AddIntegerParameter("Vertical Location", "Y", "---", GH_ParamAccess.list, 300);
             pManager[3].Optional = true;
         }
 

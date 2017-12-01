@@ -55,6 +55,11 @@ namespace Wind.Geometry.Vectors
             return new System.Drawing.Point((int)X, (int)Y);
         }
 
+        public System.Drawing.PointF ToPointF()
+        {
+            return new System.Drawing.PointF((float)X, (float)Y);
+        }
+
         public System.Windows.Point ToWindowsPoint()
         {
             return new System.Windows.Point((int)X, (int)Y);

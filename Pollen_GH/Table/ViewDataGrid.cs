@@ -209,7 +209,7 @@ namespace Pollen_GH.Table
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.quarternary; }
+            get { return GH_Exposure.secondary; }
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace Pollen_GH.Table
         {
             get
             {
-                return Properties.Resources.Pollen_Table1;
+                return Properties.Resources.Pollen_Grid;
             }
         }
 

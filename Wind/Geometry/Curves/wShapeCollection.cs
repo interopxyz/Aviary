@@ -17,8 +17,11 @@ namespace Wind.Geometry.Curves
         public wEffects Effects = new wEffects();
         public wFont Fonts = new wFont();
 
-        public int Width = 0;
-        public int Height = 0;
+        public double X = 0;
+        public double Y = 0;
+
+        public double Width = 0;
+        public double Height = 0;
 
         public string Type;
 

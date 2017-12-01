@@ -17,13 +17,16 @@ using System.Windows.Media;
 using Grasshopper.Kernel.Parameters;
 using System.Windows.Forms;
 using Grasshopper.GUI.Base;
+using Wind.Graphics;
+using GH_IO.Serialization;
 
 namespace Wind_GH.Formatting
 {
     public class FillPattern : GH_Component
     {
-        int PatternModeStatus = 0;
-        double PatternWeight = 0.25;
+        public int PatternModeStatus = 0;
+        public int SpacingMode = 2;
+        public double PatternWeight = 0.5;
         NumericUpDown DS = new NumericUpDown();
 
 
@@ -33,6 +36,7 @@ namespace Wind_GH.Formatting
         public FillPattern()
           : base("Pattern", "Pattern", "---" ,"Aviary", "Format")
         {
+            this.UpdateMessage();
         }
 
         /// <summary>
@@ -51,8 +55,15 @@ namespace Wind_GH.Formatting
             pManager[4].Optional = true;
 
             Param_Integer param = (Param_Integer)pManager[1];
-
-            param.AddNamedValue("Solid", 0);
+            param.AddNamedValue("Grid", 0);
+            param.AddNamedValue("Diamond", 1);
+            param.AddNamedValue("Triangular", 2);
+            param.AddNamedValue("Hexagonal", 3);
+            param.AddNamedValue("Stagger", 4);
+            param.AddNamedValue("Checker", 5);
+            param.AddNamedValue("Solid Diamond", 6);
+            param.AddNamedValue("Trellis", 7);
+            param.AddNamedValue("Dots", 8);
 
 
         }
@@ -73,13 +84,13 @@ namespace Wind_GH.Formatting
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             IGH_Goo Element = null;
-            IGH_Goo Shps = null;
+            int Pattern = 0;
             double Scale = 1;
             System.Drawing.Color Background = new wColor().VeryLightGray().ToDrawingColor();
             System.Drawing.Color ForeGround = new wColor().LightGray().ToDrawingColor();
 
             if (!DA.GetData(0, ref Element)) return;
-            if (!DA.GetData(1, ref Shps)) return;
+            if (!DA.GetData(1, ref Pattern)) return;
             if (!DA.GetData(2, ref Scale)) return;
             if (!DA.GetData(3, ref ForeGround)) return;
             if (!DA.GetData(4, ref Background)) return;
@@ -90,30 +101,34 @@ namespace Wind_GH.Formatting
 
             G.Background = new wColor(Background);
             G.Foreground = new wColor(ForeGround);
+            G.StrokeColor = new wColor(ForeGround);
+
+            G.SetUniformStrokeWeight(PatternWeight);
 
             wShapeCollection S = new wShapeCollection();
-            if (Shps != null) { Shps.CastTo(out S); }
 
-            DrawingBrush DwgBrush = new DrawingBrush();
-            DrawingGroup DwgGroup = new DrawingGroup();
+            S.Graphics = G;
 
-            foreach (wShape Shp in S.Shapes)
+            wPattern P = new wPattern(0, 0, 9, 9, S);
+
+            if ((PatternModeStatus < 5) && (PatternModeStatus != 0))
             {
-                GeometryDrawing dwgG = new GeometryDrawing(new SolidColorBrush(Shp.Graphic.Foreground.ToMediaColor()), new Pen(new SolidColorBrush(Shp.Graphic.StrokeColor.ToMediaColor()), Shp.Graphic.StrokeWeight[0]), Shp.GeometrySet);
-                dwgG.Pen.StartLineCap = (PenLineCap)Shp.Graphic.StrokeCap;
-                dwgG.Pen.EndLineCap = (PenLineCap)Shp.Graphic.StrokeCap;
-                DwgGroup.Children.Add(dwgG);
+                P.SetStroke(Pattern);
+            }
+            else
+            {
+                P.SetStroke(0);
             }
 
-            DwgGroup.ClipGeometry = new RectangleGeometry(new System.Windows.Rect(0, 0, 300, 300));
+            S = P.SetPattern(PatternModeStatus, Pattern, SpacingMode);
 
-            DwgBrush.Drawing = DwgGroup;
-            DwgBrush.Viewbox = new System.Windows.Rect(0, 0, 1, 1);
-            DwgBrush.Viewport = new System.Windows.Rect(0, 0, Scale, Scale);
-            DwgBrush.TileMode = TileMode.Tile;
+            G = S.Graphics;
 
-            G.WpfPattern = DwgBrush;
-            G.WpfFill = DwgBrush;
+            wFillSwatch Swatch = new wFillSwatch(S, Scale, 4, S.X, S.Y, S.Width, S.Height);
+            
+
+            G.WpfPattern = Swatch.DwgBrush;
+            G.WpfFill = Swatch.DwgBrush;
 
             W.Graphics = G;
 
@@ -147,10 +162,8 @@ namespace Wind_GH.Formatting
                 case "Hoopoe":
                     wShapeCollection Shapes = (wShapeCollection)W.Element;
                     Shapes.Graphics.WpfFill = G.WpfFill;
-
-                    Shapes.Graphics.Background = new wColor(Background);
-                    Shapes.Graphics.Foreground = new wColor(ForeGround);
-
+                    Shapes.Graphics.WpfPattern = G.WpfPattern;
+                    
                     W.Element = Shapes;
                     break;
             }
@@ -179,53 +192,211 @@ namespace Wind_GH.Formatting
 
             Menu_AppendSeparator(menu);
 
-            Menu_AppendItem(menu, "Solid", SolidMode, true, (PatternModeStatus == 0));
-            Menu_AppendItem(menu, "Custom", CustomMode, true, (PatternModeStatus == 1));
-            Menu_AppendItem(menu, "Point", PointMode, true, (PatternModeStatus == 2));
-            Menu_AppendItem(menu, "Line", LineMode, true, (PatternModeStatus == 3));
-            Menu_AppendItem(menu, "Grid", GridMode, true, (PatternModeStatus == 4));
+            Menu_AppendItem(menu, "Narrow", NarrowMode, true, (SpacingMode == 1));
+            Menu_AppendItem(menu, "Regular", RegularMode, true, (SpacingMode == 2));
+            Menu_AppendItem(menu, "Wide", WideMode, true, (SpacingMode == 3));
+
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Grid", GridMode, true, (PatternModeStatus == 0));
+            Menu_AppendItem(menu, "Horizontal", HorizontalMode, true, (PatternModeStatus == 1));
+            Menu_AppendItem(menu, "Vertical", VerticalMode, true, (PatternModeStatus == 2));
+            Menu_AppendItem(menu, "Diagonal Left", DiagLMode, true, (PatternModeStatus == 3));
+            Menu_AppendItem(menu, "Diagonal Right", DiagRMode, true, (PatternModeStatus == 4));
+            Menu_AppendItem(menu, "Percent", PercentMode, true, (PatternModeStatus == 5));
+            Menu_AppendItem(menu, "Pattern", PatternMode, true, (PatternModeStatus == 6));
+            Menu_AppendItem(menu, "Architectural", ArchMode, true, (PatternModeStatus == 7));
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("Size", SpacingMode);
+            writer.SetInt32("Pattern", PatternModeStatus);
+            writer.SetDouble("Width", PatternWeight);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            SpacingMode = reader.GetInt32("Size");
+            PatternModeStatus = reader.GetInt32("Pattern");
+            PatternWeight = reader.GetDouble("Width");
+
+            this.UpdateMessage();
+            this.ExpireSolution(true);
+            return base.Read(reader);
         }
 
         private void UpdateWidthValue()
         {
             PatternWeight = (double)DS.Value;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
-        private void SolidMode(Object sender, EventArgs e)
+        private void NarrowMode(Object sender, EventArgs e)
         {
-            PatternModeStatus = 0;
+            SpacingMode = 1;
             this.ExpireSolution(true);
         }
 
-        private void CustomMode(Object sender, EventArgs e)
+        private void RegularMode(Object sender, EventArgs e)
         {
-            PatternModeStatus = 1;
+            SpacingMode = 2;
             this.ExpireSolution(true);
         }
 
-        private void PointMode(Object sender, EventArgs e)
+        private void WideMode(Object sender, EventArgs e)
         {
-            PatternModeStatus = 2;
+            SpacingMode = 3;
             this.ExpireSolution(true);
         }
-
-        private void LineMode(Object sender, EventArgs e)
-        {
-            PatternModeStatus = 3;
-            this.ExpireSolution(true);
-        }
-
+        
         private void GridMode(Object sender, EventArgs e)
         {
+            PatternModeStatus = 0;
+
+            Param_Integer param = (Param_Integer)this.Params.Input[1];
+            param.ClearNamedValues();
+            param.AddNamedValue("Grid", 0);
+            param.AddNamedValue("Diamond", 1);
+            param.AddNamedValue("Triangular", 2);
+            param.AddNamedValue("Hexagonal", 3);
+            param.AddNamedValue("Stagger", 4);
+            param.AddNamedValue("Checker", 5);
+            param.AddNamedValue("Solid Diamond", 6);
+            param.AddNamedValue("Trellis", 7);
+            param.AddNamedValue("Dots", 8);
+
+            this.ExpireSolution(true);
+        }
+
+        private void HorizontalMode(Object sender, EventArgs e)
+        {
+            PatternModeStatus = 1;
+
+            Param_Integer param = (Param_Integer)this.Params.Input[1];
+            param.ClearNamedValues();
+            param.AddNamedValue("Solid", 0);
+            param.AddNamedValue("Dots", 1);
+            param.AddNamedValue("Dashed", 2);
+            param.AddNamedValue("Staggerd", 3);
+
+            this.ExpireSolution(true);
+        }
+
+        private void VerticalMode(Object sender, EventArgs e)
+        {
+            PatternModeStatus = 2;
+
+            Param_Integer param = (Param_Integer)this.Params.Input[1];
+            param.ClearNamedValues();
+            param.AddNamedValue("Solid", 0);
+            param.AddNamedValue("Dots", 1);
+            param.AddNamedValue("Dashed", 2);
+            param.AddNamedValue("Staggerd", 3);
+
+            this.ExpireSolution(true);
+        }
+        
+
+        private void DiagLMode(Object sender, EventArgs e)
+        {
+            PatternModeStatus = 3;
+
+            Param_Integer param = (Param_Integer)this.Params.Input[1];
+            param.ClearNamedValues();
+            param.AddNamedValue("Solid", 0);
+            param.AddNamedValue("Dots", 1);
+            param.AddNamedValue("Dashed", 2);
+            param.AddNamedValue("Staggerd", 3);
+
+            this.ExpireSolution(true);
+        }
+
+        private void DiagRMode(Object sender, EventArgs e)
+        {
             PatternModeStatus = 4;
+
+            Param_Integer param = (Param_Integer)this.Params.Input[1];
+            param.ClearNamedValues();
+            param.AddNamedValue("Solid", 0);
+            param.AddNamedValue("Dots", 1);
+            param.AddNamedValue("Dashed", 2);
+            param.AddNamedValue("Staggerd", 3);
+
+            this.ExpireSolution(true);
+        }
+
+        private void PercentMode(Object sender, EventArgs e)
+        {
+            PatternModeStatus = 5;
+
+            Param_Integer param = (Param_Integer)this.Params.Input[1];
+            param.ClearNamedValues();
+            param.AddNamedValue("10", 0);
+            param.AddNamedValue("20", 1);
+            param.AddNamedValue("30", 2);
+            param.AddNamedValue("40", 3);
+            param.AddNamedValue("50", 4);
+            param.AddNamedValue("60", 5);
+            param.AddNamedValue("70", 6);
+            param.AddNamedValue("80", 7);
+            param.AddNamedValue("90", 8);
+
+
+            this.ExpireSolution(true);
+        }
+
+        private void PatternMode(Object sender, EventArgs e)
+        {
+            PatternModeStatus = 6;
+
+            Param_Integer param = (Param_Integer)this.Params.Input[1];
+            param.ClearNamedValues();
+            param.AddNamedValue("ZigZag", 0);
+            param.AddNamedValue("Confetti", 1);
+            param.AddNamedValue("Tile", 2);
+            param.AddNamedValue("Bamboo", 3);
+            param.AddNamedValue("Cross", 4);
+            param.AddNamedValue("Scatter", 5);
+            param.AddNamedValue("Star", 6);
+            param.AddNamedValue("Pinwheel", 7);
+            param.AddNamedValue("Rings", 8);
+            param.AddNamedValue("Weave", 9);
+
+            this.ExpireSolution(true);
+        }
+
+        private void ArchMode(Object sender, EventArgs e)
+        {
+            PatternModeStatus = 7;
+
+            Param_Integer param = (Param_Integer)this.Params.Input[1];
+            param.ClearNamedValues();
+            param.AddNamedValue("Steel", 0);
+            param.AddNamedValue("Aluminum", 1);
+            param.AddNamedValue("Glass", 2);
+            param.AddNamedValue("Concrete", 3);
+            param.AddNamedValue("Stone", 4);
+            param.AddNamedValue("Tile", 5);
+            param.AddNamedValue("Wood", 6);
+            param.AddNamedValue("Parquet", 7);
+            param.AddNamedValue("Earth", 8);
+            param.AddNamedValue("Grass", 9);
+
             this.ExpireSolution(true);
         }
 
 
+        private void UpdateMessage()
+        {
+            Message = PatternWeight.ToString();
+        }
 
-
-
+        
         public override GH_Exposure Exposure
         {
             get { return GH_Exposure.secondary; }

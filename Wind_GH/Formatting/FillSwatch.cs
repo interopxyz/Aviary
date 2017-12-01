@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
 using Grasshopper.Kernel;
@@ -13,13 +14,13 @@ using Pollen.Collections;
 using Wind.Graphics;
 using System.Windows.Forms;
 using Wind.Types;
+using GH_IO.Serialization;
 
 namespace Wind_GH.Formatting
 {
     public class FillSwatch : GH_Component
     {
-
-        int TileTypeMode = 4;
+        public int TilingMode = 4;
 
         /// <summary>
         /// Initializes a new instance of the FillSwatch class.
@@ -27,6 +28,7 @@ namespace Wind_GH.Formatting
         public FillSwatch()
           : base("Swatch", "Swatch", "---", "Aviary", "Format")
         {
+            this.UpdateMessage();
         }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Wind_GH.Formatting
             wShapeCollection S = new wShapeCollection();
             if (Shps != null) { Shps.CastTo(out S); }
 
-            wFillSwatch Swatch = new wFillSwatch(S, Scale, TileTypeMode, S.Width, S.Height);
+            wFillSwatch Swatch = new wFillSwatch(S, Scale, TilingMode, S.X, S.Y, S.Width, S.Height);
 
             G.WpfPattern = Swatch.DwgBrush;
             G.WpfFill = Swatch.DwgBrush;
@@ -107,7 +109,8 @@ namespace Wind_GH.Formatting
                 case "Hoopoe":
                     wShapeCollection Shapes = (wShapeCollection)W.Element;
                     Shapes.Graphics.WpfFill = G.WpfFill;
-
+                    Shapes.Graphics.WpfPattern = G.WpfPattern;
+                    
                     W.Element = Shapes;
                     break;
             }
@@ -125,34 +128,64 @@ namespace Wind_GH.Formatting
             base.AppendAdditionalMenuItems(menu);
             Menu_AppendSeparator(menu);
 
-            Menu_AppendItem(menu, "Tile", SetTile, true, (TileTypeMode == 4));
-            Menu_AppendItem(menu, "FlipX", SetFlipX, true, (TileTypeMode == 1));
-            Menu_AppendItem(menu, "FlipY", SetFlipY, true, (TileTypeMode == 2));
-            Menu_AppendItem(menu, "FlipXY", SetFlipXY, true, (TileTypeMode == 3));
+            Menu_AppendItem(menu, "Tile", SetTile, true, (TilingMode == 4));
+            Menu_AppendItem(menu, "FlipX", SetFlipX, true, (TilingMode == 1));
+            Menu_AppendItem(menu, "FlipY", SetFlipY, true, (TilingMode == 2));
+            Menu_AppendItem(menu, "FlipXY", SetFlipXY, true, (TilingMode == 3));
+        }
+        
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("TileMode", TilingMode);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            TilingMode = reader.GetInt32("TileMode");
+
+            this.UpdateMessage();
+
+            return base.Read(reader);
         }
 
         private void SetTile(Object sender, EventArgs e)
         {
-            TileTypeMode = 4;
+            TilingMode = 4;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void SetFlipX(Object sender, EventArgs e)
         {
-            TileTypeMode = 1;
+            TilingMode = 1;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void SetFlipY(Object sender, EventArgs e)
         {
-            TileTypeMode = 2;
+            TilingMode = 2;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void SetFlipXY(Object sender, EventArgs e)
         {
-            TileTypeMode = 3;
+            TilingMode = 3;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
+        }
+
+        private void UpdateMessage()
+        {
+            string[] arrMessage = { "0", "Flip X", "Flip Y", "Flip XY", "Tile" };
+            Message = arrMessage[TilingMode];
         }
 
         /// <summary>

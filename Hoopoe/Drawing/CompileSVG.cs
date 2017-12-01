@@ -13,6 +13,8 @@ using Wind.Geometry.Curves;
 using Wind.Geometry.Curves.Primitives;
 using System.Drawing;
 using Wind.Geometry.Curves.Splines;
+using Wind.Geometry.Vectors;
+using Wind.Containers;
 
 namespace Hoopoe.Drawing
 {
@@ -63,13 +65,15 @@ namespace Hoopoe.Drawing
                     break;
             }
 
+            SetGraphics(Shapes.Graphics);
+
         }
         
         public void AddArc(wArc InputCurve)
         {
             SvgArcSegment seg = new SvgArcSegment(new PointF((float)InputCurve.StartPoint.X, (float)InputCurve.StartPoint.Y), (float)InputCurve.Radius, (float)InputCurve.Radius,(float)InputCurve.Angle,SvgArcSize.Small,SvgArcSweep.Positive, new PointF((float)InputCurve.EndPoint.X, (float)InputCurve.EndPoint.Y));
             SvgPath path = new SvgPath();
-            //seg.
+
             //Doc.Children.Add(path);
         }
 
@@ -84,10 +88,9 @@ namespace Hoopoe.Drawing
             SvgFilter filter = new SvgFilter();
 
             filter.AddStyle("Blur", "0", 0);
-
-            
-
+   
             Doc.Children.Add(path);
+            
         }
 
         public void AddEllipse(wEllipse InputCurve)
@@ -105,6 +108,7 @@ namespace Hoopoe.Drawing
             path.Transforms = xForm;
 
             Doc.Children.Add(path);
+            
         }
 
         public void AddLine(wLine InputCurve)
@@ -115,27 +119,115 @@ namespace Hoopoe.Drawing
 
             path.EndX = (float)InputCurve.End.X;
             path.EndY = (float)InputCurve.End.Y;
-
+            
             Doc.Children.Add(path);
+            
         }
 
         public void AddPolyline(wPolyline InputCurve)
         {
             SvgPolyline path = new SvgPolyline();
 
-            SvgPointCollection points = new SvgPointCollection();
-            for(int i = 0;i<InputCurve.Points.Count();i++)
+            List<wPoint> points = InputCurve.Points;
+            SvgPointCollection pointset = new SvgPointCollection();
+
+            for(int i = 0;i< points.Count();i++)
             {
+
+                pointset.Add(new SvgUnit((float)points[i].X));
+                pointset.Add(new SvgUnit((float)points[i].Y));
 
             }
 
+            path.Points = pointset;
 
+            Doc.Children.Add(path);
+            
         }
 
         public void AddSpline(wBezierSpline InputCurve)
         {
+            SvgPath path = new SvgPath();
+            SvgPathSegmentList segments = new SvgPathSegmentList();
+            
+            for(int i = 0;i<InputCurve.Segments.Count();i++)
+            { 
+                wCubicBezier wSeg = InputCurve.Segments[i];
+                SvgCubicCurveSegment segment = new SvgCubicCurveSegment(wSeg.StartPoint.ToPointF(), wSeg.StartControlPoint.ToPointF(), wSeg.EndControlPoint.ToPointF(), wSeg.EndPoint.ToPointF());
+
+                path.PathData.Add(segment);
+            }
+            
+            Doc.Children.Add(path);
+
+        }
+
+        public void SetGraphics(wGraphic pathGraphic)
+        {
+            int count = Doc.Children.Count - 1;
+            var shp = Doc.Children[count];
+
+            SvgPaintServer fill = new SvgColourServer(pathGraphic.Background.ToDrawingColor());
+
+            shp.Fill = fill;
+            shp.FillOpacity = (float)(pathGraphic.Background.A / 255.0);
+            
+
+            SvgPaintServer stroke = new SvgColourServer(pathGraphic.StrokeColor.ToDrawingColor());
+
+            shp.Stroke = stroke;
+            shp.StrokeOpacity = (float)(pathGraphic.StrokeColor.A / 255.0);
+            shp.StrokeWidth = new SvgUnit(SvgUnitType.Pixel,(float)pathGraphic.StrokeWeight[0]);
+
+            shp.StrokeLineCap = StrokeCapToSVG((int)pathGraphic.StrokeCap);
+            shp.StrokeLineJoin = StrokeCornerToSVG((int)pathGraphic.StrokeCorner);
+            shp.StrokeMiterLimit = 89.0f;
 
 
+            SvgUnitCollection pattern = new SvgUnitCollection();
+            
+            List<SvgUnit> unitViaFloat = pathGraphic.StrokePattern.ToList().ConvertAll(x => (SvgUnit)(float)x);
+
+            pattern.AddRange(unitViaFloat);
+
+            shp.StrokeDashArray =  pattern;
+
+            Doc.Children[count] = shp;
+
+        }
+
+        public SvgStrokeLineCap StrokeCapToSVG(int WindCapType)
+        {
+            SvgStrokeLineCap cap = SvgStrokeLineCap.Butt;
+
+            switch(WindCapType)
+            {
+                case 1:
+                    cap = SvgStrokeLineCap.Square;
+                    break;
+                case 2:
+                    cap = SvgStrokeLineCap.Round;
+                    break;
+            }
+
+            return cap;
+        }
+
+        public SvgStrokeLineJoin StrokeCornerToSVG(int WindCornerType)
+        {
+            SvgStrokeLineJoin cap = SvgStrokeLineJoin.Bevel;
+
+            switch (WindCornerType)
+            {
+                case 1:
+                    cap = SvgStrokeLineJoin.Miter;
+                    break;
+                case 2:
+                    cap = SvgStrokeLineJoin.Round;
+                    break;
+            }
+
+            return cap;
         }
 
     }

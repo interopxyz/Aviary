@@ -115,6 +115,7 @@
     <Compile Include="Types\wFontMedia.cs" />
     <Compile Include="Containers\wSize.cs" />
     <Compile Include="Types\wGradient.cs" />
+    <Compile Include="Types\wPattern.cs" />
     <Compile Include="Utilities\AdjustLuminance.cs" />
     <Compile Include="Utilities\GetBitmap.cs" />
     <Compile Include="Utilities\GUIDtoAlpha.cs" />

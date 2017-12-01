@@ -145,9 +145,12 @@ namespace Parrot_GH.Drawings
 
             pCtrl.Graphics.Width = F.Width;
             pCtrl.Graphics.Height = F.Height;
+            
+            pCtrl.group.X = B.Center.X* pCtrl.Scale - B.Width / 2.0 * pCtrl.Scale;
+            pCtrl.group.Y = B.Center.Y* pCtrl.Scale - B.Height / 2.0 * pCtrl.Scale;
 
-            pCtrl.group.Width = (int)F.Width;
-            pCtrl.group.Height = (int)F.Height;
+            pCtrl.group.Width = F.Width;
+            pCtrl.group.Height = F.Height;
 
             pCtrl.SetSize();
 

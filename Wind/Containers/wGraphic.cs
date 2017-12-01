@@ -76,6 +76,14 @@ namespace Wind.Containers
             WpfFill = new SolidColorBrush(Background.ToMediaColor());
         }
 
+        public void SetUniformStrokeWeight(double UniformWeight)
+        {
+            StrokeWeight[0] = UniformWeight;
+            StrokeWeight[1] = UniformWeight;
+            StrokeWeight[2] = UniformWeight;
+            StrokeWeight[3] = UniformWeight;
+        }
+
         public void SetPaddingFromCorners()
         {
             if (Radius[0] > Radius[3]) { Padding[0] = Radius[0]; } else { Padding[0] = Radius[3]; }

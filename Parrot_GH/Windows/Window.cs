@@ -22,7 +22,7 @@ namespace Parrot_GH.Windows
     public class Window : GH_Component
     {
 
-        int modeStatus = 1;
+        int modeStatus = 3;
         pWindow window = new pWindow();
         string ID;
         string name;

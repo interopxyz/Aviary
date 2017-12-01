@@ -25,7 +25,7 @@ namespace Wind_GH.Files
         {
             pManager.AddTextParameter("File Path", "P", "The target filepath for the image to be saved", GH_ParamAccess.item);
             pManager[0].Optional = true;
-            pManager.AddGenericParameter("Bitmap Object", "B", "The bitmap object to be saved", GH_ParamAccess.item);
+            pManager.AddGenericParameter("SVG Object", "SVG", "---", GH_ParamAccess.item);
             pManager.AddBooleanParameter("Save", "S", "If true the bitmap will be saved to a bitmap", GH_ParamAccess.item);
         }
 

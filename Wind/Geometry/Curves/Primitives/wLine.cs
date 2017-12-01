@@ -23,6 +23,16 @@ namespace Wind.Geometry.Curves.Primitives
             Indices.AddRange(new List<int>() { 0, 1 });
         }
 
+        public wLine(double StartX, double StartY, double EndX, double EndY)
+        {
+            Start = new wPoint(StartX,StartY);
+            End = new wPoint(EndX,EndY);
+            Points.AddRange(new List<wPoint>() { Start, End });
+            Indices.AddRange(new List<int>() { 0, 1 });
+
+            Direction = new wVector(Start, End);
+        }
+
         public wLine(wPoint StartPoint, wPoint EndPoint)
         {
             Start = StartPoint;

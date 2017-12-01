@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee", "Bumblebee\Bumb
 		{16C589B0-CBAE-46B1-BC46-24AD34DE87F6} = {16C589B0-CBAE-46B1-BC46-24AD34DE87F6}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee_GH", "Bumblebee_GH\Bumblebee_GH.csproj", "{54B2AA73-604F-47EA-A56A-F8719CFA3471}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +153,14 @@ Global
 		{1D0E0C2D-7E0B-4B7A-900F-CE78D7C6F66B}.Debug64|Any CPU.Build.0 = Debug|Any CPU
 		{1D0E0C2D-7E0B-4B7A-900F-CE78D7C6F66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D0E0C2D-7E0B-4B7A-900F-CE78D7C6F66B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Debug32|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Debug32|Any CPU.Build.0 = Debug|Any CPU
+		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Debug64|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Debug64|Any CPU.Build.0 = Debug|Any CPU
+		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

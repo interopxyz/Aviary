@@ -42,7 +42,7 @@ namespace Parrot_GH.Controls
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("Values", "V", "Values", GH_ParamAccess.tree);
-            pManager.AddTextParameter("Titles", "T", "Column Titles", GH_ParamAccess.list,"Title");
+            pManager.AddTextParameter("Titles", "T", "Column Titles, [Note: Titles do not like the period (.) character]", GH_ParamAccess.list,"Title");
             pManager[1].Optional = true;
         }
 

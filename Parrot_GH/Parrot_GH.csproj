@@ -127,7 +127,6 @@
     <Compile Include="Displays\Gradient.cs" />
     <Compile Include="Drawings\ComposeDrawing.cs" />
     <Compile Include="Drawings\ComposeSVG.cs" />
-    <Compile Include="Drawings\SVGtester.cs" />
     <Compile Include="Drawings\ViewBasicMesh.cs" />
     <Compile Include="Drawings\ViewOpenGLMesh.cs" />
     <Compile Include="Drawings\ViewPointCloud.cs" />

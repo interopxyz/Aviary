@@ -45,7 +45,6 @@ namespace Parrot_GH.Drawings
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("SVG", "SVG", "SVG", GH_ParamAccess.item);
-            pManager.AddTextParameter("Test", "Test", "Test", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace Parrot_GH.Drawings
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            
+
 
             //Set Unique Control Properties
 
@@ -114,6 +113,8 @@ namespace Parrot_GH.Drawings
 
             CompileSVG SVGobject = new CompileSVG();
 
+            SVGobject.SetSize(600, 600);
+
             foreach (wShapeCollection S in Shapes)
             {
                 switch (S.Type)
@@ -128,8 +129,9 @@ namespace Parrot_GH.Drawings
                 }
             }
 
+            SVGobject.Build();
+
             DA.SetData(0, SVGobject);
-            DA.SetData(1, SVGobject.testing);
 
 
         }

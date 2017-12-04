@@ -47,7 +47,7 @@ namespace Wind_GH.Files
             string F = null;
             bool S = false;
 
-            CompiledSVG X = new CompiledSVG();
+            CompileSVG X = new CompileSVG();
 
             // Access the input parameters 
             if (!DA.GetData(0, ref F)) return;

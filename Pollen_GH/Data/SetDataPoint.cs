@@ -97,6 +97,7 @@ namespace Pollen_GH.Data
 
                     DataObj.Number = num;
                     DataObj.Text = num.ToString();
+                    DataObj.Domain = new Tuple<double, double>(0, num);
                     DataObj.Label = Convert.ToString(Math.Truncate(num * 1000) / 1000);
                     break;
                 case 2:
@@ -105,6 +106,8 @@ namespace Pollen_GH.Data
 
                     DataObj.Text = intg.ToString();
                     DataObj.Integer = intg;
+                    DataObj.Number = intg;
+                    DataObj.Domain = new Tuple<double, double>(0, intg);
                     break;
                 case 3:
                     Interval domain = new Interval();
@@ -112,6 +115,7 @@ namespace Pollen_GH.Data
 
                     DataObj.Text = domain.ToString();
                     DataObj.Domain = new Tuple<double, double>(domain.T0, domain.T1);
+                    DataObj.Point = new wPoint(domain.T0, domain.T1, 0);
                     break;
                 case 4:
                     Point3d point = new Point3d();

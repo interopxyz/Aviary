@@ -171,8 +171,6 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Wind.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Xceed.Wpf.DataGrid.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Xceed.Wpf.Toolkit.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Imaging.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Math.dll

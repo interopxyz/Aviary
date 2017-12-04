@@ -32,7 +32,7 @@ namespace Wind_GH.Geometry
             
             if (RhinoCurve.TryGetCircle(out R))
             {
-                WindCurve = new wEllipse(new wPoint(R.Plane.Origin.X, R.Plane.Origin.Y), R.Radius, R.Radius);
+                WindCurve = new wCircle(new wPoint(R.Center.X, R.Center.Y), R.Radius);
             }
             else if (RhinoCurve.TryGetArc(out A))
             {

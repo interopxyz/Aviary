@@ -103,9 +103,9 @@ namespace Pollen_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pollen_Grid {
+        internal static System.Drawing.Bitmap Pollen_GridView {
             get {
-                object obj = ResourceManager.GetObject("Pollen_Grid", resourceCulture);
+                object obj = ResourceManager.GetObject("Pollen_GridView", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

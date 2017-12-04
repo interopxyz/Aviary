@@ -20,7 +20,7 @@ namespace Hoopoe.Drawing
 {
     public class CompileSVG
     {
-
+        public string testing = null;
         SvgDocument Doc = new SvgDocument();
 
         List<SvgPath> Paths = new List<SvgPath>();
@@ -61,7 +61,6 @@ namespace Hoopoe.Drawing
                     AddSpline((wBezierSpline)Shapes.Shapes[0].Curve);
                     break;
                 default:
-
                     break;
             }
 
@@ -149,15 +148,25 @@ namespace Hoopoe.Drawing
         {
             SvgPath path = new SvgPath();
             SvgPathSegmentList segments = new SvgPathSegmentList();
-            
-            for(int i = 0;i<InputCurve.Segments.Count();i++)
-            { 
-                wCubicBezier wSeg = InputCurve.Segments[i];
-                SvgCubicCurveSegment segment = new SvgCubicCurveSegment(wSeg.StartPoint.ToPointF(), wSeg.StartControlPoint.ToPointF(), wSeg.EndControlPoint.ToPointF(), wSeg.EndPoint.ToPointF());
+            SvgPathBuilder build = new SvgPathBuilder();
 
-                path.PathData.Add(segment);
+            for(int i = 0;i<(InputCurve.Points.Count()-3);i+=3)
+            {
+
+                //wCubicBezier wSeg = InputCurve.Segments[i];
+                //SvgPathSegment segment = new SvgCubicCurveSegment(wSeg.StartPoint.ToPointF(), wSeg.StartControlPoint.ToPointF(), wSeg.EndControlPoint.ToPointF(), wSeg.EndPoint.ToPointF());
+
+                SvgCubicCurveSegment segment = new SvgCubicCurveSegment(InputCurve.Points[i].ToPointF(), InputCurve.Points[i+1].ToPointF(), InputCurve.Points[i+2].ToPointF(), InputCurve.Points[i+3].ToPointF());
+                
+                segments.Add(segment);
+
             }
             
+
+            path.PathData = segments;
+
+            testing = segments.ToString();
+
             Doc.Children.Add(path);
 
         }

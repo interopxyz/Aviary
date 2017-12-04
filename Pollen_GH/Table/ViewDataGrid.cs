@@ -219,7 +219,7 @@ namespace Pollen_GH.Table
         {
             get
             {
-                return Properties.Resources.Pollen_Grid;
+                return Properties.Resources.Pollen_GridView;
             }
         }
 

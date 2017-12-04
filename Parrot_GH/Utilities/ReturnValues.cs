@@ -165,8 +165,9 @@ namespace Parrot_GH.Utilities
                                  {
                                      C4.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
                                      C4.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
-                                 }
-                                 OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C4.SelectedColor).ToDrawingColor()), P);
+                                }
+                                OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C4.SelectedColor).ToDrawingColor()), P);
+                                OutPut.Append(new GH_ObjectWrapper(C4.SelectedColor), P);
                                  break;
                              case ("ColorPicker"):
                                  ColorPicker C5 = (ColorPicker)E.Element;
@@ -175,7 +176,8 @@ namespace Parrot_GH.Utilities
                                      C5.SelectedColorChanged -= (o, e) => { ExpireSolution(true); };
                                      C5.SelectedColorChanged += (o, e) => { ExpireSolution(true); };
                                  }
-                                 OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C5.SelectedColor).ToDrawingColor()), P);
+                                OutPut.Append(new GH_ObjectWrapper(new wColor((System.Windows.Media.Color)C5.SelectedColor).ToDrawingColor()), P);
+                                OutPut.Append(new GH_ObjectWrapper(C5.SelectedColor), P);
                                  break;
                             case ("CheckComboBox"):
                                 CheckComboBox C6 = (CheckComboBox)E.Element;

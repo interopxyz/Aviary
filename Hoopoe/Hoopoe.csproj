@@ -46,8 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly\hDocument.cs" />
+    <Compile Include="Assembly\hPath.cs" />
+    <Compile Include="Assembly\hShape.cs" />
+    <Compile Include="Drawing\CompiledSVG.cs" />
     <Compile Include="Drawing\CompileSVG.cs" />
+    <Compile Include="Geometry\Curves\hPolyline.cs" />
+    <Compile Include="Geometry\Curves\hCubicBezierSpline.cs" />
+    <Compile Include="Geometry\hCurve.cs" />
+    <Compile Include="Geometry\Primitives\hCircle.cs" />
+    <Compile Include="Geometry\Primitives\hEllipse.cs" />
+    <Compile Include="Geometry\Primitives\hLine.cs" />
+    <Compile Include="Graphics\Fill\hFillColor.cs" />
+    <Compile Include="Graphics\Fill\hFillOpacity.cs" />
+    <Compile Include="Graphics\hGraphic.cs" />
+    <Compile Include="Graphics\Stroke\hStrokeColor.cs" />
+    <Compile Include="Graphics\Stroke\hStrokeOpacity.cs" />
+    <Compile Include="Graphics\Stroke\hStrokeWeight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transform\hRotate.cs" />
+    <Compile Include="Transform\hTransform.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -58,6 +76,7 @@
       <Name>Wind</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>Copy "$(ProjectDir)bin\Debug\$(ProjectName).dll" "$(SolutionDir)Aviary\Build\"</PostBuildEvent>

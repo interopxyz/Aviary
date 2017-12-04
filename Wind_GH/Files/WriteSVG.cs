@@ -47,12 +47,13 @@ namespace Wind_GH.Files
             string F = null;
             bool S = false;
 
-            CompileSVG X = new CompileSVG();
+            CompiledSVG X = new CompiledSVG();
 
             // Access the input parameters 
             if (!DA.GetData(0, ref F)) return;
             if (!DA.GetData(1, ref X)) return;
             if (!DA.GetData(2, ref S)) return;
+            
 
             string FilePath = "C:\\Users\\Public\\Documents\\untitled.svg";
 

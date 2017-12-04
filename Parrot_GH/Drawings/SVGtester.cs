@@ -3,25 +3,23 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-using Wind.Utilities;
-using Wind.Containers;
-using Parrot.Containers;
-using Parrot.Drawings;
 using Grasshopper.Kernel.Types;
 using Wind.Geometry.Curves;
+using Wind.Containers;
 using Wind.Geometry.Vectors;
-using Wind.Geometry.Curves.Primitives;
 using Hoopoe.Drawing;
+using Hoopoe.Geometry.Primitives;
+using Hoopoe.Assembly;
 
 namespace Parrot_GH.Drawings
 {
-    public class ComposeSVG : GH_Component
+    public class SVGtester : GH_Component
     {
         /// <summary>
-        /// Initializes a new instance of the ComposeSVG class.
+        /// Initializes a new instance of the SVGtester class.
         /// </summary>
-        public ComposeSVG()
-          : base("Compose SVG", "SVG", "---", "Aviary", "2D Drawing")
+        public SVGtester()
+          : base("Test SVG", "testSVG", "---", "Aviary", "2D Drawing")
         {
         }
 
@@ -45,7 +43,6 @@ namespace Parrot_GH.Drawings
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("SVG", "SVG", "SVG", GH_ParamAccess.item);
-            pManager.AddTextParameter("Test", "Test", "Test", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -54,7 +51,7 @@ namespace Parrot_GH.Drawings
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            
+
 
             //Set Unique Control Properties
 
@@ -112,7 +109,9 @@ namespace Parrot_GH.Drawings
                 new wVector(F.Plane.XAxis.X, F.Plane.XAxis.Y, F.Plane.XAxis.Z),
                 new wVector(F.Plane.YAxis.X, F.Plane.YAxis.Y, F.Plane.YAxis.Z));
 
-            CompileSVG SVGobject = new CompileSVG();
+            CompiledSVG SVGobject = new CompiledSVG();
+
+            SVGobject.SetSize(600, 600);
 
             foreach (wShapeCollection S in Shapes)
             {
@@ -128,8 +127,9 @@ namespace Parrot_GH.Drawings
                 }
             }
 
+            SVGobject.Build();
+
             DA.SetData(0, SVGobject);
-            DA.SetData(1, SVGobject.testing);
 
 
         }
@@ -158,7 +158,7 @@ namespace Parrot_GH.Drawings
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("5e6c9d6f-bb0c-4272-a945-a8daae25e38c"); }
+            get { return new Guid("26b01e08-ee61-47fe-b107-8484fd8d5703"); }
         }
     }
 }

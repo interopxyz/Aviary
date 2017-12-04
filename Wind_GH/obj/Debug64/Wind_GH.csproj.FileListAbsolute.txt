@@ -333,3 +333,33 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\obj\Debug
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\obj\Debug64\Wind_GH.csproj.GenerateResource.Cache
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\obj\Debug64\Wind_GH.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\obj\Debug64\Wind_GH.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Wind_GH.dll.config
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Xceed.Wpf.AvalonDock.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Wind_GH.dll.config
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Xceed.Wpf.AvalonDock.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind_GH\bin\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll

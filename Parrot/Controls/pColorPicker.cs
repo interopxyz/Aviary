@@ -38,7 +38,7 @@ namespace Parrot.Controls
         {
             Element.SelectedColor = new wColor(Default).ToNullableMediaColor().Value;
             Element.ShowDropDownButton = false;
-            Element.ShowAdvancedButton = false;
+            Element.ShowDropDownButton = false;
 
             pColorSets ColorSets = new pColorSets();
             switch (Mode)

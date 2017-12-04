@@ -475,8 +475,8 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\ro\
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\ru\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Debug64\Parrot_GH.csprojResolveAssemblyReference.cache
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Debug64\Parrot_GH.Properties.Resources.resources
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Debug64\Parrot_GH.csproj.GenerateResource.Cache
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Debug64\Parrot_GH.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Debug64\Parrot_GH.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Debug64\Parrot_GH.csprojResolveAssemblyReference.cache

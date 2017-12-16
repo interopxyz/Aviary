@@ -34,7 +34,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Gradient class.
         /// </summary>
         public Gradient()
-          : base("Gradient", "Gradient", "---", "Aviary", "Dashboard Display")
+          : base("Gradient", "Gradient", "---", "Aviary", "Dashboard Control")
         {
         }
 
@@ -80,9 +80,12 @@ namespace Parrot_GH.Displays
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pCtrl = (pGradient)Element.ParrotControl;
+                if (Elements[C] != null)
+                {
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pCtrl = (pGradient)Element.ParrotControl;
+                }
             }
             else
             {
@@ -250,7 +253,7 @@ namespace Parrot_GH.Displays
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.septenary; }
+            get { return GH_Exposure.quinary; }
         }
 
         /// <summary>

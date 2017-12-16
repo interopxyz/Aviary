@@ -14,17 +14,23 @@ using Wind.Geometry.Curves;
 using Parrot.Controls;
 using System.Windows.Media;
 using Wind.Graphics;
+using GH_IO.Serialization;
+using System.Windows.Forms;
 
 namespace Wind_GH.Formatting
 {
-    public class FillGradient : GH_Component
+    public class FillGradientLinear : GH_Component
     {
+        public int GradientType = 0;
+        public int GradientSpace = 0;
+
         /// <summary>
         /// Initializes a new instance of the FillGradient class.
         /// </summary>
-        public FillGradient()
-          : base("Gradient", "Gradient", "---", "Aviary", "Format")
+        public FillGradientLinear()
+          : base("Linear Gradient", "Linear", "---", "Aviary", "Format")
         {
+            this.UpdateMessage();
         }
 
         /// <summary>
@@ -34,15 +40,11 @@ namespace Wind_GH.Formatting
         {
             pManager.AddGenericParameter("Object", "O", "Wind Objects", GH_ParamAccess.item);
             pManager[0].Optional = true;
-            pManager.AddColourParameter("Colors", "C", "---", GH_ParamAccess.list, new List<System.Drawing.Color>() { System.Drawing.Color.LightSlateGray, System.Drawing.Color.SlateGray });
-            pManager.AddNumberParameter("Parameters", "P", "---", GH_ParamAccess.list, new List<double>() { 0, 1 });
+            pManager.AddColourParameter("Colors", "C", "---", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Parameters", "P", "---", GH_ParamAccess.list);
             pManager[2].Optional = true;
-            pManager.AddIntegerParameter("Types", "T", "---", GH_ParamAccess.item,0);
+            pManager.AddNumberParameter("Angle", "A", "---", GH_ParamAccess.item,0);
             pManager[3].Optional = true;
-            
-            Param_Integer param = (Param_Integer)Params.Input[3];
-            param.AddNamedValue("Linear", 0);
-            param.AddNamedValue("Radial", 1);
         }
 
         /// <summary>
@@ -62,19 +64,21 @@ namespace Wind_GH.Formatting
         {
             IGH_Goo Element = null;
 
-            List<System.Drawing.Color> Colors = new List<System.Drawing.Color>() { System.Drawing.Color.LightSlateGray,System.Drawing.Color.SlateGray};
+            List<System.Drawing.Color> Colors = new List<System.Drawing.Color>();
             List<double> Parameters = new List<double>();
-            int GradientType = 0;
+            double GradientAngle = 0;
 
             if (!DA.GetData(0, ref Element)) return;
             if (!DA.GetDataList(1, Colors)) return;
             if (!DA.GetDataList(2, Parameters)) return;
-            if (!DA.GetData(3, ref GradientType)) return;
+            if (!DA.GetData(3, ref GradientAngle)) return;
 
             wObject W = new wObject();
             if (Element != null) { Element.CastTo(out W); }
             wGraphic G = W.Graphics;
-            
+
+            G.FillType = wGraphic.FillTypes.LinearGradient;
+
             if (Parameters.Count < 1)
             { 
             G.Gradient = new wGradient(Colors);
@@ -89,7 +93,7 @@ namespace Wind_GH.Formatting
                     }
                 }
 
-                    G.Gradient = new wGradient(Colors,Parameters);
+                    G.Gradient = new wGradient(Colors,Parameters,GradientAngle, (wGradient.GradientSpace)GradientSpace);
             }
 
             G.WpfFill = new wFillGradient(G.Gradient, GradientType).GrdBrush;
@@ -118,14 +122,15 @@ namespace Wind_GH.Formatting
                     break;
                     case "Hoopoe":
                         wShapeCollection Shapes = (wShapeCollection)W.Element;
+                        Shapes.Graphics.FillType = wGraphic.FillTypes.LinearGradient;
 
                         if (Parameters.Count < 1)
                         {
-                            Shapes.Graphics.Gradient = new wGradient(Colors);
+                            Shapes.Graphics.Gradient = new wGradient(Colors, GradientAngle, (wGradient.GradientSpace)GradientSpace);
                         }
                         else
                         {
-                            Shapes.Graphics.Gradient = new wGradient(Colors, Parameters);
+                            Shapes.Graphics.Gradient = new wGradient(Colors, Parameters, GradientAngle, (wGradient.GradientSpace)GradientSpace);
                         }
 
                         W.Element = Shapes;
@@ -138,10 +143,69 @@ namespace Wind_GH.Formatting
 
         }
 
+        public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
+        {
+            base.AppendAdditionalMenuItems(menu);
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Global", LocalSpace, true, (GradientSpace == 0));
+            Menu_AppendItem(menu, "Local", GlobalSpace, true, (GradientSpace == 1));
+
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Custom", ModeCustom, true, (GradientType == 0));
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("Pattern", GradientType);
+            writer.SetInt32("Space", GradientSpace);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            GradientType = reader.GetInt32("Pattern");
+            GradientSpace = reader.GetInt32("Space");
+
+            this.UpdateMessage();
+            this.ExpireSolution(true);
+            return base.Read(reader);
+        }
+
+        private void LocalSpace(Object sender, EventArgs e)
+        {
+            GradientSpace = 0;
+
+            this.UpdateMessage();
+            this.ExpireSolution(true);
+        }
+
+        private void GlobalSpace(Object sender, EventArgs e)
+        {
+            GradientSpace = 1;
+            
+            this.ExpireSolution(true);
+        }
+
+        private void ModeCustom(Object sender, EventArgs e)
+        {
+            GradientType = 0;
+
+            this.UpdateMessage();
+            this.ExpireSolution(true);
+        }
+
+        private void UpdateMessage()
+        {
+            string[] Messages = { "Global", "Local" };
+            Message = Messages[GradientSpace];
+        }
 
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>

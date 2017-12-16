@@ -10,7 +10,6 @@ namespace Hoopoe.Graphics.Stroke
     {
         public hStrokeOpacity()
         {
-            Value = "stroke-opacity = \"1\"";
         }
 
         public hStrokeOpacity(int Alpha)

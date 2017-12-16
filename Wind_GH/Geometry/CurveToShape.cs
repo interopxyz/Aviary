@@ -29,6 +29,10 @@ namespace Wind_GH.Geometry
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddCurveParameter("Curve", "C", "Curve", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Distance Tolerance", "D", "---", GH_ParamAccess.item, 0);
+            pManager[1].Optional = true;
+            pManager.AddNumberParameter("Kink Tolerance", "K", "---", GH_ParamAccess.item, 0);
+            pManager[2].Optional = true;
         }
 
         /// <summary>
@@ -47,7 +51,11 @@ namespace Wind_GH.Geometry
         {
 
             Curve C = new Circle(new Point3d(0,0,0),1).ToNurbsCurve();
+            double D = 0;
+            double K = 0;
             if (!DA.GetData(0, ref C)) return;
+            if (!DA.GetData(1, ref D)) return;
+            if (!DA.GetData(2, ref K)) return;
 
             wCurve Crv = new wCircle(new wPoint(), 1);
 
@@ -69,7 +77,7 @@ namespace Wind_GH.Geometry
                 }
                 else
                 {
-                    Crv = new RhCrvToWindCrv().ToPiecewiseBezier(C);
+                    Crv = new RhCrvToWindCrv().ToPiecewiseBezier(C,D,K);
                 }
             }
             else

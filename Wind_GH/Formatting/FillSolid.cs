@@ -59,6 +59,8 @@ namespace Wind_GH.Formatting
             if (Element != null) { Element.CastTo(out W); }
             wGraphic G = W.Graphics;
 
+            G.FillType = wGraphic.FillTypes.Solid;
+
             G.Background = new wColor(Background);
             G.Foreground = new wColor(Background);
 
@@ -81,12 +83,14 @@ namespace Wind_GH.Formatting
                     {
                         case "DataPoint":
                             DataPt tDataPt = (DataPt)W.Element;
+                            tDataPt.Graphics.FillType = wGraphic.FillTypes.Solid;
                             tDataPt.Graphics.Background = new wColor(Background);
                             tDataPt.Graphics.Foreground = new wColor(Background);
                             W.Element = tDataPt;
                             break;
                         case "DataSet":
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
+                            tDataSet.Graphics.FillType = wGraphic.FillTypes.Solid;
                             tDataSet.Graphics.Background = new wColor(Background);
                             tDataSet.Graphics.Foreground = new wColor(Background);
                             W.Element = tDataSet;
@@ -95,6 +99,7 @@ namespace Wind_GH.Formatting
                     break;
                 case "Hoopoe":
                     wShapeCollection Shapes = (wShapeCollection)W.Element;
+                    Shapes.Graphics.FillType = wGraphic.FillTypes.Solid;
                     Shapes.Graphics.WpfFill = G.WpfFill;
 
                     Shapes.Graphics.Background = new wColor(Background);
@@ -105,12 +110,12 @@ namespace Wind_GH.Formatting
             }
 
             DA.SetData(0, W);
-            DA.SetData(1, PatternWeight);
+            DA.SetData(1, G);
         }
 
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>

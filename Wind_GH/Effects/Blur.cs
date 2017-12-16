@@ -83,7 +83,7 @@ namespace Wind_GH.Effects
 
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.quinary; }
+            get { return GH_Exposure.senary; }
         }
 
         /// <summary>

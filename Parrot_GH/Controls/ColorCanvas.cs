@@ -63,9 +63,12 @@ namespace Parrot_GH.Controls
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pCtrl = (pColorCanvas)Element.ParrotControl;
+                if (Elements[C] != null)
+                {
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pCtrl = (pColorCanvas)Element.ParrotControl;
+                }
             }
             else
             {

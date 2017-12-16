@@ -64,7 +64,7 @@ namespace Wind_GH.Geometry
             }
             else
             {
-                WindCurve = ToPiecewiseBezier(RhinoCurve);
+                WindCurve = ToPiecewiseBezier(RhinoCurve,0,0);
             }
         }
 
@@ -80,11 +80,11 @@ namespace Wind_GH.Geometry
             return wPointSet;
         }
 
-        public wCurve ToPiecewiseBezier(Curve RhinoCurve)
+        public wCurve ToPiecewiseBezier(Curve RhinoCurve, double DistanceTol, double KinkTol)
         {
             NurbsCurve N = RhinoCurve.ToNurbsCurve();
             N.MakePiecewiseBezier(true);
-            BezierCurve[] B = BezierCurve.CreateCubicBeziers(N, 0, 0);
+            BezierCurve[] B = BezierCurve.CreateCubicBeziers(N, DistanceTol, KinkTol);
 
             Point3d PtA = B[0].GetControlVertex3d(0);
             Point3d PtB = B[0].GetControlVertex3d(1);

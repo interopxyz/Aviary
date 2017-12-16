@@ -9,13 +9,18 @@ namespace Hoopoe.Assembly
 {
     public class hShape
     {
-        
+        public string ID = "";
         public StringBuilder svgShape = new StringBuilder();
         public hCurve Curve = null;
 
         public hShape()
         {
 
+        }
+
+        public hShape(string PathID)
+        {
+            ID = PathID;
         }
 
         private void SetFrame()
@@ -25,7 +30,7 @@ namespace Hoopoe.Assembly
             svgShape.Append(" \"" + Environment.NewLine);
         }
 
-        public hShape(hCurve HoopoeCurve)
+        public void SetShape(hCurve HoopoeCurve)
         {
             Curve = HoopoeCurve;
             SetFrame();

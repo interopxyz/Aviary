@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
+using System.Text;
 
 namespace Wind.Utilities
 {
@@ -12,6 +14,13 @@ namespace Wind.Utilities
         public GetBitmap(string FilePath)
         {
             BitmapObject = (Bitmap)Bitmap.FromFile(FilePath);
+
+            PropertyItem[] attribute = BitmapObject.PropertyItems;
+
+            attribute[0].Id = 0;
+            attribute[0].Value = Encoding.ASCII.GetBytes(FilePath);
+
+            BitmapObject.SetPropertyItem(attribute[0]);
 
             Width = BitmapObject.Width;
             Height = BitmapObject.Height;

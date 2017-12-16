@@ -11,6 +11,13 @@ namespace Wind.Containers
 {
     public class wGraphic
     {
+        public string Layer = " ";
+        public enum FillTypes { Solid, LinearGradient, RadialGradient, Pattern, Bitmap};
+
+        public FillTypes FillType = FillTypes.Solid;
+
+        public wImage FillBitmap = null;
+
         public wColor Background = new wColor().White();
         public wColor Foreground = new wColor().Black();
         public wColor StrokeColor = new wColor().Black();

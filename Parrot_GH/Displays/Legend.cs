@@ -28,7 +28,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Legend class.
         /// </summary>
         public Legend()
-          : base("Legend", "Legend", "---", "Aviary", "Dashboard Display")
+          : base("Legend", "Legend", "---", "Aviary", "Dashboard Control")
         {
             this.UpdateMessage();
         }
@@ -74,9 +74,12 @@ namespace Parrot_GH.Displays
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pCtrl = (pLegend)Element.ParrotControl;
+                if (Elements[C] != null)
+                {
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pCtrl = (pLegend)Element.ParrotControl;
+                }
             }
             else
             {
@@ -219,7 +222,7 @@ namespace Parrot_GH.Displays
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.septenary; }
+            get { return GH_Exposure.quinary; }
         }
 
         /// <summary>

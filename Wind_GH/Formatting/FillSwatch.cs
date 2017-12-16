@@ -75,6 +75,7 @@ namespace Wind_GH.Formatting
 
             wFillSwatch Swatch = new wFillSwatch(S, Scale, TilingMode, S.X, S.Y, S.Width, S.Height);
 
+            G.FillType = wGraphic.FillTypes.Pattern;
             G.WpfPattern = Swatch.DwgBrush;
             G.WpfFill = Swatch.DwgBrush;
 
@@ -108,6 +109,8 @@ namespace Wind_GH.Formatting
                     break;
                 case "Hoopoe":
                     wShapeCollection Shapes = (wShapeCollection)W.Element;
+                    Shapes.Graphics.FillType = wGraphic.FillTypes.Pattern;
+
                     Shapes.Graphics.WpfFill = G.WpfFill;
                     Shapes.Graphics.WpfPattern = G.WpfPattern;
                     
@@ -116,11 +119,7 @@ namespace Wind_GH.Formatting
             }
 
             DA.SetData(0, W);
-        }
-
-        public override GH_Exposure Exposure
-        {
-            get { return GH_Exposure.secondary; }
+            DA.SetData(1, G);
         }
 
         public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
@@ -186,6 +185,11 @@ namespace Wind_GH.Formatting
         {
             string[] arrMessage = { "0", "Flip X", "Flip Y", "Flip XY", "Tile" };
             Message = arrMessage[TilingMode];
+        }
+
+        public override GH_Exposure Exposure
+        {
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>

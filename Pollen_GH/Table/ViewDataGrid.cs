@@ -72,9 +72,12 @@ namespace Pollen_GH.Table
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pCtrl = (pDataGrid)Element.PollenControl;
+                if (Elements[C] != null)
+                {
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pCtrl = (pDataGrid)Element.PollenControl;
+                }
             }
             else
             {

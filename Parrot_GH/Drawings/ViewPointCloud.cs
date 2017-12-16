@@ -89,9 +89,12 @@ namespace Parrot_GH.Drawings
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pCtrl = (pPointCloudViewer)Element.ParrotControl;
+                if (Elements[C] != null)
+                {
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pCtrl = (pPointCloudViewer)Element.ParrotControl;
+                }
             }
             else
             {

@@ -28,7 +28,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Label class.
         /// </summary>
         public Label()
-          : base("Label", "Label", "---", "Aviary", "Dashboard Display")
+          : base("Label", "Label", "---", "Aviary", "Dashboard Control")
         {
             this.UpdateMessage();
 
@@ -74,9 +74,12 @@ namespace Parrot_GH.Displays
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pCtrl = (pLabel)Element.ParrotControl;
+                if (Elements[C] != null)
+                {
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pCtrl = (pLabel)Element.ParrotControl;
+                }
             }
             else
             {
@@ -229,7 +232,7 @@ namespace Parrot_GH.Displays
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.septenary; }
+            get { return GH_Exposure.quinary; }
         }
 
         /// <summary>

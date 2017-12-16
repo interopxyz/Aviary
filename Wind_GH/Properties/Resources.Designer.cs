@@ -133,6 +133,16 @@ namespace Wind_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Wind_Animation {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Animation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Wind_Bitmap_Open {
             get {
                 object obj = ResourceManager.GetObject("Wind_Bitmap_Open", resourceCulture);
@@ -236,6 +246,26 @@ namespace Wind_GH.Properties {
         internal static System.Drawing.Bitmap Wind_Font {
             get {
                 object obj = ResourceManager.GetObject("Wind_Font", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Wind_Gradient_Radial {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Gradient_Radial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Wind_Layers {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Layers", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

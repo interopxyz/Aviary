@@ -13,7 +13,17 @@ namespace Wind.Types
         public List<wColor> ColorSet = new List<wColor>();
         public List<double> ParameterSet = new List<double>();
         public int Type = 0;
+        public double Angle = 0;
         public bool IsInverted = false;
+        public enum GradientSpace { Local, Global }
+        public GradientSpace FillMode = GradientSpace.Local;
+
+        public enum GradientMode { Linear, Radial}
+        public GradientMode Mode = GradientMode.Linear;
+
+        public double Radius = 1.0;
+        public wDomain Location = new wDomain(0.5, 0.5);
+        public wDomain Focus = new wDomain(0.5, 0.5);
 
         GradientStopCollection MediaGradient = new GradientStopCollection();
 
@@ -46,6 +56,73 @@ namespace Wind.Types
                 ColorSet.Add(new wColor(GradientColors[i]));
                 ParameterSet.Add((1.0 / GradientColors.Count) * (double)i);
             }
+
+        }
+
+        public wGradient(List<System.Drawing.Color> GradientColors, double RotationAngle)
+        {
+            ColorSet.Clear();
+
+            ParameterSet.Clear();
+            for (int i = 0; i < GradientColors.Count; i++)
+            {
+                ColorSet.Add(new wColor(GradientColors[i]));
+                ParameterSet.Add((1.0 / GradientColors.Count) * (double)i);
+            }
+
+            Angle = RotationAngle;
+
+        }
+
+        public wGradient(List<System.Drawing.Color> GradientColors, wDomain GradientLocation, wDomain GradientFocus,  double GradientRadius)
+        {
+            ColorSet.Clear();
+
+            ParameterSet.Clear();
+            for (int i = 0; i < GradientColors.Count; i++)
+            {
+                ColorSet.Add(new wColor(GradientColors[i]));
+                ParameterSet.Add((1.0 / GradientColors.Count) * (double)i);
+            }
+
+            Radius = GradientRadius;
+            Location = GradientLocation;
+            Focus = GradientFocus;
+            Mode = GradientMode.Radial;
+        }
+
+        public wGradient(List<System.Drawing.Color> GradientColors, wDomain GradientLocation, wDomain GradientFocus, double GradientRadius, GradientSpace Extents)
+        {
+            ColorSet.Clear();
+
+            ParameterSet.Clear();
+            for (int i = 0; i < GradientColors.Count; i++)
+            {
+                ColorSet.Add(new wColor(GradientColors[i]));
+                ParameterSet.Add((1.0 / GradientColors.Count) * (double)i);
+            }
+
+            Radius = GradientRadius;
+            Location = GradientLocation;
+            Focus = GradientFocus;
+            FillMode = Extents;
+
+            Mode = GradientMode.Radial;
+        }
+
+        public wGradient(List<System.Drawing.Color> GradientColors, double RotationAngle, GradientSpace Extents)
+        {
+            ColorSet.Clear();
+
+            ParameterSet.Clear();
+            for (int i = 0; i < GradientColors.Count; i++)
+            {
+                ColorSet.Add(new wColor(GradientColors[i]));
+                ParameterSet.Add((1.0 / GradientColors.Count) * (double)i);
+            }
+
+            Angle = RotationAngle;
+            FillMode = Extents;
 
         }
 
@@ -95,6 +172,71 @@ namespace Wind.Types
             {
                 ColorSet.Add(new wColor(GradientColors[i]));
             }
+        }
+
+        public wGradient(List<System.Drawing.Color> GradientColors, List<double> GradientParameters, double RotationAngle)
+        {
+            ColorSet.Clear();
+            ParameterSet = GradientParameters;
+
+            for (int i = 0; i < GradientColors.Count; i++)
+            {
+                ColorSet.Add(new wColor(GradientColors[i]));
+            }
+
+            Angle = RotationAngle;
+
+        }
+
+        public wGradient(List<System.Drawing.Color> GradientColors, List<double> GradientParameters, wDomain GradientLocation, wDomain GradientFocus, double GradientRadius)
+        {
+            ColorSet.Clear();
+            ParameterSet = GradientParameters;
+
+            for (int i = 0; i < GradientColors.Count; i++)
+            {
+                ColorSet.Add(new wColor(GradientColors[i]));
+            }
+
+            Radius = GradientRadius;
+            Location = GradientLocation;
+            Focus = GradientFocus;
+            Mode = GradientMode.Radial;
+
+        }
+
+        public wGradient(List<System.Drawing.Color> GradientColors, List<double> GradientParameters, wDomain GradientLocation, wDomain GradientFocus, double GradientRadius, GradientSpace Extents)
+        {
+            ColorSet.Clear();
+            ParameterSet = GradientParameters;
+
+            for (int i = 0; i < GradientColors.Count; i++)
+            {
+                ColorSet.Add(new wColor(GradientColors[i]));
+            }
+
+            Radius = GradientRadius;
+            Location = GradientLocation;
+            Focus = GradientFocus;
+            FillMode = Extents;
+
+            Mode = GradientMode.Radial;
+
+        }
+
+        public wGradient(List<System.Drawing.Color> GradientColors, List<double> GradientParameters, double RotationAngle, GradientSpace Extents)
+        {
+            ColorSet.Clear();
+            ParameterSet = GradientParameters;
+
+            for (int i = 0; i < GradientColors.Count; i++)
+            {
+                ColorSet.Add(new wColor(GradientColors[i]));
+            }
+
+            Angle = RotationAngle;
+            FillMode = Extents;
+
         }
 
         public void SetParameters(List<double> GradientParameters)

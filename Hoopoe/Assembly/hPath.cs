@@ -20,7 +20,7 @@ namespace Hoopoe.Assembly
 
         public hPath(hShape Shape)
         {
-            svgPath.Append("<path d= " + Environment.NewLine);
+            svgPath.Append("<path id=\"" + Shape.ID + "\" d= " + Environment.NewLine);
             svgPath.Append(Shape.svgShape.ToString() + Environment.NewLine);
             svgPath.Append(" />" + Environment.NewLine);
         }

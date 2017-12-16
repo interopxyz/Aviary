@@ -9,6 +9,7 @@ using Wind.Utilities;
 
 using Parrot.Containers;
 using Parrot.Displays;
+using Parrot.Controls;
 
 namespace Parrot_GH.Displays
 {
@@ -21,7 +22,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the WebBrowser class.
         /// </summary>
         public WebBrowser()
-          : base("WebBrowser", "Web", "---", "Aviary", "Dashboard Display")
+          : base("WebBrowser", "Web", "---", "Aviary", "Dashboard Control")
         {
         }
 
@@ -31,7 +32,6 @@ namespace Parrot_GH.Displays
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("Address", "A", "Address", GH_ParamAccess.item, "https://www.google.com/");
-            pManager[0].Optional = true;
         }
 
         /// <summary>
@@ -57,14 +57,13 @@ namespace Parrot_GH.Displays
             bool Active = Elements.ContainsKey(C);
 
             var pCtrl = new pWebBrowser(name);
-            if (Elements.ContainsKey(C)) { Active = true; }
 
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pCtrl = (pWebBrowser)Element.ParrotControl;
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pCtrl = (pWebBrowser)Element.ParrotControl;
             }
             else
             {
@@ -75,16 +74,17 @@ namespace Parrot_GH.Displays
             string A = "https://www.google.com/";
 
             if (!DA.GetData(0, ref A)) return;
-
+            
             pCtrl.SetProperties(A);
+            
 
             //Set Parrot Element and Wind Object properties
-            if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }
+            Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); 
             WindObject = new wObject(Element, "Parrot", Element.Type);
             WindObject.GUID = this.InstanceGuid;
             WindObject.Instance = C;
 
-            Elements[this.RunCount] = WindObject;
+            Elements[C] = WindObject;
 
             DA.SetData(0, WindObject);
         }
@@ -94,7 +94,7 @@ namespace Parrot_GH.Displays
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.septenary; }
+            get { return GH_Exposure.quinary; }
         }
 
         /// <summary>

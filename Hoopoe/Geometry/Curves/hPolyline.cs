@@ -11,6 +11,7 @@ namespace Hoopoe.Geometry.Curves
     public class hPolyline : hCurve
     {
         List<wPoint> Points = new List<wPoint>();
+        string Closed = " ";
 
         public hPolyline()
         {
@@ -25,6 +26,7 @@ namespace Hoopoe.Geometry.Curves
         public hPolyline(wPolyline WindGeometry)
         {
             Points = WindGeometry.Points;
+            if (WindGeometry.IsClosed) { Closed = "z "; } 
         }
 
         public override void BuildCurve()
@@ -36,7 +38,9 @@ namespace Hoopoe.Geometry.Curves
             {
                 Curve.Append(Pt.X + "," + Pt.Y + " ");
             }
+            Curve.Append(Closed);
         }
 
+        
     }
 }

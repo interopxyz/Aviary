@@ -177,6 +177,7 @@ namespace Wind_GH.Formatting
             }
 
             DA.SetData(0, W);
+            DA.SetData(1, G);
         }
         
         public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
@@ -305,7 +306,7 @@ namespace Wind_GH.Formatting
 
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.primary; }
+            get { return GH_Exposure.secondary; }
         }
 
         /// <summary>

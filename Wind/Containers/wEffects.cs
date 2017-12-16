@@ -12,6 +12,8 @@ namespace Wind.Containers
     {
         public bool HasEffect = false;
 
+        public List<wEffect> Stack = new List<wEffect>();
+
         public wBlur Blur = new wBlur();
         public wDropShadow DropShadow = new wDropShadow();
 

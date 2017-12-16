@@ -22,7 +22,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Progress class.
         /// </summary>
         public Progress()
-          : base("Progress", "Progress", "---", "Aviary", "Dashboard Display")
+          : base("Progress", "Progress", "---", "Aviary", "Dashboard Control")
         {
         }
 
@@ -64,9 +64,12 @@ namespace Parrot_GH.Displays
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pCtrl = (pProgress)Element.ParrotControl;
+                if (Elements[C] != null)
+                {
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pCtrl = (pProgress)Element.ParrotControl;
+                }
             }
             else
             {
@@ -99,7 +102,7 @@ namespace Parrot_GH.Displays
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.septenary; }
+            get { return GH_Exposure.quinary; }
         }
 
         /// <summary>

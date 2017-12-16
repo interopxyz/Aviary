@@ -10,7 +10,6 @@ namespace Hoopoe.Graphics.Stroke
     {
         public hStrokePattern()
         {
-            Value = "stroke-dasharray=\"1 0\"";
         }
 
         public hStrokePattern(double[] Pattern)

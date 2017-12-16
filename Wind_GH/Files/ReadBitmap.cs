@@ -49,6 +49,7 @@ namespace Wind_GH.Files
             if (!DA.GetData(0, ref P)) return;
 
             GetBitmap bmpObj = new GetBitmap(P);
+            
 
             DA.SetData(0, bmpObj.BitmapObject);
             DA.SetData(1, bmpObj.Width);

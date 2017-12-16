@@ -57,7 +57,8 @@ namespace Wind_GH.Geometry
                     Pts.Add(new wPoint(Pline[i].X, Pline[i].Y, Pline[i].Z));
                 }
 
-                wCurve Crv = new wPolyline(Pts,Pline.IsClosed);
+                wCurve Crv = new wPolyline(Pts,true);
+                
                 Shape.Add( new wShape(Crv));
            }
 

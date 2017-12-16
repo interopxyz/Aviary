@@ -21,7 +21,7 @@ namespace Parrot.Containers
 {
     public class pElement
     {
-        public pControl ParrotControl = new pControl();
+        public pControl ParrotControl = null;
         public pChart PollenControl = new pChart();
         public ColorZone Container = new ColorZone();
         public Control Element = new Control();

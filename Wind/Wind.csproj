@@ -62,10 +62,12 @@
     <Compile Include="Collections\CompiledData.cs" />
     <Compile Include="Collections\CompiledDataSet.cs" />
     <Compile Include="Containers\wEffects.cs" />
+    <Compile Include="Containers\wFrames.cs" />
     <Compile Include="Containers\wGraphic.cs" />
     <Compile Include="Containers\wObject.cs" />
     <Compile Include="Effects\wBlur.cs" />
     <Compile Include="Effects\wDropShadow.cs" />
+    <Compile Include="Effects\wEffect.cs" />
     <Compile Include="Geometry\Curves\Splines\wBezierSpans.cs" />
     <Compile Include="Geometry\Curves\Splines\wBezierSpline.cs" />
     <Compile Include="Geometry\Curves\Splines\wCatmullRom.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Graphics\wFillGradient.cs" />
     <Compile Include="Graphics\wFillSolid.cs" />
     <Compile Include="Graphics\wFillSwatch.cs" />
+    <Compile Include="Presets\wGradientpresets.cs" />
     <Compile Include="Scene\Lights\wLightAmbient.cs" />
     <Compile Include="Scene\Lights\wLightSpot.cs" />
     <Compile Include="Scene\wCamera.cs" />
@@ -108,6 +111,7 @@
     <Compile Include="Scene\Lights\wLightPoint.cs" />
     <Compile Include="Scene\wLight.cs" />
     <Compile Include="Scene\wShader.cs" />
+    <Compile Include="Types\wImage.cs" />
     <Compile Include="Types\wColor.cs" />
     <Compile Include="Types\wDomain.cs" />
     <Compile Include="Types\wFont.cs" />
@@ -125,6 +129,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>Copy "$(ProjectDir)bin\Debug\$(ProjectName).dll" "$(SolutionDir)Aviary\Build\"</PostBuildEvent>

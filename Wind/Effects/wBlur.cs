@@ -7,7 +7,7 @@ using System.Windows.Media.Effects;
 
 namespace Wind.Effects
 {
-    public class wBlur
+    public class wBlur : wEffect
     {
         public BlurEffect ShapeEffect = new BlurEffect();
         
@@ -20,6 +20,9 @@ namespace Wind.Effects
 
         public wBlur(double BlurRadius)
         {
+
+            Active = true;
+
             Radius = BlurRadius;
             SetEffect();
         }

@@ -10,7 +10,6 @@ namespace Hoopoe.Graphics.Stroke
     {
         public hStrokeWeight()
         {
-            Value = "stroke-width=\"1\"";
         }
 
         public hStrokeWeight(double Weight)

@@ -29,6 +29,10 @@ namespace Wind_GH.Geometry
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddBrepParameter("Brep", "B", "Brep", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Distance Tolerance", "D", "---", GH_ParamAccess.item,0);
+            pManager[1].Optional = true;
+            pManager.AddNumberParameter("Kink Tolerance", "K", "---", GH_ParamAccess.item, 0);
+            pManager[2].Optional = true;
         }
 
         /// <summary>
@@ -46,7 +50,12 @@ namespace Wind_GH.Geometry
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             Brep B = new Brep();
+            double D = 0;
+            double K = 0;
+
             if (!DA.GetData(0, ref B)) return;
+            if (!DA.GetData(1, ref D)) return;
+            if (!DA.GetData(2, ref K)) return;
 
             Curve[] C = B.DuplicateNakedEdgeCurves(true, true);
             C = Curve.JoinCurves(C);
@@ -55,7 +64,7 @@ namespace Wind_GH.Geometry
             
             foreach (Curve Crv in C)
             {
-                Shapes.Shapes.Add(new wShape(new RhCrvToWindCrv().ToPiecewiseBezier(Crv)));
+                Shapes.Shapes.Add(new wShape(new RhCrvToWindCrv().ToPiecewiseBezier(Crv,D, K)));
             }
             
             BoundingBox X = B.GetBoundingBox(true);

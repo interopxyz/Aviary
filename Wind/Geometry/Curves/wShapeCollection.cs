@@ -15,6 +15,7 @@ namespace Wind.Geometry.Curves
         public List<wShape> Shapes = new List<wShape>();
         public wGraphic Graphics = new wGraphic();
         public wEffects Effects = new wEffects();
+        public wFrames Frame = new wFrames();
         public wFont Fonts = new wFont();
 
         public double X = 0;
@@ -24,6 +25,7 @@ namespace Wind.Geometry.Curves
         public double Height = 0;
 
         public string Type;
+        public string Group = " ";
 
         public wRectangle Boundary = new wRectangle();
 

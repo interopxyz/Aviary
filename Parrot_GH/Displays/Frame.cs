@@ -23,7 +23,7 @@ namespace Parrot_GH.Displays
         /// Initializes a new instance of the Frame class.
         /// </summary>
         public Frame()
-          : base("Frame", "Frame", "---", "Aviary", "Dashboard Display")
+          : base("Frame", "Frame", "---", "Aviary", "Dashboard Control")
         {
         }
 
@@ -72,9 +72,12 @@ namespace Parrot_GH.Displays
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pCtrl = (pFrame)Element.ParrotControl;
+                if (Elements[C] != null)
+                {
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pCtrl = (pFrame)Element.ParrotControl;
+                }
             }
             else
             {
@@ -106,7 +109,7 @@ namespace Parrot_GH.Displays
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.septenary; }
+            get { return GH_Exposure.quinary; }
         }
 
         /// <summary>

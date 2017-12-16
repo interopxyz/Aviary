@@ -93,13 +93,16 @@
     <Compile Include="Files\ReadBitmap.cs" />
     <Compile Include="Files\WriteBitmap.cs" />
     <Compile Include="Files\WriteSVG.cs" />
+    <Compile Include="Formatting\FillGradientRadial.cs" />
+    <Compile Include="Formatting\Frames.cs" />
     <Compile Include="Formatting\Corners.cs" />
     <Compile Include="Formatting\FillBitmap.cs" />
-    <Compile Include="Formatting\FillGradient.cs" />
+    <Compile Include="Formatting\FillGradientLinear.cs" />
     <Compile Include="Formatting\FillPattern.cs" />
     <Compile Include="Formatting\FillSolid.cs" />
     <Compile Include="Formatting\FillSwatch.cs" />
     <Compile Include="Formatting\Font.cs" />
+    <Compile Include="Formatting\Layers.cs" />
     <Compile Include="Formatting\Margin.cs" />
     <Compile Include="Formatting\Padding.cs" />
     <Compile Include="Formatting\Size.cs" />
@@ -250,6 +253,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Wind_Shape-Bitmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Layers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Animation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Gradient_Radial.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

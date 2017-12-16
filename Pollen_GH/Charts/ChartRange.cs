@@ -76,9 +76,12 @@ namespace Pollen_GH.Charts
             //Check if control already exists
             if (Active)
             {
-                WindObject = Elements[C];
-                Element = (pElement)WindObject.Element;
-                pControl = (pPointChart)Element.PollenControl;
+                if (Elements[C] != null)
+                {
+                    WindObject = Elements[C];
+                    Element = (pElement)WindObject.Element;
+                    pControl = (pPointChart)Element.PollenControl;
+                }
             }
             else
             {

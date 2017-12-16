@@ -8,7 +8,7 @@ using Wind.Types;
 
 namespace Wind.Effects
 {
-    public class wDropShadow
+    public class wDropShadow : wEffect
     {
 
         public DropShadowEffect ShapeEffect = new DropShadowEffect();
@@ -19,21 +19,35 @@ namespace Wind.Effects
         public double Distance = 2.0;
         public double Opacity = 0.75;
 
+        public double OffsetX = 0;
+        public double OffsetY = 0;
+
         public wDropShadow()
         {
+            CalculateOffset();
+
             SetEffect();
         }
+        
 
         public wDropShadow(wColor ShadowColor, double Rotation, double Offset, double BlurRadius, double ShadowOpacity)
         {
-
+            Active = true;
             Color = ShadowColor;
             Direction = Rotation;
             Distance = Offset;
             Radius = BlurRadius;
             Opacity = ShadowOpacity;
 
+            CalculateOffset();
+
             SetEffect();
+        }
+
+        public void CalculateOffset()
+        {
+            OffsetX = Distance * Math.Sin(Direction / 180 * Math.PI);
+            OffsetY = Distance * Math.Cos(Direction / 180 * Math.PI);
         }
 
         public void SetEffect()

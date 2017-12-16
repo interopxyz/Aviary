@@ -76,13 +76,14 @@ namespace Wind_GH.Formatting
             }
 
             DA.SetData(0, W);
+            DA.SetData(1, G);
 
         }
 
 
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

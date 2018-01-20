@@ -7,18 +7,8 @@ using System.Windows.Media;
 
 namespace Wind.Types
 {
-    public class wFontMedia
+    public class wFontMedia: wFontBase
     {
-        public string Name = "Arial";
-        public double Size = 8;
-        public int Justify = 0;
-
-        public bool IsBold = false;
-        public bool IsItalic = false;
-        public bool IsUnderlined = false;
-        public bool IsStrikethrough = false;
-
-        public wColor FontColor = new wColor().Black();
 
         public FontFamily Family = new FontFamily("Arial");
         public TextDecorationCollection Style = new TextDecorationCollection();
@@ -61,36 +51,36 @@ namespace Wind.Types
             updateStyle();
         }
 
-        public wFontMedia(string FontName, double FontSize, wColor color, int Justification)
+        public wFontMedia(string FontName, double FontSize, wColor color, Justification FontJustification)
         {
             Name = FontName;
             Family = new FontFamily(FontName);
             Size = FontSize;
 
             FontColor = color;
-            Justify = Justification;
+            Justify = FontJustification;
 
-            HAlign = MediaHjust(Justification);
-            VAlign = MediaVJust(Justification);
+            HAlign = MediaHjust((int)Justify);
+            VAlign = MediaVJust((int)Justify);
             updateStyle();
         }
 
-        public wFontMedia(string FontName, double FontSize, wColor color, int Justification, bool isBold, bool isItalic, bool isUnderlined, bool isStrikethrough)
+        public wFontMedia(string FontName, double FontSize, wColor color, Justification FontJustification, bool isBold, bool isItalic, bool isUnderlined, bool isStrikethrough)
         {
             Name = FontName;
             Family = new FontFamily(FontName);
             Size = FontSize;
 
             FontColor = color;
-            Justify = Justification;
+            Justify = FontJustification;
 
             IsBold = isBold;
             IsItalic = isItalic;
             IsUnderlined = isUnderlined;
             IsStrikethrough = isStrikethrough;
 
-            HAlign = MediaHjust(Justification);
-            VAlign = MediaVJust(Justification);
+            HAlign = MediaHjust((int)Justify);
+            VAlign = MediaVJust((int)Justify);
             updateStyle();
         }
 

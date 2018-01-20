@@ -16,11 +16,7 @@ namespace Wind.Graphics
 
         public wFill()
         {
-
-
-
         }
-
-
+        
     }
 }

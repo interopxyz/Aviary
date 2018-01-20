@@ -15,7 +15,7 @@ namespace Hoopoe.Geometry
 
         }
 
-        public virtual void BuildCurve()
+        public virtual void BuildSVGCurve()
         {
 
         }

@@ -233,7 +233,6 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\D
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\Xceed.Wpf.DataGrid.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\Xceed.Wpf.Toolkit.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.WinForms.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.Wpf.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\AForge.Imaging.dll
@@ -250,8 +249,6 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\D
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\Wind.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.WinForms.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.WinForms.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.pdb
@@ -371,7 +368,6 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\Xceed.Wpf.DataGrid.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\Xceed.Wpf.Toolkit.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.WinForms.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.Wpf.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\AForge.Imaging.dll
@@ -388,8 +384,6 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\MaterialDesignColors.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.WinForms.pdb
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.WinForms.xml
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot\bin\Debug\LiveCharts.pdb

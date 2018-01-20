@@ -14,54 +14,82 @@ using Wind.Containers;
 using Wind.Types;
 
 using Pollen.Collections;
+using Pollen.Utilities;
+using System.Reflection;
+using Wind.Presets;
 
 namespace Pollen.Charts
 {
     public class pPointChart : pChart
     {
         public System.Windows.Controls.Panel Element;
-        public WindowsFormsHost ChartHost;
-        public Chart ChartObject;
-        public List<pPointSeries> ChartSeriesSet;
-        public ChartArea ChartAreas;
-        public bool Status;
-        public DataSetCollection DataGrid = new DataSetCollection();
+        public WindowsFormsHost ChartHost = new WindowsFormsHost();
+        public Chart ChartObject = new Chart();
+        public List<pPointSeries> ChartSeriesSet = new List<pPointSeries>();
+        public ChartArea ChartsArea = new ChartArea();
+        public bool Status = false;
+        public bool IsSingle = true;
+
+        public string Name = "";
 
         public pPointChart(string InstanceName)
         {
-            //Set Element info setup
-            Element = new StackPanel();
+            Name = InstanceName;
+
+            Element = new DockPanel();
             ChartHost = new WindowsFormsHost();
             ChartObject = new Chart();
-            ChartAreas = new ChartArea();
 
+
+            //Set Generic Chart Object & Properties
             ChartObject.AntiAliasing = AntiAliasingStyles.All;
-            ChartAreas.Name = InstanceName;
-            
-            ChartObject.ChartAreas.Add(ChartAreas);
+            ChartObject.Dock = DockStyle.Fill;
+
+            ChartObject.BackColor = System.Drawing.Color.Transparent;
+
+            //Set WPF Winform Chart 
+            ChartHost.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            ChartHost.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+
+            //Set Element Properties;
+            Element.MinWidth = 300;
+            Element.MinHeight = 300;
+
+            Element.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            Element.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+
+            Element.Name = Name;
 
             ChartHost.Child = ChartObject;
-
             Element.Children.Add(ChartHost);
-            Element.Name = InstanceName;
-            Type = "PointChart";
 
-            //Set "Clear" appearance to all elements
+            Type = "PointChart";
 
         }
 
         public void SetProperties(DataSetCollection PollenDataGrid)
         {
             //Set unique properties of the control
-            DataGrid = PollenDataGrid;
+            DataSet = PollenDataGrid;
 
-            ChartObject.Width = (int)DataGrid.Graphics.Width;
-            ChartObject.Height = (int)DataGrid.Graphics.Height;
+            ChartsArea = new ChartArea();
+            ChartsArea.Name = Name;
+
+
+            //Set Chart Area
+            ChartsArea.InnerPlotPosition = new ElementPosition(0, 0, 100, 100);
+            ChartsArea.Position = new ElementPosition(0, 0, 100, 100);
+
+            ChartObject.ChartAreas.Clear();
+            ChartObject.ChartAreas.Add(ChartsArea);
             
-            SetAxisScale();
-
-            Element.Width = (int)DataGrid.Graphics.Width;
-            Element.Height = (int)DataGrid.Graphics.Height;
+            ChartsArea.BackColor = System.Drawing.Color.Transparent;
+        }
+        
+        public void SetXaxis(wDomain Bounds)
+        {
+            ChartsArea.AxisX.Minimum = Bounds.T0;
+            ChartsArea.AxisX.Maximum = Bounds.T1;
         }
         
         public void SetSeries(List<pPointSeries> DataSeries)
@@ -87,125 +115,169 @@ namespace Pollen.Charts
                     ChartObject.Series.RemoveAt(ChartObject.Series.Count - 1);
                 }
             }
+            
 
             cnt = DataSeries.Count;
             for (int i = 0; i < cnt; i++)
             {
-                DataSeries[i].ChartSeries.ChartArea = ChartAreas.Name;
+                DataSeries[i].ChartSeries.ChartArea = ChartsArea.Name;
                 ChartObject.Series[i] = DataSeries[i].ChartSeries;
+                ChartObject.Series[i]["DrawSideBySide"] = "Auto";
             }
         }
 
-        public void SetAxisAppearance()
+        public override void SetAxisAppearance()
         {
-            wColor HalfTone = new wColor(DataGrid.Graphics.StrokeColor);
+            
+            SetAxisScale();
+
+            wColor HalfTone = new wColor(DataSet.Graphics.StrokeColor);
             HalfTone.Lighten(0.5);
 
-            // ==================== X Axis Formatting ==================== 
-            //if (DataGrid.HasXAxis){ChartAreas.AxisX.Enabled = AxisEnabled.True; }
-            ChartAreas.AxisX.LineColor = DataGrid.Graphics.StrokeColor.ToDrawingColor();
-            ChartAreas.AxisX.MajorTickMark.Enabled = false;
-            ChartAreas.AxisX.MinorTickMark.Enabled = false;
+            ChartArea A = ChartObject.ChartAreas[0];
+            wAxis X = DataSet.Axes;
+            wGraphic G = DataSet.Graphics;
+            wFont F = G.FontObject;
 
-            //X Label Formatting
-            ChartAreas.AxisX.LabelStyle.Enabled = DataGrid.HasXLabel;
-            ChartAreas.AxisX.LabelStyle.Font = DataGrid.Fonts.ToDrawingFont().FontObject;
-            ChartAreas.AxisX.LabelStyle.ForeColor = DataGrid.Fonts.FontColor.ToDrawingColor();
+            A.AxisX.Interval = 1;
+            A.AxisY.Interval = 0;
+
+            // ==================== X Axis Formatting ==================== 
+            if (X.HasXAxis){A.AxisX.Enabled = AxisEnabled.True; } else { A.AxisX.Enabled = AxisEnabled.False; }
+            A.AxisX.LineColor =G.StrokeColor.ToDrawingColor();
+            A.AxisX.MajorTickMark.Enabled = true;
+            A.AxisX.MajorTickMark.LineWidth = (int)G.StrokeWeight[0];
+            A.AxisX.MajorTickMark.LineColor = G.StrokeColor.ToDrawingColor();
+            A.AxisX.MinorTickMark.Enabled = false;
 
             //X Major Grid Formatting
-            ChartAreas.AxisX.MajorGrid.Enabled = DataGrid.HasXGrid;
-            ChartAreas.AxisX.MajorGrid.LineWidth = (int)DataGrid.Graphics.StrokeWeight[0];
-            ChartAreas.AxisX.MajorGrid.LineColor = DataGrid.Graphics.StrokeColor.ToDrawingColor();
+            A.AxisX.MajorGrid.Enabled = X.HasXGrid;
+            A.AxisX.MajorGrid.Interval = 1;
+            A.AxisX.MajorGrid.LineWidth = (int)G.StrokeWeight[0];
+            A.AxisX.MajorGrid.LineColor = G.StrokeColor.ToDrawingColor();
+
+            //X Label Formatting
+            A.AxisX.LabelStyle.Enabled = X.HasXLabel;
+            A.AxisX.LabelStyle.Interval = 1;
+            A.AxisX.LabelStyle.Font = F.ToDrawingFont().FontObject;
+            A.AxisX.LabelStyle.ForeColor = F.FontColor.ToDrawingColor();
+            A.AxisX.LabelStyle.Angle = (int)X.XAngle;
 
             //X Minor Grid Formatting
-            ChartAreas.AxisX.MinorGrid.Enabled = (DataGrid.XGridSpacing!=0);
-            ChartAreas.AxisX.MinorGrid.LineWidth = (int)DataGrid.Graphics.StrokeWeight[0];
-            ChartAreas.AxisX.MinorGrid.LineColor = HalfTone.ToDrawingColor();
-            ChartAreas.AxisX.MinorGrid.Interval = ChartAreas.AxisX.MajorGrid.Interval / DataGrid.XGridSpacing;
+            A.AxisX.MinorGrid.Enabled = (X.XGridSpacing!=0);
+            A.AxisX.MinorGrid.LineWidth = (int)G.StrokeWeight[0];
+            A.AxisX.MinorGrid.LineColor = HalfTone.ToDrawingColor();
+            A.AxisX.MinorGrid.Interval = A.AxisX.MajorGrid.Interval / X.XGridSpacing;
 
             // ==================== Y Axis Formatting ==================== 
-            //if (DataGrid.HasYAxis) { ChartAreas.AxisY.Enabled = AxisEnabled.True; }
-            ChartAreas.AxisY.LineColor = DataGrid.Graphics.StrokeColor.ToDrawingColor();
-            ChartAreas.AxisY.MajorTickMark.Enabled = false;
-            ChartAreas.AxisY.MinorTickMark.Enabled = false;
-
-            //Y Label Formatting
-            ChartAreas.AxisY.LabelStyle.Enabled = DataGrid.HasYLabel;
-            ChartAreas.AxisY.LabelStyle.Font = DataGrid.Fonts.ToDrawingFont().FontObject;
-            ChartAreas.AxisY.LabelStyle.ForeColor = DataGrid.Fonts.FontColor.ToDrawingColor();
+            if (X.HasYAxis) { A.AxisY.Enabled = AxisEnabled.True; } else { A.AxisY.Enabled = AxisEnabled.False; }
+            A.AxisY.LineColor = G.StrokeColor.ToDrawingColor();
+            A.AxisY.MajorTickMark.Enabled = true;
+            A.AxisY.MajorTickMark.LineWidth = (int)G.StrokeWeight[0];
+            A.AxisY.MajorTickMark.LineColor = G.StrokeColor.ToDrawingColor();
+            A.AxisY.MinorTickMark.Enabled = false;
 
             //Y Major Grid Formatting
-            ChartAreas.AxisY.MajorGrid.Enabled = DataGrid.HasYGrid;
-            ChartAreas.AxisY.MajorGrid.LineWidth = (int)DataGrid.Graphics.StrokeWeight[0];
-            ChartAreas.AxisY.MajorGrid.LineColor = DataGrid.Graphics.StrokeColor.ToDrawingColor();
+            A.AxisY.MajorGrid.Enabled = X.HasYGrid;
+            A.AxisY.MajorGrid.Interval = 0;
+            A.AxisY.MajorGrid.LineWidth = (int)G.StrokeWeight[0];
+            A.AxisY.MajorGrid.LineColor = G.StrokeColor.ToDrawingColor();
+
+            //Y Label Formatting
+            A.AxisY.LabelStyle.Enabled = X.HasYLabel;
+            A.AxisY.LabelStyle.Interval = 0;
+            A.AxisY.LabelStyle.Font = F.ToDrawingFont().FontObject;
+            A.AxisY.LabelStyle.ForeColor = F.FontColor.ToDrawingColor();
+            A.AxisY.LabelStyle.IntervalType = DateTimeIntervalType.Auto;
+            A.AxisY.LabelStyle.Angle = (int)X.YAngle;
 
             //Y Minor Grid Formatting
-            ChartAreas.AxisY.MinorGrid.Enabled = (DataGrid.YGridSpacing != 0);
-            ChartAreas.AxisY.MinorGrid.LineWidth = (int)DataGrid.Graphics.StrokeWeight[0];
-            ChartAreas.AxisY.MinorGrid.LineColor = HalfTone.ToDrawingColor();
-            ChartAreas.AxisY.MinorGrid.Interval = ChartAreas.AxisY.MajorGrid.Interval / DataGrid.YGridSpacing;
+            A.AxisY.MinorGrid.Enabled = (X.YGridSpacing != 0);
+            A.AxisY.MinorGrid.LineWidth = (int)G.StrokeWeight[0];
+            A.AxisY.MinorGrid.LineColor = HalfTone.ToDrawingColor();
+            A.AxisY.MinorGrid.Interval = A.AxisY.MajorGrid.Interval / X.YGridSpacing;
 
+            ChartObject.ChartAreas[0] = A;
         }
 
         public void SetAxisScale()
         {
-
-                    if ((DataGrid.YAxisMin == 0) & (DataGrid.YAxisMax == 0))
+                    if ((DataSet.Axes.DomainX.T0 == 0) & (DataSet.Axes.DomainY.T1 == 0))
                     {
-                        ChartAreas.AxisY.Maximum = Double.NaN;
+                        ChartsArea.AxisY.Maximum = Double.NaN;
                     }
                     else
                     {
-                        ChartAreas.AxisY.Minimum = DataGrid.YAxisMin;
-                        ChartAreas.AxisY.Maximum = DataGrid.YAxisMax;
+                        ChartsArea.AxisY.Minimum = DataSet.Axes.DomainY.T0;
+                        ChartsArea.AxisY.Maximum = DataSet.Axes.DomainY.T1;
                     }
-           ChartAreas.RecalculateAxesScale();
 
+           ChartsArea.RecalculateAxesScale();
         }
 
-        public void SetThreeDView()
+        public override void SetThreeDView()
         {
-            ChartAreas.Area3DStyle.Enable3D = DataGrid.EnableThreeD;
+            ChartsArea.Area3DStyle.Enable3D = View.Is3D;
 
-            ChartAreas.Area3DStyle.Rotation = DataGrid.RotateX%180;
-            ChartAreas.Area3DStyle.Inclination = DataGrid.RotateY%90;
-            ChartAreas.Area3DStyle.Perspective = DataGrid.Perspective%100;
+            ChartsArea.Area3DStyle.Rotation = View.Pivot % 180;
+            ChartsArea.Area3DStyle.Inclination = View.Tilt % 90;
+            ChartsArea.Area3DStyle.Perspective = View.Distance%100;
 
-            ChartAreas.Area3DStyle.WallWidth = 0;
-            ChartAreas.BackColor = new wColor().Transparent().ToDrawingColor();
+            ChartsArea.Area3DStyle.WallWidth = 0;
 
-            DataGrid.LightingStyle = DataGrid.LightingStyle % 3;
-            int[] Indices = { 0, 1, 2 };
-            ChartAreas.Area3DStyle.LightStyle = ((LightStyle)Indices[DataGrid.LightingStyle]);
+            ChartsArea.Area3DStyle.LightStyle = ((LightStyle)View.Light);
 
         }
 
         public void SetPyramidThreeDView(int Mode)
         {
-            ChartAreas.Area3DStyle.Enable3D = DataGrid.EnableThreeD;
+            ChartsArea.Area3DStyle.Enable3D = DataSet.View.Is3D;
 
             switch (Mode)
             {
                 case 0:
-            ChartObject.Series[0]["Funnel3DRotationAngle"] = Convert.ToString((int)DataGrid.RotateY % 10);
+            ChartObject.Series[0]["Funnel3DRotationAngle"] = Convert.ToString(DataSet.View.Tilt % 10);
                     break;
                 case 1:
-                    ChartObject.Series[0]["Pyramid3DRotationAngle"] = Convert.ToString((int)DataGrid.RotateY%10 );
+                    ChartObject.Series[0]["Pyramid3DRotationAngle"] = Convert.ToString(DataSet.View.Tilt % 10 );
                     break;
             }
 
-            ChartAreas.Area3DStyle.WallWidth = 0;
-            ChartAreas.BackColor = new wColor().Transparent().ToDrawingColor();
+            ChartsArea.Area3DStyle.WallWidth = 0;
+            ChartsArea.BackColor = new wColors().Transparent().ToDrawingColor();
 
-            DataGrid.LightingStyle = DataGrid.LightingStyle % 3;
-            int[] Indices = { 0, 1, 2 };
-            ChartAreas.Area3DStyle.LightStyle = ((LightStyle)Indices[DataGrid.LightingStyle]);
+            ChartsArea.Area3DStyle.LightStyle = ((LightStyle)DataSet.View.Light);
 
+        }
+
+        public static void SetDoubleBuffered(System.Windows.Forms.Control control)
+        {
+            // set instance non-public property with name "DoubleBuffered" to true
+            typeof(System.Windows.Forms.Control).InvokeMember("DoubleBuffered",
+                BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+                null, control, new object[] { true });
+
+        }
+
+        public override void SetSize()
+        {
+            double W = double.NaN;
+            double H = double.NaN;
+            if (Graphics.Width > 0) { W = Graphics.Width; }
+            if (Graphics.Height > 0) { H = Graphics.Height; }
+            
+            Element.Width = W;
+            Element.Height = H;
+
+        }
+
+        public override void SetSolidFill()
+        {
+            ChartObject.BackColor = DataSet.Graphics.Background.ToDrawingColor();
         }
 
         public void SetCorners(wGraphic Graphic)
         {
-            //Element.CornerRadius = new CornerRadius(Graphic.Radius[0], Graphic.Radius[1], Graphic.Radius[2], Graphic.Radius[3]);
         }
 
         public void SetFont(wGraphic Graphic)

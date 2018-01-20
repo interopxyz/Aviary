@@ -1,5 +1,10 @@
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\bin\Debug\Bumblebee_GH.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\bin\Debug\Bumblebee_GH.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\obj\Debug\Bumblebee_GH.csprojResolveAssemblyReference.cache
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\obj\Debug\Bumblebee_GH.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\obj\Debug\Bumblebee_GH.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\obj\Debug\Bumblebee_GH.csprojResolveAssemblyReference.cache
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\bin\Debug\Bumblebee_GH.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\bin\Debug\Bumblebee_GH.pdb
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\obj\Debug\Bumblebee_GH.csprojResolveAssemblyReference.cache
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\obj\Debug\Bumblebee_GH.dll
+C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Bumblebee_GH\obj\Debug\Bumblebee_GH.pdb

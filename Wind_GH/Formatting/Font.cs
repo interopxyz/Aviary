@@ -23,7 +23,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the Font class.
         /// </summary>
         public Font()
-          : base("Font", "Font", "---", "Aviary", "Format")
+          : base("Font Advanced", "Font", "---", "Aviary", "Format")
         {
         }
 
@@ -68,6 +68,9 @@ namespace Wind_GH.Formatting
             param.AddNamedValue("Bottom Left", 6);
             param.AddNamedValue("Bottom Center", 7);
             param.AddNamedValue("Bottom Right", 8);
+            
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>
@@ -107,7 +110,7 @@ namespace Wind_GH.Formatting
             if (Element != null) { Element.CastTo(out W); }
             wGraphic G = W.Graphics;
 
-            wFont F = new wFont(N, S, new wColor(X), J, B, I, U, false);
+            wFont F = new wFont(N, S, new wColor(X), (wFontBase.Justification)J, B, I, U, false);
             G.FontObject = F;
 
             W.Graphics = G;
@@ -126,12 +129,14 @@ namespace Wind_GH.Formatting
                     {
                         case "DataPoint":
                             DataPt tDataPt = (DataPt)W.Element;
-                            tDataPt.Fonts = F;
+                            tDataPt.Graphics = G;
+
                             W.Element = tDataPt;
                             break;
                         case "DataSet":
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
-                            tDataSet.Fonts = F;
+                            tDataSet.Graphics = G;
+
                             W.Element = tDataSet;
                             break;
                     }
@@ -162,7 +167,7 @@ namespace Wind_GH.Formatting
         {
             get
             {
-                return Properties.Resources.Wind_Font;
+                return Properties.Resources.Wind_Font_Adv;
             }
         }
 

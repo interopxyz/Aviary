@@ -12,6 +12,7 @@ using Parrot.Containers;
 using Parrot.Displays;
 using System.Windows.Forms;
 using GH_IO.Serialization;
+using Wind.Presets;
 
 namespace Parrot_GH.Displays
 {
@@ -22,7 +23,7 @@ namespace Parrot_GH.Displays
         wGraphic Graphic = new wGraphic();
         int FontMode = 0;
         bool IsCentered = false;
-        int CenterMode = 0;
+        wFontBase.Justification CenterMode = wFontBase.Justification.TopLeft;
 
         /// <summary>
         /// Initializes a new instance of the Label class.
@@ -32,7 +33,7 @@ namespace Parrot_GH.Displays
         {
             this.UpdateMessage();
 
-            Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColor().DarkGray(), CenterMode, false, false, false, false);
+            Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColors().DarkGray(), CenterMode, false, false, false, false);
             FontMode = 0;
         }
 
@@ -160,23 +161,23 @@ namespace Parrot_GH.Displays
             switch(FontMode)
             {
                 case 0:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 18, new wColor().DarkGray(), CenterMode, true, false, false, false);
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 18, new wColors().DarkGray(), CenterMode, true, false, false, false);
                     break;
                 case 1:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColor().DarkGray(), CenterMode, false, false, false, false);
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColors().DarkGray(), CenterMode, false, false, false, false);
                     break;
                 case 2:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 16, new wColor().DarkGray(), CenterMode, false, false, false, false);
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 16, new wColors().DarkGray(), CenterMode, false, false, false, false);
                     break;
                 case 3:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 10, new wColor().DarkGray(), CenterMode, false, false, false, false);
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 10, new wColors().DarkGray(), CenterMode, false, false, false, false);
                     break;
                 case 4:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 8, new wColor().DarkGray(), CenterMode, false, false, false, false);
+                    Graphic.FontObject = new wFont("Swis721 Lt BT", 8, new wColors().DarkGray(), CenterMode, false, false, false, false);
                     break;
             }
 
-            if (IsCentered) { CenterMode = 1; } else { CenterMode = 0; }
+            if (IsCentered) { CenterMode = wFontBase.Justification.TopCenter; } else { CenterMode = wFontBase.Justification.TopLeft; }
             Graphic.FontObject.Justify = CenterMode;
 
         }

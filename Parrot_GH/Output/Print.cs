@@ -99,7 +99,7 @@ namespace Parrot_GH.Output
 
                 if (channel == GH_CanvasChannel.Objects)
                 {
-                    GH_Capsule button = GH_Capsule.CreateTextCapsule(ButtonBounds, ButtonBounds, comp.toggle ? GH_Palette.Grey : GH_Palette.Black, "Invert", 2, 0);
+                    GH_Capsule button = GH_Capsule.CreateTextCapsule(ButtonBounds, ButtonBounds, comp.toggle ? GH_Palette.Grey : GH_Palette.Black, "Print", 2, 0);
                     button.Render(graphics, Selected, Owner.Locked, false);
                     button.Dispose();
                 }

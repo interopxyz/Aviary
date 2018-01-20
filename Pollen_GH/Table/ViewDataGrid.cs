@@ -14,6 +14,7 @@ using Wind.Collections;
 using Pollen.Collections;
 using System.Windows.Forms;
 using GH_IO.Serialization;
+using Wind.Presets;
 
 namespace Pollen_GH.Table
 {
@@ -23,16 +24,13 @@ namespace Pollen_GH.Table
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
 
         public int GridType = 0;
-        public bool ResizeHorizontal = false;
+        public bool HasTitle = true;
 
-        public bool AddlRows = false;
-        public bool AlternateGraphics = false;
-        public bool Sortable = true;
         /// <summary>
         /// Initializes a new instance of the ViewGrid class.
         /// </summary>
         public ViewDataGrid()
-          : base("Data Grid", "Grid", "---", "Aviary", "Charting & Data")
+          : base("Quick Grid", "Grid", "---", "Aviary", "Charting & Data")
         {
         }
 
@@ -89,16 +87,22 @@ namespace Pollen_GH.Table
             IGH_Goo D = null;
 
             if (!DA.GetData(0, ref D)) return;
-            
+
             wObject W = new wObject();
             D.CastTo(out W);
-            DataSetCollection S = (DataSetCollection)W.Element;
+            DataSetCollection DC = (DataSetCollection)W.Element;
 
-            pCtrl.SetProperties(S, GridType, false, ResizeHorizontal, Sortable, AlternateGraphics, AddlRows);
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.SolidLightGray, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.DataGrid).Font); }
+            if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.OffWhiteSolid); }
+
+            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = new wFonts(wFonts.FontTypes.DataGridTitles).Font; }
+
+            pCtrl.SetProperties(DC, HasTitle);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }
-            WindObject = new wObject(Element, "Parrot", Element.Type);
+            WindObject = new wObject(Element, "Pollen", Element.Type);
             WindObject.GUID = this.InstanceGuid;
             WindObject.Instance = C;
 
@@ -111,108 +115,40 @@ namespace Pollen_GH.Table
         public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
         {
             base.AppendAdditionalMenuItems(menu);
-
             Menu_AppendSeparator(menu);
-            Menu_AppendItem(menu, "None", GridNone, true, (GridType == 0));
-            Menu_AppendItem(menu, "Columns", GridColumn, true, (GridType == 1));
-            Menu_AppendItem(menu, "Rows", GridRow, true, (GridType == 2));
-            Menu_AppendItem(menu, "Both", GridAll, true, (GridType == 3));
-
-            Menu_AppendSeparator(menu);
-            Menu_AppendItem(menu, "Resize", ResizeRow, true, ResizeHorizontal);
-            Menu_AppendItem(menu, "Sortable", SortCols, true, Sortable);
-
-            Menu_AppendSeparator(menu);
-            Menu_AppendItem(menu, "Alternate Rows", AltGraphic, true, AlternateGraphics);
-            Menu_AppendItem(menu, "Additional Rows", AdditionalRows, true, AddlRows);
-
-
-            
-
+            Menu_AppendItem(menu, "Titles", TitleMode, true, HasTitle);
             
         }
 
         public override bool Write(GH_IWriter writer)
         {
 
-            writer.SetBoolean("alternateGraphics", AlternateGraphics);
-            writer.SetBoolean("Sortable", Sortable);
-            writer.SetBoolean("ResizeHorizontal", ResizeHorizontal);
-            writer.SetBoolean("AddlRows", AddlRows);
-            writer.SetInt32("GridType", GridType);
+            writer.SetBoolean("Title", HasTitle);
             return base.Write(writer);
         }
 
         public override bool Read(GH_IReader reader)
         {
 
-            AlternateGraphics = reader.GetBoolean("alternateGraphics");
-            Sortable = reader.GetBoolean("Sortable");
-            ResizeHorizontal = reader.GetBoolean("ResizeHorizontal");
-            AddlRows = reader.GetBoolean("AddlRows");
-            GridType = reader.GetInt32("GridType");
+            HasTitle = reader.GetBoolean("Title");
 
             return base.Read(reader);
         }
 
 
-        private void AdditionalRows(Object sender, EventArgs e)
+        private void TitleMode(Object sender, EventArgs e)
         {
-            AddlRows = ! AddlRows;
+            HasTitle = !HasTitle;
             this.ExpireSolution(true);
         }
 
-        private void AltGraphic(Object sender, EventArgs e)
-        {
-            AlternateGraphics = !AlternateGraphics;
-            this.ExpireSolution(true);
-        }
-
-        private void SortCols(Object sender, EventArgs e)
-        {
-            Sortable = !Sortable;
-            this.ExpireSolution(true);
-        }
-
-        
-        
-
-        private void ResizeRow(Object sender, EventArgs e)
-        {
-            ResizeHorizontal = !ResizeHorizontal;
-            this.ExpireSolution(true);
-        }
-
-        private void GridNone(Object sender, EventArgs e)
-        {
-            GridType = 0;
-            this.ExpireSolution(true);
-        }
-
-        private void GridColumn(Object sender, EventArgs e)
-        {
-            GridType = 1;
-            this.ExpireSolution(true);
-        }
-
-        private void GridRow(Object sender, EventArgs e)
-        {
-            GridType = 2;
-            this.ExpireSolution(true);
-        }
-
-        private void GridAll(Object sender, EventArgs e)
-        {
-            GridType = 3;
-            this.ExpireSolution(true);
-        }
 
         /// <summary>
         /// Set Exposure level for the component.
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>

@@ -10,6 +10,7 @@ using Parrot.Containers;
 using Wind.Geometry.Curves;
 using System.Windows.Forms;
 using GH_IO.Serialization;
+using Grasshopper.Kernel.Parameters;
 
 namespace Wind_GH.Formatting
 {
@@ -36,7 +37,9 @@ namespace Wind_GH.Formatting
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Span", "S", "---", GH_ParamAccess.item, 0.333);
             pManager[2].Optional = true;
-
+            
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>

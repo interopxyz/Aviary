@@ -18,8 +18,8 @@ using GH_IO.Serialization;
 
 namespace Wind_GH.Formatting
 {
-  public class Stroke : GH_Component
-  {
+    public class Stroke : GH_Component
+    {
         int CapMode = 0;
         int CornerMode = 0;
         int PatternMode = 0;
@@ -29,13 +29,13 @@ namespace Wind_GH.Formatting
         /// </summary>
         public Stroke()
       : base("Stroke", "Stroke", "---", "Aviary", "Format")
-    {
-    }
+        {
+        }
 
-    /// <summary>
-    /// Registers all the input parameters for this component.
-    /// </summary>
-    protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        /// <summary>
+        /// Registers all the input parameters for this component.
+        /// </summary>
+        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Object", "O", "Wind Objects", GH_ParamAccess.item);
             pManager.AddColourParameter("Color", "C", "---", GH_ParamAccess.item, System.Drawing.Color.Black);
@@ -44,7 +44,10 @@ namespace Wind_GH.Formatting
             pManager[2].Optional = true;
             pManager.AddNumberParameter("Pattern", "P", "---", GH_ParamAccess.list, 0);
             pManager[3].Optional = true;
-            
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
+
         }
 
         /// <summary>
@@ -56,12 +59,12 @@ namespace Wind_GH.Formatting
             pManager.AddGenericParameter("Graphics", "G", "Graphics Object", GH_ParamAccess.item);
         }
 
-    /// <summary>
-    /// This is the method that actually does the work.
-    /// </summary>
-    /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess DA)
-    {
+        /// <summary>
+        /// This is the method that actually does the work.
+        /// </summary>
+        /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
+        protected override void SolveInstance(IGH_DataAccess DA)
+        {
 
             IGH_Goo Element = null;
             System.Drawing.Color B = System.Drawing.Color.Black;
@@ -78,36 +81,33 @@ namespace Wind_GH.Formatting
             wGraphic G = W.Graphics;
 
             G.StrokeColor = new wColor(B);
-            G.StrokeWeight[0] = T;
-            G.StrokeWeight[1] = T;
-            G.StrokeWeight[2] = T;
-            G.StrokeWeight[3] = T;
+            G.SetUniformStrokeWeight(T);
 
             G.StrokeCap = (wGraphic.StrokeCaps)CapMode;
             G.StrokeCorner = (wGraphic.StrokeCorners)CornerMode;
 
-            switch(PatternMode)
+            switch (PatternMode)
             {
                 case 0:
                     if ((P.Count == 1) && (P[0] == 0)) { P = new List<double> { 1, 0 }; }
                     break;
                 case 1:
-                    P = new List<double> { 2,3 };
+                    P = new List<double> { 2, 3 };
                     break;
                 case 2:
                     P = new List<double> { 5 };
                     break;
                 case 3:
-                    P = new List<double> { 15,10 };
+                    P = new List<double> { 15, 10 };
                     break;
                 case 4:
                     P = new List<double> { 0.5, 2 };
                     break;
                 case 5:
-                    P = new List<double> { 30, 5,10,5, };
+                    P = new List<double> { 30, 5, 10, 5, };
                     break;
             }
-            
+
 
             List<double> SP = new List<double>();
 
@@ -117,6 +117,7 @@ namespace Wind_GH.Formatting
             }
 
             G.StrokePattern = SP.ToArray();
+            G.CustomStrokes += 1;
 
             W.Graphics = G;
 
@@ -136,25 +137,13 @@ namespace Wind_GH.Formatting
                     {
                         case "DataPoint":
                             DataPt tDataPt = (DataPt)W.Element;
-                            tDataPt.Graphics.StrokeColor = G.StrokeColor;
-                            tDataPt.Graphics.StrokeWeight = G.StrokeWeight;
-
-                            tDataPt.Graphics.StrokePattern = G.StrokePattern;
-
-                            tDataPt.Graphics.StrokeCap = G.StrokeCap;
-                            tDataPt.Graphics.StrokeCorner = G.StrokeCorner;
+                            tDataPt.Graphics = G;
 
                             W.Element = tDataPt;
                             break;
                         case "DataSet":
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
-                            tDataSet.Graphics.StrokeColor = G.StrokeColor;
-                            tDataSet.Graphics.StrokeWeight = G.StrokeWeight;
-
-                            tDataSet.Graphics.StrokePattern = G.StrokePattern;
-
-                            tDataSet.Graphics.StrokeCap = G.StrokeCap;
-                            tDataSet.Graphics.StrokeCorner = G.StrokeCorner;
+                            tDataSet.Graphics = G;
 
                             W.Element = tDataSet;
                             break;
@@ -164,13 +153,13 @@ namespace Wind_GH.Formatting
                     wShapeCollection Shapes = (wShapeCollection)W.Element;
                     Shapes.Graphics.StrokeColor = G.StrokeColor;
                     Shapes.Graphics.StrokeWeight = G.StrokeWeight;
-                    
+
 
                     Shapes.Graphics.StrokePattern = G.StrokePattern;
 
                     Shapes.Graphics.StrokeCap = G.StrokeCap;
                     Shapes.Graphics.StrokeCorner = G.StrokeCorner;
-                    
+
                     W.Element = Shapes;
                     break;
 
@@ -179,7 +168,7 @@ namespace Wind_GH.Formatting
             DA.SetData(0, W);
             DA.SetData(1, G);
         }
-        
+
         public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
         {
             base.AppendAdditionalMenuItems(menu);
@@ -313,19 +302,19 @@ namespace Wind_GH.Formatting
         /// Provides an Icon for the component.
         /// </summary>
         protected override System.Drawing.Bitmap Icon
-    {
-      get
-      {
-        return Properties.Resources.Parrot_Stroke;
-      }
-    }
+        {
+            get
+            {
+                return Properties.Resources.Parrot_Stroke;
+            }
+        }
 
-    /// <summary>
-    /// Gets the unique ID for this component. Do not change this ID after release.
-    /// </summary>
-    public override Guid ComponentGuid
-    {
-      get { return new Guid("{9f8fc9d1-0f9d-4d30-bd12-9cc5aab36b00}"); }
+        /// <summary>
+        /// Gets the unique ID for this component. Do not change this ID after release.
+        /// </summary>
+        public override Guid ComponentGuid
+        {
+            get { return new Guid("{9f8fc9d1-0f9d-4d30-bd12-9cc5aab36b00}"); }
+        }
     }
-  }
 }

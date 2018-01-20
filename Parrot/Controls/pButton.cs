@@ -66,18 +66,6 @@ namespace Parrot.Controls
             Element.Margin = new Thickness(0);
             Element.Padding = new Thickness(4);
             
-            
-            //Element.Background = Default.Background;
-
-            //Element.BorderThickness = Default.BorderThickness;
-            //Element.BorderBrush = Default.BorderBrush;
-
-            //Element.Foreground = Default.Foreground;
-            //Element.FontFamily = Default.FontFamily;
-            //Element.FontSize = Default.FontSize;
-            //Element.FontStyle = Default.FontStyle;
-            //Element.FontWeight = Default.FontWeight;
-
         }
 
         public override void SetMargin()

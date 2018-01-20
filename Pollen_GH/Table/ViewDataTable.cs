@@ -92,7 +92,7 @@ namespace Pollen_GH.Table
             {
                 pPointSeries pSeriesSet = new pPointSeries(Convert.ToString(name + i));
                 pSeriesSet.SetProperties(DC.Sets[i]);
-                pSeriesSet.SetChartLabels(DC.LeaderPostion, DC.HasLeader);
+                pSeriesSet.SetChartLabels(DC.Label);
                 pSeriesSet.SetNumericData(1);
                 PointSeriesList.Add(pSeriesSet);
             }
@@ -118,7 +118,7 @@ namespace Pollen_GH.Table
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.tertiary; }
         }
 
         /// <summary>

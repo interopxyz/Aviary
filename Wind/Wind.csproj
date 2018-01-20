@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,9 +62,12 @@
   <ItemGroup>
     <Compile Include="Collections\CompiledData.cs" />
     <Compile Include="Collections\CompiledDataSet.cs" />
+    <Compile Include="Containers\wAxis.cs" />
     <Compile Include="Containers\wEffects.cs" />
     <Compile Include="Containers\wFrames.cs" />
     <Compile Include="Containers\wGraphic.cs" />
+    <Compile Include="Containers\wLabel.cs" />
+    <Compile Include="Containers\wMarker.cs" />
     <Compile Include="Containers\wObject.cs" />
     <Compile Include="Effects\wBlur.cs" />
     <Compile Include="Effects\wDropShadow.cs" />
@@ -92,10 +96,14 @@
     <Compile Include="Geometry\Curves\Primitives\wLine.cs" />
     <Compile Include="Geometry\Curves\Primitives\wRectangle.cs" />
     <Compile Include="Graphics\wFill.cs" />
+    <Compile Include="Graphics\wFillBitmap.cs" />
     <Compile Include="Graphics\wFillGradient.cs" />
     <Compile Include="Graphics\wFillSolid.cs" />
     <Compile Include="Graphics\wFillSwatch.cs" />
-    <Compile Include="Presets\wGradientpresets.cs" />
+    <Compile Include="Presets\wColors.cs" />
+    <Compile Include="Presets\wGradients.cs" />
+    <Compile Include="Presets\wFonts.cs" />
+    <Compile Include="Presets\wStrokes.cs" />
     <Compile Include="Scene\Lights\wLightAmbient.cs" />
     <Compile Include="Scene\Lights\wLightSpot.cs" />
     <Compile Include="Scene\wCamera.cs" />
@@ -111,6 +119,7 @@
     <Compile Include="Scene\Lights\wLightPoint.cs" />
     <Compile Include="Scene\wLight.cs" />
     <Compile Include="Scene\wShader.cs" />
+    <Compile Include="Types\wFontBase.cs" />
     <Compile Include="Types\wImage.cs" />
     <Compile Include="Types\wColor.cs" />
     <Compile Include="Types\wDomain.cs" />

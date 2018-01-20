@@ -9,6 +9,7 @@ using Parrot.Containers;
 using Parrot.Controls;
 using Pollen.Collections;
 using Wind.Geometry.Curves;
+using Grasshopper.Kernel.Parameters;
 
 namespace Wind_GH.Formatting
 {
@@ -30,7 +31,9 @@ namespace Wind_GH.Formatting
             pManager.AddGenericParameter("Object", "O", "Wind Objects", GH_ParamAccess.item);
             pManager.AddTextParameter("Layer Name", "N", "---", GH_ParamAccess.item, "Layer 01");
             pManager[1].Optional = true;
-
+            
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>

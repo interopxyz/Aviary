@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Xceed.Wpf.Toolkit;
 using Xceed.Wpf.DataGrid;
 using Wind.Containers;
+using Wind.Types;
 
 namespace Parrot.Controls
 {
@@ -18,7 +19,7 @@ namespace Parrot.Controls
         public ListView Element;
         public Point startPoint;
 
-        public ObservableCollection<string> ItemsList = new ObservableCollection<string>();
+        public ObservableCollection<Label> ItemsList = new ObservableCollection<Label>();
 
         public pViewList(string InstanceName)
         {
@@ -33,23 +34,27 @@ namespace Parrot.Controls
             itemContainerStyle.Setters.Add(new EventSetter(ListViewItem.DropEvent, new DragEventHandler(listbox1_Drop)));
             Element.ItemContainerStyle = itemContainerStyle;
 
+            Element.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+
             //Set "Clear" appearance to all elements
         }
 
-        public void SetProperties(List<string> D)
+        public void SetProperties(List<string> D, List<wColor> C)
         {
             ItemsList.Clear();
             for (int i = 0; i < D.Count; i++)
             {
-                ItemsList.Add(D[i]);
+                Label TempText = new Label();
+                TempText.Content = D[i];
+                TempText.Background = new SolidColorBrush(C[i].ToMediaColor());
+                TempText.HorizontalAlignment = HorizontalAlignment.Stretch;
+                TempText.ToolTip = i;
+                
+                ItemsList.Add(TempText);
             }
 
             Element.ItemsSource = ItemsList;
-
-            for (int i = 0; i < D.Count; i++)
-            {
-                //item.Background = new SolidColorBrush(Color.FromArgb(255, (byte)(255.0/(i+1)), 0, 0));
-            }
+            
         }
         
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -65,8 +70,8 @@ namespace Parrot.Controls
 
         public void listbox1_Drop(object sender, DragEventArgs e)
         {
-            string droppedData = e.Data.GetData(typeof(string)) as string;
-            string target = ((ListViewItem)(sender)).DataContext as string;
+            Label droppedData = e.Data.GetData(typeof(Label)) as Label;
+            Label target = ((ListViewItem)(sender)).DataContext as Label;
             
             int removedIdx = Element.Items.IndexOf(droppedData);
             int targetIdx = Element.Items.IndexOf(target);

@@ -16,12 +16,12 @@ using System.Windows.Media;
 using Wind.Graphics;
 using GH_IO.Serialization;
 using System.Windows.Forms;
+using Pollen.Collections;
 
 namespace Wind_GH.Formatting
 {
     public class FillGradientRadial : GH_Component
     {
-        public int GradientType = 0;
         public int GradientSpace = 0;
 
         /// <summary>
@@ -49,6 +49,9 @@ namespace Wind_GH.Formatting
             pManager[4].Optional = true;
             pManager.AddIntervalParameter("Focus", "F", "---", GH_ParamAccess.item, new Interval(0.5, 0.5));
             pManager[5].Optional = true;
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>
@@ -73,6 +76,8 @@ namespace Wind_GH.Formatting
             double Radius = 1.0;
             Interval Location = new Interval(0.5, 0.5);
             Interval Focus = new Interval(0.5, 0.5);
+
+         int GradientType = 1;
 
             if (!DA.GetData(0, ref Element)) return;
             if (!DA.GetDataList(1, Colors)) return;
@@ -105,6 +110,7 @@ namespace Wind_GH.Formatting
             }
 
             G.WpfFill = new wFillGradient(G.Gradient, GradientType).GrdBrush;
+            G.CustomFills += 1;
 
             W.Graphics = G;
 
@@ -123,8 +129,22 @@ namespace Wind_GH.Formatting
                         switch (W.SubType)
                         {
                             case "DataPoint":
+                                DataPt tDataPt = (DataPt)W.Element;
+                                tDataPt.Graphics = G;
+
+                                tDataPt.Graphics.WpfFill = G.WpfFill;
+                                tDataPt.Graphics.WpfPattern = G.WpfPattern;
+
+                                W.Element = tDataPt;
                                 break;
                             case "DataSet":
+                                DataSetCollection tDataSet = (DataSetCollection)W.Element;
+                                tDataSet.Graphics = G;
+
+                                tDataSet.Graphics.WpfFill = G.WpfFill;
+                                tDataSet.Graphics.WpfPattern = G.WpfPattern;
+
+                                W.Element = tDataSet;
                                 break;
                         }
                         break;
@@ -132,14 +152,19 @@ namespace Wind_GH.Formatting
                         wShapeCollection Shapes = (wShapeCollection)W.Element;
                         Shapes.Graphics.FillType = wGraphic.FillTypes.RadialGradient;
 
+                        wGradient GRD = new wGradient();
+
                         if (Parameters.Count < 1)
                         {
-                            Shapes.Graphics.Gradient = new wGradient(Colors, new wDomain(Location.Min, Location.Max), new wDomain(Focus.Min, Focus.Max), Radius, (wGradient.GradientSpace)GradientSpace);
+                            GRD = new wGradient(Colors, new wDomain(Location.Min, Location.Max), new wDomain(Focus.Min, Focus.Max), Radius, (wGradient.GradientSpace)GradientSpace);
                         }
                         else
                         {
-                            Shapes.Graphics.Gradient = new wGradient(Colors, Parameters, new wDomain(Location.Min, Location.Max), new wDomain(Focus.Min, Focus.Max), Radius, (wGradient.GradientSpace)GradientSpace);
+                            GRD = new wGradient(Colors, Parameters, new wDomain(Location.Min, Location.Max), new wDomain(Focus.Min, Focus.Max), Radius, (wGradient.GradientSpace)GradientSpace);
                         }
+
+                        Shapes.Graphics.Gradient = GRD;
+                        Shapes.Graphics.WpfFill = new wFillGradient(G.Gradient, GradientType).GrdBrush;
 
                         W.Element = Shapes;
                         break;
@@ -158,15 +183,11 @@ namespace Wind_GH.Formatting
 
             Menu_AppendItem(menu, "Global", LocalSpace, true, (GradientSpace == 0));
             Menu_AppendItem(menu, "Local", GlobalSpace, true, (GradientSpace == 1));
-
-            Menu_AppendSeparator(menu);
-
-            Menu_AppendItem(menu, "Custom", ModeCustom, true, (GradientType == 0));
+            
         }
 
         public override bool Write(GH_IWriter writer)
         {
-            writer.SetInt32("Pattern", GradientType);
             writer.SetInt32("Space", GradientSpace);
 
             return base.Write(writer);
@@ -174,7 +195,6 @@ namespace Wind_GH.Formatting
 
         public override bool Read(GH_IReader reader)
         {
-            GradientType = reader.GetInt32("Pattern");
             GradientSpace = reader.GetInt32("Space");
 
             this.UpdateMessage();
@@ -194,14 +214,6 @@ namespace Wind_GH.Formatting
         {
             GradientSpace = 1;
 
-            this.ExpireSolution(true);
-        }
-
-        private void ModeCustom(Object sender, EventArgs e)
-        {
-            GradientType = 0;
-
-            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 

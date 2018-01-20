@@ -10,6 +10,8 @@ using Wind.Types;
 
 using Parrot.Containers;
 using Parrot.Controls;
+using Pollen.Collections;
+using Grasshopper.Kernel.Parameters;
 
 namespace Wind_GH.Formatting
 {
@@ -33,6 +35,9 @@ namespace Wind_GH.Formatting
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Radius", "R", "---", GH_ParamAccess.item, 5);
             pManager[2].Optional = true;
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>
@@ -73,13 +78,35 @@ namespace Wind_GH.Formatting
 
             if (P) { W.Graphics.SetPaddingFromCorners(); } else { W.Graphics.SetUniformPadding(0); }
 
-            if (W.Type == "Parrot")
+            switch (W.Type)
             {
-                pElement E = (pElement)W.Element;
-                pControl C = (pControl)E.ParrotControl;
+                case "Parrot":
+                    pElement E = (pElement)W.Element;
+                    pControl C = (pControl)E.ParrotControl;
+                    C.Graphics = G;
 
-                C.Graphics = G;
-                C.SetCorners();
+                    C.SetCorners();
+
+                    break;
+                case "Pollen":
+                    switch (W.SubType)
+                    {
+                        case "DataPoint":
+                            DataPt tDataPt = (DataPt)W.Element;
+
+                            tDataPt.Graphics.Radius = G.Radius;
+                            W.Element = tDataPt;
+                            break;
+                        case "DataSet":
+                            DataSetCollection tDataSet = (DataSetCollection)W.Element;
+
+                            tDataSet.Graphics.Radius = G.Radius;
+                            W.Element = tDataSet;
+                            break;
+                    }
+                    break;
+                case "Hoopoe":
+                    break;
             }
 
             DA.SetData(0, W);

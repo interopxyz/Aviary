@@ -9,6 +9,7 @@ using Parrot.Containers;
 using Pollen.Charts;
 using Grasshopper.Kernel.Types;
 using Pollen.Collections;
+using Wind.Presets;
 
 namespace Pollen_GH.Charts
 {
@@ -31,11 +32,6 @@ namespace Pollen_GH.Charts
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Data", "D", "---", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
-            pManager[1].Optional = true;
-
-            Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("Error", 0);
 
         }
 
@@ -82,32 +78,35 @@ namespace Pollen_GH.Charts
             //Set Unique Control Properties
 
             IGH_Goo D = null;
-            int M = 0;
 
             if (!DA.GetData(0, ref D)) return;
-            if (!DA.GetData(1, ref M)) return;
 
             wObject W = new wObject();
             D.CastTo(out W);
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.Metro, false, false); }
+            if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPointDark).Font); }
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, false); }
+
             List<pCartesianSeries> PointSeriesList = new List<pCartesianSeries>();
 
             for (int i = 0; i < DC.Sets.Count; i++)
             {
                 pCartesianSeries pSeriesSet = new pCartesianSeries(Convert.ToString(name + i));
-                pSeriesSet.SetProperties(DC.Sets[i],1);
-                pSeriesSet.SetGanttData(3);
+                pSeriesSet.SetGantSeries(DC.Sets[i]);
+                pSeriesSet.SetSeriesProperties();
                 PointSeriesList.Add(pSeriesSet);
             }
 
             pControl.SetProperties(DC);
-            pControl.SetGanttSeries(PointSeriesList);
+            pControl.SetSeries(PointSeriesList);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }
-            WindObject = new wObject(Element, "Parrot", Element.Type);
+            WindObject = new wObject(Element, "Pollen", Element.Type);
             WindObject.GUID = this.InstanceGuid;
             WindObject.Instance = C;
 
@@ -122,7 +121,7 @@ namespace Pollen_GH.Charts
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

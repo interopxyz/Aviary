@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Pollen.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
+using System.Reflection;
 using Wind.Containers;
+using Wind.Presets;
 using Wind.Types;
 
 namespace Pollen.Collections
@@ -15,34 +16,26 @@ namespace Pollen.Collections
         public string Title = "";
         public int Count = 0;
 
-        public wGraphic Graphics = new wGraphic(new wColor().Transparent(), new wColor().Transparent(), new wColor().LightGray(), 1.0, 300, 300);
-        public wFont Fonts = new wFont("Arial", 8, new wColor().LightGray());
+        public wGraphic Graphics = new wGraphic(new wColors().Transparent(), new wColors().Transparent(), new wColors().LightGray(), 1.0, 300, 300);
+        public wFont Fonts = new wFont("Arial", 8, new wColors().LightGray());
 
-        public bool HasXAxis = false;
-        public bool HasYAxis = true;
-
-        public bool HasXLabel = false;
-        public bool HasYLabel = true;
-
-        public bool HasLeader = false;
-        public int LeaderPostion = 0;
-
-        public bool HasXGrid = false;
-        public bool HasYGrid = true;
-
-        public int XGridSpacing = 0;
-        public int YGridSpacing = 0;
 
         public bool EnableThreeD = false;
-        public int RotateX = 0;
-        public int RotateY = 0; 
-        public int Perspective = 0;
-        public int LightingStyle = 0;
+        public p3D View = new p3D();
 
-        public double YAxisMin = 0;
-        public double YAxisMax = 0;
+        public int TotalCustomFill = 0;
+        public int TotalCustomStroke = 0;
+        public int TotalCustomFont = 0;
+        public int TotalCustomMarker = 0;
+        public int TotalCustomLabel = 0;
+        public int TotalCustomTitles = 0;
+
+        public wAxis Axes = new wAxis();
+        public wLabel Label = new wLabel();
 
         public List<DataPtSet> Sets = new List<DataPtSet>();
+
+
         /// <summary>
         /// Compiles a Data Set Object Collection from a 2D array
         /// </summary>
@@ -50,84 +43,118 @@ namespace Pollen.Collections
         {
         }
 
+
         public DataSetCollection(List<string> Title, List<List<DataPt>> DataSet)
         {
             Count = DataSet.Count;
             for (int i = 0; i < Count; i++)
             {
-                Sets.Add(new DataPtSet(Title[i], DataSet[i]));
+                DataPtSet TempSet = new DataPtSet(Title[i], DataSet[i]);
+
+                TempSet = CalculateDefaults(TempSet);
+
+                Sets.Add(TempSet);
             }
         }
-        
+
         public DataSetCollection(string Title, List<DataPt> DataSet)
         {
             Count = DataSet.Count;
-            Sets.Add(new DataPtSet(Title, DataSet));
+            DataPtSet TempSet = new DataPtSet(Title, DataSet);
+
+            TempSet = CalculateDefaults(TempSet);
+
+            Sets.Add(TempSet);
         }
 
         public DataSetCollection(List<string> Title, List<List<object>> DataSet)
         {
             Count = DataSet.Count;
 
-            for (int i = (Title.Count-1); i < Count; i++)
+            for (int i = (Title.Count - 1); i < Count; i++)
             {
                 Title.Add(Title[Title.Count - 1]);
             }
 
-                for (int i = 0; i < Count; i++)
+            for (int i = 0; i < Count; i++)
             {
-                Sets.Add(new DataPtSet(Title[i], ObjectListToDataPointList(DataSet[i])));
+                DataPtSet TempSet = new DataPtSet(Title[i], ObjectListToDataPointList(DataSet[i]));
+
+                TempSet = CalculateDefaults(TempSet);
+
+                Sets.Add(TempSet);
             }
         }
 
         public DataSetCollection(string Title, List<object> DataSet)
         {
             Count = DataSet.Count;
-            Sets.Add(new DataPtSet(Title, ObjectListToDataPointList(DataSet)));
+            DataPtSet TempSet = new DataPtSet(Title, ObjectListToDataPointList(DataSet));
+
+            TempSet = CalculateDefaults(TempSet);
+
+            Sets.Add(TempSet);
         }
+
 
         public void SetAxis(int Mode, bool Grid, bool Label, int Spacing, wDomain YDomain)
         {
             if (Mode != 1)
             {
-                HasXLabel = Label;
-                HasXGrid = Grid;
-                XGridSpacing = Spacing;
+                Axes.HasXLabel = Label;
+                Axes.HasXGrid = Grid;
+                Axes.XGridSpacing = Spacing;
             }
 
             if (Mode != 2)
             {
-                HasYLabel = Label;
-                HasYGrid = Grid;
-                YGridSpacing = Spacing;
+                Axes.HasYLabel = Label;
+                Axes.HasYGrid = Grid;
+                Axes.YGridSpacing = Spacing;
             }
 
-            YAxisMin = YDomain.T0;
-            YAxisMax = YDomain.T1;
+            Axes.DomainY = YDomain;
         }
 
-        public void SetLabel(int Position, bool Leader)
+        public void SetUniformLabel(wLabel NewLabel, double Angle)
         {
-            HasLeader = Leader;
-            LeaderPostion = Position;
+            for (int i = 0; i < Sets.Count; i++)
+            {
+                for (int j = 0; j < Sets[i].Points.Count; j++)
+                {
+                    Sets[i].Points[j].Graphics.FontObject.Angle = Angle;
+
+                    Sets[i].Points[j].Label.HasLeader = NewLabel.HasLeader;
+                    Sets[i].Points[j].Label.Graphics = NewLabel.Graphics;
+                    Sets[i].Points[j].Label.Position = NewLabel.Position;
+                    Sets[i].Points[j].Label.Alignment = NewLabel.Alignment;
+
+                    Sets[i].Points[j].CustomLabels += 1;
+                }
+            }
         }
 
-        public void SetThreeDView(bool EnabledTD, int XRotation, int YRotation, int PercentPerspective, int LightStyle)
+        public void SetThreeDView(bool EnabledTD, p3D OverrideView)
         {
-        EnableThreeD = EnabledTD;
-        RotateX = XRotation;
-        RotateY = YRotation;
-        Perspective = PercentPerspective;
+            EnableThreeD = EnabledTD;
+            View = OverrideView;
 
-            LightingStyle = LightStyle;
         }
 
-    private List<DataPt> ObjectListToDataPointList(List<object> objects)
+        public void SetSeriesScales()
+        {
+            for (int i = 0; i < Sets.Count; i++)
+            {
+                Sets[i].Graphics.Scale = this.Graphics.Scale;
+            }
+        }
+
+        private List<DataPt> ObjectListToDataPointList(List<object> objects)
         {
 
             List<DataPt> DataPoints = new List<DataPt>();
 
-            for(int i = 0; i < objects.Count;i++)
+            for (int i = 0; i < objects.Count; i++)
             {
                 wObject W = (wObject)objects[i];
                 DataPoints.Add((DataPt)W.Element);
@@ -155,5 +182,177 @@ namespace Pollen.Collections
 
             return arrVal.ToArray();
         }
+
+        //  ASSIGN DEFAULT GRAPHICS  ##########################################################################################
+
+        public void SetDefaultStrokes(wStrokes.StrokeTypes StrokeType)
+        {
+            for (int i = 0; i < Sets.Count; i++)
+            {
+                for (int j = 0; j < Sets[i].Points.Count; j++)
+                {
+                    Sets[i].Points[j].Graphics = new wStrokes(Sets[i].Points[j].Graphics, StrokeType).GetGraphic();
+                }
+            }
+        }
+
+        public void SetDefaultStrokes(wStrokes.StrokeTypes StrokeType, wGradients.GradientTypes ColorPallet, bool IsRandom, bool BySeries)
+        {
+            wGradients Pallet = new wGradients(ColorPallet);
+
+            int Total = Pallet.Colors.Count;
+
+            if (IsRandom)
+            {
+                for (int i = 0; i < Sets.Count; i++)
+                {
+                    Random rnd = new Random();
+                    for (int j = 0; j < Sets[i].Points.Count; j++)
+                    {
+                        int Index = rnd.Next(0, Total);
+                        Sets[i].Points[j].Graphics = new wStrokes(Sets[i].Points[j].Graphics, StrokeType).GetGraphic();
+                        Sets[i].Points[j].Graphics.StrokeColor = Pallet.Colors[Index];
+                    }
+                }
+            }
+            else
+            {
+
+                int im = 0;
+                int jm = 0;
+                if (BySeries) { im = 1; } else { jm = 1; }
+
+                for (int i = 0; i < Sets.Count; i++)
+                {
+                    for (int j = 0; j < Sets[i].Points.Count; j++)
+                    {
+                        Sets[i].Points[j].Graphics = new wStrokes(Sets[i].Points[j].Graphics, StrokeType).GetGraphic();
+                        Sets[i].Points[j].Graphics.StrokeColor = Pallet.Colors[((i * im) + (j * jm)) % Total];
+                    }
+                }
+            }
+
+        }
+
+        public void SetDefaultFonts(wFont CustomFont)
+        {
+            for (int i = 0; i < Sets.Count; i++)
+            {
+                for (int j = 0; j < Sets[i].Points.Count; j++)
+                {
+                    Sets[i].Points[j].Graphics.FontObject = CustomFont;
+                }
+            }
+        }
+
+        public void SetDefaultPallet(wGradients.GradientTypes ColorPallet, bool IsRandom, bool BySeries)
+        {
+            wGradients Pallet = new wGradients(ColorPallet);
+
+            int Total = Pallet.Colors.Count;
+
+            if (IsRandom)
+            {
+                for (int i = 0; i < Sets.Count; i++)
+                {
+                    Random rnd = new Random();
+                    for (int j = 0; j < Sets[i].Points.Count; j++)
+                    {
+                        int Index = rnd.Next(0, Total);
+                        Sets[i].Points[j].Graphics.Background = Pallet.Colors[Index];
+                    }
+                }
+            }
+            else
+            {
+
+                int im = 0;
+                int jm = 0;
+                if (BySeries) { im = 1; } else { jm = 1; }
+
+                for (int i = 0; i < Sets.Count; i++)
+                {
+                    for (int j = 0; j < Sets[i].Points.Count; j++)
+                    {
+                        Sets[i].Points[j].Graphics.Background = Pallet.Colors[((i * im) + (j * jm)) % Total];
+                    }
+                }
+            }
+
+        }
+
+        public void SetDefaultMarkers(wGradients.GradientTypes ColorPallet,wMarker.MarkerType MarkerType, bool IsRandom, bool BySeries)
+        {
+            wGradients Pallet = new wGradients(ColorPallet);
+
+            int Total = Pallet.Colors.Count;
+
+            if (IsRandom)
+            {
+                for (int i = 0; i < Sets.Count; i++)
+                {
+                    Random rnd = new Random();
+                    for (int j = 0; j < Sets[i].Points.Count; j++)
+                    {
+                        int Index = rnd.Next(0, Total);
+                        Sets[i].Points[j].Marker.Graphics.Background = Pallet.Colors[Index];
+                        Sets[i].Points[j].Marker.Mode = MarkerType;
+                    }
+                }
+            }
+            else
+            {
+
+                int im = 0;
+                int jm = 0;
+                if (BySeries) { im = 1; } else { jm = 1; }
+
+                for (int i = 0; i < Sets.Count; i++)
+                {
+                    for (int j = 0; j < Sets[i].Points.Count; j++)
+                    {
+                        Sets[i].Points[j].Marker.Graphics.Background = Pallet.Colors[((i * im) + (j * jm)) % Total];
+                        Sets[i].Points[j].Marker.Mode = MarkerType;
+                    }
+                }
+            }
+
+        }
+
+        public void SetScales()
+        {
+            for (int i = 0; i < Sets.Count; i++)
+            {
+                Sets[i].Graphics.Scale = this.Graphics.Scale;
+                Sets[i].SetScales();
+            }
+        }
+
+
+        public void SetUniformMarkers(wMarker UniformMarker)
+        {
+            for (int i = 0; i < Sets.Count; i++)
+            {
+                for (int j = 0; j < Sets[i].Points.Count; j++)
+                {
+                    Sets[i].Points[j].Marker = UniformMarker;
+                    Sets[i].Points[j].CustomMarkers += 1;
+                    TotalCustomMarker += 1;
+                }
+            }
+        }
+
+        private DataPtSet CalculateDefaults(DataPtSet TempSet)
+        {
+            TotalCustomFill += TempSet.CalculateCustomFills();
+            TotalCustomFont += TempSet.CalculateCustomFonts();
+            TotalCustomMarker += TempSet.CalculateCustomMarkers();
+            TotalCustomTitles += TempSet.Graphics.CustomFonts;
+            TotalCustomStroke += TempSet.CalculateCustomStrokes();
+            TotalCustomLabel += TempSet.CalculateCustomLabels();
+
+            return TempSet;
+        }
+
     }
 }

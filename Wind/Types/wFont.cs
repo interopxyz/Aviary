@@ -1,16 +1,17 @@
 ﻿
+using System;
+using System.Windows.Media;
+
 namespace Wind.Types
 {
-    public class wFont
+
+    public class wFont: wFontBase
     {
-        public string Name = "Arial";
-        public double Size = 8;
-        public int Justify = 0;
-        public bool IsBold = false;
-        public bool IsItalic = false;
-        public bool IsUnderlined = false;
-        public bool IsStrikethrough = false;
-        public wColor FontColor = new wColor().Black();
+        public enum hALign {Left, Center, Right };
+        public enum vALign { Top, Middle, Bottom};
+
+        public hALign HorizontalAlignment = hALign.Left;
+        public vALign VerticalAlignment = vALign.Top;
 
         public wFont()
         {
@@ -30,23 +31,27 @@ namespace Wind.Types
             FontColor = color;
         }
 
-        public wFont(string FontName, double FontSize, wColor color, int Justification)
+        public wFont(string FontName, double FontSize, wColor color, Justification FontJustification)
         {
             Name = FontName;
             Size = FontSize;
 
             FontColor = color;
-            Justify = Justification;
+
+            Justify = FontJustification;
+            SetJustification();
         }
 
 
-        public wFont(string FontName, double FontSize, wColor color, int Justification, bool isBold, bool isItalic, bool isUnderlined, bool isStrikethrough)
+        public wFont(string FontName, double FontSize, wColor color, Justification FontJustification, bool isBold, bool isItalic, bool isUnderlined, bool isStrikethrough)
         {
             Name = FontName;
             Size = FontSize;
 
             FontColor = color;
-            Justify = Justification;
+
+            Justify = FontJustification;
+            SetJustification();
 
             IsBold = isBold;
             IsItalic = isItalic;
@@ -59,7 +64,9 @@ namespace Wind.Types
             Name = MediaFont.Name;
             Size = MediaFont.Size;
 
-            Justify = MediaFont.Justify;
+            Justify = (Justification)MediaFont.Justify;
+            SetJustification();
+
             FontColor = MediaFont.FontColor;
 
             IsBold = MediaFont.IsBold;
@@ -73,13 +80,26 @@ namespace Wind.Types
             Name = DrawingFont.Name;
             Size = DrawingFont.Size;
 
-            Justify = DrawingFont.Justify;
+            Justify = (Justification)DrawingFont.Justify;
+            SetJustification();
+
             FontColor = DrawingFont.FontColor;
 
             IsBold = DrawingFont.IsBold;
             IsItalic = DrawingFont.IsItalic;
             IsUnderlined = DrawingFont.IsUnderlined;
             IsStrikethrough = DrawingFont.IsStrikethrough;
+        }
+
+        public void SetJustification()
+        {
+            HorizontalAlignment = (hALign)(int)(((int)Justify + 3) % 3);
+            VerticalAlignment = (vALign)(Math.Ceiling((((int)Justify + 1) / 3.0)) - 1);
+        }
+
+        public SolidColorBrush GetFontBrush()
+        {
+            return new SolidColorBrush(FontColor.ToMediaColor());
         }
 
         public wFontMedia ToMediaFont()

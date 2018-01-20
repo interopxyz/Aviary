@@ -13,6 +13,7 @@ using Wind.Containers;
 using Parrot.Containers;
 using Parrot.Controls;
 using Wind.Types;
+using Wind.Presets;
 
 namespace Parrot.Layouts
 {
@@ -48,7 +49,7 @@ namespace Parrot.Layouts
             pan.VerticalAlignment = VerticalAlignment.Stretch;
             pan.HorizontalAlignment = HorizontalAlignment.Stretch;
             
-            tab.BorderBrush = new SolidColorBrush(new wColor().DarkGray().ToMediaColor());
+            tab.BorderBrush = new SolidColorBrush(new wColors().DarkGray().ToMediaColor());
             tab.BorderThickness = new Thickness(0, 0, 0, 2);
             tab.Margin = new Thickness(0, 0, 2, 0);
 

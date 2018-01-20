@@ -10,6 +10,8 @@ using Wind.Types;
 
 using Parrot.Containers;
 using Parrot.Controls;
+using Pollen.Collections;
+using Grasshopper.Kernel.Parameters;
 
 namespace Wind_GH.Formatting
 {
@@ -31,6 +33,9 @@ namespace Wind_GH.Formatting
             pManager.AddGenericParameter("Object", "O", "Updated Wind Object", GH_ParamAccess.item);
             pManager.AddNumberParameter("Weight", "W", "---", GH_ParamAccess.item, 1);
             pManager[1].Optional = true;
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>
@@ -66,13 +71,35 @@ namespace Wind_GH.Formatting
             
             W.Graphics = G;
 
-            if (W.Type == "Parrot")
+            switch (W.Type)
             {
-                pElement E = (pElement)W.Element;
-                pControl C = (pControl)E.ParrotControl;
+                case "Parrot":
+                    pElement E = (pElement)W.Element;
+                    pControl C = (pControl)E.ParrotControl;
+                    C.Graphics = G;
 
-                C.Graphics = G;
-                C.SetMargin();
+                    C.SetMargin();
+
+                    break;
+                case "Pollen":
+                    switch (W.SubType)
+                    {
+                        case "DataPoint":
+                            DataPt tDataPt = (DataPt)W.Element;
+                            tDataPt.Graphics = G;
+
+                            W.Element = tDataPt;
+                            break;
+                        case "DataSet":
+                            DataSetCollection tDataSet = (DataSetCollection)W.Element;
+                            tDataSet.Graphics = G;
+
+                            W.Element = tDataSet;
+                            break;
+                    }
+                    break;
+                case "Hoopoe":
+                    break;
             }
 
             DA.SetData(0, W);

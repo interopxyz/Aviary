@@ -258,7 +258,9 @@ namespace Parrot_GH.Utilities
                                 }
                                 for (int j = 0; j < C13.Items.Count; j++)
                                 {
-                                    OutPut.Append(new GH_ObjectWrapper(C13.Items[j]), P);
+                                    Label tbox = (Label)C13.Items[j];
+                                    
+                                    OutPut.Append(new GH_ObjectWrapper(tbox.ToolTip.ToString()), P);
                                 }
                                 break;
                             case ("ListBox"):

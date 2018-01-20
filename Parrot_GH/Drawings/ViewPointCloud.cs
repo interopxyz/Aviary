@@ -22,7 +22,7 @@ using System.Drawing;
 
 namespace Parrot_GH.Drawings
 {
-  public class ViewPointCloud : GH_Component
+    public class ViewPointCloud : GH_Component
     {
         public wCamera InitialCamera = new wCamera(135, 54.736, 1.0, 0, true, true);
 
@@ -42,14 +42,14 @@ namespace Parrot_GH.Drawings
       : base("ViewPointCloud", "Point Cloud", "---", "Aviary", "3D Scene")
         {
         }
-        
+
 
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
-    {
-            pManager.AddPointParameter("Points", "P", "---", GH_ParamAccess.list,new Point3d());
+        {
+            pManager.AddPointParameter("Points", "P", "---", GH_ParamAccess.list, new Point3d());
             pManager[0].Optional = true;
             pManager.AddColourParameter("Color", "C", "---", GH_ParamAccess.list, System.Drawing.Color.Black);
             pManager[1].Optional = true;
@@ -108,7 +108,7 @@ namespace Parrot_GH.Drawings
             List<Color> X = new List<Color>();
             List<double> R = new List<double>();
             IGH_Goo U = null;
-            
+
 
             if (Params.Input[3].VolatileDataCount < 1)
             {
@@ -123,9 +123,9 @@ namespace Parrot_GH.Drawings
 
             wCamera V = new wCamera();
             U.CastTo(out V);
-            
 
-            for(int i = (X.Count-1);i<P.Count;i++)
+
+            for (int i = (X.Count - 1); i < P.Count; i++)
             {
                 X.Add(X[X.Count - 1]);
             }
@@ -143,9 +143,9 @@ namespace Parrot_GH.Drawings
             }
 
             BoundingBox Bbox = new BoundingBox(P);
-            
+
             pCtrl.SetCamera(V, Bbox.Diagonal.Length);
-            
+
             pCtrl.SetNavigation(HasNavigation);
             pCtrl.SetGizmo(HasGizmo);
             pCtrl.SetCoordinateSystem(HasCoordinates);
@@ -202,7 +202,7 @@ namespace Parrot_GH.Drawings
             ZoomExtents = true;
             this.ExpireSolution(true);
         }
-        
+
         private void InteractionMode(Object sender, EventArgs e)
         {
             HasNavigation = !HasNavigation;
@@ -346,19 +346,19 @@ namespace Parrot_GH.Drawings
         /// Provides an Icon for the component.
         /// </summary>
         protected override System.Drawing.Bitmap Icon
-    {
-      get
+        {
+            get
             {
-                return Properties.Resources.Parrot_PointViewer;
+                return Properties.Resources.Flock_Cloud;
             }
-    }
+        }
 
-    /// <summary>
-    /// Gets the unique ID for this component. Do not change this ID after release.
-    /// </summary>
-    public override Guid ComponentGuid
-    {
-      get { return new Guid("b772658d-05c6-408c-ae82-6e65e06406c1"); }
+        /// <summary>
+        /// Gets the unique ID for this component. Do not change this ID after release.
+        /// </summary>
+        public override Guid ComponentGuid
+        {
+            get { return new Guid("b772658d-05c6-408c-ae82-6e65e06406c1"); }
+        }
     }
-  }
 }

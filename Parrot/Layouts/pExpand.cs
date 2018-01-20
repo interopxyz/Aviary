@@ -13,6 +13,7 @@ using Wind.Containers;
 using Parrot.Containers;
 using Parrot.Controls;
 using Wind.Types;
+using Wind.Presets;
 
 namespace Parrot.Layouts
 {
@@ -36,7 +37,7 @@ namespace Parrot.Layouts
             if (ExpanderDirection > 1) { tBlock.LayoutTransform = new RotateTransform(-90); }else { tBlock.LayoutTransform = new RotateTransform(0); }
 
 
-            Element.BorderBrush = new SolidColorBrush(new wColor().DarkGray().ToMediaColor());
+            Element.BorderBrush = new SolidColorBrush(new wColors().DarkGray().ToMediaColor());
             switch (ExpanderDirection)
             {
                 case 1:

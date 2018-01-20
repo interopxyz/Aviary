@@ -30,6 +30,10 @@ namespace Pollen.Collections
         public bool HasGraphics = false;
         public bool HasTitle = false;
 
+        public double BarScale = 0.75;
+        public double PieScale = 1.0;
+        public double PointScale = 1.0;
+        
         /// <summary>
         /// Compiles a Data Set Object from a 1D array
         /// </summary>
@@ -62,8 +66,6 @@ namespace Pollen.Collections
 
         private List<DataPt> ObjectListToDataPointList(List<object> objects)
         {
-
-
             List<DataPt> DataPoints = new List<DataPt>();
 
             double[] TempNumberSet = new double[objects.Count];
@@ -74,7 +76,7 @@ namespace Pollen.Collections
                 wObject W = (wObject)objects[i];
                 DataPt Pt = (DataPt)W.Element;
                 DataPoints.Add((DataPt)W.Element);
-
+                
                 TempNumberSet[i] = Pt.Number;
                 NumericSum += Pt.Number;
             }
@@ -83,6 +85,62 @@ namespace Pollen.Collections
             NumericBounds = new wDomain(TempNumberSet[0], TempNumberSet[TempNumberSet.Count() - 1]);
 
             return DataPoints;
+        }
+
+
+        public int CalculateCustomStrokes()
+        {
+            int TotalCustom = 0;
+
+            for (int i = 0; i < Points.Count; i++)
+            {
+                TotalCustom += Points[i].Graphics.CustomStrokes;
+            }
+            return TotalCustom;
+        }
+
+        public int CalculateCustomLabels()
+        {
+            int TotalCustom = 0;
+
+            for (int i = 0; i < Points.Count; i++)
+            {
+                TotalCustom += Points[i].CustomLabels;
+            }
+            return TotalCustom;
+        }
+
+        public int CalculateCustomMarkers()
+        {
+            int TotalCustom = 0;
+
+            for (int i = 0; i < Points.Count; i++)
+            {
+                TotalCustom += Points[i].CustomMarkers;
+            }
+            return TotalCustom;
+        }
+
+        public int CalculateCustomFills()
+        {
+            int TotalCustom = 0;
+
+            for (int i = 0; i < Points.Count; i++)
+            {
+                TotalCustom += Points[i].Graphics.CustomFills;
+            }
+            return TotalCustom;
+        }
+
+        public int CalculateCustomFonts()
+        {
+            int TotalCustom = 0;
+
+            for (int i = 0; i < Points.Count; i++)
+            {
+                TotalCustom += Points[i].Graphics.CustomFonts;
+            }
+            return TotalCustom;
         }
 
         private void CalculateDataExtents()
@@ -103,6 +161,13 @@ namespace Pollen.Collections
 
             NumericBounds = new wDomain(TempNumberSet[0], TempNumberSet[TempNumberSet.Count() - 1]);
 
+        }
+
+        public void SetScales()
+        {
+            BarScale = Graphics.Scale;
+            PieScale = Graphics.Scale;
+            PointScale = Graphics.Scale;
         }
 
 

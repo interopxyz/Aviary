@@ -22,6 +22,7 @@ using Hoopoe.Transform;
 using Hoopoe.Geometry.Compound;
 using Hoopoe.Modify;
 using Hoopoe.Graphics.Effects;
+using Hoopoe.Geometry.Text;
 
 namespace Hoopoe.Drawing
 {
@@ -82,10 +83,26 @@ namespace Hoopoe.Drawing
                 case "PolylineGroup":
                     CompoundPolyline();
                     break;
+                case "Text":
+                    AddText();
+                    break;
                 default:
                     AddShape();
                     break;
             }
+        }
+
+        private void AddText()
+        {
+            hCompoundCurve crv = new hCompoundCurve();
+            hShape shape = new hShape("p" + Index);
+
+            GroupCheck(Shapes);
+
+            hText txt = new hText((wTextObject)Shapes.Shapes[0].Curve, Shapes.Fonts);
+            txt.BuildSVGCurve();
+
+            PathSet[Shapes.Group].Append(txt.Curve);
         }
 
         public void CompoundPolyline()
@@ -213,35 +230,35 @@ namespace Hoopoe.Drawing
         private hCircle AddCircle(wCircle InputCurve)
         {
             hCircle crv = new hCircle(InputCurve);
-            crv.BuildCurve();
+            crv.BuildSVGCurve();
             return crv;
         }
 
         private hEllipse AddEllipse(wEllipse InputCurve)
         {
             hEllipse crv = new hEllipse(InputCurve);
-            crv.BuildCurve();
+            crv.BuildSVGCurve();
             return crv;
         }
 
         private hLine AddLine(wLine InputCurve)
         {
             hLine crv = new hLine(InputCurve);
-            crv.BuildCurve();
+            crv.BuildSVGCurve();
             return crv;
         }
 
         private hPolyline AddPolyline(wPolyline InputCurve)
         {
             hPolyline crv = new hPolyline(InputCurve);
-            crv.BuildCurve();
+            crv.BuildSVGCurve();
             return crv;
         }
 
         private hCubicBezierSpline AddSpline(wBezierSpline InputCurve)
         {
             hCubicBezierSpline crv = new hCubicBezierSpline(InputCurve);
-            crv.BuildCurve();
+            crv.BuildSVGCurve();
             return crv;
         }
 
@@ -287,7 +304,7 @@ namespace Hoopoe.Drawing
                     HoopoeShape.AddAttribute(RGradient.Value);
                     break;
                 case wGraphic.FillTypes.Bitmap:
-                    hFillBitmap hBitmapFill = new hFillBitmap(Index, Graphics.FillBitmap);
+                    hFillBitmap hBitmapFill = new hFillBitmap(Index, Graphics.FillBitmap,  Shapes.Boundary.Width, Shapes.Boundary.Height);
                     Styles.Append(hBitmapFill.Style);
                     HoopoeShape.AddAttribute(hBitmapFill.Value);
                     break;

@@ -9,7 +9,8 @@ using Wind.Utilities;
 
 using Parrot.Containers;
 using Parrot.Controls;
-
+using System.Drawing;
+using Wind.Types;
 
 namespace Parrot_GH.Controls
 {
@@ -32,7 +33,7 @@ namespace Parrot_GH.Controls
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("Values", "V", "Values", GH_ParamAccess.list, "");
-            pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
+            pManager.AddColourParameter("Colors", "C", "---", GH_ParamAccess.list, Color.LightGray);
             pManager[1].Optional = true;
         }
 
@@ -79,10 +80,28 @@ namespace Parrot_GH.Controls
             //Set Unique Control Properties
 
             List<string> T = new List<string>();
-
+            List<Color> X = new List<Color>();
+            
             if (!DA.GetDataList(0, T)) return;
+            if (!DA.GetDataList(1, X)) return;
 
-            pCtrl.SetProperties(T);
+            List<wColor> Y = new List<wColor>();
+            if (T.Count > 0) { if (X.Count < 1) { X.Add(Color.LightGray); } }
+
+            for (int i = 0; i < X.Count; i++)
+            {
+                Y.Add(new wColor(X[i]));
+            }
+
+            int A = Y.Count;
+            int B = T.Count;
+
+            for (int i = A; i < B; i++)
+            {
+                Y.Add(Y[A - 1]);
+            }
+
+            pCtrl.SetProperties(T,Y);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pCtrl.Element, pCtrl, pCtrl.Type); }

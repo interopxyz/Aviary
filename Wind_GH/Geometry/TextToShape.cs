@@ -49,11 +49,12 @@ namespace Wind_GH.Geometry
             Plane P = Plane.WorldXY;
             if (!DA.GetData(0, ref T)) return;
             if (!DA.GetData(1, ref P)) return;
-
+            
             wPlane Pln = new wPlane(new wPoint(P.Origin.X,P.Origin.Y,P.Origin.Z),new wVector(P.XAxis.X, P.XAxis.Y, P.XAxis.Z),new wVector(P.YAxis.X, P.YAxis.Y, P.YAxis.Z));
                 
             wText Txt = new wText(T);
             wTextObject TxtObj = new wTextObject(Txt, Pln);
+            TxtObj.Angle = (Vector3d.VectorAngle(Vector3d.YAxis, P.YAxis,Plane.WorldXY) / Math.PI * 180);
 
             wShape Shape = new wShape(TxtObj);
             wShapeCollection Shapes = new wShapeCollection(Shape);

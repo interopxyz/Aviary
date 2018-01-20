@@ -15,6 +15,7 @@ namespace Wind.Geometry.Curves
 
         public wText Text = new wText("");
         public wPlane Plane = new wPlane().XYPlane();
+        public double Angle = 0;
 
         public wTextObject()
         {

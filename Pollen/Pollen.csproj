@@ -96,12 +96,16 @@
     <Compile Include="Charts\pPointChart.cs" />
     <Compile Include="Charts\pCartesianChart.cs" />
     <Compile Include="Charts\pCartesianSeries.cs" />
+    <Compile Include="Charts\pRadialChart.cs" />
+    <Compile Include="Charts\pRadialSeries.cs" />
     <Compile Include="Collections\DataSetCollection.cs" />
     <Compile Include="Collections\DataPt.cs" />
     <Compile Include="Collections\DataPtSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Table\pDataTableX.cs" />
     <Compile Include="Table\pDataTable.cs" />
     <Compile Include="Table\pDataGrid.cs" />
+    <Compile Include="Utilities\p3D.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

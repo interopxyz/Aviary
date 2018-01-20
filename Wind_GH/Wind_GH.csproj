@@ -94,6 +94,8 @@
     <Compile Include="Files\WriteBitmap.cs" />
     <Compile Include="Files\WriteSVG.cs" />
     <Compile Include="Formatting\FillGradientRadial.cs" />
+    <Compile Include="Formatting\FontBasic.cs" />
+    <Compile Include="Formatting\FontPopup.cs" />
     <Compile Include="Formatting\Frames.cs" />
     <Compile Include="Formatting\Corners.cs" />
     <Compile Include="Formatting\FillBitmap.cs" />
@@ -135,6 +137,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +265,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Wind_Gradient_Radial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Font_Adv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Font_Simple.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

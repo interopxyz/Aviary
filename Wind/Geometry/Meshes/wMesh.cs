@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
 
 using Wind.Geometry.Vectors;
+using Wind.Presets;
 using Wind.Scene;
 using Wind.Types;
 
@@ -33,7 +34,7 @@ namespace Wind.Geometry.Meshes
         {
             Vertices.Add(new wVertex(X, Y, Z, Index));
             WpfMesh.Positions.Add(new Point3D(X, Y, Z));
-            Colors.Add(new wColor().LightGray());
+            Colors.Add(new wColors().LightGray());
         }
 
         public void AddVertex(double X, double Y, double Z, int Index, wColor VertexColor)

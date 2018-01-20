@@ -15,6 +15,7 @@ using Wind.Graphics;
 using System.Windows.Forms;
 using Wind.Types;
 using GH_IO.Serialization;
+using Grasshopper.Kernel.Parameters;
 
 namespace Wind_GH.Formatting
 {
@@ -41,6 +42,9 @@ namespace Wind_GH.Formatting
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Scale", "X", "Scale", GH_ParamAccess.item, 1);
             pManager[2].Optional = true;
+            
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>
@@ -78,6 +82,7 @@ namespace Wind_GH.Formatting
             G.FillType = wGraphic.FillTypes.Pattern;
             G.WpfPattern = Swatch.DwgBrush;
             G.WpfFill = Swatch.DwgBrush;
+            G.CustomFills +=1;
 
             W.Graphics = G;
 
@@ -95,14 +100,20 @@ namespace Wind_GH.Formatting
                     {
                         case "DataPoint":
                             DataPt tDataPt = (DataPt)W.Element;
-                            //tDataPt.Graphics.Background = new wColor(Background);
-                            //tDataPt.Graphics.Foreground = new wColor(ForeGround);
+                            tDataPt.Graphics = G;
+
+                            tDataPt.Graphics.WpfFill = G.WpfFill;
+                            tDataPt.Graphics.WpfPattern = G.WpfPattern;
+
                             W.Element = tDataPt;
                             break;
                         case "DataSet":
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
-                            //tDataSet.Graphics.Background = new wColor(Background);
-                            //tDataSet.Graphics.Foreground = new wColor(ForeGround);
+                            tDataSet.Graphics = G;
+
+                            tDataSet.Graphics.WpfFill = G.WpfFill;
+                            tDataSet.Graphics.WpfPattern = G.WpfPattern;
+
                             W.Element = tDataSet;
                             break;
                     }

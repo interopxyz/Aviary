@@ -219,7 +219,6 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bi
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\MaterialDesignColors.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\MaterialDesignThemes.MahApps.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\MaterialDesignThemes.Wpf.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Parrot.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Pollen.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\System.Windows.Interactivity.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Wind.dll
@@ -229,11 +228,6 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bi
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Xceed.Wpf.DataGrid.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Xceed.Wpf.Toolkit.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Svg.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\SharpGL.WPF.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\SharpGL.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\SharpGL.SceneGraph.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.WinForms.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.Wpf.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\AForge.Imaging.dll
@@ -249,13 +243,8 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bi
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\MaterialDesignColors.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\MaterialDesignThemes.Wpf.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\MaterialDesignThemes.Wpf.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Parrot.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Pollen.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Wind.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Svg.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Svg.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.WinForms.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.WinForms.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.Wpf.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.Wpf.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.pdb
@@ -431,11 +420,9 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Xce
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Xceed.Wpf.DataGrid.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Xceed.Wpf.Toolkit.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Svg.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\SharpGL.WPF.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\SharpGL.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\SharpGL.SceneGraph.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.WinForms.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.Wpf.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\AForge.Imaging.dll
@@ -454,10 +441,6 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Mat
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Parrot.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Pollen.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Wind.pdb
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Svg.pdb
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Svg.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.WinForms.pdb
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.WinForms.xml
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.Wpf.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.Wpf.xml
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\LiveCharts.pdb
@@ -480,3 +463,8 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Deb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Debug64\Parrot_GH.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Debug64\Parrot_GH.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\obj\Debug64\Parrot_GH.csprojResolveAssemblyReference.cache
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Parrot.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\SharpGL.WPF.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\SharpGL.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\SharpGL.SceneGraph.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Parrot_GH\bin\Parrot.pdb

@@ -128,7 +128,6 @@
     <Compile Include="Drawings\ComposeDrawing.cs" />
     <Compile Include="Drawings\ComposeSVG.cs" />
     <Compile Include="Drawings\ViewBasicMesh.cs" />
-    <Compile Include="Drawings\ViewOpenGLMesh.cs" />
     <Compile Include="Drawings\ViewPointCloud.cs" />
     <Compile Include="Layouts\FrameCard.cs" />
     <Compile Include="Controls\CheckList.cs" />
@@ -186,6 +185,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -416,6 +416,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Parrot_Card_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Flock_WPF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Flock_Cloud.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

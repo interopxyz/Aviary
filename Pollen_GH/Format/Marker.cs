@@ -26,13 +26,17 @@ namespace Pollen_GH.Format
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
             pManager.AddGenericParameter("DataSet", "D", "---", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 1);
             pManager[1].Optional = true;
-            pManager.AddIntegerParameter("Size", "S", "---", GH_ParamAccess.item, 10);
+            pManager.AddIntegerParameter("Radius", "R", "---", GH_ParamAccess.item, 10);
             pManager[2].Optional = true;
-            pManager.AddColourParameter("Color", "C", "---", GH_ParamAccess.item, System.Drawing.Color.Black);
+            pManager.AddColourParameter("Fill Color", "F", "---", GH_ParamAccess.item, System.Drawing.Color.DarkGray);
             pManager[3].Optional = true;
-            
+            pManager.AddColourParameter("Stroke Color", "S", "---", GH_ParamAccess.item, System.Drawing.Color.Transparent);
+            pManager[4].Optional = true;
+            pManager.AddNumberParameter("Weight", "W", "---", GH_ParamAccess.item, 0);
+            pManager[5].Optional = true;
+
             Param_Integer param = (Param_Integer)Params.Input[1];
             param.AddNamedValue("None", 0);
             param.AddNamedValue("Circle", 1);
@@ -48,6 +52,7 @@ namespace Pollen_GH.Format
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
             pManager.AddGenericParameter("Object", "O", "Updated Wind Object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Marker", "M", "Marker Object", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -58,16 +63,27 @@ namespace Pollen_GH.Format
         {
             IGH_Goo Element = null;
             int M = 0;
-            int S = 10;
-            System.Drawing.Color C = System.Drawing.Color.Black;
+            int R = 10;
+            System.Drawing.Color F = System.Drawing.Color.DarkGray;
+            System.Drawing.Color S = System.Drawing.Color.Transparent;
+            double T = 0;
 
             if (!DA.GetData(0, ref Element)) return;
             if (!DA.GetData(1, ref M)) return;
-            if (!DA.GetData(2, ref S)) return;
-            if (!DA.GetData(3, ref C)) return;
+            if (!DA.GetData(2, ref R)) return;
+            if (!DA.GetData(3, ref F)) return;
+            if (!DA.GetData(4, ref S)) return;
+            if (!DA.GetData(5, ref T)) return;
 
             wObject W;
             Element.CastTo(out W);
+
+            wGraphic G = new wGraphic();
+            G.Background = new wColor(F);
+            G.StrokeColor = new wColor(S);
+            G.SetUniformStrokeWeight(T);
+
+            wMarker CustomMarker = new wMarker((wMarker.MarkerType)M, (int)R, G);
 
             switch (W.Type)
             {
@@ -76,17 +92,23 @@ namespace Pollen_GH.Format
                     switch (W.SubType)
                     {
                         case "DataPoint":
-                            DataPt tDataPt = (DataPt)W.Element;
-                            tDataPt.SetMarker(M,S,new wColor(C.A,C.R,C.G,C.B));
-                            W.Element = tDataPt;
+                            DataPt Pt = (DataPt)W.Element;
+                            Pt.SetMarker(CustomMarker);
+
+                            W.Element = Pt;
                             break;
                         case "DataSet":
+                            DataSetCollection St = (DataSetCollection)W.Element;
+                            St.SetUniformMarkers(CustomMarker);
+                            
+                            W.Element = St;
                             break;
                     }
                     break;
             }
 
             DA.SetData(0, W);
+            DA.SetData(1, CustomMarker);
         }
 
         /// <summary>
@@ -94,7 +116,7 @@ namespace Pollen_GH.Format
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.quarternary; }
+            get { return GH_Exposure.secondary; }
         }
 
         /// <summary>

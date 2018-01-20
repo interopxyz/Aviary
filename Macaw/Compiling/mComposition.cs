@@ -5,6 +5,7 @@ using SoundInTheory.DynamicImage.Caching;
 using SoundInTheory.DynamicImage.Filters;
 using System.Collections.Generic;
 using System.Drawing;
+using Wind.Presets;
 using Wind.Types;
 
 namespace Macaw.Compiling
@@ -40,7 +41,7 @@ namespace Macaw.Compiling
         public void BuildComposition()
         {
             Composite.ImageFormat = DynamicImageFormat.Png;
-            Composite.Fill.BackgroundColor = new mImageColor(new wColor().Transparent()).ToDynamicColor();
+            Composite.Fill.BackgroundColor = new mImageColor(new wColors().Transparent()).ToDynamicColor();
                
             CompositionBitmap = new Bitmap(new mConvert(Composite.GenerateImage().Image).SourceToBitmap());
 

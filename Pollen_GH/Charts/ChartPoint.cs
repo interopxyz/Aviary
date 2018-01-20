@@ -15,12 +15,15 @@ using Grasshopper.Kernel.Parameters;
 using Pollen.Collections;
 using Grasshopper.Kernel.Types;
 using System.Windows.Forms;
+using GH_IO.Serialization;
+using Wind.Presets;
 
 namespace Pollen_GH.Charts
 {
-  public class ChartPoint : GH_Component
+    public class ChartPoint : GH_Component
     {
-        int modeStatus = 0;
+        public int ModeLighting = 0;
+        public int ModeStack = 0;
 
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
@@ -29,7 +32,7 @@ namespace Pollen_GH.Charts
         /// Initializes a new instance of the RadialChart class.
         /// </summary>
         public ChartPoint()
-          : base("Point Chart", "Point Chart", "---", "Aviary", "Charting & Data")
+          : base("3D Chart", "3D Chart", "---", "Aviary", "Charting & Data")
         {
 
         }
@@ -42,16 +45,22 @@ namespace Pollen_GH.Charts
             pManager.AddGenericParameter("Data", "D", "---", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
+            pManager.AddIntegerParameter("Pivot", "P", "---", GH_ParamAccess.item, 0);
+            pManager[2].Optional = true;
+            pManager.AddIntegerParameter("Tilt", "T", "---", GH_ParamAccess.item, 0);
+            pManager[3].Optional = true;
+            pManager.AddIntegerParameter("Lens Length", "L", "---", GH_ParamAccess.item, 0);
+            pManager[4].Optional = true;
 
-            Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("Point", 0);
-            param.AddNamedValue("Bar", 1);
-            param.AddNamedValue("Column", 2);
-            param.AddNamedValue("Line", 3);
-            param.AddNamedValue("StepLine", 4);
-            param.AddNamedValue("Spline", 5);
-            param.AddNamedValue("Area", 6);
-            param.AddNamedValue("SplineArea", 7);
+            Param_Integer param1 = (Param_Integer)Params.Input[1];
+            param1.AddNamedValue("Point", 0);
+            param1.AddNamedValue("Bar", 1);
+            param1.AddNamedValue("Column", 2);
+            param1.AddNamedValue("Line", 3);
+            param1.AddNamedValue("StepLine", 4);
+            param1.AddNamedValue("Spline", 5);
+            param1.AddNamedValue("Area", 6);
+            
 
         }
 
@@ -99,37 +108,55 @@ namespace Pollen_GH.Charts
 
             IGH_Goo D = null;
             int M = 0;
+            int P = 0;
+            int T = 0;
+            int L = 0;
 
             if (!DA.GetData(0, ref D)) return;
             if (!DA.GetData(1, ref M)) return;
+            if (!DA.GetData(2, ref P)) return;
+            if (!DA.GetData(3, ref T)) return;
+            if (!DA.GetData(4, ref L)) return;
 
             wObject W = new wObject();
             D.CastTo(out W);
 
+            bool LineMode = ((M > 2) & (M < 6));
+            bool TagMode = ((M == 1) || (M == 2));
+
             DataSetCollection DC = (DataSetCollection)W.Element;
+
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(Wind.Presets.wGradients.GradientTypes.Metro, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomStroke == 0) { if (LineMode) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.LineChart, wGradients.GradientTypes.Metro,false, DC.Sets.Count > 1); } else { DC.SetDefaultStrokes(wStrokes.StrokeTypes.OffWhiteSolid); } }
+            if (DC.TotalCustomMarker == 0) { if (M == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); } else { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); } }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPointDark).Font); }
+
+            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = new wFonts(wFonts.FontTypes.AxisLabel).Font; }
 
             List<pPointSeries> PointSeriesList = new List<pPointSeries>();
 
             pControl.SetProperties(DC);
 
-            for (int i = 0; i<DC.Sets.Count;i++)
+            for (int i = 0; i < DC.Sets.Count; i++)
             {
-                pPointSeries pSeriesSet = new pPointSeries(Convert.ToString(name + i));
+                pPointSeries pSeriesSet = new pPointSeries(DC.Sets[i].Title);
                 pSeriesSet.SetProperties(DC.Sets[i]);
-                pSeriesSet.SetNumberChartType(M, modeStatus);
-                pSeriesSet.SetChartLabels(DC.LeaderPostion,DC.HasLeader);
+                pSeriesSet.SetNumberChartType(M, ModeStack, LineMode);
+                pSeriesSet.SetChartLabels(DC.Label);
                 pSeriesSet.SetNumericData(0);
                 PointSeriesList.Add(pSeriesSet);
             }
-            
+
+            pControl.View = new Pollen.Utilities.p3D(P, T, L, (Pollen.Utilities.p3D.LightingMode)ModeLighting);
+
             pControl.SetSeries(PointSeriesList);
             pControl.SetThreeDView();
             pControl.SetAxisAppearance();
-            pControl.SetAxisScale(); 
+            pControl.SetAxisScale();
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }
-            WindObject = new wObject(Element, "Parrot", Element.Type);
+            WindObject = new wObject(Element, "Pollen", Element.Type);
             WindObject.GUID = this.InstanceGuid;
             WindObject.Instance = C;
 
@@ -139,62 +166,118 @@ namespace Pollen_GH.Charts
 
         }
 
+
         public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
         {
             base.AppendAdditionalMenuItems(menu);
+
             Menu_AppendSeparator(menu);
 
-            Menu_AppendItem(menu, "None", ModeNone, true, (modeStatus == 0));
-            Menu_AppendItem(menu, "Stack", ModeStack, true, (modeStatus == 1));
-            Menu_AppendItem(menu, "Stack100", ModeStackFill, true, (modeStatus == 2));
+            Menu_AppendItem(menu, "Adjoin", ModeAdjacent, true, (ModeStack == 0));
+            Menu_AppendItem(menu, "Stack", ModeStacked, true, (ModeStack == 1));
+            Menu_AppendItem(menu, "Stretch", ModeStretched, true, (ModeStack == 2));
+
+            Menu_AppendSeparator(menu);
+            
+
+            Menu_AppendItem(menu, "None", ModeNone, true, (ModeLighting == 0));
+            Menu_AppendItem(menu, "Simple", ModeSimple, true, (ModeLighting == 1));
+            Menu_AppendItem(menu, "Realistic", ModeReal, true, (ModeLighting == 2));
 
         }
 
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("Mode", ModeLighting);
+            writer.SetInt32("Stack", ModeStack);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            ModeLighting = reader.GetInt32("Mode");
+            ModeStack = reader.GetInt32("Stack");
+
+            return base.Read(reader);
+        }
 
         private void ModeNone(Object sender, EventArgs e)
         {
-            modeStatus = 0;
+            ModeLighting = 0;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
-        private void ModeStack(Object sender, EventArgs e)
+        private void ModeSimple(Object sender, EventArgs e)
         {
-            modeStatus = 1;
+            ModeLighting = 1;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
-        private void ModeStackFill(Object sender, EventArgs e)
+        private void ModeReal(Object sender, EventArgs e)
         {
-            modeStatus = 2;
+            ModeLighting = 2;
+
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
+        private void ModeAdjacent(Object sender, EventArgs e)
+        {
+            ModeStack = 0;
+            
+            this.ExpireSolution(true);
+        }
+
+        private void ModeStacked(Object sender, EventArgs e)
+        {
+            ModeStack = 1;
+            
+            this.ExpireSolution(true);
+        }
+
+        private void ModeStretched(Object sender, EventArgs e)
+        {
+            ModeStack = 2;
+            
+            this.ExpireSolution(true);
+        }
+
+        private void UpdateMessage()
+        {
+            string[] msg = { "None", "Simple", "Realistic" };
+            Message = msg[ModeLighting];
+        }
 
         /// <summary>
         /// Set Exposure level for the component.
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
         protected override System.Drawing.Bitmap Icon
-    {
-      get
+        {
+            get
             {
-                return Properties.Resources.Pollen_Points1;
+                return Properties.Resources.Pollen_Winform;
             }
-    }
+        }
 
-    /// <summary>
-    /// Gets the unique ID for this component. Do not change this ID after release.
-    /// </summary>
-    public override Guid ComponentGuid
-    {
-      get { return new Guid("{66135512-5c58-406c-b4c3-8a90c6972eba}"); }
+        /// <summary>
+        /// Gets the unique ID for this component. Do not change this ID after release.
+        /// </summary>
+        public override Guid ComponentGuid
+        {
+            get { return new Guid("{66135512-5c58-406c-b4c3-8a90c6972eba}"); }
+        }
     }
-  }
 }

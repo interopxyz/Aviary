@@ -23,9 +23,9 @@ namespace Wind_GH.Files
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("File Path", "P", "The target filepath for the image to be saved", GH_ParamAccess.item);
-            pManager[0].Optional = true;
             pManager.AddGenericParameter("Bitmap Object", "B", "The bitmap object to be saved", GH_ParamAccess.item);
+            pManager.AddTextParameter("File Path", "P", "The target filepath for the image to be saved", GH_ParamAccess.item);
+            pManager[1].Optional = true;
             pManager.AddBooleanParameter("Save", "S", "If true the bitmap will be saved to a bitmap", GH_ParamAccess.item);
         }
 
@@ -51,8 +51,8 @@ namespace Wind_GH.Files
 
             // Access the input parameters 
             if (!DA.GetData(0, ref F)) return;
-            if (!DA.GetData(1, ref B)) return;
-            if (!DA.GetData(2, ref S)) return;
+            if (!DA.GetData(1, ref S)) return;
+            if (!DA.GetData(2, ref B)) return;
 
             string FilePath = "C:\\Users\\Public\\Documents\\untitled.jpg";
 

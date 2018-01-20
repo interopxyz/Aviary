@@ -40,7 +40,7 @@ namespace Hoopoe.Geometry.Primitives
             Radius = WindGeometry.Radius;
         }
 
-        public override void BuildCurve()
+        public override void BuildSVGCurve()
         {
             Curve.Clear();
             Curve.Append("M " + (CenterX - Radius) + " " + CenterY + " " + Environment.NewLine);

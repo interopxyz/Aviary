@@ -55,7 +55,7 @@ namespace Hoopoe.Geometry.Primitives
             Angle = WindGeometry.Rotation;
         }
 
-        public override void BuildCurve()
+        public override void BuildSVGCurve()
         {
             Curve.Clear();
             Curve.Append("M " + (CenterX - RadiusX) + " " + CenterY + " " + Environment.NewLine);

@@ -41,12 +41,25 @@ namespace Parrot.Containers
         }
 
         //Control
+        public pElement(Control WPFControl, pControl ParrotControlObject, string ElementType, bool IsNoGood)
+        {
+            ParrotControl = ParrotControlObject;
+            Element = WPFControl;
+
+            SetGraphics("B" + WPFControl.Name);
+
+            Type = ElementType;
+            Category = "Control";
+        }
+
+        //Control
         public pElement(Control WPFControl, pControl ParrotControlObject, string ElementType)
         {
             ParrotControl = ParrotControlObject;
             Element = WPFControl;
 
-            Container.Name = "B" + WPFControl.Name;
+            SetGraphics("B" + WPFControl.Name);
+
             Container.Content = WPFControl;
             Container.Mode = ColorZoneMode.Standard;
             Type = ElementType;
@@ -59,7 +72,8 @@ namespace Parrot.Containers
             ParrotControl = ParrotControlObject;
             Element = WPFControl;
 
-            Container.Name = "B" + WPFControl.Name;
+            SetGraphics("B" + WPFControl.Name);
+
             Container.Content = WPFControl;
             Container.Margin = new Thickness(Margin);
 
@@ -73,7 +87,8 @@ namespace Parrot.Containers
             ParrotControl = ParrotControlObject;
             Wrapper = WPFBorder;
 
-            Container.Name = "B" + WPFBorder.Name;
+            SetGraphics("B" + WPFBorder.Name);
+
             Container.Content = WPFBorder;
             Container.Margin = new Thickness(Margin);
 
@@ -87,7 +102,8 @@ namespace Parrot.Containers
             ParrotControl = ParrotControlObject;
             Layout = GenericPanel;
 
-            Container.Name = "B" + GenericPanel.Name;
+            SetGraphics("B" + GenericPanel.Name);
+
             Container.Content = GenericPanel;
 
             Type = ElementType;
@@ -100,7 +116,8 @@ namespace Parrot.Containers
             ParrotControl = ParrotControlObject;
             ImageObject = GenericImage;
 
-            Container.Name = "B" + GenericImage.Name;
+            SetGraphics("B" + GenericImage.Name);
+
             Container.Content = ImageObject;
 
             Type = ElementType;
@@ -113,7 +130,8 @@ namespace Parrot.Containers
             PollenControl = PollenControlObject;
             Layout = GenericPanel;
 
-            Container.Name = "B" + Layout.Name;
+            SetGraphics("B" + Layout.Name);
+
             Container.Content = Layout;
             Container.Mode = ColorZoneMode.Standard;
             Type = ElementType;
@@ -127,7 +145,8 @@ namespace Parrot.Containers
             PollenControl = PollenControlObject;
             Element = WPFControl;
 
-            Container.Name = "B" + WPFControl.Name;
+            SetGraphics("B" + WPFControl.Name);
+
             Container.Content = WPFControl;
             Container.Mode = ColorZoneMode.Standard;
             Type = ElementType;
@@ -144,6 +163,11 @@ namespace Parrot.Containers
             }
         }
         
+        public void SetGraphics(string ElementName)
+        {
+            Container.Name = ElementName;
+            Container.Background = Brushes.Transparent;
+        }
         
     }
 }

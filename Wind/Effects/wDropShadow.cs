@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Effects;
+using Wind.Presets;
 using Wind.Types;
 
 namespace Wind.Effects
@@ -14,7 +15,7 @@ namespace Wind.Effects
         public DropShadowEffect ShapeEffect = new DropShadowEffect();
 
         public double Radius = 1;
-        public wColor Color = new wColor().Black();
+        public wColor Color = new wColors().Black();
         public double Direction = 315.0;
         public double Distance = 2.0;
         public double Opacity = 0.75;

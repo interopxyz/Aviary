@@ -253,6 +253,26 @@ namespace Wind_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Wind_Font_Adv {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Font_Adv", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Wind_Font_Simple {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Font_Simple", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Wind_Gradient_Radial {
             get {
                 object obj = ResourceManager.GetObject("Wind_Gradient_Radial", resourceCulture);

@@ -93,6 +93,26 @@ namespace Parrot_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Flock_Cloud {
+            get {
+                object obj = ResourceManager.GetObject("Flock_Cloud", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Flock_WPF {
+            get {
+                object obj = ResourceManager.GetObject("Flock_WPF", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Hoopoe_CompileSVG {
             get {
                 object obj = ResourceManager.GetObject("Hoopoe_CompileSVG", resourceCulture);

@@ -10,35 +10,31 @@ using System.Windows.Forms.Integration;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Series;
-using LiveCharts.WinForms;
+using LiveCharts.Wpf;
 
 using Wind.Containers;
 
 using Pollen.Collections;
+using System.Windows.Media;
 
 namespace Pollen.Charts
 {
     public class pCartesianChart : pChart
     {
-        public System.Windows.Controls.Panel Element;
-        public WindowsFormsHost ChartHost;
-        public CartesianChart ChartObject;
-        public List<pPointSeries> ChartSeriesSet;
-        public bool Status;
+        public CartesianChart Element = new CartesianChart();
+        public bool Status = false;
         public DataSetCollection DataGrid = new DataSetCollection();
 
         public pCartesianChart(string InstanceName)
         {
             //Set Element info setup
-            Element = new StackPanel();
-            ChartHost = new WindowsFormsHost();
-            ChartObject = new CartesianChart();
-            ChartObject.DisableAnimations = true;
-            ChartHost.Child = ChartObject;
+            Element = new CartesianChart();
+            Element.DisableAnimations = true;
             
-            Element.Children.Add(ChartHost);
             Element.Name = InstanceName;
             Type = "CartesianChart";
+            
+            DataGrid = new DataSetCollection();
 
             //Set "Clear" appearance to all elements
 
@@ -48,46 +44,62 @@ namespace Pollen.Charts
         {
             //Set unique properties of the control
             DataGrid = PollenDataGrid;
-            
-            ChartObject.Width = (int)DataGrid.Graphics.Width;
-            ChartObject.Height = (int)DataGrid.Graphics.Height;
-            
-            ChartHost.Width = (int)DataGrid.Graphics.Width;
-            ChartHost.Height = (int)DataGrid.Graphics.Height;
-            //SetAxisScale();
 
-            Element.Width = (int)DataGrid.Graphics.Width;
-            Element.Height = (int)DataGrid.Graphics.Height;
-        }
-        
-        public void SetGanttSeries(List<pCartesianSeries> DataSeries)
-        {
-            int cnt = DataSeries.Count;
-            SeriesCollection SeriesCollect = new SeriesCollection();
 
-            for (int i = 0; i < cnt; i++)
-            {
-                SeriesCollect.Add(DataSeries[i].GanttSeries);
-            }
+            Element.MinWidth = 300;
+            Element.MinHeight = 300;
 
-            ChartObject.Series = SeriesCollect;
+            Element.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            Element.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+
+            Element.Background = Brushes.Transparent;
+
         }
 
-        public void SetScatterSeries(List<pCartesianSeries> DataSeries)
+        public void SetSeries(List<pCartesianSeries> DataSeries)
         {
-            int cnt = DataSeries.Count;
             SeriesCollection SeriesCollect = new SeriesCollection ();
 
-            for (int i = 0; i < cnt; i++)
+            for (int i = 0; i < DataSeries.Count; i++)
             {
-                SeriesCollect.Add(DataSeries[i].ChartSeries);
+                for (int j = 0; j < DataSeries[i].DataList.Count; j++)
+                {
+                    SeriesCollect.Add(DataSeries[i].ChartSeries[j]);
+                }
             }
+            Element.Series = SeriesCollect;
+        }
 
-            ChartObject.Series = SeriesCollect;
+        public void SetSequence(List<pCartesianSeries> DataSeries)
+        {
+            SeriesCollection SeriesCollect = new SeriesCollection();
+
+            for (int i = 0; i < DataSeries.Count; i++)
+            {
+                    SeriesCollect.Add(DataSeries[i].ChartSequence);
+            }
+            Element.Series = SeriesCollect;
+        }
+
+        public override void SetSize()
+        {
+            double W = double.NaN;
+            double H = double.NaN;
+            if (Graphics.Width > 0) { W = Graphics.Width; }
+            if (Graphics.Height > 0) { H = Graphics.Height; }
+
+            Element.Width = W;
+            Element.Height = H;
+        }
+
+        public override void SetSolidFill()
+        {
+            Element.Background = DataSet.Graphics.GetBackgroundBrush();
         }
 
         public void SetAxisAppearance()
         {
+
         }
 
         public void SetAxisScale()

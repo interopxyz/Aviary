@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 
 using Grasshopper.Kernel;
-using Rhino.Geometry;
 using Grasshopper.Kernel.Parameters;
 
 using Wind.Containers;

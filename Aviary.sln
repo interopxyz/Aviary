@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee", "Bumblebee\Bumb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee_GH", "Bumblebee_GH\Bumblebee_GH.csproj", "{54B2AA73-604F-47EA-A56A-F8719CFA3471}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flock_GH", "Flock_GH\Flock_GH.csproj", "{3BC3FF62-E469-44F4-AE9E-D759EBF5C86E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +163,14 @@ Global
 		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Debug64|Any CPU.Build.0 = Debug|Any CPU
 		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54B2AA73-604F-47EA-A56A-F8719CFA3471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BC3FF62-E469-44F4-AE9E-D759EBF5C86E}.Debug|Any CPU.ActiveCfg = Debug64|Any CPU
+		{3BC3FF62-E469-44F4-AE9E-D759EBF5C86E}.Debug|Any CPU.Build.0 = Debug64|Any CPU
+		{3BC3FF62-E469-44F4-AE9E-D759EBF5C86E}.Debug32|Any CPU.ActiveCfg = Debug64|Any CPU
+		{3BC3FF62-E469-44F4-AE9E-D759EBF5C86E}.Debug32|Any CPU.Build.0 = Debug64|Any CPU
+		{3BC3FF62-E469-44F4-AE9E-D759EBF5C86E}.Debug64|Any CPU.ActiveCfg = Debug64|Any CPU
+		{3BC3FF62-E469-44F4-AE9E-D759EBF5C86E}.Debug64|Any CPU.Build.0 = Debug64|Any CPU
+		{3BC3FF62-E469-44F4-AE9E-D759EBF5C86E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BC3FF62-E469-44F4-AE9E-D759EBF5C86E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,9 @@ using Pollen.Charts;
 using Grasshopper.Kernel.Types;
 using Pollen.Collections;
 using System.Drawing;
+using Wind.Presets;
+using Grasshopper.Kernel.Parameters;
+
 
 namespace Pollen_GH.Charts
 {
@@ -30,17 +33,14 @@ namespace Pollen_GH.Charts
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
+            wGraphic TempGraphic = new wGraphic();
+            TempGraphic.Gradient = new wGradients(wGradients.GradientTypes.Metro).GetGradient();
+
             pManager.AddGenericParameter("Data", "D", "---", GH_ParamAccess.item);
             pManager.AddGenericParameter("Graphic", "G", "---", GH_ParamAccess.item);
             pManager[1].Optional = true;
-            
-            List<Color> TempColor = new List<Color>();
-            TempColor.Add(Color.LightBlue);
-            TempColor.Add(Color.CornflowerBlue);
-
-            wGraphic TempGraphic = new wGraphic();
-            TempGraphic.Gradient = new Wind.Types.wGradient(TempColor);
-            pManager[1].AddVolatileData(new Grasshopper.Kernel.Data.GH_Path(0),0, TempGraphic);
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[1];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(TempGraphic));
 
         }
 
@@ -94,14 +94,20 @@ namespace Pollen_GH.Charts
 
             wObject W = new wObject();
             wGraphic GR = new wGraphic();
+            GR.Gradient = new wGradients(wGradients.GradientTypes.Metro).GetGradient();
             D.CastTo(out W);
             G.CastTo(out GR);
 
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPoint).Font); }
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); }
+
             pControl.SetProperties(DC);
             pControl.SetHeatData();
+            pControl.SetFormatting();
 
             if (G != null)
             {
@@ -110,7 +116,7 @@ namespace Pollen_GH.Charts
             
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }
-            WindObject = new wObject(Element, "Parrot", Element.Type);
+            WindObject = new wObject(Element, "Pollen", Element.Type);
             WindObject.GUID = this.InstanceGuid;
             WindObject.Instance = C;
 
@@ -125,7 +131,7 @@ namespace Pollen_GH.Charts
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>
@@ -146,4 +152,6 @@ namespace Pollen_GH.Charts
             get { return new Guid("{124a3285-4145-4991-935d-76a0498de328}"); }
         }
     }
+
+
 }

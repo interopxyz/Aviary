@@ -11,6 +11,7 @@ using Pollen.Charts;
 using Grasshopper.Kernel.Types;
 using Pollen.Collections;
 using System.Windows.Forms;
+using Wind.Presets;
 
 namespace Pollen_GH.Charts
 {
@@ -107,6 +108,10 @@ namespace Pollen_GH.Charts
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.Metro, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPoint).Font); }
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.SolidDarkGray, false, DC.Sets.Count > 1); }
+
             List<pPointSeries> PointSeriesList = new List<pPointSeries>();
 
             for (int i = 0; i < DC.Sets.Count; i++)
@@ -114,7 +119,7 @@ namespace Pollen_GH.Charts
                 pPointSeries pSeriesSet = new pPointSeries(Convert.ToString(name + i));
                 pSeriesSet.SetProperties(DC.Sets[i]);
                 pSeriesSet.SetStackChartType(M, J);
-                pSeriesSet.SetChartLabels(DC.LeaderPostion, DC.HasLeader);
+                pSeriesSet.SetChartLabels(DC.Labels.Position, DC.Labels.HasLeader);
                 pSeriesSet.SetNumericData(2);
                 PointSeriesList.Add(pSeriesSet);
             }
@@ -126,7 +131,7 @@ namespace Pollen_GH.Charts
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }
-            WindObject = new wObject(Element, "Parrot", Element.Type);
+            WindObject = new wObject(Element, "Pollen", Element.Type);
             WindObject.GUID = this.InstanceGuid;
             WindObject.Instance = C;
 
@@ -141,7 +146,7 @@ namespace Pollen_GH.Charts
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

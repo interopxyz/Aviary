@@ -29,7 +29,7 @@ namespace Hoopoe.Geometry.Curves
             if (WindGeometry.IsClosed) { Closed = "z "; } 
         }
 
-        public override void BuildCurve()
+        public override void BuildSVGCurve()
         {
             Curve.Clear();
             Curve.Append("M ");

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using Wind.Presets;
 
 namespace Wind.Types
 {
@@ -29,8 +30,8 @@ namespace Wind.Types
 
         public wGradient()
         {
-            ColorSet.Add(new wColor().Black());
-            ColorSet.Add(new wColor().White());
+            ColorSet.Add(new wColors().Black());
+            ColorSet.Add(new wColors().White());
             ParameterSet.Add(0);
             ParameterSet.Add(1);
         }

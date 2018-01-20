@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Wind.Containers;
 using Wind.Geometry.Vectors;
+using Wind.Presets;
 using Wind.Types;
 
 namespace Pollen.Collections
@@ -16,7 +17,7 @@ namespace Pollen.Collections
         public string Name = "";
 
         public int Type = 0;
-        public int Format = 0;
+        public string Format = "G";
 
         //Sets | Formatting Status
         public bool HasFont = false;
@@ -35,31 +36,45 @@ namespace Pollen.Collections
         
 
         //Sets | Graphics, Fonts, Sizing
-        public wGraphic Graphics = new wGraphic(new wColor().LightGray(),new wColor().Gray(), new wColor().DarkGray(), 1.0,1.0,1.0);
-        public wFont Fonts = new wFont("Arial", 8, new wColor().Gray(),0,true,false,false,false);
+        public wGraphic Graphics = new wGraphic(new wColors().LightGray(),new wColors().Gray(), new wColors().DarkGray(), 1.0,1.0,1.0);
+        public wFont Fonts = new wFont("Arial", 8, new wColors().Gray(),0,true,false,false,false);
         public wSize Sizes = new wSize(1.0,1.0);
 
         //Sets | Marker Properties
-        public wColor MarkerColor = new wColor().Black();
-        public int MarkerSize = 10;
-        public int MarkerMode = 0;
+        public wMarker Marker = new wMarker();
 
         //Sets | Label Properties
-        public string Label = "";
-        public int LabelMode;
-        
+        public wLabel Label = new wLabel();
+
+        //Object | Status
+        public int CustomMarkers = 0;
+        public int CustomLabels = 0;
+
+
         public DataPt()
         {
         }
-
-        public void SetMarker(int MarkMode, int MarkSize, wColor MarkColor)
+        
+        public void SetMarker(wMarker.MarkerType MarkMode, int MarkSize, wColor MarkColor)
         {
             if (MarkMode == 0) { HasMarker = false; } else { HasMarker = true; }
-            MarkerMode = MarkMode;
-            MarkerSize = MarkSize;
-            MarkerColor = MarkColor;
+            Marker.Mode = MarkMode;
+            Marker.Radius = MarkSize;
+            Marker.Graphics.Background = MarkColor;
         }
-        
+
+        public void SetLabel(wLabel NewLabel)
+        {
+            Label = NewLabel;
+            CustomLabels += 1;
+        }
+
+
+        public void SetMarker(wMarker NewMarker)
+        {
+            Marker = NewMarker;
+            CustomMarkers += 1;
+        }
 
         public DataPt(object Data)
         {

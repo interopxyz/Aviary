@@ -80,61 +80,7 @@ namespace Wind.Types
         {
             return System.Drawing.Color.FromArgb(A, R, G, B);
         }
-
-        public wColor White()
-        {
-            return new wColor(255, 255, 255, 255);
-        }
-
-        public wColor Black()
-        {
-            return new wColor(255, 0, 0, 0);
-        }
-
-        public wColor Transparent()
-        {
-            return new wColor(0, 0, 0, 0);
-        }
-
-        public wColor VeryLightGrayFilter()
-        {
-            return new wColor(10, 0, 0, 0);
-        }
-
-        public wColor LightGrayFilter()
-        {
-            return new wColor(50, 0, 0, 0);
-        }
-
-        public wColor GrayFilter()
-        {
-            return new wColor(100, 0, 0, 0);
-        }
-
-        public wColor DarkGrayFilter()
-        {
-            return new wColor(200, 0, 0, 0);
-        }
-
-        public wColor VeryLightGray()
-        {
-            return new wColor(255, 240, 240, 240);
-        }
-
-        public wColor LightGray()
-        {
-            return new wColor(255, 211, 211, 211);
-        }
-
-        public wColor Gray()
-        {
-            return new wColor(255, 128, 128, 128);
-        }
-
-        public wColor DarkGray()
-        {
-            return new wColor(255, 169, 169, 169);
-        }
         
+
     }
 }

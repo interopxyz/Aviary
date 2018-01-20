@@ -3,14 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Wind.Containers;
+
+using Pollen.Collections;
+using Pollen.Utilities;
 
 namespace Pollen.Charts
 {
     public class pChart
     {
+        public DataSetCollection DataSet = new DataSetCollection();
         public wGraphic Graphics;
         public string Type;
+        public p3D View = new p3D();
+
+        public enum ChartTypes { Point, Bar, Column, Line, StepLine, Spline, Area, SplineArea, Pie, Doughnut, Polar, Radar, Funnel, Pyramid,Range,RangeColumn,RangeBar,RangeBubble};
+
+
+
+
+        public virtual void SetThreeDView()
+        {
+
+        }
+
+        public virtual void SetAxisAppearance()
+        {
+
+        }
 
         public virtual void SetFont()
         {
@@ -57,5 +78,6 @@ namespace Pollen.Charts
         {
 
         }
+
     }
 }

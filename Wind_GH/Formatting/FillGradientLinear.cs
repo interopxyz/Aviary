@@ -16,6 +16,7 @@ using System.Windows.Media;
 using Wind.Graphics;
 using GH_IO.Serialization;
 using System.Windows.Forms;
+using Pollen.Collections;
 
 namespace Wind_GH.Formatting
 {
@@ -45,6 +46,9 @@ namespace Wind_GH.Formatting
             pManager[2].Optional = true;
             pManager.AddNumberParameter("Angle", "A", "---", GH_ParamAccess.item,0);
             pManager[3].Optional = true;
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>
@@ -78,6 +82,7 @@ namespace Wind_GH.Formatting
             wGraphic G = W.Graphics;
 
             G.FillType = wGraphic.FillTypes.LinearGradient;
+            G.CustomFills += 1;
 
             if (Parameters.Count < 1)
             { 
@@ -111,27 +116,48 @@ namespace Wind_GH.Formatting
 
                     C.Graphics = G;
                     break;
-                case "Pollen":
-                    switch (W.SubType)
-                    {
-                        case "DataPoint":
-                            break;
-                        case "DataSet":
-                            break;
-                    }
-                    break;
+                    case "Pollen":
+                        switch (W.SubType)
+                        {
+                            case "DataPoint":
+                                DataPt tDataPt = (DataPt)W.Element;
+                                tDataPt.Graphics = G;
+
+                                tDataPt.Graphics.WpfFill = G.WpfFill;
+                                tDataPt.Graphics.WpfPattern = G.WpfPattern;
+
+                                W.Element = tDataPt;
+                                break;
+                            case "DataSet":
+                                DataSetCollection tDataSet = (DataSetCollection)W.Element;
+                                tDataSet.Graphics = G;
+
+                                tDataSet.Graphics.WpfFill = G.WpfFill;
+                                tDataSet.Graphics.WpfPattern = G.WpfPattern;
+
+                                W.Element = tDataSet;
+                                break;
+                        }
+                        break;
                     case "Hoopoe":
                         wShapeCollection Shapes = (wShapeCollection)W.Element;
                         Shapes.Graphics.FillType = wGraphic.FillTypes.LinearGradient;
 
+                        wGradient GRD = new wGradient();
+
                         if (Parameters.Count < 1)
                         {
-                            Shapes.Graphics.Gradient = new wGradient(Colors, GradientAngle, (wGradient.GradientSpace)GradientSpace);
+                            GRD = new wGradient(Colors, GradientAngle, (wGradient.GradientSpace)GradientSpace);
                         }
                         else
                         {
-                            Shapes.Graphics.Gradient = new wGradient(Colors, Parameters, GradientAngle, (wGradient.GradientSpace)GradientSpace);
+                            GRD = new wGradient(Colors, Parameters, GradientAngle, (wGradient.GradientSpace)GradientSpace);
                         }
+
+                        Shapes.Graphics.Gradient = GRD;
+                        Shapes.Graphics.WpfFill = new wFillGradient(G.Gradient, GradientType).GrdBrush;
+
+
 
                         W.Element = Shapes;
                         break;

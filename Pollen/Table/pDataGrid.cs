@@ -13,17 +13,19 @@ using Wind.Containers;
 using Wind.Collections;
 using Pollen.Collections;
 using Pollen.Charts;
+using Wind.Types;
 
 namespace Parrot.Controls
 {
     public class pDataGrid : pChart
     {
-        public DataGrid Element;
+        public Grid Element = new Grid();
+        private DataSetCollection Wc = new DataSetCollection();
 
         public pDataGrid(string InstanceName)
         {
             //Set Element info setup
-            Element = new DataGrid();
+            Element = new Grid();
             Element.Name = InstanceName;
             Type = "GridView";
 
@@ -31,98 +33,102 @@ namespace Parrot.Controls
         }
         
 
-        public void SetProperties(DataSetCollection WindDataCollection, int GridType, bool ResizeRows, bool ResizeCols, bool Sortable, bool Alternate, bool AddRows)
+        public void SetProperties(DataSetCollection WindDataCollection, bool HasTitles)
         {
-            DataTable Table = new DataTable();
-            System.Data.DataSet DS = new System.Data.DataSet();
+            Element.Children.Clear();
+            Element.RowDefinitions.Clear();
+            Element.ColumnDefinitions.Clear();
 
-            DS.Tables.Add(Table);
-            for (int i = 0; i < WindDataCollection.Sets.Count; i++)
-           {
-                if (WindDataCollection.Sets[i].Title == "") { WindDataCollection.Sets[i].Title = ("Title " + i.ToString()); }
-                DataColumn col = new DataColumn(WindDataCollection.Sets[i].Title.ToString(), typeof(double));
-                Table.Columns.Add(col);
+            Wc = WindDataCollection;
+
+            for (int i = 0; i < Wc.Sets.Count; i++)
+            {
+                if (Wc.Sets[i].Title == "") { Wc.Sets[i].Title = ("Title " + i.ToString()); }
+
+                ColumnDefinition col = new ColumnDefinition();
+                Element.ColumnDefinitions.Add(col);
             }
 
-            for (int i = 0; i < WindDataCollection.Sets[0].Points.Count; i++)
+            int k = 0;
+            if (HasTitles)
             {
-                System.Data.DataRow row = Table.NewRow();
-                for (int j = 0; j < WindDataCollection.Count; j++)
+                k = 1;
+
+                RowDefinition TitleRow = new RowDefinition();
+                Element.RowDefinitions.Add(TitleRow);
+
+                for (int  i = 0; i < Wc.Sets.Count; i++)
                 {
-                    row[WindDataCollection.Sets[j].Title] = WindDataCollection.Sets[j].Points[i].Number;
+                    Label ttxt = new Label();
+                    ttxt.Content = Wc.Sets[i].Title;
+                    ttxt.Background = Wc.Graphics.GetBackgroundBrush();
+                    ttxt.Foreground = Wc.Graphics.FontObject.GetFontBrush();
+                    ttxt.BorderBrush = Wc.Graphics.GetStrokeBrush();
+                    ttxt.BorderThickness = Wc.Graphics.GetStroke();
+
+                    ttxt.Padding = Wc.Graphics.GetPadding();
+                    ttxt.Margin = Wc.Graphics.GetMargin();
+
+                    ttxt.FontFamily = Wc.Graphics.FontObject.ToMediaFont().Family;
+                    ttxt.FontSize = Wc.Graphics.FontObject.Size;
+                    ttxt.HorizontalContentAlignment = Wc.Graphics.FontObject.ToMediaFont().HAlign;
+                    ttxt.VerticalContentAlignment = Wc.Graphics.FontObject.ToMediaFont().VAlign;
+
+                    Grid.SetColumn(ttxt, i);
+                    Grid.SetRow(ttxt, 0);
+                    Element.Children.Add(ttxt);
                 }
-                Table.Rows.Add(row);
             }
 
-            Element.CanUserResizeColumns = ResizeCols;
-            Element.CanUserResizeRows = ResizeRows;
-
-            Element.CanUserSortColumns = Sortable;
-
-            Element.VerticalGridLinesBrush = Element.HorizontalGridLinesBrush;
-
-            Element.CanUserAddRows = AddRows;
-
-            switch (GridType)
+            for (int i = 0; i < Wc.Sets[0].Points.Count; i++)
             {
-                case (1):
-                    Element.GridLinesVisibility = DataGridGridLinesVisibility.Vertical;
-                    break;
-                case (2):
-                    Element.GridLinesVisibility = DataGridGridLinesVisibility.Horizontal;
-                    break;
-                case (3):
-                    Element.GridLinesVisibility = DataGridGridLinesVisibility.All;
-                    break;
-                default:
-                    Element.GridLinesVisibility = DataGridGridLinesVisibility.None;
-                    break;
+                RowDefinition row = new RowDefinition();
+                Element.RowDefinitions.Add(row);
+                for (int j = 0; j < (Wc.Count ); j++)
+                {
+                    DataPt Pt = Wc.Sets[j].Points[i];
+                    wGraphic G = Pt.Graphics;
+                    wFont F = G.FontObject;
 
+                    Label txt = new Label();
+                    txt.Content = string.Format("{0:"+Pt.Format+"}", Pt.Number);
+
+                    txt.Background = G.GetBackgroundBrush();
+                    txt.Foreground = G.GetFontBrush();
+                    txt.BorderBrush = G.GetStrokeBrush();
+                    txt.BorderThickness = G.GetStroke();
+
+                    txt.Padding = G.GetPadding();
+                    txt.Margin = G.GetMargin();
+
+                    txt.FontFamily = F.ToMediaFont().Family;
+                    txt.FontSize = F.Size;
+                    txt.HorizontalContentAlignment = F.ToMediaFont().HAlign;
+                    txt.VerticalContentAlignment = F.ToMediaFont().VAlign;
+
+                    if (G.Width > 1) { txt.Width = G.Width; } else { txt.Width = double.NaN; }
+                    if (G.Height > 1) { txt.Height = G.Height; } else { txt.Height = double.NaN; }
+                    
+
+                    Grid.SetColumn(txt, j);
+                    Grid.SetRow(txt, i+k);
+                    Element.Children.Add(txt);
+                }
             }
 
-            if (Alternate) {
-                Element.AlternationCount = 2;
-                Element.AlternatingRowBackground = new SolidColorBrush(Colors.LightGray);
-            }
-            else
-            {
-                Element.AlternationCount = 0;
-                Element.AlternatingRowBackground = Element.Background;
-            }
 
-            Element.ItemsSource = Table.DefaultView;
-            Element.AutoGenerateColumns = true;
-        }
-
-        public override void SetStroke()
-        {
-            Element.BorderThickness = new Thickness(Graphics.StrokeWeight[0], Graphics.StrokeWeight[1], Graphics.StrokeWeight[2], Graphics.StrokeWeight[3]);
-            Element.BorderBrush = new SolidColorBrush(Graphics.StrokeColor.ToMediaColor());
         }
 
         public override void SetSize()
         {
-            if (Graphics.Width < 1) { Element.Width = double.NaN; } else { Element.Width = Graphics.Width; }
-            if (Graphics.Height < 1) { Element.Height = double.NaN; } else { Element.Height = Graphics.Height; }
-        }
+            double W = double.NaN;
+            double H = double.NaN;
+            if (Graphics.Width > 0) { W = Graphics.Width; }
+            if (Graphics.Height > 0) { H = Graphics.Height; }
 
-        public override void SetMargin()
-        {
-            Element.Margin = new Thickness(Graphics.Margin[0], Graphics.Margin[1], Graphics.Margin[2], Graphics.Margin[3]);
-        }
+            Element.Width = W;
+            Element.Height = H;
 
-        public override void SetPadding()
-        {
-            Element.Padding = new Thickness(Graphics.Padding[0], Graphics.Padding[1], Graphics.Padding[2], Graphics.Padding[3]);
-        }
-
-        public override void SetFont()
-        {
-            Element.Foreground = new SolidColorBrush(Graphics.FontObject.FontColor.ToMediaColor());
-            Element.FontFamily = Graphics.FontObject.ToMediaFont().Family;
-            Element.FontSize = Graphics.FontObject.Size;
-            Element.FontStyle = Graphics.FontObject.ToMediaFont().Italic;
-            Element.FontWeight = Graphics.FontObject.ToMediaFont().Bold;
         }
 
     }

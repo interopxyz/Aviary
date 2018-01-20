@@ -53,7 +53,6 @@
     <Compile Include="Assembly\hPath.cs" />
     <Compile Include="Assembly\hShape.cs" />
     <Compile Include="Drawing\CompileSVG.cs" />
-    <Compile Include="Drawing\LegacyCompileSVG.cs" />
     <Compile Include="Geometry\Compound\hCompoundCurve.cs" />
     <Compile Include="Geometry\Curves\hPolyline.cs" />
     <Compile Include="Geometry\Curves\hCubicBezierSpline.cs" />
@@ -61,6 +60,7 @@
     <Compile Include="Geometry\Primitives\hCircle.cs" />
     <Compile Include="Geometry\Primitives\hEllipse.cs" />
     <Compile Include="Geometry\Primitives\hLine.cs" />
+    <Compile Include="Geometry\Text\hText.cs" />
     <Compile Include="Graphics\Effects\hBlur.cs" />
     <Compile Include="Graphics\Effects\hDropShadow.cs" />
     <Compile Include="Graphics\Effects\hEffect.cs" />

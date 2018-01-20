@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
-
+using Wind.Presets;
 using Wind.Types;
 
 namespace Wind.Containers
 {
+
     public class wGraphic
     {
         public string Layer = " ";
         public enum FillTypes { Solid, LinearGradient, RadialGradient, Pattern, Bitmap};
 
+        public int CustomFills = 0;
+        public int CustomFonts = 0;
+        public int CustomStrokes = 0;
+
         public FillTypes FillType = FillTypes.Solid;
 
         public wImage FillBitmap = null;
 
-        public wColor Background = new wColor().White();
-        public wColor Foreground = new wColor().Black();
-        public wColor StrokeColor = new wColor().Black();
+        public wColor Background = new wColors().White();
+        public wColor Foreground = new wColors().Black();
+        public wColor StrokeColor = new wColors().Black();
 
         public Brush WpfFill = new SolidColorBrush(Colors.White);
         public DrawingBrush WpfPattern = new DrawingBrush();
@@ -36,6 +42,7 @@ namespace Wind.Containers
 
         public double Width = 0;
         public double Height = 0;
+        public double Scale = 1.0;
         public bool PadRadius = false;
 
         public enum StrokeCaps { Flat, Round,Square,Triangle};
@@ -46,10 +53,16 @@ namespace Wind.Containers
         public StrokeCaps StrokeCap = StrokeCaps.Flat;
         public StrokeCorners StrokeCorner = StrokeCorners.Bevel;
 
-        public wFont FontObject;
+        public wFont FontObject = new wFont();
 
         public wGraphic()
         {
+        }
+
+        public wGraphic(wColor BackColor)
+        {
+            Background = BackColor;
+            WpfFill = new SolidColorBrush(Background.ToMediaColor());
         }
 
         public wGraphic(wColor BackColor, wColor ForeColor, wColor LineColor, double Stroke)
@@ -89,6 +102,7 @@ namespace Wind.Containers
             StrokeWeight[1] = UniformWeight;
             StrokeWeight[2] = UniformWeight;
             StrokeWeight[3] = UniformWeight;
+
         }
 
         public void SetPaddingFromCorners()
@@ -114,15 +128,55 @@ namespace Wind.Containers
             Margin[2] = UniformRadius;
             Margin[3] = UniformRadius;
         }
-        
+
+        public Thickness GetStroke()
+        {
+            return new Thickness(StrokeWeight[0], StrokeWeight[1], StrokeWeight[2], StrokeWeight[3]);
+        }
+
+        public Thickness GetMargin()
+        {
+            return new Thickness(Margin[0], Margin[1], Margin[2], Margin[3]);
+        }
+
+        public Thickness GetPadding()
+        {
+            return new Thickness(Padding[0], Padding[1], Padding[2], Padding[3]);
+        }
+
+        public CornerRadius GetCorner()
+        {
+            return new CornerRadius(Radius[0], Radius[1], Radius[2], Radius[3]);
+        }
+
+        public SolidColorBrush GetBackgroundBrush()
+        {
+            return new SolidColorBrush(Background.ToMediaColor());
+        }
+
+        public SolidColorBrush GetForegroundBrush()
+        {
+            return new SolidColorBrush(Foreground.ToMediaColor());
+        }
+
+        public SolidColorBrush GetStrokeBrush()
+        {
+            return new SolidColorBrush(StrokeColor.ToMediaColor());
+        }
+
+        public SolidColorBrush GetFontBrush()
+        {
+            return new SolidColorBrush(FontObject.FontColor.ToMediaColor());
+        }
+
         public wGraphic BlackOutline()
         {
-            return new wGraphic(new wColor().Transparent(), new wColor().Transparent(), new wColor().Black(), 1);
+            return new wGraphic(new wColors().Transparent(), new wColors().Transparent(), new wColors().Black(), 1);
         }
 
         public wGraphic BlackFill()
         {
-            return new wGraphic(new wColor().Black(), new wColor().Black(), new wColor().Transparent(), 0);
+            return new wGraphic(new wColors().Black(), new wColors().Black(), new wColors().Transparent(), 0);
         }
 
     }

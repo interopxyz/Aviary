@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wind.Presets;
 using Wind.Types;
 
 namespace Wind.Scene
 {
     public class wShader
     {
-        public wColor DiffuseColor = new wColor().White();
-        public wColor SpecularColor = new wColor().Black();
-        public wColor EmissiveColor = new wColor().Black();
+        public wColor DiffuseColor = new wColors().White();
+        public wColor SpecularColor = new wColors().Black();
+        public wColor EmissiveColor = new wColors().Black();
 
         public double SpecularValue = 0.0;
         public double EmissiveValue = 0.0;

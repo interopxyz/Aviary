@@ -143,6 +143,16 @@ namespace Pollen_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Pollen_Line {
+            get {
+                object obj = ResourceManager.GetObject("Pollen_Line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Pollen_Marker {
             get {
                 object obj = ResourceManager.GetObject("Pollen_Marker", resourceCulture);
@@ -166,6 +176,16 @@ namespace Pollen_GH.Properties {
         internal static System.Drawing.Bitmap Pollen_Points1 {
             get {
                 object obj = ResourceManager.GetObject("Pollen_Points1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pollen_Polar {
+            get {
+                object obj = ResourceManager.GetObject("Pollen_Polar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -206,6 +226,26 @@ namespace Pollen_GH.Properties {
         internal static System.Drawing.Bitmap Pollen_Table1 {
             get {
                 object obj = ResourceManager.GetObject("Pollen_Table1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pollen_ToolTip {
+            get {
+                object obj = ResourceManager.GetObject("Pollen_ToolTip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pollen_Winform {
+            get {
+                object obj = ResourceManager.GetObject("Pollen_Winform", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -10,12 +10,14 @@ using System.Collections.ObjectModel;
 using Xceed.Wpf.Toolkit;
 using Wind.Containers;
 using System.Linq;
+using System.Windows.Input;
 
 namespace Parrot.Controls
 {
     public class pViewTree : pControl
     {
         public TreeView Element;
+        
 
         public pViewTree(string InstanceName)
         {
@@ -63,9 +65,15 @@ namespace Parrot.Controls
                 }
 
             }
-            
+
 
         }
+
+        // DRAG & DROP #########################################################################################################################################
+
+
+
+        // PROPERTIES #########################################################################################################################################
 
         public void SetProperties()
         {

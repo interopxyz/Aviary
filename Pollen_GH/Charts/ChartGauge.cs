@@ -10,12 +10,14 @@ using Pollen.Charts;
 using Grasshopper.Kernel.Types;
 using Pollen.Collections;
 using System.Windows.Forms;
+using GH_IO.Serialization;
+using Wind.Presets;
 
 namespace Pollen_GH.Charts
 {
     public class ChartGauge : GH_Component
     {
-        int modeStatus = 0;
+        int modeStatus = 2;
 
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
@@ -107,26 +109,19 @@ namespace Pollen_GH.Charts
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            pControl.SetProperties(B, 0);
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.Metro, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartGauge).Font); }
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); }
 
-            for (int i = 0; i < DC.Sets.Count; i++)
-            {
-                for (int j = 0; j < DC.Sets[i].Points.Count; j++)
-                {
-                    pGaugeChart ChartObj = new pGaugeChart(name + i + j);
-
-                    ChartObj.SetProperties(DC, S);
-                    ChartObj.SetGaugeType(M);
-                    ChartObj.SetGaugeValues(DC.Sets[i].Points[j], modeStatus, DC.Sets[i].NumericBounds.T0, DC.Sets[i].NumericBounds.T1, DC.Sets[i].NumericSum);
-
-                    pControl.AddChart(ChartObj);
-                }
-            }
-
+            pControl.SetProperties(DC, B, 0);
+            pControl.SetCharts(S, M, modeStatus);
+            
+            if(DC.TotalCustomFont > 0) { pControl.SetFont(); }
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }
-            WindObject = new wObject(Element, "Parrot", Element.Type);
+            WindObject = new wObject(Element, "Pollen", Element.Type);
             WindObject.GUID = this.InstanceGuid;
             WindObject.Instance = C;
 
@@ -146,6 +141,20 @@ namespace Pollen_GH.Charts
             Menu_AppendItem(menu, "Set Bound Value", ModeBndValue, true, (modeStatus == 2));
             Menu_AppendItem(menu, "Set Bound Percentage", ModeBndPercent, true, (modeStatus == 3));
 
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("Mode", modeStatus);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            modeStatus = reader.GetInt32("Mode");
+
+            return base.Read(reader);
         }
 
 
@@ -178,7 +187,7 @@ namespace Pollen_GH.Charts
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

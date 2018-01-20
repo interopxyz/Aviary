@@ -142,6 +142,9 @@
   <data name="Pollen_Labels" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pollen_Labels.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Pollen_Line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pollen_Line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Pollen_Marker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pollen_Marker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -150,6 +153,9 @@
   </data>
   <data name="Pollen_Points1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pollen_Points1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pollen_Polar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pollen_Polar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Pollen_Pyramid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pollen_Pyramid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -162,6 +168,12 @@
   </data>
   <data name="Pollen_Table1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pollen_Table1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pollen_ToolTip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pollen_ToolTip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pollen_Winform" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pollen_Winform.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Wind_DataPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Wind_DataPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

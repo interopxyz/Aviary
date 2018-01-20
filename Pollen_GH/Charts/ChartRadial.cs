@@ -14,22 +14,23 @@ using Pollen.Charts;
 using Grasshopper.Kernel.Parameters;
 using Pollen.Collections;
 using Grasshopper.Kernel.Types;
+using System.Windows.Forms;
+using GH_IO.Serialization;
+using Wind.Presets;
 
 namespace Pollen_GH.Charts
 {
-    public class RadialChart : GH_Component
+    public class ChartRadial : GH_Component
     {
-
         //Stores the instance of each run of the control
         public Dictionary<int, wObject> Elements = new Dictionary<int, wObject>();
 
         /// <summary>
-        /// Initializes a new instance of the RadialChart class.
+        /// Initializes a new instance of the ChartRadial class.
         /// </summary>
-        public RadialChart()
+        public ChartRadial()
           : base("Radial Chart", "Radial Chart", "---", "Aviary", "Charting & Data")
         {
-
         }
 
         /// <summary>
@@ -38,15 +39,9 @@ namespace Pollen_GH.Charts
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Data", "D", "---", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
+            pManager.AddNumberParameter("Radius", "R", "---", GH_ParamAccess.item, 50);
             pManager[1].Optional = true;
-
-            Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("Pie", 0);
-            param.AddNamedValue("Doughnut", 1);
-            param.AddNamedValue("Polar", 2);
-            param.AddNamedValue("Radar", 3);
-
+            
         }
 
         /// <summary>
@@ -71,7 +66,7 @@ namespace Pollen_GH.Charts
             pElement Element = new pElement();
             bool Active = Elements.ContainsKey(C);
 
-            var pControl = new pPointChart(name);
+            var pControl = new pRadialChart(name);
             if (Elements.ContainsKey(C)) { Active = true; }
 
             //Check if control already exists
@@ -81,7 +76,7 @@ namespace Pollen_GH.Charts
                 {
                     WindObject = Elements[C];
                     Element = (pElement)WindObject.Element;
-                    pControl = (pPointChart)Element.PollenControl;
+                    pControl = (pRadialChart)Element.PollenControl;
                 }
             }
             else
@@ -92,51 +87,53 @@ namespace Pollen_GH.Charts
             //Set Unique Control Properties
 
             IGH_Goo D = null;
-            int M = 0;
+            double R = 0;
 
             if (!DA.GetData(0, ref D)) return;
-            if (!DA.GetData(1, ref M)) return;
+            if (!DA.GetData(1, ref R)) return;
 
             wObject W = new wObject();
             D.CastTo(out W);
-
+            
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            List<pPointSeries> PointSeriesList = new List<pPointSeries>();
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(Wind.Presets.wGradients.GradientTypes.Metro, false, false); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPoint).Font); } 
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.OffWhiteSolid); }
+
+            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = new wFonts(wFonts.FontTypes.AxisLabel).Font; }
+
+            List<pRadialSeries> RadialSeriesList = new List<pRadialSeries>();
 
             for (int i = 0; i < DC.Sets.Count; i++)
             {
-                pPointSeries pSeriesSet = new pPointSeries(Convert.ToString(name + i));
-                pSeriesSet.SetProperties(DC.Sets[i]);
-                pSeriesSet.SetRadialChartType(M);
-                pSeriesSet.SetChartLabels(DC.LeaderPostion, DC.HasLeader);
-                pSeriesSet.SetNumericData(0);
-                PointSeriesList.Add(pSeriesSet);
+                pRadialSeries pSeriesSet = new pRadialSeries(Convert.ToString(name + i));
+                pSeriesSet.SetRadialSeries(DC.Sets[i]);
+                RadialSeriesList.Add(pSeriesSet);
             }
 
-            pControl.SetProperties(DC);
-            pControl.SetSeries(PointSeriesList);
-            pControl.SetAxisAppearance();
-            pControl.SetThreeDView();
+            pControl.SetProperties(DC, R);
+            pControl.SetSeries(RadialSeriesList);
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }
-            WindObject = new wObject(Element, "Parrot", Element.Type);
+            WindObject = new wObject(Element, "Pollen", Element.Type);
             WindObject.GUID = this.InstanceGuid;
             WindObject.Instance = C;
 
             Elements[this.RunCount] = WindObject;
 
             DA.SetData(0, WindObject);
-
         }
+
 
         /// <summary>
         /// Set Exposure level for the component.
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.tertiary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>
@@ -155,7 +152,7 @@ namespace Pollen_GH.Charts
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("{89948bac-a022-4813-9c95-53f8b0c6b24e}"); }
+            get { return new Guid("14c7f71c-0aba-4b8f-8053-a71b59afdfda"); }
         }
     }
 }

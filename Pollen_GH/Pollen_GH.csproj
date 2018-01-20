@@ -43,6 +43,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df" />
     <Reference Include="Parrot">
       <HintPath>..\Parrot\bin\Debug\Parrot.dll</HintPath>
     </Reference>
@@ -77,20 +78,22 @@
     <Reference Include="Xceed.Wpf.DataGrid, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\ChartBar.cs" />
     <Compile Include="Charts\ChartGantt.cs" />
     <Compile Include="Charts\ChartGauge.cs" />
     <Compile Include="Charts\ChartHeat.cs" />
+    <Compile Include="Charts\ChartLine.cs" />
     <Compile Include="Charts\ChartPoint.cs" />
-    <Compile Include="Charts\ChartPyramid.cs" />
+    <Compile Include="Charts\ChartPolar.cs" />
     <Compile Include="Charts\ChartRadial.cs" />
     <Compile Include="Charts\ChartRange.cs" />
     <Compile Include="Charts\ChartScatter.cs" />
     <Compile Include="Data\SetDataPoint.cs" />
-    <Compile Include="Data\SetDataSet.cs" />
+    <Compile Include="Data\SetDataPointSet.cs" />
     <Compile Include="Format\Axis.cs" />
     <Compile Include="Format\DataLabel.cs" />
     <Compile Include="Format\Marker.cs" />
-    <Compile Include="Format\Rotate3D.cs" />
+    <Compile Include="Format\Tooltip.cs" />
     <Compile Include="Methods\ListToArray.cs" />
     <Compile Include="Methods\TreeToArray.cs" />
     <Compile Include="Pollen_GHInfo.cs" />
@@ -177,6 +180,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pollen_GridView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Polar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Winform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_Line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pollen_ToolTip.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -27,7 +27,7 @@ namespace Hoopoe.Geometry.Curves
             Points = WindGeometry.Points;
         }
 
-        public override void BuildCurve()
+        public override void BuildSVGCurve()
         {
             Curve.Clear();
             Curve.Append("M " + Points[0].X + " " + Points[0].Y + " ");

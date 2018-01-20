@@ -11,6 +11,9 @@ using Parrot.Controls;
 using Pollen.Collections;
 using Wind.Geometry.Curves;
 using Wind.Graphics;
+using Pollen.Charts;
+using Wind.Presets;
+using Grasshopper.Kernel.Parameters;
 
 namespace Wind_GH.Formatting
 {
@@ -30,8 +33,11 @@ namespace Wind_GH.Formatting
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Object", "O", "Wind Objects", GH_ParamAccess.item);
-            pManager.AddColourParameter("Color", "B", "---", GH_ParamAccess.item, new wColor().VeryLightGray().ToDrawingColor());
-
+            pManager.AddColourParameter("Color", "C", "---", GH_ParamAccess.item, new wColors().VeryLightGray().ToDrawingColor());
+            pManager[1].Optional = true;
+            
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>
@@ -50,7 +56,7 @@ namespace Wind_GH.Formatting
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             IGH_Goo Element = null;
-            System.Drawing.Color Background = new wColor().VeryLightGray().ToDrawingColor();
+            System.Drawing.Color Background = new wColors().VeryLightGray().ToDrawingColor();
 
             if (!DA.GetData(0, ref Element)) return;
             if (!DA.GetData(1, ref Background)) return;
@@ -65,6 +71,7 @@ namespace Wind_GH.Formatting
             G.Foreground = new wColor(Background);
 
             G.WpfFill = new wFillSolid(G.Background).FillBrush;
+            G.CustomFills += 1;
 
             W.Graphics = G;
 
@@ -83,17 +90,31 @@ namespace Wind_GH.Formatting
                     {
                         case "DataPoint":
                             DataPt tDataPt = (DataPt)W.Element;
-                            tDataPt.Graphics.FillType = wGraphic.FillTypes.Solid;
-                            tDataPt.Graphics.Background = new wColor(Background);
-                            tDataPt.Graphics.Foreground = new wColor(Background);
+                            tDataPt.Graphics = G;
+
+                            tDataPt.Graphics.WpfFill = G.WpfFill;
+                            tDataPt.Graphics.WpfPattern = G.WpfPattern;
+
                             W.Element = tDataPt;
                             break;
                         case "DataSet":
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
-                            tDataSet.Graphics.FillType = wGraphic.FillTypes.Solid;
-                            tDataSet.Graphics.Background = new wColor(Background);
-                            tDataSet.Graphics.Foreground = new wColor(Background);
+                            tDataSet.Graphics = G;
+
+                            tDataSet.Graphics.WpfFill = G.WpfFill;
+                            tDataSet.Graphics.WpfPattern = G.WpfPattern;
+
                             W.Element = tDataSet;
+                            break;
+                        case "PointChart":
+                            pElement pE = (pElement)W.Element;
+                            pChart pC = (pChart)pE.PollenControl;
+                            pC.DataSet.Graphics = G;
+
+                            pC.SetSolidFill();
+
+                            pE.PollenControl = pC;
+                            W.Element = pE;
                             break;
                     }
                     break;

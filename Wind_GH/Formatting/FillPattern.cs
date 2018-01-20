@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using Grasshopper.GUI.Base;
 using Wind.Graphics;
 using GH_IO.Serialization;
+using Wind.Presets;
 
 namespace Wind_GH.Formatting
 {
@@ -49,10 +50,13 @@ namespace Wind_GH.Formatting
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Scale", "S", "Scale", GH_ParamAccess.item,1);
             pManager[2].Optional = true;
-            pManager.AddColourParameter("Fore", "F", "---", GH_ParamAccess.item, new wColor().LightGray().ToDrawingColor());
+            pManager.AddColourParameter("Fore", "F", "---", GH_ParamAccess.item, new wColors().LightGray().ToDrawingColor());
             pManager[3].Optional = true;
-            pManager.AddColourParameter("Back", "B", "---", GH_ParamAccess.item, new wColor().VeryLightGray().ToDrawingColor());
+            pManager.AddColourParameter("Back", "B", "---", GH_ParamAccess.item, new wColors().VeryLightGray().ToDrawingColor());
             pManager[4].Optional = true;
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
 
             Param_Integer param = (Param_Integer)pManager[1];
             param.AddNamedValue("Grid", 0);
@@ -86,8 +90,8 @@ namespace Wind_GH.Formatting
             IGH_Goo Element = null;
             int Pattern = 0;
             double Scale = 1;
-            System.Drawing.Color Background = new wColor().VeryLightGray().ToDrawingColor();
-            System.Drawing.Color ForeGround = new wColor().LightGray().ToDrawingColor();
+            System.Drawing.Color Background = new wColors().VeryLightGray().ToDrawingColor();
+            System.Drawing.Color ForeGround = new wColors().LightGray().ToDrawingColor();
 
             if (!DA.GetData(0, ref Element)) return;
             if (!DA.GetData(1, ref Pattern)) return;
@@ -100,6 +104,7 @@ namespace Wind_GH.Formatting
             wGraphic G = W.Graphics;
 
             G.FillType = wGraphic.FillTypes.Pattern;
+            G.CustomFills += 1;
 
             G.Background = new wColor(Background);
             G.Foreground = new wColor(ForeGround);
@@ -149,16 +154,20 @@ namespace Wind_GH.Formatting
                     {
                         case "DataPoint":
                             DataPt tDataPt = (DataPt)W.Element;
-                            tDataPt.Graphics.FillType = wGraphic.FillTypes.Pattern;
-                            tDataPt.Graphics.Background = new wColor(Background);
-                            tDataPt.Graphics.Foreground = new wColor(ForeGround);
+                            tDataPt.Graphics = G;
+
+                            tDataPt.Graphics.WpfFill = G.WpfFill;
+                            tDataPt.Graphics.WpfPattern = G.WpfPattern;
+
                             W.Element = tDataPt;
                             break;
                         case "DataSet":
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
-                            tDataSet.Graphics.FillType = wGraphic.FillTypes.Pattern;
-                            tDataSet.Graphics.Background = new wColor(Background);
-                            tDataSet.Graphics.Foreground = new wColor(ForeGround);
+                            tDataSet.Graphics = G;
+
+                            tDataSet.Graphics.WpfFill = G.WpfFill;
+                            tDataSet.Graphics.WpfPattern = G.WpfPattern;
+
                             W.Element = tDataSet;
                             break;
                     }

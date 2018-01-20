@@ -11,6 +11,8 @@ using Wind.Types;
 using Parrot.Containers;
 using Pollen.Collections;
 using Parrot.Controls;
+using Pollen.Charts;
+using Grasshopper.Kernel.Parameters;
 
 namespace Wind_GH.Formatting
 {
@@ -34,6 +36,11 @@ namespace Wind_GH.Formatting
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Height", "H", "---", GH_ParamAccess.item, 0);
             pManager[2].Optional = true;
+            pManager.AddNumberParameter("Scale", "S", "---", GH_ParamAccess.item, 1.0);
+            pManager[3].Optional = true;
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
         }
 
         /// <summary>
@@ -55,10 +62,12 @@ namespace Wind_GH.Formatting
             IGH_Goo Element = null;
             double width = 0;
             double height = 0;
+            double scale = 1.0;
 
             if (!DA.GetData(0, ref Element)) return;
             if (!DA.GetData(1, ref width)) return;
             if (!DA.GetData(2, ref height)) return;
+            if (!DA.GetData(3, ref scale)) return;
 
             wObject W = new wObject();
             if (Element != null) { Element.CastTo(out W); }
@@ -66,6 +75,7 @@ namespace Wind_GH.Formatting
 
             G.Width = width;
             G.Height = height;
+            G.Scale = scale;
             
             W.Graphics = G;
 
@@ -81,14 +91,26 @@ namespace Wind_GH.Formatting
                 case "Pollen":
                     switch (W.SubType)
                     {
+                        default:
+                            pElement El = (pElement)W.Element;
+                            pChart P = (pChart)El.PollenControl;
+                            P.Graphics = G;
+
+                            P.SetSize();
+                            break;
                         case "DataPoint":
                             DataPt tDataPt = (DataPt)W.Element;
                             tDataPt.Graphics = G;
+                            
                             W.Element = tDataPt;
                             break;
                         case "DataSet":
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
                             tDataSet.Graphics = G;
+
+                            tDataSet.SetSeriesScales();
+
+                            tDataSet.SetScales();
                             W.Element = tDataSet;
                             break;
                     }

@@ -8,18 +8,8 @@ using System.Windows;
 
 namespace Wind.Types
 {
-    public class wFontDrawing
+    public class wFontDrawing : wFontBase
     {
-        public string Name = "Arial";
-        public double Size = 8;
-        public int Justify = 0;
-
-        public bool IsBold = false;
-        public bool IsItalic = false;
-        public bool IsUnderlined = false;
-        public bool IsStrikethrough = false;
-
-        public wColor FontColor = new wColor().Black();
 
         public Font FontObject = new System.Drawing.Font("Arial", 8);
 
@@ -54,36 +44,36 @@ namespace Wind.Types
             UpdateFont();
         }
 
-        public wFontDrawing(string FontName, double FontSize, wColor color, int Justification)
+        public wFontDrawing(string FontName, double FontSize, wColor color, Justification FontJustification)
         {
             Name = FontName;
             Size = FontSize;
 
             FontColor = color;
-            Justify = Justification;
+            Justify = FontJustification;
 
-            HAlign = textHjust(Justify);
-            VAlign = textVjust(Justify);
+            HAlign = textHjust((int)Justify);
+            VAlign = textVjust((int)Justify);
 
             UpdateFont();
         }
 
 
-        public wFontDrawing(string FontName, double FontSize, wColor color, int Justification, bool isBold, bool isItalic, bool isUnderlined, bool isStrikethrough)
+        public wFontDrawing(string FontName, double FontSize, wColor color, Justification FontJustification, bool isBold, bool isItalic, bool isUnderlined, bool isStrikethrough)
         {
             Name = FontName;
             Size = FontSize;
 
             FontColor = color;
-            Justify = Justification;
+            Justify = FontJustification;
 
             IsBold = isBold;
             IsItalic = isItalic;
             IsUnderlined = isUnderlined;
             IsStrikethrough = isStrikethrough;
 
-            HAlign = textHjust(Justify);
-            VAlign = textVjust(Justify);
+            HAlign = textHjust((int)Justify);
+            VAlign = textVjust((int)Justify);
 
             UpdateFont();
         }

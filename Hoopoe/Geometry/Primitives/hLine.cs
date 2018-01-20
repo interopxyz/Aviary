@@ -45,7 +45,7 @@ namespace Hoopoe.Geometry.Primitives
             EndY = endY;
         }
 
-        public override void BuildCurve()
+        public override void BuildSVGCurve()
         {
             Curve.Clear();
             Curve.Append("M " + StartX + "," + StartY + " " + EndX + "," + EndY + " ");

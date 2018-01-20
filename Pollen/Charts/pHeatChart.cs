@@ -10,7 +10,6 @@ using System.Windows.Forms.Integration;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Series;
-using LiveCharts.WinForms;
 
 using Wind.Containers;
 
@@ -22,9 +21,7 @@ namespace Pollen.Charts
 {
     public class pHeatChart : pChart
     {
-        public Panel Element;
-        public WindowsFormsHost ChartHost;
-        public LiveCharts.WinForms.CartesianChart ChartObject;
+        public CartesianChart Element;
         public List<pPointSeries> ChartSeriesSet;
         public bool Status;
 
@@ -35,11 +32,8 @@ namespace Pollen.Charts
         public pHeatChart(string InstanceName)
         {
             //Set Element info setup
-            Element = new StackPanel();
-            ChartHost = new WindowsFormsHost();
-            ChartObject = new LiveCharts.WinForms.CartesianChart();
-            ChartObject.DisableAnimations = true;
-            ChartHost.Child = ChartObject;
+            Element = new CartesianChart();
+            Element.DisableAnimations = true;
 
             DataGrid = new DataSetCollection();
             ChartSeries = new HeatSeries();
@@ -47,8 +41,7 @@ namespace Pollen.Charts
 
             ChartSeries.Values = new ChartValues<HeatPoint>();
             ChartSeries.DataLabels = true;
-
-            Element.Children.Add(ChartHost);
+            
             Element.Name = InstanceName;
             Type = "HeatChart";
             
@@ -64,19 +57,13 @@ namespace Pollen.Charts
             //Set unique properties of the control
             DataGrid = PollenDataGrid;
 
-            ChartObject.Width = (int)DataGrid.Graphics.Width;
-            ChartObject.Height = (int)DataGrid.Graphics.Height;
+            Element.MinWidth = 300;
+            Element.MinHeight = 300;
 
-            ChartHost.Width = (int)DataGrid.Graphics.Width;
-            ChartHost.Height = (int)DataGrid.Graphics.Height;
-            //SetAxisScale();
+            Element.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            Element.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
 
-            Element.Width = (int)DataGrid.Graphics.Width;
-            Element.Height = (int)DataGrid.Graphics.Height;
-        }
-
-        public void SetAxisAppearance()
-        {
+            Element.Background = Brushes.Transparent;
         }
 
         public void SetHeatData()
@@ -85,11 +72,10 @@ namespace Pollen.Charts
 
             for (int i = 0; i < DataGrid.Sets.Count; i++)
             {
-
                 for (int j = 0; j < DataGrid.Sets[i].Points.Count; j++)
                 {
                     DataPt D = DataGrid.Sets[i].Points[j];
-                    DataCollection.Add(new HeatPoint(i, j, SetSigDigits(D.Number,3)));
+                    DataCollection.Add(new HeatPoint(i, j, D.Number));
                 }
             }
             ChartSeries.Values.Clear();
@@ -97,21 +83,47 @@ namespace Pollen.Charts
 
             SeriesCollect.Clear();
             SeriesCollect.Add(ChartSeries);
-            ChartObject.Series = SeriesCollect;
+            Element.Series = SeriesCollect;
 
         }
 
-        public double SetSigDigits(double Number, int Digits)
+        public void SetFormatting()
         {
-            int N;
+            DataPt Pt = DataGrid.Sets[0].Points[0];
+            wGraphic G = Pt.Graphics;
 
-            N = (int)Math.Pow(10, (double)Digits);
-            return Math.Truncate(Number * N) / N;
+            ChartSeries.DataLabels = true;
+            ChartSeries.LabelPoint = point => string.Format("{0:" + Pt.Format + "}", point.Weight);
+
+            ChartSeries.Foreground = G.GetFontBrush();
+            ChartSeries.FontFamily = G.FontObject.ToMediaFont().Family;
+            ChartSeries.FontSize = G.FontObject.Size;
+            ChartSeries.FontStyle = G.FontObject.ToMediaFont().Italic;
+            ChartSeries.FontWeight = G.FontObject.ToMediaFont().Bold;
+
+            ChartSeries.StrokeThickness = G.StrokeWeight[0];
+            ChartSeries.Stroke = G.GetStrokeBrush();
+        }
+        
+        
+        public override void SetSize()
+        {
+            double W = double.NaN;
+            double H = double.NaN;
+            if (Graphics.Width > 0) { W = Graphics.Width; }
+            if (Graphics.Height > 0) { H = Graphics.Height; }
+
+            Element.Width = W;
+            Element.Height = H;
+        }
+
+        public override void SetSolidFill()
+        {
+            Element.Background = DataSet.Graphics.GetBackgroundBrush();
         }
 
         public void SetCorners(wGraphic Graphic)
         {
-            //Element.CornerRadius = new CornerRadius(Graphic.Radius[0], Graphic.Radius[1], Graphic.Radius[2], Graphic.Radius[3]);
         }
 
         public void SetFont(wGraphic Graphic)

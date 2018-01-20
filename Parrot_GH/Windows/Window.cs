@@ -23,6 +23,12 @@ namespace Parrot_GH.Windows
     {
 
         int modeStatus = 3;
+        bool modeTitle = true;
+        bool modeCtrl = true;
+        bool modeScrollH = false;
+        bool modeScrollV = false;
+        bool modeTrans = false;
+
         pWindow window = new pWindow();
         string ID;
         string name;
@@ -48,8 +54,6 @@ namespace Parrot_GH.Windows
             pManager.AddGenericParameter("Elements", "E", "Elements to Add", GH_ParamAccess.list);
             pManager.AddTextParameter("Title", "T", "...", GH_ParamAccess.item, "");
             pManager[1].Optional = true;
-            pManager.AddBooleanParameter("Scroll", "S", "---", GH_ParamAccess.item,false);
-            pManager[2].Optional = true;
             pManager.AddBooleanParameter("Launch", "L", "Launch a new Window", GH_ParamAccess.item);
             
         }
@@ -71,13 +75,11 @@ namespace Parrot_GH.Windows
         {
             bool Launch = false;
             string Title = "";
-            bool Scroll = false;
             List<IGH_Goo> X = new List<IGH_Goo>();
 
             if (!DA.GetDataList(0, X)) return;
             if (!DA.GetData(1, ref Title)) return;
-            if (!DA.GetData(2, ref Scroll)) return;
-            if (!DA.GetData(3, ref Launch)) return;
+            if (!DA.GetData(2, ref Launch)) return;
 
             if (Launch)
             {
@@ -97,7 +99,10 @@ namespace Parrot_GH.Windows
                     SetComponentWindow S = new SetComponentWindow(cP,W, W.Type, W.Instance);
                 }
 
-                window.SetScroll(Scroll);
+                window.SetTransparency(modeTrans);
+                window.SetScroll(modeScrollH,modeScrollV);
+                window.SetTitleBar(modeTitle);
+                window.SetWindowControls(modeCtrl);
 
                 WindowInteropHelper H = new WindowInteropHelper(window.Element);
 
@@ -121,9 +126,10 @@ namespace Parrot_GH.Windows
 
             }
 
-            wObject Object = new wObject(window, "Parrot", window.Type, "Window");
+            pElement Element = new pElement(window.Element, window, window.Type,false);
+            wObject WindObject = new wObject(Element, "Parrot", Element.Type);
 
-            DA.SetData(0, Object);
+            DA.SetData(0, WindObject);
             DA.SetDataList(1, X);
 
         }
@@ -131,6 +137,17 @@ namespace Parrot_GH.Windows
         public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
         {
             base.AppendAdditionalMenuItems(menu);
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Titlebar", TitleMode, true, modeTitle);
+            Menu_AppendItem(menu, "Controls", CtrlMode, true, modeCtrl);
+            Menu_AppendItem(menu, "Scroll Horizontal", ScrollHMode, true, modeScrollH);
+            Menu_AppendItem(menu, "Scroll Vertical", ScrollVMode, true, modeScrollV);
+
+            Menu_AppendSeparator(menu);
+
+            Menu_AppendItem(menu, "Transparency", TransparentMode, true, modeTrans);
+
             Menu_AppendSeparator(menu);
 
             Menu_AppendItem(menu, "None", NoneMode, true, (modeStatus == 0));
@@ -142,6 +159,11 @@ namespace Parrot_GH.Windows
         public override bool Write(GH_IWriter writer)
         {
             writer.SetInt32("FilterMode", modeStatus);
+            writer.SetBoolean("Title", modeTitle);
+            writer.SetBoolean("Ctrl", modeCtrl);
+            writer.SetBoolean("ScrollH", modeScrollH);
+            writer.SetBoolean("ScrollV", modeScrollV);
+            writer.SetBoolean("Transparent", modeTrans);
 
             return base.Write(writer);
         }
@@ -149,12 +171,53 @@ namespace Parrot_GH.Windows
         public override bool Read(GH_IReader reader)
         {
             modeStatus = reader.GetInt32("FilterMode");
+            modeTitle = reader.GetBoolean("Title");
+            modeCtrl = reader.GetBoolean("Ctrl");
+            modeScrollH = reader.GetBoolean("ScrollH");
+            modeScrollV = reader.GetBoolean("ScrollV");
+            modeTrans = reader.GetBoolean("Transparent");
 
             this.UpdateMessage();
 
             return base.Read(reader);
         }
         
+
+        private void TransparentMode(Object sender, EventArgs e)
+        {
+            modeTrans = !modeTrans;
+
+            this.ExpireSolution(true);
+        }
+
+        private void ScrollHMode(Object sender, EventArgs e)
+        {
+            modeScrollH = !modeScrollH;
+
+            this.ExpireSolution(true);
+        }
+
+        private void ScrollVMode(Object sender, EventArgs e)
+        {
+            modeScrollV = !modeScrollV;
+
+            this.ExpireSolution(true);
+        }
+
+        private void CtrlMode(Object sender, EventArgs e)
+        {
+            modeCtrl = !modeCtrl;
+
+            this.ExpireSolution(true);
+        }
+
+        private void TitleMode(Object sender, EventArgs e)
+        {
+            modeTitle = !modeTitle;
+            
+            this.ExpireSolution(true);
+        }
+
         private void NoneMode(Object sender, EventArgs e)
         {
             modeStatus = 0;

@@ -12,7 +12,6 @@ using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Series;
-using LiveCharts.WinForms;
 
 using Wind.Containers;
 
@@ -23,19 +22,24 @@ namespace Pollen.Charts
     public class pGaugeChartSeries : pChart
     {
         public WrapPanel Element;
+        public DataSetCollection DataSet = new DataSetCollection();
+        public string Name = "";
 
         public pGaugeChartSeries(string InstanceName)
         {
+            Name = InstanceName;
+
             Element = new WrapPanel();
             Element.Name = InstanceName;
             Type = "GaugeChartSeries";
 
             //Set "Clear" appearance to all elements
-            Element.Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            Element.Background = Brushes.Transparent;
         }
 
-        public void SetProperties(bool Horizontal, int Align)
+        public void SetProperties(DataSetCollection ChartDataSet, bool Horizontal, int Align)
         {
+            DataSet = ChartDataSet;
             Element.Children.Clear();
 
             Element.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -43,12 +47,42 @@ namespace Pollen.Charts
 
             if (Horizontal) { Element.Orientation = Orientation.Horizontal; } else { Element.Orientation = Orientation.Vertical; }
         }
+        
 
-        public void AddChart(pGaugeChart GaugeChart)
+        public void SetCharts(int Radius, int ChartMode, int Status)
         {
-            GaugeChart.Element.Margin = new System.Windows.Thickness(10);
-            Element.Children.Add(GaugeChart.Element);
+            for (int i = 0; i < DataSet.Sets.Count; i++)
+            {
+                for (int j = 0; j < DataSet.Sets[i].Points.Count; j++)
+                {
+                    pGaugeChart ChartObj = new pGaugeChart(Name + "_" + i.ToString() + "_" + j.ToString());
+
+                    ChartObj.SetProperties(DataSet, Radius);
+                    ChartObj.SetGaugeType(ChartMode);
+                    ChartObj.SetGaugeValues(DataSet.Sets[i].Points[j], Status, DataSet.Sets[i].NumericBounds.T0, DataSet.Sets[i].NumericBounds.T1, DataSet.Sets[i].NumericSum);
+
+                    Element.Children.Add(ChartObj.Element);
+                }
+            }
         }
+        
+        public override void SetSolidFill()
+        {
+            Element.Background = DataSet.Graphics.GetBackgroundBrush();
+        }
+
+        public override void SetSize()
+        {
+            double W = double.NaN;
+            double H = double.NaN;
+            if (Graphics.Width > 0) { W = Graphics.Width; }
+            if (Graphics.Height > 0) { H = Graphics.Height; }
+
+            Element.Width = W;
+            Element.Height = H;
+
+        }
+        
 
     }
 }

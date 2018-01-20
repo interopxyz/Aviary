@@ -41,13 +41,11 @@ namespace Parrot.Displays
 
             Element.Width = 900;
             Element.Height = 450;
-            Web.Width = 900;
-            Web.Height = 450;
 
             Web.Navigate(Address);
             
         }
-
+        
         public override void SetFill()
         {
             Element.Background = Graphics.WpfFill;
@@ -55,28 +53,16 @@ namespace Parrot.Displays
 
         public override void SetSize()
         {
-            if (Graphics.Width < 1)
-            {
-                Element.Width = double.NaN;
-                Web.Width = double.NaN;
-            }
-            else
-            {
-                Element.Width = Graphics.Width;
-                Web.Width = Graphics.Width;
-            }
+            double W = double.NaN;
+            double H = double.NaN;
 
-            if (Graphics.Height < 1)
-            {
-                Element.Height = double.NaN;
-                Web.Height = double.NaN;
-            }
-            else
-            {
-                Element.Height = Graphics.Height;
-                Web.Height = Graphics.Height;
-            }
+            if (Graphics.Width > 0) { W = Graphics.Width; }
+            if (Graphics.Height > 0) { H = Graphics.Height;}
+
+            Element.Width = W;
+            Element.Height = H;
         }
+
 
         public override void SetMargin()
         {

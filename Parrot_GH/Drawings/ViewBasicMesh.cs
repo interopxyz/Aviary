@@ -483,7 +483,7 @@ namespace Parrot_GH.Drawings
         {
             get
             {
-                return Properties.Resources.Parrot_ViewMeshBasic;
+                return Properties.Resources.Flock_WPF;
             }
         }
 

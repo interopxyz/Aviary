@@ -10,16 +10,19 @@ using MaterialDesignThemes.MahApps;
 using System.Windows.Media.Imaging;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
+using Parrot.Controls;
+using System.Windows.Media;
+using Wind.Presets;
+using System.Windows.Media.Effects;
 
 namespace Parrot.Windows
 {
 
-    public class pWindow
+    public class pWindow: pControl
     {
         public ParrotWindow Element;
         public StackPanel Container;
         public ScrollViewer ScrollFrame;
-        public string Type;
 
         public pWindow()
         {
@@ -48,6 +51,7 @@ namespace Parrot.Windows
 
             Container.Orientation = Orientation.Vertical;
             Container.Margin = new Thickness(5);
+            Container.Background = Brushes.Transparent;
 
             Element.Name = InstanceName;
 
@@ -62,28 +66,13 @@ namespace Parrot.Windows
         public void SetProperties(string TitleName)
         {
             Element.Title = TitleName;
-            
-        }
-
-        public void SetScroll(bool HasScroll)
-        {
-            if(HasScroll)
-            {
-                ScrollFrame.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-                ScrollFrame.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            }
-            else
-            {
-                ScrollFrame.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
-                ScrollFrame.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
-            }
 
         }
 
         public void SetTheme()
         {
             Palette palette = new PaletteHelper().QueryPalette();
-            new PaletteHelper().SetLightDark(true);
+            new PaletteHelper().SetLightDark(false);
         }
 
         public void AddElement(pElement ParrotElement)
@@ -102,7 +91,35 @@ namespace Parrot.Windows
             Element.Close();
         }
 
+        public void SetScroll(bool HasHorizontalScroll, bool HasVerticalScroll)
+        {
+            if (HasHorizontalScroll) { ScrollFrame.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto; } else { ScrollFrame.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled; }
+            if (HasVerticalScroll) { ScrollFrame.VerticalScrollBarVisibility = ScrollBarVisibility.Auto; } else { ScrollFrame.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled; }
+        }
 
+        public void SetTitleBar(bool TitleBarState)
+        {
+            Element.ShowTitleBar = TitleBarState;
+        }
+
+        public void SetWindowControls(bool ControlState)
+        {
+            Element.ShowCloseButton= ControlState;
+            Element.ShowMinButton = ControlState;
+            Element.ShowMaxRestoreButton = ControlState;
+        }
+
+        public void SetTransparency(bool AllowTransparent)
+        {
+            Element.AllowsTransparency = AllowTransparent;
+            if (AllowTransparent) { Element.Background = Brushes.Transparent; } else { Element.Background = new SolidColorBrush(new wColors().OffWhite().ToMediaColor()); }
+        }
+
+        public override void SetFill()
+        {
+
+                Element.Background = Graphics.GetBackgroundBrush();
+        }
 
     }
 }

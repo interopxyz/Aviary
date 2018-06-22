@@ -27,7 +27,7 @@ namespace Macaw.Utilities
             }
             
 
-            mFilter Filter = new mFilter();
+            mFilters Filter = new mFilters();
             switch (ScaleMode)
             {
                 case 0: //Crop
@@ -45,13 +45,13 @@ namespace Macaw.Utilities
 
             if (MatchMode == 0)
             {
-                BottomImage = new Bitmap(new mApply(BitmapA, Filter).ModifiedBitmap);
+                BottomImage = new Bitmap(new mApplySequence(BitmapA, Filter).ModifiedBitmap);
                 TopImage = new Bitmap(BitmapB);
             }
             else
             {
                 BottomImage = new Bitmap(BitmapB);
-                TopImage = new Bitmap(new mApply(BitmapA, Filter).ModifiedBitmap);
+                TopImage = new Bitmap(new mApplySequence(BitmapA, Filter).ModifiedBitmap);
             }
 
 

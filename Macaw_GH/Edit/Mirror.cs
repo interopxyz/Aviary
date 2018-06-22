@@ -28,8 +28,9 @@ namespace Macaw_GH.Edit
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
             pManager[0].Optional = true;
+
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
+            paramGen.SetPersistentData(new Bitmap(10, 10));
 
             pManager.AddBooleanParameter("Horizontal", "H", "---", GH_ParamAccess.item, false);
             pManager[1].Optional = true;
@@ -53,27 +54,24 @@ namespace Macaw_GH.Edit
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             // Declare variables
-            IGH_Goo X = null;
+            IGH_Goo Z = null;
             bool H = false;
             bool V = false;
 
             // Access the input parameters 
-            if (!DA.GetData(0, ref X)) return;
+            if (!DA.GetData(0, ref Z)) return;
             if (!DA.GetData(1, ref H)) return;
             if (!DA.GetData(2, ref V)) return;
 
-            Bitmap A = null;
-            if (X != null) { X.CastTo(out A); }
-            Bitmap B = new Bitmap(A);
+            Bitmap A = new Bitmap(10, 10);
+            if (Z != null) { Z.CastTo(out A); }
 
             mFilter Filter = new mFilter();
-            
+
             Filter = new mMirror(H,V);
-            B = new mApply(A, Filter).ModifiedBitmap;
 
-
+            Bitmap B = new mApply(A, Filter).ModifiedBitmap;
             wObject W = new wObject(Filter, "Macaw", Filter.Type);
-
 
             DA.SetData(0, B);
             DA.SetData(1, W);

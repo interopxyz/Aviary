@@ -37,7 +37,7 @@ namespace Parrot.Layouts
             if (ExpanderDirection > 1) { tBlock.LayoutTransform = new RotateTransform(-90); }else { tBlock.LayoutTransform = new RotateTransform(0); }
 
 
-            Element.BorderBrush = new SolidColorBrush(new wColors().DarkGray().ToMediaColor());
+            Element.BorderBrush = new SolidColorBrush(wColors.DarkGray.ToMediaColor());
             switch (ExpanderDirection)
             {
                 case 1:

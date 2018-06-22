@@ -19,7 +19,7 @@ namespace Wind_GH.Effects
         /// Initializes a new instance of the Blur class.
         /// </summary>
         public Blur()
-          : base("Blur", "Blur", "---", "Aviary", "Format")
+          : base("Blur", "Blur", "---", "Aviary", "2D Format")
         {
         }
 

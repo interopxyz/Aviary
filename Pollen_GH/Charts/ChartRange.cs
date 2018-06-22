@@ -101,12 +101,20 @@ namespace Pollen_GH.Charts
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.Metro, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.Metro, false, DC.Sets.Count > 1); }
             if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); }
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPoint).Font); }
-            if (DC.TotalCustomMarker == 0) { if (M == 2) { DC.SetDefaultMarkers(wGradients.GradientTypes.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); } else { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); } }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.ChartPoint); }
+            if (DC.TotalCustomMarker == 0) { if (M == 2) { DC.SetDefaultMarkers(wGradients.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); } else { DC.SetDefaultMarkers(wGradients.SolidTransparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); } }
+            if (DC.TotalCustomLabel == 0) { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.Center, new wGraphic(wColors.Transparent))); }
 
             List<pPointSeries> PointSeriesList = new List<pPointSeries>();
+
+
+            if (!DC.Axes.Enabled)
+            {
+                DC.Axes.AxisX.Enabled = true;
+                DC.Axes.AxisY.Enabled = true;
+            }
 
             pControl.SetProperties(DC);
 
@@ -119,8 +127,9 @@ namespace Pollen_GH.Charts
                 pSeriesSet.SetNumericData(1);
                 PointSeriesList.Add(pSeriesSet);
             }
-
+            
             pControl.SetSeries(PointSeriesList);
+            pControl.SetAxisScale();
             pControl.SetAxisAppearance();
             pControl.SetXaxis(new wDomain(0, PointSeriesList[0].DataList.Count - 1));
 

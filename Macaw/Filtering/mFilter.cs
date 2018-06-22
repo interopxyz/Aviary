@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using AForge.Imaging.Filters;
+using Accord.Imaging.Filters;
+using Accord.Imaging;
 
 namespace Macaw.Filtering
 {
@@ -14,9 +15,12 @@ namespace Macaw.Filtering
 
         public string Type = "Filter";
 
-        public int BitmapType = 0;
+        public double value = 0.0;
 
-        public FiltersSequence Sequence = new FiltersSequence();
+        public enum BitmapTypes { GrayscaleBT709, GrayscaleRMY, GrayscaleY, GrayScale16bpp, Rgb16bpp, Rgb24bpp, None };
+        public BitmapTypes BitmapType = BitmapTypes.None;
+
+        public IFilter filter = new Invert();
 
         public mFilter()
         {

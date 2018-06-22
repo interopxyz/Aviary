@@ -23,16 +23,16 @@ namespace Macaw.Compiling.Modifiers
 
         public mQuickComposite(Bitmap B, mModifiers M)
         {
-             image = new ImageImageSource();
-             layer = new ImageLayer();
-             CompositionObject = new Composition();
+            image = new ImageImageSource();
+            layer = new ImageLayer();
+            CompositionObject = new Composition();
 
             image.Image = new mConvert(B).BitmapToWritableBitmap();
             layer.Source = image;
 
-            foreach (Filter Fltr in M.Modifiers)
+            foreach (mModifier Modifier in M.Modifiers)
             {
-                layer.Filters.Add(Fltr);
+                layer.Filters.Add(Modifier.filter);
             }
             CompositionObject.Layers.Add(layer);
 
@@ -42,18 +42,35 @@ namespace Macaw.Compiling.Modifiers
 
         }
 
+        public mQuickComposite(Bitmap B, mModifier M)
+        {
+            image = new ImageImageSource();
+            layer = new ImageLayer();
+            CompositionObject = new Composition();
+
+            image.Image = new mConvert(B).BitmapToWritableBitmap();
+            layer.Source = image;
+
+            layer.Filters.Add(M.filter);
+            CompositionObject.Layers.Add(layer);
+
+            CompositionObject.ImageFormat = DynamicImageFormat.Png;
+
+            ModifiedBitmap = new Bitmap(new mConvert(CompositionObject.GenerateImage().Image).SourceToBitmap());
+
+        }
         public mQuickComposite(Bitmap B, mModifiers M, wColor BackgroundColor)
         {
             image = new ImageImageSource();
             layer = new ImageLayer();
             CompositionObject = new Composition();
-            
+
             image.Image = new mConvert(B).BitmapToWritableBitmap();
             layer.Source = image;
 
-            foreach (Filter Fltr in M.Modifiers)
+            foreach (mModifier Modifier in M.Modifiers)
             {
-                layer.Filters.Add(Fltr);
+                layer.Filters.Add(Modifier.filter);
             }
 
             Fill fill = new Fill();

@@ -103,9 +103,6 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\D
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Wind.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Imaging.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Math.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\LiveCharts.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\LiveCharts.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\LiveCharts.WinForms.pdb
@@ -155,9 +152,6 @@ C:\Users\LJobson\Documents\GitHub\Aviary\Pollen\obj\Debug\Pollen.dll
 C:\Users\LJobson\Documents\GitHub\Aviary\Pollen\obj\Debug\Pollen.pdb
 C:\Users\LJobson\Documents\GitHub\Aviary\Pollen\obj\Debug\Pollen.csprojResolveAssemblyReference.cache
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.csprojResolveAssemblyReference.cache
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Imaging.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Math.xml
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Pollen.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Pollen.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\LiveCharts.dll
@@ -169,9 +163,6 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Wind.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Imaging.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Math.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Wind.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\LiveCharts.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\LiveCharts.xml
@@ -184,9 +175,26 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\MaterialDesignColors.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Imaging.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\AForge.Math.xml
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.csprojResolveAssemblyReference.cache
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\obj\Debug\Pollen.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Imaging.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Statistics.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Math.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Math.Core.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Imaging.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Statistics.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Math.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Math.Core.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Imaging.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Statistics.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Math.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Math.Core.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Imaging.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Statistics.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Math.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Pollen\bin\Debug\Accord.Math.Core.xml

@@ -1,5 +1,5 @@
-﻿using AForge.Imaging;
-using AForge.Imaging.Filters;
+﻿using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;

@@ -10,22 +10,28 @@ using System.Windows.Media;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyResize : mModifiers
+    public class mModifyResize : mModifier
     {
         ResizeFilter Effect = new ResizeFilter();
+        public enum ResizingMode { Width, Height, Fill, Uniform, UniformFill};
+        public enum ScalingMode {Unspecified, LowQuality, HighQuality, NearestNeighbor};
+        public ResizingMode ResizingType = ResizingMode.Fill;
+        public ScalingMode ScalingType = ScalingMode.Unspecified;
 
-        public mModifyResize(int Mode, int Type, int Width, int Height)
+        public mModifyResize(ResizingMode Mode, ScalingMode Type, int Width, int Height)
         {
+            ResizingType = Mode;
+            ScalingType = Type;
+
             Effect = new ResizeFilter();
-            Effect.Mode = (ResizeMode)Mode;
-            Effect.BitmapScalingMode = (BitmapScalingMode)Type;
+            Effect.Mode = (ResizeMode)(int)ResizingType;
+            Effect.BitmapScalingMode = (BitmapScalingMode)(int)ScalingType;
             Effect.Width = Unit.Pixel(Width);
             Effect.Height = Unit.Pixel(Height);
 
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

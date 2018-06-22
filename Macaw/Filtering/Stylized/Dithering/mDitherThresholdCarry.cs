@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -10,21 +10,17 @@ namespace Macaw.Filtering.Stylized
 {
     public class mDitherThresholdCarry : mFilter
     {
-        ThresholdWithCarry Effect = new ThresholdWithCarry();
 
-        byte Parameter = 50;
+        byte ThresholdValue = 50;
 
-        public mDitherThresholdCarry(byte ParameterValue)
+        public mDitherThresholdCarry(byte thresholdValue)
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
 
-            Parameter = ParameterValue;
+            ThresholdValue = thresholdValue;
 
-            Effect = new ThresholdWithCarry(Parameter);
-            
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new ThresholdWithCarry(ThresholdValue);
         }
 
     }

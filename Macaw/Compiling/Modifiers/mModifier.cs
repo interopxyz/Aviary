@@ -12,9 +12,11 @@ namespace Macaw.Compiling.Modifiers
     public class mModifier
     {
 
+        public string Type = "Modifier";
+        public Filter filter = null;
+
         public mModifier()
         {
-
         }
 
     }

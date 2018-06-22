@@ -27,12 +27,6 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary\Wind\bin\Debug\AForge.I
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary\Wind\bin\Debug\AForge.Math.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Wind.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Wind.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.Imaging.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.Math.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.Imaging.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.Math.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.pdb
 C:\Users\LJobson\Documents\GitHub\Aviary\Wind\bin\Debug\Wind.dll
@@ -58,13 +52,27 @@ C:\Users\Hanshen\Documents\GitHub\Aviary\Wind\obj\Debug\Wind.dll
 C:\Users\Hanshen\Documents\GitHub\Aviary\Wind\obj\Debug\Wind.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Wind.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Wind.pdb
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.Imaging.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.Math.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.Imaging.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\AForge.Math.xml
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.csprojResolveAssemblyReference.cache
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.csprojResolveAssemblyReference.cache
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Imaging.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Math.Core.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Math.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Statistics.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Imaging.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Math.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Math.Core.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Statistics.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Imaging.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Math.Core.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Math.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Statistics.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Imaging.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Math.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Math.Core.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Statistics.xml

@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyGrayscale : mModifiers
+    public class mModifyGrayscale : mModifier
     {
         GrayscaleFilter Effect = new GrayscaleFilter();
 
@@ -18,8 +18,7 @@ namespace Macaw.Compiling.Modifiers
             Effect = new GrayscaleFilter();
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

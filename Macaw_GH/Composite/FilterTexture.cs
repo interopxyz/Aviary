@@ -55,17 +55,17 @@ namespace Macaw_GH.Composite
             mTexture T = new mTexture();
             wObject Z = new wObject();
             wObject U = new wObject();
-            mFilter F = new mFilter();
+            mFilters F = new mFilters();
 
 
             if (X != null) { X.CastTo(out Z); }
             T = (mTexture)Z.Element;
             if (Y != null) { Y.CastTo(out U); }
-            F = (mFilter)U.Element;
+            F = (mFilters)U.Element;
 
 
 
-            mFilter Filter = new mFilter();
+            mFilters Filter = new mFilters();
 
             Filter = new mFilterTexture(T, F);
 

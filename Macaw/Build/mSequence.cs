@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,8 @@ using System.Text;
 namespace Macaw.Build
 {
 
-    public class mSequence : mFilter
-    {
-        public List<int> BitmapTypes = new List<int>();
+    public class mSequence : mFilters
+    { 
 
         public mSequence()
         {
@@ -19,21 +18,22 @@ namespace Macaw.Build
         public void ClearSequence()
         {
             Sequence.Clear();
-            BitmapTypes.Clear();
+            BitmapType = mFilter.BitmapTypes.None;
+        }
+
+        public void AddFilter(mFilters Filters)
+        {
+            if (Filters.BitmapType < BitmapType) { BitmapType = Filters.BitmapType; }
+            foreach(IFilter filter in Filters.Sequence)
+            {
+                Sequence.Add(filter);
+            }
         }
 
         public void AddFilter(mFilter Filter)
         {
-            BitmapTypes.Add(Filter.BitmapType);
-            Sequence.Add(Filter.Sequence[0]);
-        }
-
-        public void SetBitmapType()
-        {
-            int[] ArrBitmapTypes = BitmapTypes.ToArray();
-
-            Array.Sort(ArrBitmapTypes);
-            BitmapType = ArrBitmapTypes[0];
+            if (Filter.BitmapType < BitmapType) { BitmapType = Filter.BitmapType; }
+            Sequence.Add(Filter.filter);
         }
 
     }

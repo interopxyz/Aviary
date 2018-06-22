@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +13,13 @@ namespace Macaw.Filtering.Objects.Edging
         SobelEdgeDetector Effect = new SobelEdgeDetector();
         
 
-        public mEdgeSobel()
+        public mEdgeSobel(bool scale)
         {
-
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
 
             Effect = new SobelEdgeDetector();
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            Effect.ScaleIntensity = scale; 
+            filter = Effect;
         }
 
     }

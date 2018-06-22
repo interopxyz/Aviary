@@ -6,68 +6,85 @@ using System.Data;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
-using Xceed.Wpf.Toolkit;
-using Xceed.Wpf.DataGrid;
-using Xceed.Wpf.DataGrid.Views;
-
 using Wind.Containers;
 using Wind.Collections;
 using Pollen.Collections;
 using Pollen.Charts;
+using System.Windows.Controls.Primitives;
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 
 namespace Parrot.Controls
 {
     public class pDataTableX : pChart
     {
-        public TableView dView = new TableView();
+        public DataGridView TableView = new DataGridView();
+        public WindowsFormsHost Host = new WindowsFormsHost();
+        public DockPanel Element = new DockPanel();
 
-        public DataGridControl Element = new DataGridControl();
-        
-        DataTable Table = new DataTable();
-        DataSet DS = new DataSet();
+        public DataSetCollection Data = new DataSetCollection();
+
+        public string Name = "";
 
         public pDataTableX(string InstanceName)
         {
-            //Set Element info setup
-            Element = new DataGridControl();
-            Element.Name = InstanceName;
-            Type = "GridView";
+            Name = InstanceName;
 
-            //Set "Clear" appearance to all elements
+            Element = new DockPanel();
+            Host = new WindowsFormsHost();
+            TableView = new DataGridView();
+
+
+            //Set Generic Chart Object & Properties
+            TableView.Dock = DockStyle.Fill;
+
+            //Set WPF Winform Chart 
+            Host.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            Host.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+
+            //Set Element Properties;
+            Element.MinWidth = 300;
+            Host.MinWidth = 300;
+
+            Element.Width = 600;
+            Element.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            Element.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+
+            Element.Name = Name;
+
+            Host.Child = TableView;
+            Element.Children.Add(Host);
         }
 
 
         public void SetProperties(DataSetCollection WindDataCollection)
         {
-             Table = new DataTable();
-             DS = new DataSet();
+            Data = WindDataCollection;
 
-            DS.Tables.Add(Table);
-            for (int i = 0; i < WindDataCollection.Sets.Count; i++)
+            TableView.ColumnCount = Data.Count;
+            TableView.RowCount = Data.Sets[0].Points.Count;
+
+
+            for (int i = 0; i < Data.Sets.Count; i++)
             {
                 if (WindDataCollection.Sets[i].Title == "") { WindDataCollection.Sets[i].Title = ("Title " + i.ToString()); }
-                DataColumn col = new DataColumn(WindDataCollection.Sets[i].Title.ToString(), typeof(string));
-                Table.Columns.Add(col);
-            }
-
-            for (int i = 0; i < WindDataCollection.Sets[0].Points.Count; i++)
-            {
-                System.Data.DataRow row = Table.NewRow();
-                for (int j = 0; j < WindDataCollection.Count; j++)
+                TableView.Columns[i].HeaderText = Data.Sets[i].Title;
+                for (int j = 0; j < Data.Sets[i].Points.Count; j++)
                 {
-                    row[WindDataCollection.Sets[j].Title] = WindDataCollection.Sets[j].Points[i].Text;
-                    
+                    TableView.Rows[i].Cells[j].Value = Data.Sets[i].Points[j].Text;
                 }
-                Table.Rows.Add(row);
             }
 
-            Element.View = dView; 
-            Element.DataContext = DS.Tables[0].DefaultView;
-            Element.ItemsSource = DS.Tables[0].DefaultView;
-            Element.AutoCreateColumns = true;
+            TableView.AutoSize = false;
+            TableView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            Element.SelectionMode = SelectionMode.Extended;
+            Host.Background = Brushes.IndianRed;
+            TableView.BackgroundColor = System.Drawing.Color.DarkCyan;
+
         }
+        
+
+        //################################################################################################
 
         void SetOverides(bool Alternate)
         {
@@ -103,7 +120,7 @@ namespace Parrot.Controls
 
             }
         }
-        
+
 
     }
 }

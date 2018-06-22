@@ -28,8 +28,9 @@ namespace Macaw_GH.Edit
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
             pManager[0].Optional = true;
+
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
+            paramGen.SetPersistentData(new Bitmap(10, 10));
 
             pManager.AddIntegerParameter("Mode", "M", "...", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
@@ -75,9 +76,8 @@ namespace Macaw_GH.Edit
             if (!DA.GetData(3, ref F)) return;
             if (!DA.GetData(4, ref X)) return;
 
-            Bitmap A = null;
+            Bitmap A = new Bitmap(10, 10);
             if (Z != null) { Z.CastTo(out A); }
-            Bitmap B = new Bitmap(A);
 
             mFilter Filter = new mFilter();
 
@@ -85,23 +85,19 @@ namespace Macaw_GH.Edit
             {
                 case 0:
                     Filter = new mRotateBicubic(R,F,X);
-                    B = new mApply(A, Filter).ModifiedBitmap;
                     break;
                 case 1:
 
                     Filter = new mRotateBilinear(R, F, X);
-                    B = new mApply(A, Filter).ModifiedBitmap;
                     break;
                 case 2:
 
                     Filter = new mRotateNearistNeighbor(R, F, X);
-                    B = new mApply(A, Filter).ModifiedBitmap;
                     break;
             }
 
-
+            Bitmap B = new mApply(A, Filter).ModifiedBitmap;
             wObject W = new wObject(Filter, "Macaw", Filter.Type);
-
 
             DA.SetData(0, B);
             DA.SetData(1, W);

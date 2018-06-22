@@ -31,7 +31,7 @@ namespace Pollen.Charts
 
             Element = new WrapPanel();
             Element.Name = InstanceName;
-            Type = "GaugeChartSeries";
+            Type = "Chart";
 
             //Set "Clear" appearance to all elements
             Element.Background = Brushes.Transparent;
@@ -47,7 +47,7 @@ namespace Pollen.Charts
 
             if (Horizontal) { Element.Orientation = Orientation.Horizontal; } else { Element.Orientation = Orientation.Vertical; }
         }
-        
+
 
         public void SetCharts(int Radius, int ChartMode, int Status)
         {
@@ -65,12 +65,8 @@ namespace Pollen.Charts
                 }
             }
         }
-        
-        public override void SetSolidFill()
-        {
-            Element.Background = DataSet.Graphics.GetBackgroundBrush();
-        }
 
+        // ################################# OVERIDE GRAPHIC PROPERTIES #################################
         public override void SetSize()
         {
             double W = double.NaN;
@@ -81,6 +77,35 @@ namespace Pollen.Charts
             Element.Width = W;
             Element.Height = H;
 
+        }
+
+        public override void SetSolidFill()
+        {
+            Element.Background = Graphics.GetBackgroundBrush();
+        }
+
+        public override void SetGradientFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
+        public override void SetPatternFill()
+        {
+            Element.Background = Graphics.WpfPattern;
+        }
+
+        public override void SetStroke()
+        {
+        }
+
+        public override void SetFont()
+        {
+
+        }
+
+        public override void SetMargin()
+        {
+            Element.Margin = Graphics.GetMargin();
         }
         
 

@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +10,14 @@ namespace Macaw.Filtering.Adjustments.AdjustColor
 {
     public class mAdjustInvert : mFilter
     {
-        Invert Effect = new Invert();
 
         public mAdjustInvert()
         {
 
-            BitmapType = 2;
+            BitmapType = BitmapTypes.Rgb24bpp;
 
-            Effect = new Invert();
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new Invert();
+        
         }
 
     }

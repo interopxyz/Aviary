@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyColorTint : mModifiers
+    public class mModifyColorTint : mModifier
     {
         ColorTintFilter Effect = new ColorTintFilter();
 
@@ -20,8 +20,7 @@ namespace Macaw.Compiling.Modifiers
             Effect.Amount = Value;
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

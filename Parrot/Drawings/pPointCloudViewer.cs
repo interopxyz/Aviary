@@ -20,6 +20,7 @@ using System.Windows;
 using Wind.Types;
 using Wind.Geometry.Vectors;
 using System.Collections;
+using Wind.Scene.Cameras;
 
 namespace Parrot.Drawings
 {
@@ -35,7 +36,7 @@ namespace Parrot.Drawings
 
         public double SceneDiagonal = 0;
 
-        public wCamera Cam = new wCamera();
+        public wCameraStandard Cam = new wCameraStandard();
 
         public pPointCloudViewer(string InstanceName)
         {
@@ -73,11 +74,11 @@ namespace Parrot.Drawings
 
         //CAMERA
 
-        public void SetCamera(wCamera WindCamera, double Extents)
+        public void SetCamera(wCameraStandard WindCamera, double Extents)
         {
 
             Cam = WindCamera;
-            if (Cam.IsPreset)
+            if (Cam.IsDefault)
             {
                 Ortho = new OrthographicCamera(Cam.Location.ToPoint3D(), Cam.Direction.ToVector3D(), Cam.Up.ToVector3D(), Extents);
                 ViewPort.Orthographic = true;
@@ -86,7 +87,7 @@ namespace Parrot.Drawings
             }
             else
             {
-                if (Cam.Length <= 0)
+                if (Cam.LensLength <= 0)
                 {
                     Ortho = new OrthographicCamera(Cam.Location.ToPoint3D(), Cam.Direction.ToVector3D(), Cam.Up.ToVector3D(), Cam.Distance);
                     ViewPort.Orthographic = true;
@@ -95,7 +96,7 @@ namespace Parrot.Drawings
                 }
                 else
                 {
-                    Perspective = new PerspectiveCamera(Cam.Location.ToPoint3D(), Cam.Direction.ToVector3D(), Cam.Up.ToVector3D(), Cam.Length);
+                    Perspective = new PerspectiveCamera(Cam.Location.ToPoint3D(), Cam.Direction.ToVector3D(), Cam.Up.ToVector3D(), Cam.LensLength);
                     ViewPort.Orthographic = false;
                     ViewPort.Camera = Perspective;
                 }

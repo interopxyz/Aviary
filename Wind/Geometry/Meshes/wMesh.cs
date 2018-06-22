@@ -34,7 +34,7 @@ namespace Wind.Geometry.Meshes
         {
             Vertices.Add(new wVertex(X, Y, Z, Index));
             WpfMesh.Positions.Add(new Point3D(X, Y, Z));
-            Colors.Add(new wColors().LightGray());
+            Colors.Add(wColors.LightGray);
         }
 
         public void AddVertex(double X, double Y, double Z, int Index, wColor VertexColor)
@@ -66,6 +66,14 @@ namespace Wind.Geometry.Meshes
         public void AddFaceNormal(double X, double Y, double Z, int Index)
         {
             FaceNormals.Add(new wNormal(X, Y, Z, Index));
+        }
+
+        public void SetVertices(List<wPoint> points)
+        {
+            foreach(wPoint pt in points)
+            {
+                Vertices.Add(new wVertex(pt.X, pt.Y, pt.Z));
+            }
         }
 
     }

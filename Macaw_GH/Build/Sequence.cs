@@ -48,28 +48,30 @@ namespace Macaw_GH.Build
             // Access the input parameters 
             if (!DA.GetDataList(0, X)) return;
 
-            mFilter Filter = new mFilter();
-            mSequence Sequence = new mSequence();
+            mFilters F = new mFilters();
+            mSequence S = new mSequence();
 
-            Sequence.ClearSequence();
+            S.ClearSequence();
+            List<string> types = new List<string>();
 
             for (int i = 0; i < X.Count; i++)
             {
                 wObject Y = new wObject();
-                mFilter F = new mFilter();
                 X[i].CastTo(out Y);
-                F = (mFilter)Y.Element;
-
-                Sequence.AddFilter(F);
+                if (Y.SubType=="Filters")
+                {
+                    S.AddFilter((mFilters)Y.Element);
+                }
+                else if (Y.SubType == "Filter")
+                {
+                    S.AddFilter((mFilter)Y.Element);
+                }
             }
 
-            Sequence.SetBitmapType();
+            F = S;
 
-            Filter = Sequence;
-
-            wObject W = new wObject(Filter, "Macaw", Filter.Type);
-
-
+            wObject W = new wObject(F, "Macaw", F.Type);
+            
             DA.SetData(0, W);
         }
 

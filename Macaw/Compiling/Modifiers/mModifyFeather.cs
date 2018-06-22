@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyFeather : mModifiers
+    public class mModifyFeather : mModifier
     {
         FeatherFilter Effect = new FeatherFilter();
 
@@ -20,8 +20,7 @@ namespace Macaw.Compiling.Modifiers
             Effect.Shape = FeatherShape.Rectangle;
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

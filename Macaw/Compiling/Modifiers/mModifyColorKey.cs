@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyColorKey : mModifiers
+    public class mModifyColorKey : mModifier
     {
         ColorKeyFilter Effect = new ColorKeyFilter();
 
@@ -20,8 +20,7 @@ namespace Macaw.Compiling.Modifiers
             Effect.ColorTolerance = Tolerance;
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +10,16 @@ namespace Macaw.Filtering.Adjustments.AdjustColor
 {
     public class mAdjustContrast : mFilter
     {
-        ContrastCorrection Effect = new ContrastCorrection();
-
-        int AdjustValue = 50;
-
-        public mAdjustContrast(int Value)
+        public int Factor = 0;
+        public mAdjustContrast(int factor)
         {
 
-            AdjustValue = Value;
+            Factor = factor;
 
-            BitmapType = 1;
+            BitmapType = BitmapTypes.None;
 
-            Effect = new ContrastCorrection(AdjustValue);
+            filter = new ContrastCorrection(Factor);
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
         }
 
     }

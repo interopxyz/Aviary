@@ -16,6 +16,9 @@ using System.Windows.Forms;
 using Wind.Types;
 using GH_IO.Serialization;
 using Grasshopper.Kernel.Parameters;
+using Wind.Utilities;
+using Parrot.Displays;
+using Pollen.Charts;
 
 namespace Wind_GH.Formatting
 {
@@ -27,7 +30,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the FillSwatch class.
         /// </summary>
         public FillSwatch()
-          : base("Swatch", "Swatch", "---", "Aviary", "Format")
+          : base("Swatch", "Swatch", "---", "Aviary", "2D Format")
         {
             this.UpdateMessage();
         }
@@ -44,7 +47,7 @@ namespace Wind_GH.Formatting
             pManager[2].Optional = true;
             
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(new pSpacer(new GUIDtoAlpha(Convert.ToString(this.Attributes.InstanceGuid.ToString() + Convert.ToString(this.RunCount)), false).Text)));
         }
 
         /// <summary>
@@ -115,6 +118,21 @@ namespace Wind_GH.Formatting
                             tDataSet.Graphics.WpfPattern = G.WpfPattern;
 
                             W.Element = tDataSet;
+                            break;
+                        case "Chart":
+                        case "Table":
+
+                            pElement pE = (pElement)W.Element;
+                            pChart pC = pE.PollenControl;
+                            pC.Graphics = G;
+
+                            pC.Graphics.WpfFill = G.WpfFill;
+                            pC.Graphics.WpfPattern = G.WpfPattern;
+
+                            pC.SetPatternFill();
+
+                            pE.PollenControl = pC;
+                            W.Element = pE;
                             break;
                     }
                     break;

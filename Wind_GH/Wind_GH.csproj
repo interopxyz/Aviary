@@ -88,11 +88,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\CameraSets.cs" />
+    <Compile Include="Collections\Dashboard_Test.cs" />
+    <Compile Include="Collections\FontSets.cs" />
+    <Compile Include="Collections\GradientSets.cs" />
     <Compile Include="Effects\Blur.cs" />
     <Compile Include="Effects\DropShadow.cs" />
     <Compile Include="Files\ReadBitmap.cs" />
     <Compile Include="Files\WriteBitmap.cs" />
     <Compile Include="Files\WriteSVG.cs" />
+    <Compile Include="Files\WriteThreeJS.cs" />
     <Compile Include="Formatting\FillGradientRadial.cs" />
     <Compile Include="Formatting\FontBasic.cs" />
     <Compile Include="Formatting\FontPopup.cs" />
@@ -109,19 +114,11 @@
     <Compile Include="Formatting\Padding.cs" />
     <Compile Include="Formatting\Size.cs" />
     <Compile Include="Formatting\Stroke.cs" />
-    <Compile Include="Geometry\BitmapToShape.cs" />
-    <Compile Include="Geometry\BrepToShape.cs" />
-    <Compile Include="Geometry\CurveToShape.cs" />
-    <Compile Include="Geometry\MeshToShape.cs" />
-    <Compile Include="Geometry\PointToShape.cs" />
-    <Compile Include="Geometry\RhCrvToWindCrv.cs" />
-    <Compile Include="Geometry\TextToShape.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Geometry\SetMesh.cs" />
     <Compile Include="Scene\CameraLinear.cs" />
     <Compile Include="Scene\LightAmbient.cs" />
     <Compile Include="Scene\LightDirectional.cs" />
@@ -129,7 +126,6 @@
     <Compile Include="Scene\LightPoint.cs" />
     <Compile Include="Scene\LightSpot.cs" />
     <Compile Include="Scene\Camera.cs" />
-    <Compile Include="Types\RhMesh.cs" />
     <Compile Include="Wind_GHInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -215,6 +211,10 @@
     <None Include="Resources\Wind_Shape-Curve-02.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Flock\Flock.csproj">
+      <Project>{1AC87993-11F9-4426-864E-6E00F7676D93}</Project>
+      <Name>Flock</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hoopoe\Hoopoe.csproj">
       <Project>{4776e010-0059-4d08-8bf8-7ac68247462d}</Project>
       <Name>Hoopoe</Name>
@@ -271,6 +271,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Wind_Font_Simple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Presets_Gradients.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Presets_Fonts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Lights_Ambient2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Cameras.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

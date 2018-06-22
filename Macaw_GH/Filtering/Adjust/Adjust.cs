@@ -10,17 +10,23 @@ using Macaw.Compiling.Modifiers;
 using Grasshopper.Kernel.Types;
 using System.Drawing;
 using Macaw.Build;
+using Macaw.Filtering.Stylized;
 
 namespace Macaw_GH.Filtering.Adjust
 {
     public class Adjust : GH_Component
     {
+
+        public int ModeIndex = 0;
+        private string[] modes = { "Brightness", "Contrast", "Gamma", "Hue", "Saturation", "White Patch", "Gray World", "Histogram" ,"Stretch", "Invert" };
+
         /// <summary>
         /// Initializes a new instance of the Brightness class.
         /// </summary>
         public Adjust()
           : base("Adjust", "Adjust", "---", "Aviary", "Bitmap Edit")
         {
+            UpdateMessage();
         }
 
         /// <summary>
@@ -30,23 +36,27 @@ namespace Macaw_GH.Filtering.Adjust
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
             pManager[0].Optional = true;
+
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
+            paramGen.SetPersistentData(new GH_ObjectWrapper(new Bitmap(10, 10)));
 
             pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Adjust Value", "V", "---", GH_ParamAccess.item, 0);
+
+            pManager.AddNumberParameter("Adjust Value", "T", "Suggested Range [0,1]", GH_ParamAccess.item, 0);
             pManager[2].Optional = true;
 
             Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("*Invert", 0);
-            param.AddNamedValue("*Brightness", 1);
-            param.AddNamedValue("*Contrast", 2);
-            param.AddNamedValue("Gamma", 3);
-            param.AddNamedValue("Hue", 4);
-            param.AddNamedValue("Saturation", 5);
-            param.AddNamedValue("Channel Shift", 6);
-            param.AddNamedValue("Threshold", 7);
+            param.AddNamedValue(modes[0], 0);
+            param.AddNamedValue(modes[1], 1);
+            param.AddNamedValue(modes[2], 2);
+            param.AddNamedValue(modes[3], 3);
+            param.AddNamedValue(modes[4], 4);
+            param.AddNamedValue(modes[5], 5);
+            param.AddNamedValue(modes[6], 6);
+            param.AddNamedValue(modes[7], 7);
+            param.AddNamedValue(modes[8], 8);
+            param.AddNamedValue(modes[9], 9);
 
         }
 
@@ -57,7 +67,6 @@ namespace Macaw_GH.Filtering.Adjust
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
             pManager.AddGenericParameter("Filter", "F", "---", GH_ParamAccess.item);
-            pManager.AddGenericParameter("Modifier", "M", "---", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -68,61 +77,86 @@ namespace Macaw_GH.Filtering.Adjust
         {
             // Declare variables
             IGH_Goo Z = null;
-            int M = 0;
             double V = 0;
+
+            int M = 0;
 
             // Access the input parameters 
             if (!DA.GetData(0, ref Z)) return;
             if (!DA.GetData(1, ref M)) return;
             if (!DA.GetData(2, ref V)) return;
 
-            Bitmap A = null;
-            if (Z != null) { Z.CastTo(out A); }
-            Bitmap B = new Bitmap(A);
+            M = M % 10;
 
-            mFilter Filter = new mFilter();
-            mModifiers Modifier = new mModifiers();
-
-            switch (M)
+            if (M != ModeIndex)
             {
-                case 0:
-                    Filter = new mAdjustInvert();
-                    Modifier = new mModifyInvert();
+                ModeIndex = M;
+                UpdateMessage();
+            }
+
+            if(M<5)
+            {
+                Params.Input[2].NickName = "T";
+                Params.Input[2].Name = "Adjust Value";
+                Params.Input[2].Description = "Suggested Range [0,1]";
+            }
+            else
+            {
+                Params.Input[2].NickName = "-";
+                Params.Input[2].Name = "Not Used";
+                Params.Input[2].Description = "Not used by this filter";
+            }
+
+            Bitmap A = new Bitmap(10, 10);
+            if (Z != null) { Z.CastTo(out A); }
+            mFilter Filter = new mFilter();
+
+            switch (ModeIndex)
+            {
+                default:
+                    Filter = new mAdjustBrightness((int)(V * 255));
                     break;
                 case 1:
-                    Filter = new mAdjustBrightness((int)V);
-                    Modifier = new mModifyBrightness((int)V);
+                    Filter = new mAdjustContrast((int)(V * 255));
                     break;
                 case 2:
-                    Filter = new mAdjustContrast((int)V);
-                    Modifier = new mModifyContrast((int)V);
+                    Filter = new mAdjustGamma(0.1 + (V * 4.9));
                     break;
                 case 3:
-                    Filter = new mAdjustGamma(V);
+                    Filter = new mAdjustHue((int)(V * 360));
                     break;
                 case 4:
-                    Filter = new mAdjustHue((int)V);
+                    Filter = new mAdjustSaturation((float)(-1 + V * 2));
                     break;
                 case 5:
-                    Filter = new mAdjustSaturation((float)V);
+                    Filter = new mAdjustWhitePatch();
                     break;
                 case 6:
-                    Filter = new mAdjustShift((int)V);
+                    Filter = new mAdjustGrayWorld();
                     break;
                 case 7:
-                    Filter = new mAdjustBradley((float)V);
+                    Filter = new mAdjustHistogramEqualization();
+                    break;
+                case 8:
+                    Filter = new mAdjustContrastStretch();
+                    break;
+                case 9:
+                    Filter = new mAdjustInvert();
                     break;
             }
 
-            B = new mApply(A, Filter).ModifiedBitmap;
 
+            Bitmap B = new mApply(A, Filter).ModifiedBitmap;
             wObject W = new wObject(Filter, "Macaw", Filter.Type);
-            wObject U = new wObject(Modifier, "Macaw", Modifier.Type);
 
 
             DA.SetData(0, B);
             DA.SetData(1, W);
-            DA.SetData(2, U);
+        }
+
+        private void UpdateMessage()
+        {
+            Message = modes[ModeIndex];
         }
 
         /// <summary>
@@ -143,13 +177,13 @@ namespace Macaw_GH.Filtering.Adjust
                 return Properties.Resources.Macaw_Filter_Brightness;
             }
         }
-
+        
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("238c3cdb-ddfa-43cd-80c4-004a387635f2"); }
+            get { return new Guid("0d409ada-8d21-4ad5-931b-4feccf88abd3"); }
         }
     }
 }

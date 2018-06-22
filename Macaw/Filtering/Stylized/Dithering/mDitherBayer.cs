@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +15,10 @@ namespace Macaw.Filtering.Stylized
         public mDitherBayer()
         {
 
-            BitmapType = 0;
+            BitmapType =  BitmapTypes.GrayscaleBT709;
 
-            Effect = new BayerDithering();
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new BayerDithering();
+            
         }
 
     }

@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -13,21 +13,34 @@ namespace Macaw.Filtering.Stylized
 
         SimplePosterization Effect = new SimplePosterization();
 
-        byte Interval = 5;
+        public byte Interval = 5;
+        public int PixelMode = 0;
 
-        public mEffectPosterization(byte IntervalCount)
+        public mEffectPosterization(byte interval, int pixelMode)
         {
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
-            Interval = IntervalCount;
+            Interval = interval;
+            PixelMode = pixelMode;
 
-            Effect = new SimplePosterization(SimplePosterization.PosterizationFillingType.Average);
+            Effect = new SimplePosterization();
 
+            switch (PixelMode)
+            {
+                default:
+                    Effect.FillingType = SimplePosterization.PosterizationFillingType.Average;
+                    break;
+                case 1:
+                    Effect.FillingType = SimplePosterization.PosterizationFillingType.Min;
+                    break;
+                case 2:
+                    Effect.FillingType = SimplePosterization.PosterizationFillingType.Max;
+                    break;
+            }
             Effect.PosterizationInterval = Interval;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

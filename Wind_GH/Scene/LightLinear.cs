@@ -16,7 +16,7 @@ namespace Wind_GH.Scene
         /// Initializes a new instance of the LightLinear class.
         /// </summary>
         public LightLinear()
-          : base("Linear Light", "Linear", "---", "Aviary", "3D Scene")
+          : base("Linear Light", "Linear", "---", "Aviary", "3D Format")
         {
         }
 

@@ -73,9 +73,9 @@ namespace Macaw_GH.Filtering.Adjust
             if (!DA.GetData(4, ref Ba)) return;
             if (!DA.GetData(5, ref Bb)) return;
 
-            mFilter Filter = new mFilter();
+            mFilters Filter = new mFilters();
 
-            Filter = new mAdjustLevels(new wDomain(Ra.T0, Ra.T1), new wDomain(Ga.T0, Ga.T1), new wDomain(Ba.T0, Ba.T1), new wDomain(Rb.T0, Rb.T1), new wDomain(Gb.T0, Gb.T1), new wDomain(Bb.T0, Bb.T1));
+            //Filter = new mAdjustLevels(new wDomain(Ra.T0, Ra.T1), new wDomain(Ga.T0, Ga.T1), new wDomain(Ba.T0, Ba.T1), new wDomain(Rb.T0, Rb.T1), new wDomain(Gb.T0, Gb.T1), new wDomain(Bb.T0, Bb.T1));
 
 
             wObject W = new wObject(Filter, "Macaw", Filter.Type);

@@ -13,12 +13,16 @@ namespace Macaw_GH.Filtering.Stylize
 {
     public class Dither : GH_Component
     {
+        private int ModeIndex = 0;
+        private string[] modes = { "Bayer", "Ordered", "Burkes", "Floyd Steinberg", "Jarvis Judice Ninke", "Sierra", "Stucki", "Carry" };
+        private int[] V = { 0, 0, 32, 16, 48, 32, 42, 50 };
         /// <summary>
         /// Initializes a new instance of the Dither class.
         /// </summary>
         public Dither()
-          : base("Dither", "Dither", "---", "Aviary", "Bitmap Edit")
+              : base("Dither", "Dither", "---", "Aviary", "Bitmap Edit")
         {
+            UpdateMessage();
         }
 
         /// <summary>
@@ -29,22 +33,22 @@ namespace Macaw_GH.Filtering.Stylize
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
             pManager[0].Optional = true;
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
+            paramGen.SetPersistentData(new GH_ObjectWrapper(new Bitmap(10, 10)));
 
             pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Parameter", "P", "...", GH_ParamAccess.item, 50.0);
+            pManager.AddNumberParameter("Threshold", "T", "...", GH_ParamAccess.item, -1);
             pManager[2].Optional = true;
 
             Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("Bayer", 0);
-            param.AddNamedValue("Burkes", 1);
-            param.AddNamedValue("Floyd Steinberg", 2);
-            param.AddNamedValue("Jarvis Judice Ninke", 3);
-            param.AddNamedValue("Ordered", 4);
-            param.AddNamedValue("Sierra", 5);
-            param.AddNamedValue("Stucki", 6);
-            param.AddNamedValue("Carry", 7);
+            param.AddNamedValue(modes[0], 0);
+            param.AddNamedValue(modes[1], 1);
+            param.AddNamedValue(modes[2], 2);
+            param.AddNamedValue(modes[3], 3);
+            param.AddNamedValue(modes[4], 4);
+            param.AddNamedValue(modes[5], 5);
+            param.AddNamedValue(modes[6], 6);
+            param.AddNamedValue(modes[7], 7);
         }
 
         /// <summary>
@@ -65,49 +69,67 @@ namespace Macaw_GH.Filtering.Stylize
             // Declare variables
             IGH_Goo Z = null;
             int M = 0;
-            double P = 50.0;
+            double P = -1;
 
             // Access the input parameters 
             if (!DA.GetData(0, ref Z)) return;
             if (!DA.GetData(1, ref M)) return;
             if (!DA.GetData(2, ref P)) return;
 
-            Bitmap A = null;
+            if (M != ModeIndex)
+            {
+                ModeIndex = M;
+                UpdateMessage();
+                if (M > 1)
+                {
+                    SetParameter(2, "Threshold", "T", ""+V[M]+"");
+                }
+                else
+                {
+                    SetParameter(2, "Not Used", "-", "Not used by this filter");
+                }
+            }
+
+            Bitmap A = new Bitmap(10, 10);
             if (Z != null) { Z.CastTo(out A); }
-            Bitmap B = new Bitmap(A);
 
             mFilter Filter = new mFilter();
-            
-            switch (M)
+
+            switch (ModeIndex)
             {
                 case 0:
                     Filter = new mDitherBayer();
                     break;
                 case 1:
-                    Filter = new mDitherBurkes();
-                    break;
-                case 2:
-                    Filter = new mDitherFloydSteinberg();
-                    break;
-                case 3:
-                    Filter = new mDitherJarvisJudiceNinke();
-                    break;
-                case 4:
                     Filter = new mDitherOrdered();
                     break;
+                case 2:
+                    if (P < 0) { P = 32; }
+                    Filter = new mDitherBurkes((byte)P);
+                    break;
+                case 3:
+                    if (P < 0) { P = 16; }
+                    Filter = new mDitherFloydSteinberg((byte)P);
+                    break;
+                case 4:
+                    if (P < 0) { P = 48; }
+                    Filter = new mDitherJarvisJudiceNinke((byte)P);
+                    break;
                 case 5:
-                    Filter = new mDitherSierra();
+                    if (P < 0) { P = 32; }
+                    Filter = new mDitherSierra((byte)P);
                     break;
                 case 6:
-                    Filter = new mDitherStucki();
+                    if (P < 0) { P = 42; }
+                    Filter = new mDitherStucki((byte)P);
                     break;
                 case 7:
+                    if (P < 0) { P = 50; }
                     Filter = new mDitherThresholdCarry((byte)P);
                     break;
             }
 
-            B = new mApply(A, Filter).ModifiedBitmap;
-
+            Bitmap B = new mApply(A, Filter).ModifiedBitmap;
             wObject W = new wObject(Filter, "Macaw", Filter.Type);
 
 
@@ -115,12 +137,25 @@ namespace Macaw_GH.Filtering.Stylize
             DA.SetData(1, W);
         }
 
+        private void UpdateMessage()
+        {
+            Message = modes[ModeIndex];
+        }
+
+        private void SetParameter(int index, string Name, string NickName, string Description)
+        {
+            Param_Number param = (Param_Number)Params.Input[index];
+            param.Name = Name;
+            param.NickName = NickName;
+            param.Description = Description;
+        }
+
         /// <summary>
         /// Set Exposure level for the component.
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.secondary; }
+            get { return GH_Exposure.quarternary; }
         }
 
         /// <summary>

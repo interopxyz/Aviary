@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyVignette : mModifiers
+    public class mModifyVignette : mModifier
     {
         VignetteFilter Effect = new VignetteFilter();
 
@@ -18,8 +18,7 @@ namespace Macaw.Compiling.Modifiers
             Effect = new VignetteFilter();
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

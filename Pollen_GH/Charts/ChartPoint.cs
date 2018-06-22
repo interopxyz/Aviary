@@ -123,15 +123,17 @@ namespace Pollen_GH.Charts
 
             bool LineMode = ((M > 2) & (M < 6));
             bool TagMode = ((M == 1) || (M == 2));
+            bool LabelMode = ((M == 0) || (LineMode));
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(Wind.Presets.wGradients.GradientTypes.Metro, false, DC.Sets.Count > 1); }
-            if (DC.TotalCustomStroke == 0) { if (LineMode) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.LineChart, wGradients.GradientTypes.Metro,false, DC.Sets.Count > 1); } else { DC.SetDefaultStrokes(wStrokes.StrokeTypes.OffWhiteSolid); } }
-            if (DC.TotalCustomMarker == 0) { if (M == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); } else { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); } }
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPointDark).Font); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(Wind.Presets.wGradients.Metro, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomStroke == 0) { if (LineMode) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.LineChart, wGradients.Metro,false, DC.Sets.Count > 1); } else { DC.SetDefaultStrokes(wStrokes.StrokeTypes.OffWhiteSolid); } }
+            if (DC.TotalCustomMarker == 0) { if (M == 0) { DC.SetDefaultMarkers(wGradients.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); } else { DC.SetDefaultMarkers(wGradients.SolidTransparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); } }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.ChartPointDark); }
+            if (DC.TotalCustomLabel == 0) { if (LabelMode) { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.None, new wGraphic(wColors.Transparent))); } else { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.Center, new wGraphic(wColors.Transparent))); } }
 
-            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = new wFonts(wFonts.FontTypes.AxisLabel).Font; }
+            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = wFonts.AxisLabel; }
 
             List<pPointSeries> PointSeriesList = new List<pPointSeries>();
 
@@ -151,8 +153,8 @@ namespace Pollen_GH.Charts
 
             pControl.SetSeries(PointSeriesList);
             pControl.SetThreeDView();
-            pControl.SetAxisAppearance();
             pControl.SetAxisScale();
+            pControl.SetAxisAppearance();
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }

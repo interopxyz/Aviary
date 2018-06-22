@@ -5,6 +5,7 @@ using Grasshopper.Kernel;
 using Rhino.Geometry;
 using Wind.Scene;
 using Wind.Geometry.Vectors;
+using Wind.Scene.Cameras;
 
 namespace Wind_GH.Scene
 {
@@ -14,7 +15,7 @@ namespace Wind_GH.Scene
         /// Initializes a new instance of the SetCamera class.
         /// </summary>
         public Camera()
-          : base("Set Camera", "Camera", "---", "Aviary", "3D Scene")
+          : base("Set Camera", "Camera", "---", "Aviary", "3D Format")
         {
 
         }
@@ -26,13 +27,13 @@ namespace Wind_GH.Scene
         {
             pManager.AddPointParameter("Center", "C", "---", GH_ParamAccess.item, new Point3d(0, 0, 0));
             pManager[0].Optional = true;
-            pManager.AddNumberParameter("Pivot", "P", "---", GH_ParamAccess.item,0);
+            pManager.AddNumberParameter("Pivot", "P", "---", GH_ParamAccess.item,45);
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Tilt", "T", "---", GH_ParamAccess.item,0);
+            pManager.AddNumberParameter("Tilt", "T", "---", GH_ParamAccess.item,45);
             pManager[2].Optional = true;
-            pManager.AddNumberParameter("Distance", "D", "---", GH_ParamAccess.item,1);
+            pManager.AddNumberParameter("Distance", "D", "---", GH_ParamAccess.item,100);
             pManager[3].Optional = true;
-            pManager.AddNumberParameter("Lens Length", "L", "---", GH_ParamAccess.item,0);
+            pManager.AddNumberParameter("Lens Length", "L", "---", GH_ParamAccess.item,50);
             pManager[4].Optional = true;
         }
 
@@ -52,21 +53,20 @@ namespace Wind_GH.Scene
         {
 
             Point3d C = new Point3d(0,0,0);
-            double P = 0;
-            double T = 0;
-            double D = 0;
-            double L = 0;
-
+            double P = 45;
+            double T = -45;
+            double D = 100;
+            double L = 50;
+            
             if (!DA.GetData(0, ref C)) return;
             if (!DA.GetData(1, ref P)) return;
             if (!DA.GetData(2, ref T)) return;
             if (!DA.GetData(3, ref D)) return;
             if (!DA.GetData(4, ref L)) return;
-            
-            wCamera Camera = new wCamera(new wPoint(C.X,C.Y,C.Z),P,T,D,L);
-            Camera.IsPreset = false;
 
-            DA.SetData(0, Camera);
+            wCamera Cam = new wCameraStandard(new wPoint(C.X,C.Y,C.Z), Math.PI/2+(P/ 180.0) * Math.PI, (T / 180.0) * Math.PI,D,L);
+            
+            DA.SetData(0, Cam);
 
         }
 
@@ -94,7 +94,7 @@ namespace Wind_GH.Scene
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("{ee59a9b9-fe8a-4beb-beb7-00239905861e}"); }
+            get { return new Guid("eabb7aad-3a51-4386-bfc6-06197a39fcee"); }
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using AForge.Imaging;
-using AForge.Imaging.Filters;
+﻿using Accord.Imaging;
+using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using Macaw.Filtering;
 
 namespace Macaw.Filtering.Objects.Figures
 {
-    public class mFigureCorners : mFilter
+    public class mFigureCorners : mFilters
     {
         CornersMarker Effect = null;
 

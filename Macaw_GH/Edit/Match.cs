@@ -26,14 +26,16 @@ namespace Macaw_GH.Edit
         {
             pManager.AddGenericParameter("Source Bitmap", "B", "---", GH_ParamAccess.item);
             pManager[0].Optional = true;
-            Param_GenericObject paramGenA = (Param_GenericObject)Params.Input[0];
-            paramGenA.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.SetPersistentData(new Bitmap(10, 10));
 
             pManager.AddGenericParameter("Target Bitmap", "T", "---", GH_ParamAccess.item);
             pManager[0].Optional = true;
-            Param_GenericObject paramGenB = (Param_GenericObject)Params.Input[0];
-            paramGenB.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
-            
+
+            Param_GenericObject paramGenA = (Param_GenericObject)Params.Input[1];
+            paramGenA.SetPersistentData(new Bitmap(10, 10));
+
             pManager.AddIntegerParameter("Mode", "M", "...", GH_ParamAccess.item, 0);
             pManager[2].Optional = true;
 
@@ -41,7 +43,7 @@ namespace Macaw_GH.Edit
             paramA.AddNamedValue("Crop", 0);
             paramA.AddNamedValue("Fit", 1);
             paramA.AddNamedValue("Stretch", 2);
-            
+
         }
 
         /// <summary>
@@ -49,7 +51,8 @@ namespace Macaw_GH.Edit
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Top Bitmap", "Bt", "---", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Bottom Bitmap", "Bb", "---", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -59,7 +62,7 @@ namespace Macaw_GH.Edit
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             // Declare variables
-            
+
             IGH_Goo X = null;
             IGH_Goo Y = null;
             int M = 0;
@@ -69,18 +72,18 @@ namespace Macaw_GH.Edit
             if (!DA.GetData(1, ref Y)) return;
             if (!DA.GetData(2, ref M)) return;
 
-            Bitmap A = null;
-            Bitmap B = null;
-
+            Bitmap A = new Bitmap(10, 10);
             if (X != null) { X.CastTo(out A); }
-            if (Y != null) { Y.CastTo(out B); }
-            Bitmap C = new Bitmap(A);
 
-            C = new mMatchBitmaps(A, B, 0, M).TopImage;
-                
-            
-            
-            DA.SetData(0, C);
+            Bitmap B = new Bitmap(10, 10);
+            if (Y != null) { Y.CastTo(out B); }
+
+            mMatchBitmaps f = new mMatchBitmaps(A, B, 0, M);
+
+
+
+            DA.SetData(0, f.TopImage);
+            DA.SetData(0, f.BottomImage);
         }
 
         /// <summary>

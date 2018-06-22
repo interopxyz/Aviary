@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -11,16 +11,20 @@ namespace Macaw.Filtering.Stylized
     public class mDitherStucki : mFilter
     {
         StuckiDithering Effect = new StuckiDithering();
-        
-        public mDitherStucki()
+
+        byte ThresholdValue = 42;
+
+        public mDitherStucki(byte thresholdValue)
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
+
+            ThresholdValue = thresholdValue;
 
             Effect = new StuckiDithering();
+            Effect.ThresholdValue = ThresholdValue;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

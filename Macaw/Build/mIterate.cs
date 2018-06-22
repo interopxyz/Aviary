@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using Macaw.Utilities;
 using System;
@@ -14,16 +14,16 @@ namespace Macaw.Build
 
         public Bitmap ModifiedBitmap = null;
 
-        public mIterate(Bitmap SourceBitmap, mFilter Filter, int Iterations)
+        public mIterate(Bitmap SourceBitmap, mFilters Filter, int Iterations)
         {
-
-            SourceBitmap = new mSetFormat(SourceBitmap, Filter.BitmapType).ModifiedBitmap;
-
-            ModifiedBitmap = SourceBitmap;
+            ModifiedBitmap = (Bitmap)SourceBitmap.Clone();
+            ModifiedBitmap = new mSetFormat(ModifiedBitmap, Filter.BitmapType).ModifiedBitmap;
             
             FilterIterator Iterator = new FilterIterator(Filter.Sequence, Iterations);
-
-            ModifiedBitmap = Iterator.Apply(SourceBitmap);
+            
+            ModifiedBitmap = Iterator.Apply(ModifiedBitmap);
+            ModifiedBitmap = new mSetFormat(ModifiedBitmap, Filter.BitmapType).ModifiedBitmap;
+            ModifiedBitmap.SetResolution(SourceBitmap.HorizontalResolution, SourceBitmap.VerticalResolution);
         }
 
     }

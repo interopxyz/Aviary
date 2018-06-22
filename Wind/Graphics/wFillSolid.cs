@@ -13,7 +13,6 @@ namespace Wind.Graphics
 
         public wFillSolid()
         {
-
         }
 
         public wFillSolid(wColor FillColor)

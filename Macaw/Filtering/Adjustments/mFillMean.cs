@@ -1,5 +1,5 @@
-﻿using AForge;
-using AForge.Imaging.Filters;
+﻿using Accord;
+using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -25,15 +25,14 @@ namespace Macaw.Filtering.Adjustments
             Tolerance = ToleranceColor;
             CoordPoint = new IntPoint(X, Y);
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
             Effect = new PointedMeanFloodFill();
 
             Effect.Tolerance = Tolerance;
             Effect.StartingPoint = CoordPoint;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

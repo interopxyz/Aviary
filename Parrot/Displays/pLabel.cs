@@ -18,9 +18,9 @@ namespace Parrot.Displays
             Element = new Label();
             Element.Name = InstanceName;
             Type = "Label";
-
-            Element.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            Element.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+            
+            Element.Background = Brushes.Transparent;
+            Element.BorderBrush = Brushes.Transparent;
             Element.BorderThickness = new Thickness(0);
         }
 

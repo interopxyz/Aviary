@@ -16,6 +16,7 @@ using Wind.Scene;
 using HelixToolkit;
 using HelixToolkit.Wpf;
 using System.Windows;
+using Wind.Scene.Cameras;
 
 namespace Parrot.Drawings
 {
@@ -90,19 +91,9 @@ namespace Parrot.Drawings
             Cam = WindCamera;
 
             Point3D P = Cam.Location.ToPoint3D();
-            P = new Point3D(Origin.X + P.X, Origin.Y + P.Y, Origin.Z + P.Z);
-
-            if (Cam.IsPreset)
-            {
-                double Diagonal = Math.Sqrt(Math.Sqrt(Math.Pow(Bound3D.SizeY,2.0)+ Math.Pow(Bound3D.SizeX, 2.0))+ Math.Pow(Bound3D.SizeZ, 2.0))*1.5;
-                Ortho = new OrthographicCamera(P, Cam.Direction.ToVector3D(), Cam.Up.ToVector3D(), Diagonal);
-                ViewPort.Orthographic = true;
-                ViewPort.Camera = Ortho;
-                ViewPort.Camera.NearPlaneDistance = -Diagonal;
-            }
-            else
-            { 
-                if (Cam.Length<=0)
+            P = new Point3D(P.X, P.Y, P.Z);
+            
+                if (Cam.LensLength<=0)
                 {
                     Ortho = new OrthographicCamera(P, Cam.Direction.ToVector3D(), Cam.Up.ToVector3D(), Cam.Distance); 
                     ViewPort.Orthographic = true;
@@ -111,11 +102,10 @@ namespace Parrot.Drawings
                 }
                 else
                 {
-                    Perspective = new PerspectiveCamera(P, Cam.Direction.ToVector3D(), Cam.Up.ToVector3D(), Cam.Length);
+                    Perspective = new PerspectiveCamera(P, Cam.Direction.ToVector3D(), Cam.Up.ToVector3D(), Cam.LensLength);
                     ViewPort.Orthographic = false;
                     ViewPort.Camera = Perspective;
                 }
-             }
         }
 
         //LIGHTS

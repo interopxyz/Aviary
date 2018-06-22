@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Editing.Rotation
@@ -11,15 +11,12 @@ namespace Macaw.Editing.Rotation
 
         public mRotateBicubic(double Angle, bool Fit, System.Drawing.Color CornerColor)
         {
-
-            BitmapType = 2;
-
-
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
+            
             Effect = new RotateBicubic(Angle, Fit);
             Effect.FillColor = CornerColor;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

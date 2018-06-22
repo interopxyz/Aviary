@@ -43,6 +43,8 @@ namespace Pollen.Charts
 
             //Set Generic Chart Object & Properties
             ChartObject.AntiAliasing = AntiAliasingStyles.All;
+            ChartObject.TextAntiAliasingQuality = TextAntiAliasingQuality.High;
+
             ChartObject.Dock = DockStyle.Fill;
 
             ChartObject.BackColor = System.Drawing.Color.Transparent;
@@ -63,8 +65,6 @@ namespace Pollen.Charts
             ChartHost.Child = ChartObject;
             Element.Children.Add(ChartHost);
 
-            Type = "PointChart";
-
         }
 
         public void SetProperties(DataSetCollection PollenDataGrid)
@@ -77,21 +77,25 @@ namespace Pollen.Charts
 
 
             //Set Chart Area
-            ChartsArea.InnerPlotPosition = new ElementPosition(0, 0, 100, 100);
-            ChartsArea.Position = new ElementPosition(0, 0, 100, 100);
 
             ChartObject.ChartAreas.Clear();
             ChartObject.ChartAreas.Add(ChartsArea);
-            
+
             ChartsArea.BackColor = System.Drawing.Color.Transparent;
         }
-        
+
+        public void SetAreaScale()
+        {
+            ChartsArea.InnerPlotPosition = new ElementPosition(10, 10, 100, 100);
+            ChartsArea.Position = new ElementPosition(10, 10, 100, 100);
+        }
+
         public void SetXaxis(wDomain Bounds)
         {
             ChartsArea.AxisX.Minimum = Bounds.T0;
             ChartsArea.AxisX.Maximum = Bounds.T1;
         }
-        
+
         public void SetSeries(List<pPointSeries> DataSeries)
         {
             int cnt = (DataSeries.Count - ChartObject.Series.Count);
@@ -115,7 +119,7 @@ namespace Pollen.Charts
                     ChartObject.Series.RemoveAt(ChartObject.Series.Count - 1);
                 }
             }
-            
+
 
             cnt = DataSeries.Count;
             for (int i = 0; i < cnt; i++)
@@ -126,93 +130,122 @@ namespace Pollen.Charts
             }
         }
 
+
         public override void SetAxisAppearance()
         {
-            
+
             SetAxisScale();
 
             wColor HalfTone = new wColor(DataSet.Graphics.StrokeColor);
             HalfTone.Lighten(0.5);
 
             ChartArea A = ChartObject.ChartAreas[0];
-            wAxis X = DataSet.Axes;
+            wAxes X = DataSet.Axes;
             wGraphic G = DataSet.Graphics;
             wFont F = G.FontObject;
 
-            A.AxisX.Interval = 1;
-            A.AxisY.Interval = 0;
+            A.AxisX.Interval = X.AxisX.MajorSpacing;
+            A.AxisY.Interval = X.AxisY.MajorSpacing;
+
 
             // ==================== X Axis Formatting ==================== 
-            if (X.HasXAxis){A.AxisX.Enabled = AxisEnabled.True; } else { A.AxisX.Enabled = AxisEnabled.False; }
-            A.AxisX.LineColor =G.StrokeColor.ToDrawingColor();
-            A.AxisX.MajorTickMark.Enabled = true;
+            if (X.AxisX.Enabled) { A.AxisX.Enabled = AxisEnabled.True; } else { A.AxisX.Enabled = AxisEnabled.False; }
+            A.AxisX.LineColor = G.StrokeColor.ToDrawingColor();
+            A.AxisX.MajorTickMark.Enabled = X.AxisX.HasLabel;
+            A.AxisX.MajorTickMark.Interval = X.AxisX.MajorSpacing;
             A.AxisX.MajorTickMark.LineWidth = (int)G.StrokeWeight[0];
             A.AxisX.MajorTickMark.LineColor = G.StrokeColor.ToDrawingColor();
             A.AxisX.MinorTickMark.Enabled = false;
 
+
             //X Major Grid Formatting
-            A.AxisX.MajorGrid.Enabled = X.HasXGrid;
-            A.AxisX.MajorGrid.Interval = 1;
+            A.AxisX.MajorGrid.Enabled = X.AxisX.Enabled;
+            A.AxisX.MajorGrid.Interval = X.AxisX.MajorSpacing;
             A.AxisX.MajorGrid.LineWidth = (int)G.StrokeWeight[0];
             A.AxisX.MajorGrid.LineColor = G.StrokeColor.ToDrawingColor();
 
-            //X Label Formatting
-            A.AxisX.LabelStyle.Enabled = X.HasXLabel;
-            A.AxisX.LabelStyle.Interval = 1;
-            A.AxisX.LabelStyle.Font = F.ToDrawingFont().FontObject;
-            A.AxisX.LabelStyle.ForeColor = F.FontColor.ToDrawingColor();
-            A.AxisX.LabelStyle.Angle = (int)X.XAngle;
-
             //X Minor Grid Formatting
-            A.AxisX.MinorGrid.Enabled = (X.XGridSpacing!=0);
+            A.AxisX.MinorGrid.Enabled = (X.AxisX.MinorSpacing != 0);
+            A.AxisX.MinorGrid.Interval = A.AxisX.MajorGrid.Interval / X.AxisX.MinorSpacing;
             A.AxisX.MinorGrid.LineWidth = (int)G.StrokeWeight[0];
             A.AxisX.MinorGrid.LineColor = HalfTone.ToDrawingColor();
-            A.AxisX.MinorGrid.Interval = A.AxisX.MajorGrid.Interval / X.XGridSpacing;
+
+            //X Label Formatting
+            A.AxisX.IsMarginVisible = X.AxisX.HasLabel;
+            A.AxisX.Interval = 0;
+            A.AxisX.LabelStyle.Enabled = X.AxisX.HasLabel;
+            A.AxisX.LabelStyle.IntervalType = DateTimeIntervalType.Auto;
+            A.AxisX.LabelStyle.Interval = 1;
+            A.AxisX.LabelAutoFitStyle = LabelAutoFitStyles.DecreaseFont;
+            A.AxisX.LabelStyle.Interval = X.AxisX.MajorSpacing;
+            A.AxisX.LabelStyle.Font = F.ToDrawingFont().FontObject;
+            A.AxisX.LabelStyle.ForeColor = F.FontColor.ToDrawingColor();
+            A.AxisX.LabelStyle.Angle = (int)X.AxisX.Angle;
+
+
 
             // ==================== Y Axis Formatting ==================== 
-            if (X.HasYAxis) { A.AxisY.Enabled = AxisEnabled.True; } else { A.AxisY.Enabled = AxisEnabled.False; }
+            if (X.AxisY.Enabled) { A.AxisY.Enabled = AxisEnabled.True; } else { A.AxisY.Enabled = AxisEnabled.False; }
             A.AxisY.LineColor = G.StrokeColor.ToDrawingColor();
-            A.AxisY.MajorTickMark.Enabled = true;
+            A.AxisY.MajorTickMark.Enabled = X.AxisY.HasLabel;
+            A.AxisY.MajorTickMark.Interval = X.AxisY.MajorSpacing;
             A.AxisY.MajorTickMark.LineWidth = (int)G.StrokeWeight[0];
             A.AxisY.MajorTickMark.LineColor = G.StrokeColor.ToDrawingColor();
             A.AxisY.MinorTickMark.Enabled = false;
 
             //Y Major Grid Formatting
-            A.AxisY.MajorGrid.Enabled = X.HasYGrid;
-            A.AxisY.MajorGrid.Interval = 0;
+            A.AxisY.MajorGrid.Enabled = X.AxisY.Enabled;
+            A.AxisY.MajorGrid.Interval = X.AxisY.MajorSpacing;
             A.AxisY.MajorGrid.LineWidth = (int)G.StrokeWeight[0];
             A.AxisY.MajorGrid.LineColor = G.StrokeColor.ToDrawingColor();
 
-            //Y Label Formatting
-            A.AxisY.LabelStyle.Enabled = X.HasYLabel;
-            A.AxisY.LabelStyle.Interval = 0;
-            A.AxisY.LabelStyle.Font = F.ToDrawingFont().FontObject;
-            A.AxisY.LabelStyle.ForeColor = F.FontColor.ToDrawingColor();
-            A.AxisY.LabelStyle.IntervalType = DateTimeIntervalType.Auto;
-            A.AxisY.LabelStyle.Angle = (int)X.YAngle;
-
             //Y Minor Grid Formatting
-            A.AxisY.MinorGrid.Enabled = (X.YGridSpacing != 0);
+            A.AxisY.MinorGrid.Enabled = (X.AxisY.MinorSpacing != 0);
             A.AxisY.MinorGrid.LineWidth = (int)G.StrokeWeight[0];
             A.AxisY.MinorGrid.LineColor = HalfTone.ToDrawingColor();
-            A.AxisY.MinorGrid.Interval = A.AxisY.MajorGrid.Interval / X.YGridSpacing;
+            A.AxisY.MinorGrid.Interval = A.AxisY.MajorGrid.Interval / X.AxisY.MinorSpacing;
+
+            //Y Label Formatting
+            A.AxisY.IsMarginVisible = X.AxisY.HasLabel;
+            A.AxisY.Interval = 1;
+            A.AxisY.LabelStyle.Enabled = X.AxisY.HasLabel;
+            A.AxisY.LabelStyle.IntervalType = DateTimeIntervalType.Auto;
+            A.AxisY.LabelAutoFitStyle = LabelAutoFitStyles.DecreaseFont;
+            A.AxisY.LabelStyle.Interval = X.AxisY.MajorSpacing;
+            A.AxisY.LabelStyle.Font = F.ToDrawingFont().FontObject;
+            A.AxisY.LabelStyle.ForeColor = F.FontColor.ToDrawingColor();
+            A.AxisY.LabelStyle.Angle = (int)X.AxisY.Angle;
+
 
             ChartObject.ChartAreas[0] = A;
         }
 
         public void SetAxisScale()
         {
-                    if ((DataSet.Axes.DomainX.T0 == 0) & (DataSet.Axes.DomainY.T1 == 0))
-                    {
-                        ChartsArea.AxisY.Maximum = Double.NaN;
-                    }
-                    else
-                    {
-                        ChartsArea.AxisY.Minimum = DataSet.Axes.DomainY.T0;
-                        ChartsArea.AxisY.Maximum = DataSet.Axes.DomainY.T1;
-                    }
 
-           ChartsArea.RecalculateAxesScale();
+            if ((DataSet.Axes.AxisX.Domain.T0 == 0) & (DataSet.Axes.AxisX.Domain.T1 == 0))
+            {
+                ChartsArea.AxisX.Minimum = Double.NaN;
+                ChartsArea.AxisX.Maximum = Double.NaN;
+            }
+            else
+            {
+                ChartsArea.AxisX.Minimum = DataSet.Axes.AxisX.Domain.T0;
+                ChartsArea.AxisX.Maximum = DataSet.Axes.AxisX.Domain.T1;
+            }
+
+            if ((DataSet.Axes.AxisY.Domain.T0 == 0) & (DataSet.Axes.AxisY.Domain.T1 == 0))
+            {
+                ChartsArea.AxisY.Minimum = Double.NaN;
+                ChartsArea.AxisY.Maximum = Double.NaN;
+            }
+            else
+            {
+                ChartsArea.AxisY.Minimum = DataSet.Axes.AxisY.Domain.T0;
+                ChartsArea.AxisY.Maximum = DataSet.Axes.AxisY.Domain.T1;
+            }
+
+            ChartsArea.RecalculateAxesScale();
         }
 
         public override void SetThreeDView()
@@ -221,7 +254,7 @@ namespace Pollen.Charts
 
             ChartsArea.Area3DStyle.Rotation = View.Pivot % 180;
             ChartsArea.Area3DStyle.Inclination = View.Tilt % 90;
-            ChartsArea.Area3DStyle.Perspective = View.Distance%100;
+            ChartsArea.Area3DStyle.Perspective = View.Distance % 100;
 
             ChartsArea.Area3DStyle.WallWidth = 0;
 
@@ -236,15 +269,15 @@ namespace Pollen.Charts
             switch (Mode)
             {
                 case 0:
-            ChartObject.Series[0]["Funnel3DRotationAngle"] = Convert.ToString(DataSet.View.Tilt % 10);
+                    ChartObject.Series[0]["Funnel3DRotationAngle"] = Convert.ToString(DataSet.View.Tilt % 10);
                     break;
                 case 1:
-                    ChartObject.Series[0]["Pyramid3DRotationAngle"] = Convert.ToString(DataSet.View.Tilt % 10 );
+                    ChartObject.Series[0]["Pyramid3DRotationAngle"] = Convert.ToString(DataSet.View.Tilt % 10);
                     break;
             }
 
             ChartsArea.Area3DStyle.WallWidth = 0;
-            ChartsArea.BackColor = new wColors().Transparent().ToDrawingColor();
+            ChartsArea.BackColor = wColors.Transparent.ToDrawingColor();
 
             ChartsArea.Area3DStyle.LightStyle = ((LightStyle)DataSet.View.Light);
 
@@ -259,13 +292,14 @@ namespace Pollen.Charts
 
         }
 
+        // ################################# OVERIDE GRAPHIC PROPERTIES #################################
         public override void SetSize()
         {
             double W = double.NaN;
             double H = double.NaN;
             if (Graphics.Width > 0) { W = Graphics.Width; }
             if (Graphics.Height > 0) { H = Graphics.Height; }
-            
+
             Element.Width = W;
             Element.Height = H;
 
@@ -273,7 +307,7 @@ namespace Pollen.Charts
 
         public override void SetSolidFill()
         {
-            ChartObject.BackColor = DataSet.Graphics.Background.ToDrawingColor();
+            ChartObject.BackColor = Graphics.Background.ToDrawingColor();
         }
 
         public void SetCorners(wGraphic Graphic)

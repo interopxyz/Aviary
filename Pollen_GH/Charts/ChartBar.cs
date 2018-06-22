@@ -104,33 +104,38 @@ namespace Pollen_GH.Charts
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.Metro, false, DC.Sets.Count > 1); }
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPoint).Font); }
-            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.Metro, false, DC.Sets.Count > 1); }
             if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.ChartPoint); }
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.SolidTransparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomLabel == 0) { if ((M == 0) || (M == 3)) { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.Center, new wGraphic(wColors.Transparent))); } else { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Top, wLabel.LabelAlignment.Perp, new wGraphic(wColors.Transparent))); } }
 
             List<pCartesianSeries> PointSeriesList = new List<pCartesianSeries>();
 
-            pCartesianSeries.SeriesChartType[] T ={
-                pCartesianSeries.SeriesChartType.BarAdjacent,
-                pCartesianSeries.SeriesChartType.BarStack,
-                pCartesianSeries.SeriesChartType.BarStack100,
-                pCartesianSeries.SeriesChartType.ColumnAdjacent,
-                pCartesianSeries.SeriesChartType.ColumnStack,
-                pCartesianSeries.SeriesChartType.ColumnStack100};
-
-
-
-            for (int i = 0; i < DC.Sets.Count; i++)
-            {
-                pCartesianSeries pSeriesSet = new pCartesianSeries(Convert.ToString(name + i));
-                pSeriesSet.SetBarSeries(DC.Sets[i], T[M]);
-                pSeriesSet.SetSeriesProperties();
-                PointSeriesList.Add(pSeriesSet);
-            }
-
             pControl.SetProperties(DC);
-            if ((M == 0) || (M == 3)) { pControl.SetSeries(PointSeriesList); } else { pControl.SetSequence(PointSeriesList); }
+            switch (M)
+            {
+                case 0:
+                    pControl.SetAdjacentBarChart();
+                    break;
+                case 1:
+                    pControl.SetStackBarChart(false);
+                    break;
+                case 2:
+                    pControl.SetStackBarChart(true);
+                    break;
+                case 3:
+                    pControl.SetAdjacentColumnChart();
+                    break;
+                case 4:
+                    pControl.SetStackColumnChart(false);
+                    break;
+                case 5:
+                    pControl.SetStackColumnChart(true);
+                    break;
+            }
+            pControl.ForceRefresh();
+            pControl.SetAxisAppearance();
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }

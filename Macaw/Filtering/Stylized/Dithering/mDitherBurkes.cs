@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -12,16 +12,20 @@ namespace Macaw.Filtering.Stylized
     public class mDitherBurkes : mFilter
     {
         BurkesDithering Effect = new BurkesDithering();
-        
-        public mDitherBurkes()
+
+        byte ThresholdValue = 32;
+
+        public mDitherBurkes(byte thresholdValue)
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
+
+            ThresholdValue = thresholdValue;
 
             Effect = new BurkesDithering();
+            Effect.ThresholdValue = ThresholdValue;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

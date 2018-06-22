@@ -183,6 +183,16 @@ namespace Wind_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Wind_Cameras {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Cameras", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Wind_Corners {
             get {
                 object obj = ResourceManager.GetObject("Wind_Corners", resourceCulture);
@@ -303,6 +313,16 @@ namespace Wind_GH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Wind_Lights_Ambient2 {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Lights_Ambient2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Wind_Lights_Directional {
             get {
                 object obj = ResourceManager.GetObject("Wind_Lights_Directional", resourceCulture);
@@ -356,6 +376,26 @@ namespace Wind_GH.Properties {
         internal static System.Drawing.Bitmap Wind_Pattern {
             get {
                 object obj = ResourceManager.GetObject("Wind_Pattern", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Wind_Presets_Fonts {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Presets_Fonts", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Wind_Presets_Gradients {
+            get {
+                object obj = ResourceManager.GetObject("Wind_Presets_Gradients", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

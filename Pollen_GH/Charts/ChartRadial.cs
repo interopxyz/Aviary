@@ -97,24 +97,31 @@ namespace Pollen_GH.Charts
             
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(Wind.Presets.wGradients.GradientTypes.Metro, false, false); }
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPoint).Font); } 
-            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(Wind.Presets.wGradients.Metro, false, false); }
             if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.OffWhiteSolid); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.ChartPoint); } 
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomLabel == 0) { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.Center, new wGraphic(wColors.Transparent))); }
 
-            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = new wFonts(wFonts.FontTypes.AxisLabel).Font; }
+            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = wFonts.AxisLabel; }
 
             List<pRadialSeries> RadialSeriesList = new List<pRadialSeries>();
 
+            pControl.SetProperties(DC, R);
+            pControl.SetPollenSeries(name);
+            pControl.ForceRefresh();
+
+            /*
             for (int i = 0; i < DC.Sets.Count; i++)
             {
                 pRadialSeries pSeriesSet = new pRadialSeries(Convert.ToString(name + i));
                 pSeriesSet.SetRadialSeries(DC.Sets[i]);
                 RadialSeriesList.Add(pSeriesSet);
             }
+            */
 
-            pControl.SetProperties(DC, R);
-            pControl.SetSeries(RadialSeriesList);
+            //pControl.SetSeries(RadialSeriesList);
+            //pControl.SetAxisAppearance();
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }

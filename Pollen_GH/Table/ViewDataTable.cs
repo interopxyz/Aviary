@@ -57,7 +57,7 @@ namespace Pollen_GH.Table
             pElement Element = new pElement();
             bool Active = Elements.ContainsKey(C);
 
-            var pControl = new pDataTable(name);
+            var pControl = new pDataTableA(name);
             if (Elements.ContainsKey(C)) { Active = true; }
 
             //Check if control already exists
@@ -67,7 +67,7 @@ namespace Pollen_GH.Table
                 {
                     WindObject = Elements[C];
                     Element = (pElement)WindObject.Element;
-                    pControl = (pDataTable)Element.PollenControl;
+                    pControl = (pDataTableA)Element.PollenControl;
                 }
             }
             else
@@ -98,13 +98,11 @@ namespace Pollen_GH.Table
             }
 
             pControl.SetProperties(DC);
-            //pControl.SetSeries(PointSeriesList);
-            //pControl.SetAxisAppearance();
-            //pControl.SetThreeDView();
+            //pControl.SetFormatting();
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }
-            WindObject = new wObject(Element, "Parrot", Element.Type);
+            WindObject = new wObject(Element, "Pollen", Element.Type);
             WindObject.GUID = this.InstanceGuid;
             WindObject.Instance = C;
 

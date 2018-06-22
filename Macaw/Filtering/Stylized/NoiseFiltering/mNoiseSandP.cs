@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,6 @@ namespace Macaw.Filtering.Stylized
 {
     public class mNoiseSandP : mFilter
     {
-        SaltAndPepperNoise Effect = new SaltAndPepperNoise();
 
         double Amount;
 
@@ -19,12 +18,10 @@ namespace Macaw.Filtering.Stylized
 
             Amount = NoiseAmount;
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
-            Effect = new SaltAndPepperNoise(Amount);
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new SaltAndPepperNoise(Amount);
+            
 
         }
     }

@@ -11,6 +11,8 @@ using Wind.Geometry.Curves;
 using System.Windows.Forms;
 using GH_IO.Serialization;
 using Grasshopper.Kernel.Parameters;
+using Wind.Utilities;
+using Parrot.Displays;
 
 namespace Wind_GH.Formatting
 {
@@ -22,7 +24,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the AnimationFrame class.
         /// </summary>
         public Frames()
-          : base("Animation", "Animation", "---", "Aviary", "Format")
+          : base("Animation", "Animation", "---", "Aviary", "2D Format")
         {
             this.UpdateMessage();
         }
@@ -39,7 +41,7 @@ namespace Wind_GH.Formatting
             pManager[2].Optional = true;
             
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(new pSpacer(new GUIDtoAlpha(Convert.ToString(this.Attributes.InstanceGuid.ToString() + Convert.ToString(this.RunCount)), false).Text)));
         }
 
         /// <summary>

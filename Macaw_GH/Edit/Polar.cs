@@ -10,17 +10,22 @@ using Grasshopper.Kernel.Parameters;
 using Macaw.Build;
 using Macaw.Filtering;
 using Macaw.Editing.Morphs;
+using GH_IO.Serialization;
 
 namespace Macaw_GH.Edit
 {
     public class Polar : GH_Component
     {
+        private int ModeIndex = 0;
+        private string[] modes = { "ToPolar", "ToRectangular" };
+
         /// <summary>
         /// Initializes a new instance of the Polar class.
         /// </summary>
         public Polar()
           : base("Polar", "Polar", "...", "Aviary", "Bitmap Edit")
         {
+            UpdateMessage();
         }
 
         /// <summary>
@@ -30,8 +35,9 @@ namespace Macaw_GH.Edit
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
             pManager[0].Optional = true;
+
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
+            paramGen.SetPersistentData(new Bitmap(10, 10));
 
             pManager.AddIntegerParameter("Mode", "M", "...", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
@@ -39,12 +45,14 @@ namespace Macaw_GH.Edit
             pManager[2].Optional = true;
             pManager.AddNumberParameter("Depth", "D", "...", GH_ParamAccess.item, 1);
             pManager[3].Optional = true;
-            pManager.AddIntervalParameter("Size", "S", "...", GH_ParamAccess.item, new Interval(800, 600));
+            pManager.AddIntegerParameter("Width", "W", "...", GH_ParamAccess.item, 600);
             pManager[4].Optional = true;
+            pManager.AddIntegerParameter("Height", "H", "...", GH_ParamAccess.item, 600);
+            pManager[5].Optional = true;
 
             Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("ToPolar",0);
-            param.AddNamedValue("ToRectangular", 1);
+            param.AddNamedValue(modes[0], 0);
+            param.AddNamedValue(modes[1], 1);
         }
 
         /// <summary>
@@ -64,44 +72,80 @@ namespace Macaw_GH.Edit
         {
             // Declare variables
             int M = 0;
-            IGH_Goo X = null;
+            IGH_Goo Z = null;
             double R = 0;
             double D = 1;
-            Interval S = new Interval(800, 600);
+            int X = 600;
+            int Y = 600;
 
             // Access the input parameters 
-            if (!DA.GetData(0, ref X)) return;
+            if (!DA.GetData(0, ref Z)) return;
             if (!DA.GetData(1, ref M)) return;
             if (!DA.GetData(2, ref R)) return;
             if (!DA.GetData(3, ref D)) return;
-            if (!DA.GetData(4, ref S)) return;
+            if (!DA.GetData(4, ref X)) return;
+            if (!DA.GetData(5, ref Y)) return;
 
-            Bitmap A = null;
-            if (X != null) { X.CastTo(out A); }
-            Bitmap B = new Bitmap(A);
-
-            wDomain Y = new wDomain(S.T0,S.T1);
+            Bitmap A = new Bitmap(10, 10);
+            if (Z != null) { Z.CastTo(out A); }
 
             mFilter Filter = new mFilter();
+
+            if(M!=ModeIndex)
+            {
+                ModeIndex = M;
+                UpdateMessage();
+            }
 
             switch (M)
             {
                 case 0:
-                    Filter = new mPolarToPolar(R,D,Y);
+                    Filter = new mPolarToPolar(R,D,X,Y);
                     break;
                 case 1:
-                    Filter = new mPolarToRect(R, D, Y);
+                    Filter = new mPolarToRect(R, D,X, Y);
                     break;
             }
 
-            B = new mApply(A, Filter).ModifiedBitmap;
-
+            Bitmap B = new mApply(A, Filter).ModifiedBitmap;
             wObject W = new wObject(Filter, "Macaw", Filter.Type);
-
 
             DA.SetData(0, B);
             DA.SetData(1, W);
         }
+
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void UpdateMessage()
+        {
+            Message = modes[ModeIndex];
+        }
+
+        /// <summary>
+        /// Adds to the default serialization method to save the current child status so it persists on copy/paste and save/reopen.
+        /// </summary>
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("FilterMode", ModeIndex);
+
+            return base.Write(writer);
+        }
+
+        /// <summary>
+        /// Adds to the default deserialization method to retrieve the saved child status so it persists on copy/paste and save/reopen.
+        /// </summary>
+        public override bool Read(GH_IReader reader)
+        {
+            ModeIndex = reader.GetInt32("FilterMode");
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.SetPersistentData(new Bitmap(10, 10));
+
+            UpdateMessage();
+            return base.Read(reader);
+        }
+
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// <summary>
         /// Set Exposure level for the component.

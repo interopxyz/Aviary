@@ -12,6 +12,9 @@ using Parrot.Containers;
 using Parrot.Controls;
 using Pollen.Collections;
 using Grasshopper.Kernel.Parameters;
+using Parrot.Displays;
+using Wind.Utilities;
+using Pollen.Charts;
 
 namespace Wind_GH.Formatting
 {
@@ -21,7 +24,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the Padding class.
         /// </summary>
         public Margin()
-          : base("Margin", "Margin", "---", "Aviary", "Format")
+          : base("Margin", "Margin", "---", "Aviary", "2D Format")
         {
         }
 
@@ -35,7 +38,7 @@ namespace Wind_GH.Formatting
             pManager[1].Optional = true;
 
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(new pSpacer(new GUIDtoAlpha(Convert.ToString(this.Attributes.InstanceGuid.ToString() + Convert.ToString(this.RunCount)), false).Text)));
         }
 
         /// <summary>
@@ -95,6 +98,18 @@ namespace Wind_GH.Formatting
                             tDataSet.Graphics = G;
 
                             W.Element = tDataSet;
+                            break;
+                        case "Chart":
+                        case "Table":
+
+                            pElement pE = (pElement)W.Element;
+                            pChart pC = pE.PollenControl;
+                            pC.Graphics = G;
+
+                            pC.SetMargin();
+
+                            pE.PollenControl = pC;
+                            W.Element = pE;
                             break;
                     }
                     break;

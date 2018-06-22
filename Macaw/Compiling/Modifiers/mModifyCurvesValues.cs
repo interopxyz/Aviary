@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyCurvesValues : mModifiers
+    public class mModifyCurvesValues : mModifier
     {
         CurvesAdjustmentFilter Effect = new CurvesAdjustmentFilter();
 
@@ -19,8 +19,7 @@ namespace Macaw.Compiling.Modifiers
             //Effect.Curves = new 
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

@@ -14,6 +14,8 @@ using Wind.Graphics;
 using Pollen.Charts;
 using Wind.Presets;
 using Grasshopper.Kernel.Parameters;
+using Wind.Utilities;
+using Parrot.Displays;
 
 namespace Wind_GH.Formatting
 {
@@ -23,7 +25,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the FillSolid class.
         /// </summary>
         public FillSolid()
-          : base("Fill", "Fill", "---", "Aviary", "Format")
+          : base("Fill", "Fill", "---", "Aviary", "2D Format")
         {
         }
 
@@ -33,11 +35,11 @@ namespace Wind_GH.Formatting
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Object", "O", "Wind Objects", GH_ParamAccess.item);
-            pManager.AddColourParameter("Color", "C", "---", GH_ParamAccess.item, new wColors().VeryLightGray().ToDrawingColor());
+            pManager.AddColourParameter("Color", "C", "---", GH_ParamAccess.item, wColors.VeryLightGray.ToDrawingColor());
             pManager[1].Optional = true;
             
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(new pSpacer(new GUIDtoAlpha(Convert.ToString(this.Attributes.InstanceGuid.ToString() + Convert.ToString(this.RunCount)), false).Text)));
         }
 
         /// <summary>
@@ -56,7 +58,7 @@ namespace Wind_GH.Formatting
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             IGH_Goo Element = null;
-            System.Drawing.Color Background = new wColors().VeryLightGray().ToDrawingColor();
+            System.Drawing.Color Background = wColors.VeryLightGray.ToDrawingColor();
 
             if (!DA.GetData(0, ref Element)) return;
             if (!DA.GetData(1, ref Background)) return;
@@ -106,10 +108,12 @@ namespace Wind_GH.Formatting
 
                             W.Element = tDataSet;
                             break;
-                        case "PointChart":
+                        case "Chart":
+                        case "Table":
+
                             pElement pE = (pElement)W.Element;
-                            pChart pC = (pChart)pE.PollenControl;
-                            pC.DataSet.Graphics = G;
+                            pChart pC = pE.PollenControl;
+                            pC.Graphics = G;
 
                             pC.SetSolidFill();
 

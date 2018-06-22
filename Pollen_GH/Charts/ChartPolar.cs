@@ -103,12 +103,13 @@ namespace Pollen_GH.Charts
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.Metro, false, DC.Sets.Count > 1);}
-            if (DC.TotalCustomStroke == 0) { if (M == 1) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); } else { DC.SetDefaultStrokes(wStrokes.StrokeTypes.LineChart, wGradients.GradientTypes.Metro, false, true); } }
-            if (DC.TotalCustomMarker == 0) { if (M == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); } else { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); } }
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPointDark).Font); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.Metro, false, DC.Sets.Count > 1);}
+            if (DC.TotalCustomStroke == 0) { if (M == 1) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); } else { DC.SetDefaultStrokes(wStrokes.StrokeTypes.LineChart, wGradients.Metro, false, true); } }
+            if (DC.TotalCustomMarker == 0) { if (M == 0) { DC.SetDefaultMarkers(wGradients.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); } else { DC.SetDefaultMarkers(wGradients.SolidTransparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); } }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.ChartPointDark); }
+            if (DC.TotalCustomLabel == 0) { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.None, new wGraphic(wColors.Transparent))); }
 
-            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = new wFonts(wFonts.FontTypes.AxisLabel).Font; }
+            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = wFonts.AxisLabel; }
 
             List<pPointSeries> PointSeriesList = new List<pPointSeries>();
 
@@ -116,6 +117,14 @@ namespace Pollen_GH.Charts
 
             double X = DC.Sets.Count;
             double Y = 99.0 / X;
+
+            if(!DC.Axes.Enabled)
+            {
+                DC.Axes.AxisX.Enabled = true;
+                DC.Axes.AxisX.HasLabel = false;
+                DC.Axes.AxisY.Enabled = true;
+                DC.Axes.AxisY.HasLabel = false;
+            }
 
             pControl.SetProperties(DC);
 
@@ -130,8 +139,8 @@ namespace Pollen_GH.Charts
             }
             
             pControl.SetSeries(PointSeriesList);
+            pControl.SetAxisScale();
             pControl.SetAxisAppearance();
-            pControl.SetThreeDView();
             if (M == 0) { pControl.SetXaxis(new wDomain(0, PointSeriesList[0].DataList.Count - 1)); }
 
             //Set Parrot Element and Wind Object properties

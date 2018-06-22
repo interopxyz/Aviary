@@ -16,6 +16,7 @@ using Wind.Containers;
 
 using Pollen.Collections;
 using System.Windows.Media;
+using Wind.Types;
 
 namespace Pollen.Charts
 {
@@ -24,6 +25,7 @@ namespace Pollen.Charts
         public PieChart Element = new PieChart();
         public bool Status = false;
         public DataSetCollection DataGrid = new DataSetCollection();
+        public List<pRadialSeries> PollenSeries = new List<pRadialSeries>();
 
         public pRadialChart(string InstanceName)
         {
@@ -32,7 +34,7 @@ namespace Pollen.Charts
             Element.DisableAnimations = true;
 
             Element.Name = InstanceName;
-            Type = "RadialChart";
+            Element.Series.Clear();
 
             DataGrid = new DataSetCollection();
 
@@ -54,45 +56,113 @@ namespace Pollen.Charts
             Element.Background = Brushes.Transparent;
             Element.InnerRadius = Radius;
 
+            //SetToolTip();
         }
 
-        public void SetSeries(List<pRadialSeries> DataSeries)
+        public void SetPollenSeries(string SeriesName)
         {
-            SeriesCollection SeriesCollect = new SeriesCollection();
+            List<List<double>> NumberSeries = new List<List<double>>();
 
-            for (int i = 0; i < DataSeries[0].DataList.Count; i++)
+            //Populate Data Set
+            for (int i = 0; i < DataGrid.Sets[0].Points.Count; i++)
             {
-                List<double> ValueSet = new List<double>();
-                for (int j = 0; j < DataSeries.Count; j++)
+                List<double> TempNumbers = new List<double>();
+
+                for (int j = 0; j < DataGrid.Sets.Count; j++)
                 {
-
-                    ValueSet.Add(DataSeries[j].ChartSeries[i]);
+                    TempNumbers.Add(DataGrid.Sets[j].Points[i].Number);
                 }
-
-                PieSeries pSeries = new PieSeries();
-                SetSequenceProperties(DataSeries[0].DataList.Points[i], pSeries);
-                pSeries.Values = new ChartValues<double>(ValueSet.ToArray());
-
-                SeriesCollect.Add(pSeries);
-
+                NumberSeries.Add(TempNumbers);
             }
-            Element.Series = SeriesCollect;
+
+            int C = Element.Series.Count;
+            int S = NumberSeries.Count;
+
+            //SERIES########################################
+            // Remove all extra series
+
+            for (int i = C; i < S; i++)
+            {
+                Element.Series.Add(new PieSeries());
+                Element.Series[i].Values = new ChartValues<double>(NumberSeries[i].ToArray());
+            }
+
+            C = Element.Series.Count;
+
+            if (C > S)
+            {
+                for (int i = S; i < C; i++)
+                {
+                    Element.Series.RemoveAt(Element.Series.Count - 1);
+                }
+            }
+
+            C = Element.Series.Count;
+
+            //VALUES########################################
+            // Remove all extra series
+
+            for (int i = 0; i < S; i++)
+            {
+                int T = Element.Series[i].Values.Count;
+                int V = NumberSeries[i].Count;
+
+                for (int j = T; j < V; j++)
+                {
+                    Element.Series[i].Values.Add(1.0);
+                }
+            }
+
+            for (int i = 0; i < S; i++)
+            {
+                int T = Element.Series[i].Values.Count;
+                int V = NumberSeries[i].Count;
+
+                if (T > V)
+                {
+                    for (int j = V; j < T; j++)
+                    {
+                        Element.Series[i].Values.RemoveAt(Element.Series[i].Values.Count - 1);
+                    }
+                }
+            }
+
+            for (int i = 0; i < S; i++)
+            {
+                int V = NumberSeries[i].Count;
+                for (int j = 0; j < V; j++)
+                {
+                    Element.Series[i].Values[j] = NumberSeries[i][j];
+                    SetSequenceProperties(DataGrid.Sets[j].Points[i], (PieSeries)Element.Series[i]);
+                }
+            }
+
+            SetToolTip();
         }
 
-        public Series SetSequenceProperties(DataPt Pt, LiveCharts.Wpf.Series Sequence)
+        public PieSeries SetSequenceProperties(DataPt Pt, PieSeries Sequence)
         {
             wGraphic G = Pt.Graphics;
+            wFont F = G.FontObject;
 
             Sequence.PointGeometry = GetGeometry((int)Pt.Marker.Mode);
 
             Sequence.DataLabels = true;
-            Sequence.LabelPoint = point => Pt.Label.Content;
+            Sequence.LabelPoint = point => string.Format("{0:" + Pt.Label.Format + "}", point.Y);
 
             Sequence.Fill = G.GetBackgroundBrush();
-            Sequence.Foreground = G.GetFontBrush();
+
+            Sequence.Foreground = F.GetFontBrush();
+            Sequence.FontSize = F.Size;
+            Sequence.FontStyle = F.ToMediaFont().Italic;
+            Sequence.FontWeight = F.ToMediaFont().Bold;
 
             Sequence.StrokeThickness = G.StrokeWeight[0];
             Sequence.Stroke = G.GetStrokeBrush();
+            Sequence.StrokeDashArray = new DoubleCollection(G.StrokePattern);
+
+            Sequence.PointGeometry = GetGeometry((int)Pt.Marker.Mode);
+            if (Pt.Label.Alignment == 0) { Sequence.LabelPosition = PieLabelPosition.OutsideSlice; } else { Sequence.LabelPosition = PieLabelPosition.InsideSlice; }
 
             return Sequence;
         }
@@ -123,6 +193,45 @@ namespace Pollen.Charts
             return Geo;
         }
 
+
+        public override void SetToolTip()
+        {
+            wLabel L = DataGrid.Sets[0].Points[0].ToolTip;
+            wGraphic G = L.Graphics;
+            wFont F = G.FontObject;
+
+            DefaultTooltip Tip = (DefaultTooltip)Element.DataTooltip;
+
+            Tip.SelectionMode = TooltipSelectionMode.OnlySender;
+
+            if (L.Enabled)
+            {
+                Tip.BulletSize = 0;
+
+                Tip.ShowSeries = false;
+                Tip.Background = G.GetBackgroundBrush();
+                Tip.Foreground = F.GetFontBrush();
+
+                Tip.BorderBrush = G.GetStrokeBrush();
+                Tip.BorderThickness = G.GetStroke();
+
+                Tip.FontFamily = F.ToMediaFont().Family;
+                Tip.FontSize = F.Size;
+                Tip.FontStyle = F.ToMediaFont().Italic;
+                Tip.FontWeight = F.ToMediaFont().Bold;
+            }
+
+            Element.DataTooltip = Tip;
+        }
+
+        public void ForceRefresh()
+        {
+            Element.Update(false, true);
+        }
+
+
+        // ################################# OVERIDE GRAPHIC PROPERTIES #################################
+
         public override void SetSize()
         {
             double W = double.NaN;
@@ -136,31 +245,108 @@ namespace Pollen.Charts
 
         public override void SetSolidFill()
         {
-            Element.Background = DataSet.Graphics.GetBackgroundBrush();
+            Element.Background = Graphics.GetBackgroundBrush();
+        }
+
+        public override void SetGradientFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
+        public override void SetPatternFill()
+        {
+            Element.Background = Graphics.WpfPattern;
         }
 
         public override void SetStroke()
         {
-            base.SetStroke();
+            Element.BorderBrush = Graphics.GetStrokeBrush();
+            Element.BorderThickness = Graphics.GetStroke();
         }
 
-        public void SetAxisAppearance()
+        public override void SetFont()
+        {
+            Element.FontFamily = Graphics.FontObject.ToMediaFont().Family;
+            Element.FontSize = Graphics.FontObject.ToMediaFont().Size;
+            Element.FontStyle = Graphics.FontObject.ToMediaFont().Italic;
+            Element.FontWeight = Graphics.FontObject.ToMediaFont().Bold;
+        }
+
+        public override void SetMargin()
+        {
+            Element.Margin = Graphics.GetMargin();
+        }
+
+        public override void SetPadding()
+        {
+        }
+
+        public override void SetAxisAppearance()
         {
 
+            if (DataGrid.Axes.AxisX.Enabled)
+            {
+
+                Axis AxsX = new Axis();
+
+                AxsX.Separator.OverridesDefaultStyle = true;
+
+                if ((DataGrid.Axes.AxisX.Domain.T0 == 0) && (DataGrid.Axes.AxisX.Domain.T0 == 1))
+                {
+                    AxsX.MinValue = double.NaN;
+                    AxsX.MaxValue = double.NaN;
+                }
+                else
+                {
+                    AxsX.MinValue = DataGrid.Axes.AxisX.Domain.T0;
+                    AxsX.MaxValue = DataGrid.Axes.AxisX.Domain.T1;
+                }
+
+                if (DataGrid.Axes.AxisX.MinorSpacing > 0) { AxsX.Separator.Step = DataGrid.Axes.AxisX.MinorSpacing; } else { AxsX.Separator.Step = 1; }
+
+                AxsX.Separator.Stroke = DataGrid.Graphics.GetStrokeBrush();
+                AxsX.Separator.StrokeThickness = DataGrid.Graphics.StrokeWeight[0];
+
+                AxsX.ShowLabels = DataGrid.Axes.AxisX.HasLabel;
+                AxsX.LabelsRotation = DataGrid.Axes.AxisX.Angle;
+
+                Element.AxisX.Clear();
+                Element.AxisX.Add(AxsX);
+
+            }
+
+            if (DataGrid.Axes.AxisY.Enabled)
+            {
+                Axis AxsY = new Axis();
+                AxsY.Separator.OverridesDefaultStyle = true;
+
+                if ((DataGrid.Axes.AxisY.Domain.T0 == 0) && (DataGrid.Axes.AxisY.Domain.T0 == 1))
+                {
+                    AxsY.MinValue = double.NaN;
+                    AxsY.MaxValue = double.NaN;
+                }
+                else
+                {
+                    AxsY.MinValue = DataGrid.Axes.AxisY.Domain.T0;
+                    AxsY.MaxValue = DataGrid.Axes.AxisY.Domain.T1;
+                }
+
+                if (DataGrid.Axes.AxisY.MinorSpacing > 0) { AxsY.Separator.Step = DataGrid.Axes.AxisY.MinorSpacing; } else { AxsY.Separator.Step = 1; }
+
+                AxsY.Separator.Stroke = DataGrid.Graphics.GetStrokeBrush();
+                AxsY.Separator.StrokeThickness = DataGrid.Graphics.StrokeWeight[0];
+
+                AxsY.ShowLabels = DataGrid.Axes.AxisY.HasLabel;
+                AxsY.LabelsRotation = DataGrid.Axes.AxisY.Angle;
+
+
+
+                Element.AxisY.Clear();
+                Element.AxisY.Add(AxsY);
+
+            }
         }
 
-        public void SetAxisScale()
-        {
 
-        }
-
-        public void SetCorners(wGraphic Graphic)
-        {
-            //Element.CornerRadius = new CornerRadius(Graphic.Radius[0], Graphic.Radius[1], Graphic.Radius[2], Graphic.Radius[3]);
-        }
-
-        public void SetFont(wGraphic Graphic)
-        {
-        }
     }
 }

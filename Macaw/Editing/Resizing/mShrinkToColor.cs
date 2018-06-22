@@ -1,9 +1,9 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Editing.Resizing
 {
-    public class mShrinkToColor : mFilter
+    public class mShrinkToColor : mFilters
     {
         Shrink Effect = new Shrink();
 
@@ -13,7 +13,7 @@ namespace Macaw.Editing.Resizing
         public mShrinkToColor(System.Drawing.Color SelectedColor)
         {
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
             FilterColor = SelectedColor;
 

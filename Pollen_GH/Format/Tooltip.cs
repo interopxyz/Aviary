@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using Grasshopper.Kernel.Parameters;
+using Wind.Containers;
+using Grasshopper.Kernel.Types;
+using Wind.Types;
+using Pollen.Collections;
+using Wind.Presets;
 
 namespace Pollen_GH.Format
 {
@@ -23,15 +28,22 @@ namespace Pollen_GH.Format
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("DataSet", "D", "---", GH_ParamAccess.item);
-            pManager.AddTextParameter("Text", "T", "---", GH_ParamAccess.item, "");
-            pManager[1].Optional = true;
-            pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 1);
-            pManager[2].Optional = true;
             pManager.AddGenericParameter("Graphic", "G", "---", GH_ParamAccess.item);
-            pManager[3].Optional = true;
+            pManager[1].Optional = true;
+            pManager.AddGenericParameter("Font", "F", "---", GH_ParamAccess.item);
+            pManager[2].Optional = true;
 
-            Param_Integer param = (Param_Integer)Params.Input[2];
-            param.AddNamedValue("None", 0);
+
+            Param_GenericObject paramGen1 = (Param_GenericObject)Params.Input[0];
+            paramGen1.PersistentData.Append(new GH_ObjectWrapper(null));
+
+
+            Param_GenericObject paramGen2 = (Param_GenericObject)Params.Input[1];
+            paramGen2.PersistentData.Append(new GH_ObjectWrapper(new wGraphic()));
+
+
+            Param_GenericObject paramGen3 = (Param_GenericObject)Params.Input[2];
+            paramGen3.PersistentData.Append(new GH_ObjectWrapper(wFonts.ChartPointDark));
         }
 
         /// <summary>
@@ -49,6 +61,61 @@ namespace Pollen_GH.Format
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            IGH_Goo Element = null;
+            IGH_Goo Gx = null;
+            IGH_Goo Fx = null;
+
+            if (!DA.GetData(0, ref Element)) return;
+            if (!DA.GetData(1, ref Gx)) return;
+            if (!DA.GetData(2, ref Fx)) return;
+
+            wObject W;
+            Element.CastTo(out W);
+
+            wLabel CustomToolTip = new wLabel();
+
+            wGraphic G = CustomToolTip.Graphics;
+            wFont F = CustomToolTip.Font;
+
+            Gx.CastTo(out G);
+            Fx.CastTo(out F);
+
+            CustomToolTip.Graphics = G;
+            CustomToolTip.Font = F;
+
+            switch (W.Type)
+            {
+                case "Pollen":
+
+                    switch (W.SubType)
+                    {
+                        case "DataPoint":
+                            DataPt Pt = (DataPt)W.Element;
+
+                            Pt.ToolTip.Enabled = true;
+                            Pt.ToolTip.Graphics = G;
+                            Pt.ToolTip.Font = F;
+                            Pt.ToolTip.Graphics.FontObject = F;
+
+                            W.Element = Pt;
+                            break;
+                        case "DataSet":
+                            DataSetCollection St = (DataSetCollection)W.Element;
+                            St.SetUniformTooltips(CustomToolTip);
+
+                            St.ToolTip.Enabled = true;
+                            St.ToolTip.Graphics = G;
+                            St.ToolTip.Font = F;
+                            St.ToolTip.Graphics.FontObject = F;
+
+                            W.Element = St;
+                            break;
+                    }
+                    break;
+            }
+
+            DA.SetData(0, W);
+            DA.SetData(1, CustomToolTip);
         }
 
 

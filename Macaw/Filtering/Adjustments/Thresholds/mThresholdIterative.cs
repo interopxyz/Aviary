@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +12,20 @@ namespace Macaw.Filtering.Adjustments.Thresholds
     {
         IterativeThreshold Effect = new IterativeThreshold();
 
-        int Threshold = 50;
+        int ThresholdValue = 50;
+        int MinError = 5;
 
-        public mThresholdIterative(int ThresholdValue)
+        public mThresholdIterative(int thresholdValue, int minError)
         {
 
-            Threshold = ThresholdValue;
+            ThresholdValue = thresholdValue;
+            MinError = minError;
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
 
-            Effect = new IterativeThreshold(2,Threshold);
+            Effect = new IterativeThreshold(ThresholdValue,MinError);
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

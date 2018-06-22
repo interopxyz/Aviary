@@ -30,7 +30,7 @@ namespace Pollen_GH.Table
         /// Initializes a new instance of the ViewGrid class.
         /// </summary>
         public ViewDataGrid()
-          : base("Quick Grid", "Grid", "---", "Aviary", "Charting & Data")
+          : base("Visual Grid", "VisGrid", "---", "Aviary", "Charting & Data")
         {
         }
 
@@ -92,11 +92,11 @@ namespace Pollen_GH.Table
             D.CastTo(out W);
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.SolidLightGray, false, DC.Sets.Count > 1); }
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.DataGrid).Font); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.SolidLightGray, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.DataGrid); }
             if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.OffWhiteSolid); }
 
-            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = new wFonts(wFonts.FontTypes.DataGridTitles).Font; }
+            if (DC.TotalCustomTitles == 0) { DC.Graphics.FontObject = wFonts.DataGridTitle; }
 
             pCtrl.SetProperties(DC, HasTitle);
 

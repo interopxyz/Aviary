@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Filtering.Stylized
@@ -15,20 +15,20 @@ namespace Macaw.Filtering.Stylized
     {
         BilateralSmoothing Effect = new BilateralSmoothing();
 
-        int KernelSize = 7;
-        double SpatialFactor = 10.0;
-        double ColorFactor = 60.0;
-        double ColorPower = 60.0;
+        public int KernelSize = 7;
+        public double SpatialFactor = 10.0;
+        public double ColorFactor = 60.0;
+        public double ColorPower = 60.0;
 
-        public mSmoothBilateral(double Space, double Factor, double Power, int SizeValue)
+        public mSmoothBilateral(int kernalSize, double spatialFactor, double colorFactor, double colorPower)
         {
 
-            KernelSize = SizeValue;
-            SpatialFactor = Space;
-            ColorFactor = Factor;
-            ColorPower = Power;
+            KernelSize = kernalSize;
+            SpatialFactor = spatialFactor;
+            ColorFactor = colorFactor;
+            ColorPower = colorPower;
 
-            BitmapType = 1;
+            BitmapType = BitmapTypes.None;
 
             Effect = new BilateralSmoothing();
 
@@ -38,8 +38,7 @@ namespace Macaw.Filtering.Stylized
             Effect.ColorPower = ColorPower;
             Effect.EnableParallelProcessing = true;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

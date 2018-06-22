@@ -54,34 +54,34 @@ namespace Wind.Presets
 
         //#########################################################################
 
+
         private void SetDefault()
         {
-            Graphic.StrokeColor = new wColors().Black();
+            Graphic.StrokeColor = wColors.Black;
             Graphic.SetUniformStrokeWeight(1);
         }
 
         private void SetTransparent()
         {
-            Graphic.StrokeColor = new wColors().Transparent();
+            Graphic.StrokeColor = wColors.Transparent;
             Graphic.SetUniformStrokeWeight(0);
         }
-
-
+        
         private void SetLineChart()
         {
-            Graphic.StrokeColor = new wColors().OffWhite();
+            Graphic.StrokeColor = wColors.OffWhite;
             Graphic.SetUniformStrokeWeight(2);
         }
 
         private void SetOffWhite()
         {
-            Graphic.StrokeColor = new wColors().OffWhite();
+            Graphic.StrokeColor = wColors.OffWhite;
             Graphic.SetUniformStrokeWeight(1);
         }
 
         private void SetVeryLightGray()
         {
-            Graphic.StrokeColor = new wColors().VeryLightGray();
+            Graphic.StrokeColor = wColors.VeryLightGray;
             Graphic.SetUniformStrokeWeight(1);
         }
 

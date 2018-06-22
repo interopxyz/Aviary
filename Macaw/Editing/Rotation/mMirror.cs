@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Editing.Rotation
@@ -12,12 +12,11 @@ namespace Macaw.Editing.Rotation
         public mMirror( bool Horizontal, bool Vertical)
         {
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
             
             Effect = new Mirror(Horizontal,Vertical);
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

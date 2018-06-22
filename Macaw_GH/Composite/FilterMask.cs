@@ -54,16 +54,16 @@ namespace Macaw_GH.Composite
 
             Bitmap A = null;
             wObject Z = new wObject();
-            mFilter F = new mFilter();
+            mFilters F = new mFilters();
 
             if (X != null) { X.CastTo(out A); }
             Bitmap B = new Bitmap(A);
 
             if (Y != null) { Y.CastTo(out Z); }
-            F = (mFilter)Z.Element;
+            F = (mFilters)Z.Element;
 
             
-            mFilter Filter = new mFilter();
+            mFilters Filter = new mFilters();
 
             Filter = new mFilterMask(B, F);
 

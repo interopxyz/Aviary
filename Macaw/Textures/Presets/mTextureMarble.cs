@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Textures;
+﻿using Accord.Imaging.Textures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,8 @@ namespace Macaw.Textures.Presets
 {
     public class mTextureMarble : mTexture
     {
-
-        MarbleTexture Pattern = new MarbleTexture();
+        
+        MarbleTexture Pattern = new MarbleTexture(10,10);
 
         double X = 5.0;
             double Y = 10.0;

@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +13,19 @@ namespace Macaw.Filtering.Stylized
 
         OilPainting Effect = new OilPainting();
 
-        int Radius = 5;
+        int BrushSize = 5;
 
-        public mEffectDaube(int EffectRadius)
+        public mEffectDaube(int brushSize)
         {
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
-            Radius = EffectRadius;
+            BrushSize = brushSize;
 
             Effect = new OilPainting();
-            Effect.BrushSize = Radius;
+            Effect.BrushSize = BrushSize;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

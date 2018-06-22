@@ -16,8 +16,9 @@ namespace Pollen.Charts
 
     public class pRadialSeries : pChart
     {
-        public List<double> ChartSeries = new List<double>();
+        public List<double> DataSeries = new List<double>();
         public DataPtSet DataList = new DataPtSet();
+
 
         public enum SeriesChartType
         {
@@ -28,25 +29,13 @@ namespace Pollen.Charts
 
         public pRadialSeries(string InstanceName)
         {
-            ChartSeries = new List<double>();
+            DataSeries = new List<double>();
             DataList = new DataPtSet();
 
             //Set Element info setup
             Type = "RadialSequence";
         }
 
-        public void SetRadialSeries(DataPtSet PollenDataSet)
-        {
-            DataList = PollenDataSet;
-            ChartType = SeriesChartType.Pie;
-
-            ChartSeries = new List<double>();
-            foreach (DataPt D in DataList.Points)
-            {
-                ChartSeries.Add(D.Number);
-            }
-            
-        }
 
         public DataPoint SetMarkerType(DataPoint Pt, int Mode)
         {

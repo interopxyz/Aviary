@@ -5,28 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Filtering.Stylized
 {
     public class mSharpenSimple : mFilter
     {
-        Sharpen Effect = new Sharpen();
         
 
         public mSharpenSimple()
         {
 
-            BitmapType = 1;
+            BitmapType = BitmapTypes.None;
             
-            Effect = new Sharpen();
+            filter = new Sharpen();
             
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
-
         }
 
     }

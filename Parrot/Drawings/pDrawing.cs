@@ -79,7 +79,7 @@ namespace Parrot.Drawings
             
             Extents = new wRectangle(new wPlane(new wPoint(Boundary.Center.X*Scale,Boundary.Center.Y*Scale,0),Boundary.Plane.XAxis,Boundary.Plane.YAxis), Boundary.Width * Scale, Boundary.Height * Scale);
 
-            wVector Shift = new wVector().SubtractVector(Frame.Center, Extents.Center);
+            wVector Shift = new wVector(Frame.Center, Extents.Center);
 
             Xform.Children.Clear();
             Xform.Children.Add(new TranslateTransform(Shift.X, Shift.Y));

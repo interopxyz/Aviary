@@ -41,16 +41,10 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Macaw\bin\Debug\SoundInTheor
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary\Macaw\bin\Debug\WebActivatorEx.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Macaw.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Macaw.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Imaging.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Math.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\SoundInTheory.DynamicImage.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\WebActivatorEx.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Wind.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Imaging.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Math.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Wind.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.csprojResolveAssemblyReference.cache
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.Properties.Resources.resources
@@ -95,17 +89,11 @@ C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.dll
 C:\Users\Hanshen\Documents\GitHub\Aviary\Macaw\obj\Debug\Macaw.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Macaw.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Macaw.pdb
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Imaging.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Math.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\CsPotrace.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\SoundInTheory.DynamicImage.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\WebActivatorEx.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Wind.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Imaging.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\AForge.Math.xml
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Wind.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.csprojResolveAssemblyReference.cache
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.Properties.Resources.resources
@@ -113,3 +101,25 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\M
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\obj\Debug\Macaw.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\CsPotrace.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.dll.config
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Imaging.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Math.Core.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Math.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Statistics.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Imaging.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Math.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Math.Core.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Statistics.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.dll.config
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Imaging.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Math.Core.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Math.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Statistics.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Imaging.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Math.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Math.Core.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Macaw\bin\Debug\Accord.Statistics.xml

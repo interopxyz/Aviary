@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyUnsharpen : mModifiers
+    public class mModifyUnsharpen : mModifier
     {
         UnsharpMaskFilter Effect = new UnsharpMaskFilter();
 
@@ -20,8 +20,7 @@ namespace Macaw.Compiling.Modifiers
             Effect.Radius = Radius;
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

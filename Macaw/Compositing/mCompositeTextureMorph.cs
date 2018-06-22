@@ -1,4 +1,5 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
+using Macaw.Filtering;
 using Macaw.Textures;
 using Macaw.Utilities;
 using System.Drawing;
@@ -19,8 +20,8 @@ namespace Macaw.Compositing
         public mCompositeTextureMorph(Bitmap UnderlayBitmap, Bitmap OverlayBitmap, mTexture SourceTexture)
         {
             MaskTexture = SourceTexture;
-            BitmapUnder = new mSetFormat(UnderlayBitmap, 2).ModifiedBitmap;
-            BitmapOver = new mSetFormat(OverlayBitmap, 2).ModifiedBitmap;
+            BitmapUnder = new mSetFormat(UnderlayBitmap, mFilter.BitmapTypes.Rgb24bpp).ModifiedBitmap;
+            BitmapOver = new mSetFormat(OverlayBitmap, mFilter.BitmapTypes.Rgb24bpp).ModifiedBitmap;
 
             ModifiedBitmap = new Bitmap(BitmapUnder);
 

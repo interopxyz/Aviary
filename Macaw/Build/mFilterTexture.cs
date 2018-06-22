@@ -1,16 +1,16 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using Macaw.Textures;
 
 namespace Macaw.Build
 {
-    public class mFilterTexture : mFilter
+    public class mFilterTexture : mFilters
     {
         public TexturedFilter Effect = null;
 
         mTexture MaskTexture = new mTexture();
 
-        public mFilterTexture(mTexture SourceTexture, mFilter Filter)
+        public mFilterTexture(mTexture SourceTexture, mFilters Filter)
         {
 
             BitmapType = Filter.BitmapType;

@@ -33,7 +33,7 @@ namespace Parrot_GH.Displays
         {
             this.UpdateMessage();
 
-            Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColors().DarkGray(), CenterMode, false, false, false, false);
+            Graphic.FontObject = new wFont("Swis721 Lt BT", 24, wColors.DarkGray, CenterMode, false, false, false, false);
             FontMode = 0;
         }
 
@@ -160,20 +160,20 @@ namespace Parrot_GH.Displays
 
             switch(FontMode)
             {
-                case 0:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 18, new wColors().DarkGray(), CenterMode, true, false, false, false);
+                case 0://Bold
+                    Graphic.FontObject = wFonts.Bold;
                     break;
-                case 1:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 24, new wColors().DarkGray(), CenterMode, false, false, false, false);
+                case 1://Title
+                    Graphic.FontObject = wFonts.Title;
                     break;
-                case 2:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 16, new wColors().DarkGray(), CenterMode, false, false, false, false);
+                case 2://Subtitle
+                    Graphic.FontObject = wFonts.SubTitle;
                     break;
-                case 3:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 10, new wColors().DarkGray(), CenterMode, false, false, false, false);
+                case 3://Text
+                    Graphic.FontObject = wFonts.Text;
                     break;
-                case 4:
-                    Graphic.FontObject = new wFont("Swis721 Lt BT", 8, new wColors().DarkGray(), CenterMode, false, false, false, false);
+                case 4://Subtext
+                    Graphic.FontObject = wFonts.Subtext;
                     break;
             }
 

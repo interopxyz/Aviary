@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Filtering.Adjustments.FilterColor
@@ -14,24 +14,41 @@ namespace Macaw.Filtering.Adjustments.FilterColor
     {
         Grayscale Effect = null;
 
-        double RedCoefficients = 0.2125;
-        double GreenCoefficients = 0.7154;
-        double BlueCoefficients = 0.0721;
+        public double RedCoef = 0.2125;
+        public double GreenCoef = 0.7154;
+        public double BlueCoef = 0.0721;
 
-        public mGrayscale(double RedCoef, double GreenCoef, double BlueCoef)
+        public enum GrayscaleModes { Custom, BT709, RMY, Y };
+        public GrayscaleModes Mode = GrayscaleModes.BT709;
+
+
+        public mGrayscale(double redCoef, double greenCoef, double blueCoef, GrayscaleModes mode)
         {
 
-            RedCoefficients = RedCoef;
-            GreenCoefficients = GreenCoef;
-            BlueCoefficients = BlueCoef;
+            RedCoef = redCoef;
+            GreenCoef = greenCoef;
+            BlueCoef = blueCoef;
+            Mode = mode;
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
-            Effect = new Grayscale(RedCoefficients, GreenCoefficients, BlueCoefficients);
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
-
+            switch (Mode)
+            {
+                default:
+                    Effect = new Grayscale(RedCoef,GreenCoef,BlueCoef);
+                    break;
+                case GrayscaleModes.BT709:
+                    Effect = Grayscale.CommonAlgorithms.BT709;
+                    break;
+                case GrayscaleModes.RMY:
+                    Effect = Grayscale.CommonAlgorithms.RMY;
+                    break;
+                case GrayscaleModes.Y:
+                    Effect = Grayscale.CommonAlgorithms.Y;
+                    break;
+            }
+            
+            filter = Effect;
         }
     }
 }

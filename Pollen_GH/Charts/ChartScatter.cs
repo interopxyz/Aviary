@@ -107,26 +107,21 @@ namespace Pollen_GH.Charts
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.Metro, false, DC.Sets.Count > 1); }
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPoint).Font); }
-            if (DC.TotalCustomMarker == 0){ DC.SetDefaultMarkers(wGradients.GradientTypes.Metro, wMarker.MarkerType.Circle, false, DC.Sets.Count > 1); }
-            if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.Metro, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomStroke == 0) { if (S == 4) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.LineChart, wGradients.Metro, false, DC.Sets.Count > 1); } else { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); } }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.ChartPoint); }
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.Metro, (wMarker.MarkerType)(S + 1), false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomLabel == 0) { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.Center, new wGraphic(wColors.Transparent))); }
+
 
             List<pCartesianSeries> PointSeriesList = new List<pCartesianSeries>();
 
-            List<pCartesianSeries.SeriesChartType> Modes = new List<pCartesianSeries.SeriesChartType>{ pCartesianSeries.SeriesChartType.Scatter, pCartesianSeries.SeriesChartType.Bubble };
-
-            for (int i = 0; i < DC.Sets.Count; i++)
-            {
-                pCartesianSeries pSeriesSet = new pCartesianSeries(Convert.ToString(name + i));
-                pSeriesSet.SetScatterSeries(DC.Sets[i], Modes[M],S+1);
-                pSeriesSet.SetSeriesProperties();
-                PointSeriesList.Add(pSeriesSet);
-            }
 
             pControl.SetProperties(DC);
-            pControl.SetSeries(PointSeriesList);
+            pControl.ForceRefresh();
+            if (M == 0) { pControl.SetScatterChart(); } else { pControl.SetBubbleChart(); }
             pControl.SetAxisAppearance();
+
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }

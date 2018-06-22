@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 
 namespace Macaw.Filtering.Objects.Erosions
 {
@@ -9,12 +9,11 @@ namespace Macaw.Filtering.Objects.Erosions
         public mErosionSimple()
         {
 
-            BitmapType = 0;
+            BitmapType = mFilter.BitmapTypes.GrayscaleBT709;
 
             Effect = new Erosion();
-            
-            Sequence.Clear();
-            Sequence.Add(Effect);
+
+            filter = Effect;
         }
 
     }

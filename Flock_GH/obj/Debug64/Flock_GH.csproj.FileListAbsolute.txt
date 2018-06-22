@@ -2,14 +2,8 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Floc
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Flock_GH.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Flock.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Wind.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.Imaging.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.dll
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.Math.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Flock.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Wind.pdb
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.Imaging.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.xml
-C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.Math.xml
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\obj\Debug64\Flock_GH.csprojResolveAssemblyReference.cache
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\obj\Debug64\Flock_GH.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\obj\Debug64\Flock_GH.pdb
@@ -17,14 +11,8 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Flock_GH.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Flock.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Wind.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.Imaging.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.dll
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.Math.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Flock.pdb
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Wind.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.Imaging.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.xml
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\AForge.Math.xml
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\obj\Debug64\Flock_GH.csprojResolveAssemblyReference.cache
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\obj\Debug64\Flock_GH.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\obj\Debug64\Flock_GH.pdb
@@ -34,3 +22,73 @@ C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\RhinoCommon.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\obj\Debug64\Flock_GH.Properties.Resources.resources
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\obj\Debug64\Flock_GH.csproj.GenerateResource.Cache
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Parrot.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Pollen.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MahApps.Metro.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MaterialDesignThemes.Wpf.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\HelixToolkit.Wpf.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\SharpGL.WPF.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\SharpGL.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\SharpGL.SceneGraph.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Xceed.Wpf.Toolkit.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Xceed.Wpf.DataGrid.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.Wpf.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\System.Windows.Interactivity.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Parrot.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Pollen.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MahApps.Metro.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MahApps.Metro.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MaterialDesignThemes.Wpf.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MaterialDesignThemes.Wpf.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\HelixToolkit.Wpf.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\HelixToolkit.Wpf.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.Wpf.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.Wpf.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.pdb
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Imaging.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Statistics.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Math.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Math.Core.dll
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Imaging.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Statistics.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Math.xml
+C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Math.Core.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Parrot.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Pollen.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MahApps.Metro.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MaterialDesignThemes.Wpf.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\HelixToolkit.Wpf.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\SharpGL.WPF.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\SharpGL.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\SharpGL.SceneGraph.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Xceed.Wpf.Toolkit.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Xceed.Wpf.DataGrid.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.Wpf.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Imaging.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\System.Windows.Interactivity.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Statistics.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Math.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Math.Core.dll
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Parrot.pdb
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Pollen.pdb
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MahApps.Metro.pdb
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MahApps.Metro.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MaterialDesignThemes.Wpf.pdb
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\MaterialDesignThemes.Wpf.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\HelixToolkit.Wpf.pdb
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\HelixToolkit.Wpf.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.Wpf.pdb
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.Wpf.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.pdb
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\LiveCharts.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Imaging.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Statistics.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Math.xml
+C:\Users\DMans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Flock_GH\bin\Accord.Math.Core.xml

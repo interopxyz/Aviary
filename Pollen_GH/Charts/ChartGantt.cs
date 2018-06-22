@@ -86,23 +86,18 @@ namespace Pollen_GH.Charts
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.Metro, false, false); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.Metro, false, true); }
             if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); }
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPointDark).Font); }
-            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, false); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.ChartPointDark); }
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.SolidTransparent, wMarker.MarkerType.None, false, false); }
+            if (DC.TotalCustomLabel == 0) { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.Center, new wGraphic(wColors.Transparent))); }
 
             List<pCartesianSeries> PointSeriesList = new List<pCartesianSeries>();
-
-            for (int i = 0; i < DC.Sets.Count; i++)
-            {
-                pCartesianSeries pSeriesSet = new pCartesianSeries(Convert.ToString(name + i));
-                pSeriesSet.SetGantSeries(DC.Sets[i]);
-                pSeriesSet.SetSeriesProperties();
-                PointSeriesList.Add(pSeriesSet);
-            }
-
+            
             pControl.SetProperties(DC);
-            pControl.SetSeries(PointSeriesList);
+            pControl.SetGanttChart();
+            pControl.ForceRefresh();
+            pControl.SetAxisAppearance();
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }

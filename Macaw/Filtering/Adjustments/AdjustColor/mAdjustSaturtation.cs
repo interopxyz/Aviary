@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -10,21 +10,18 @@ namespace Macaw.Filtering.Adjustments.AdjustColor
 {
     public class mAdjustSaturation : mFilter
     {
-        SaturationCorrection Effect = new SaturationCorrection();
 
-        float AdjustValue = 50;
-
-        public mAdjustSaturation(float Value)
+        public float AdjustValue = 0.0f;
+        
+        public mAdjustSaturation(float adjustValue)
         {
 
-            AdjustValue = Value;
+            AdjustValue = adjustValue;
 
-            BitmapType = 1;
+            BitmapType = BitmapTypes.None;
 
-            Effect = new SaturationCorrection(AdjustValue);
+            filter = new SaturationCorrection(AdjustValue);
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
         }
 
     }

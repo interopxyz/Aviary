@@ -109,15 +109,16 @@ namespace Pollen_GH.Charts
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.GradientTypes.Metro, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.Metro, false, false); }
             if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); }
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartGauge).Font); }
-            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.ChartGauge); }
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.SolidTransparent, wMarker.MarkerType.None, false, false); }
+            if (DC.TotalCustomLabel == 0) { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.Center, new wGraphic(wColors.Transparent))); }
 
             pControl.SetProperties(DC, B, 0);
             pControl.SetCharts(S, M, modeStatus);
-            
-            if(DC.TotalCustomFont > 0) { pControl.SetFont(); }
+
+            if (DC.TotalCustomFont > 0) { pControl.SetFont(); }
 
             //Set Parrot Element and Wind Object properties
             if (!Active) { Element = new pElement(pControl.Element, pControl, pControl.Type); }

@@ -14,7 +14,7 @@ namespace Wind_GH.Scene
         /// Initializes a new instance of the LightAmbient class.
         /// </summary>
         public LightAmbient()
-          : base("Ambient Light", "Ambient", "---", "Aviary", "3D Scene")
+          : base("Ambient Light", "Ambient", "---", "Aviary", "3D Format")
         {
         }
 

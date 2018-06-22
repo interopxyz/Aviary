@@ -1,9 +1,9 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Editing.Resizing
 {
-    public class mResizeBicubic : mFilter
+    public class mResizeBicubic : mFilters
     {
 
         ResizeBicubic Effect = null;
@@ -14,7 +14,7 @@ namespace Macaw.Editing.Resizing
         public mResizeBicubic(int ImageWidth, int ImageHeight)
         {
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
             Width = ImageWidth;
             Height = ImageHeight;

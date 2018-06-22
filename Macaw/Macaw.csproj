@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,17 +35,20 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Accord">
+      <HintPath>..\packages\Accord.3.8.0\lib\net45\Accord.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Accord.Imaging">
+      <HintPath>..\packages\Accord.Imaging.3.8.0\lib\net45\Accord.Imaging.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Accord.Math">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net45\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net45\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics">
+      <HintPath>..\packages\Accord.Statistics.3.8.0\lib\net45\Accord.Statistics.dll</HintPath>
     </Reference>
     <Reference Include="CsPotrace">
       <HintPath>..\packages\Potrace-Vectorization.2.0.0\CsPotrace.dll</HintPath>
@@ -82,11 +87,13 @@
     <Compile Include="Analysis\mAnalyzeCornersSusan.cs" />
     <Compile Include="App_Start\DynamicImage.cs" />
     <Compile Include="Build\mApply.cs" />
+    <Compile Include="Build\mApplySequence.cs" />
     <Compile Include="Build\mIterate.cs" />
     <Compile Include="Build\mSequence.cs" />
     <Compile Include="Build\mFilterTexture.cs" />
+    <Compile Include="Compiling\Layering\mLayerPosition.cs" />
     <Compile Include="Compiling\mBlends.cs" />
-    <Compile Include="Compiling\mComposition.cs" />
+    <Compile Include="Compiling\Layering\mComposition.cs" />
     <Compile Include="Compiling\mModifiers.cs" />
     <Compile Include="Compiling\Modifiers\mImageColor.cs" />
     <Compile Include="Compiling\Modifiers\mModifier.cs" />
@@ -99,6 +106,7 @@
     <Compile Include="Compiling\Modifiers\mModifyFeather.cs" />
     <Compile Include="Compiling\Modifiers\mModifyEmboss.cs" />
     <Compile Include="Compiling\Modifiers\mModifyResize.cs" />
+    <Compile Include="Compiling\Modifiers\mModifyRotation.cs" />
     <Compile Include="Compiling\Modifiers\mModifySolarize.cs" />
     <Compile Include="Compiling\Modifiers\mModifyUnsharpen.cs" />
     <Compile Include="Compiling\Modifiers\mModifyVignette.cs" />
@@ -106,6 +114,7 @@
     <Compile Include="Compiling\Modifiers\mModifyContrast.cs" />
     <Compile Include="Compiling\Modifiers\mModifyBrightness.cs" />
     <Compile Include="Compiling\Modifiers\mModifyColorKey.cs" />
+    <Compile Include="Compiling\Layering\mLayerMove.cs" />
     <Compile Include="Compiling\Modifiers\mQuickComposite.cs" />
     <Compile Include="Compositing\Blends\mBlendMultiply.cs" />
     <Compile Include="Compositing\mCompositeAdd.cs" />
@@ -118,8 +127,8 @@
     <Compile Include="Compositing\mCompositeMorph.cs" />
     <Compile Include="Build\mFilterMask.cs" />
     <Compile Include="Compositing\mCompositeTextureMorph.cs" />
-    <Compile Include="Compiling\mLayer.cs" />
-    <Compile Include="Compiling\mLayerImage.cs" />
+    <Compile Include="Compiling\Layering\mLayer.cs" />
+    <Compile Include="Compiling\Layering\mLayerImage.cs" />
     <Compile Include="Editing\Rotation\mMirror.cs" />
     <Compile Include="Editing\Rotation\mRotateNearistNeighbor.cs" />
     <Compile Include="Editing\Rotation\mRotateBicubic.cs" />
@@ -132,8 +141,15 @@
     <Compile Include="Editing\Resizing\mResizeBilinear.cs" />
     <Compile Include="Editing\Resizing\mResizeBicubic.cs" />
     <Compile Include="Editing\Resizing\mShrinkToColor.cs" />
+    <Compile Include="Simulations\ProceduralNoise\FastNoise.cs" />
+    <Compile Include="Simulations\ProceduralNoise\mFastCellular.cs" />
+    <Compile Include="Simulations\ProceduralNoise\mFastNoise.cs" />
     <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustBradley.cs" />
-    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustLevelsGray.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustContrastStretch.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustGrayWorld.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustLevels16bpp.cs" />
+    <Compile Include="Filtering\Stylized\Sharpening\mSharpenHighBoost.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustHistogramEqualization.cs" />
     <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustLevels.cs" />
     <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustSaturtation.cs" />
     <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustHue.cs" />
@@ -141,6 +157,7 @@
     <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustGamma.cs" />
     <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustInvert.cs" />
     <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustShift.cs" />
+    <Compile Include="Filtering\Adjustments\AdjustColor\mAdjustWhitePatch.cs" />
     <Compile Include="Filtering\Adjustments\FilterColor\mSwapARGB.cs" />
     <Compile Include="Filtering\Adjustments\FilterColor\mSwapRGB.cs" />
     <Compile Include="Filtering\Adjustments\mFillMean.cs" />
@@ -162,6 +179,7 @@
     <Compile Include="Filtering\Adjustments\Thresholds\mThresholdIterative.cs" />
     <Compile Include="Filtering\Filters\mExtractARGBChannel.cs" />
     <Compile Include="Filtering\Filters\mExtractYCbCrChannel.cs" />
+    <Compile Include="Filtering\mFilter.cs" />
     <Compile Include="Filtering\Objects\Edging\mEdgeSobel.cs" />
     <Compile Include="Filtering\Objects\Edging\mEdgeHomogenity.cs" />
     <Compile Include="Filtering\Objects\Erosions\mErosionHatBottom.cs" />
@@ -179,7 +197,9 @@
     <Compile Include="Filtering\Objects\Figures\mFigureBlob.cs" />
     <Compile Include="Filtering\Objects\Figures\mFigureFilter.cs" />
     <Compile Include="Filtering\Objects\Figures\mFigureUnique.cs" />
+    <Compile Include="Filtering\Stylized\Blurring\mBlurBox.cs" />
     <Compile Include="Filtering\Stylized\Dithering\mDitherThresholdCarry.cs" />
+    <Compile Include="Filtering\Stylized\EffectFiltering\mEffectKuwahara.cs" />
     <Compile Include="Filtering\Stylized\EffectFiltering\mEffectRipple.cs" />
     <Compile Include="Filtering\Stylized\EffectFiltering\mEffectPosterization.cs" />
     <Compile Include="Filtering\Stylized\EffectFiltering\mEffectDaube.cs" />
@@ -210,7 +230,7 @@
     <Compile Include="Filtering\Stylized\Smoothing\mSmoothMean.cs" />
     <Compile Include="Filtering\Stylized\Smoothing\mSmoothBilateral.cs" />
     <Compile Include="Filtering\Stylized\Smoothing\mSmoothConservative.cs" />
-    <Compile Include="Filtering\mFilter.cs" />
+    <Compile Include="Filtering\mFilters.cs" />
     <Compile Include="Filtering\Stylized\Streaking\mStreakHorizontal.cs" />
     <Compile Include="Filtering\Stylized\Streaking\mStreakVertical.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,10 +246,18 @@
     <Compile Include="Textures\Presets\mTextureMarble.cs" />
     <Compile Include="Textures\Presets\mTextureTextile.cs" />
     <Compile Include="Textures\Presets\mTextureWood.cs" />
+    <Compile Include="Utilities\Channels\mGetChannel.cs" />
+    <Compile Include="Utilities\Channels\mGetBlue.cs" />
+    <Compile Include="Utilities\Channels\mGetRGBColor.cs" />
+    <Compile Include="Utilities\Channels\mGetGreen.cs" />
+    <Compile Include="Utilities\Channels\mGetHue.cs" />
+    <Compile Include="Utilities\Channels\mGetBrightness.cs" />
+    <Compile Include="Utilities\Channels\mGetSaturation.cs" />
+    <Compile Include="Utilities\Channels\mGetRed.cs" />
+    <Compile Include="Utilities\Channels\mGetAlpha.cs" />
     <Compile Include="Utilities\mBuildBitmap.cs" />
     <Compile Include="Utilities\mConvert.cs" />
-    <Compile Include="Utilities\mGetARGB.cs" />
-    <Compile Include="Utilities\mGetHSL.cs" />
+    <Compile Include="Utilities\Channels\mGetChannels.cs" />
     <Compile Include="Utilities\mMatchBitmaps.cs" />
     <Compile Include="Utilities\mFitScale.cs" />
     <Compile Include="Utilities\mFitStretch.cs" />
@@ -256,10 +284,20 @@
       <Name>Wind</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Types\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>Copy "$(ProjectDir)bin\Debug\$(ProjectName).dll" "$(SolutionDir)Aviary\Build\"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

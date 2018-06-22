@@ -10,23 +10,16 @@ namespace Wind.Containers
     public class wAxis
     {
 
-        public bool HasXAxis = false;
-        public bool HasYAxis = true;
+        public bool Enabled = false;
+        public bool HasGrid = false;
+        public bool HasLabel = true;
+
+        public int MajorSpacing = 0;
+        public int MinorSpacing = 0;
         
-        public bool HasXGrid = false;
-        public bool HasYGrid = false;
-
-        public int XGridSpacing = 1;
-        public int YGridSpacing = 1;
-
-        public wDomain DomainX = new wDomain(0, 0);
-        public wDomain DomainY = new wDomain(0, 0);
-
-        public bool HasXLabel = true;
-        public bool HasYLabel = true;
-
-        public double XAngle = 0;
-        public double YAngle = 0;
+        public wDomain Domain = new wDomain(0, 0);
+        
+        public double Angle = 0;
         
 
         public wAxis()
@@ -34,55 +27,36 @@ namespace Wind.Containers
 
         }
 
-        public wAxis(bool AxisX, bool AxisY)
+        public wAxis(bool IsEnabled)
         {
-            HasXAxis = AxisX;
-            HasYAxis = AxisY;
+            Enabled = IsEnabled;
         }
 
-        public void SetXAxis(int Spacing, wDomain Bounds, bool HasLabel, double Angle)
+        public wAxis(int Spacing, wDomain Bounds, bool HasAxisLabel, double TextAngle)
         {
-            HasXAxis = Spacing > 0;
-            HasXGrid = Spacing > 1;
+            Enabled = Spacing > 0;
+            HasGrid = Spacing > 1;
+            if (Enabled) { MajorSpacing = 1; } else { MajorSpacing = 0; }
+            if (HasGrid) { MinorSpacing = Spacing; } else { MinorSpacing = 0; }
 
-            DomainX = Bounds;
-
-            XGridSpacing = Spacing;
-
-            HasXLabel = HasLabel;
-            XAngle = Angle;
+            Domain = Bounds;
+            
+            HasLabel = HasAxisLabel;
+            Angle = TextAngle;
         }
 
-        public void SetYAxis(int Spacing, wDomain Bounds, bool HasLabel, double Angle)
+        public void SetAxisProperties(int Spacing, wDomain Bounds, bool HasAxisLabel, double TextAngle)
         {
-            HasYAxis = Spacing > 0;
-            HasYGrid = Spacing > 1;
+            Enabled = Spacing > 0;
+            HasGrid = Spacing > 1;
+            if (Enabled) { MajorSpacing = 1; } else { MajorSpacing = 0; }
+            if (HasGrid) { MinorSpacing = Spacing; } else { MinorSpacing = 0; }
 
-            DomainY = Bounds;
+            Domain = Bounds;
 
-            YGridSpacing = Spacing;
-
-            HasYLabel = HasLabel;
-            YAngle = Angle;
+            HasLabel = HasAxisLabel;
+            Angle = TextAngle;
         }
 
-        public void SetXYAxes(int Spacing, wDomain Bounds, bool HasLabel, double Angle)
-        {
-            HasXAxis = Spacing > 0;
-            HasYAxis = Spacing > 0;
-            HasXGrid = Spacing > 1;
-            HasYGrid = Spacing > 1;
-
-            DomainX = Bounds;
-            DomainY = Bounds;
-
-            XGridSpacing = Spacing;
-            YGridSpacing = Spacing;
-
-            HasXLabel = HasLabel;
-            HasYLabel = HasLabel;
-            XAngle = Angle;
-            YAngle = Angle;
-        }
     }
 }

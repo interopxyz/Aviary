@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,20 +15,20 @@ namespace Macaw.Filtering.Objects.Edging
         int Divisor = 10;
         int ThresholdValue = 1;
 
-        public mEdgeSimple(int ValueThreshold,  int DivisorValue)
+        public mEdgeSimple(int ValueThreshold,  int DivisorValue, bool Dynamic)
         {
             Divisor = DivisorValue;
             ThresholdValue = ValueThreshold;
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
             Effect = new Edges();
 
+            Effect.DynamicDivisorForEdges = Dynamic;
             Effect.Threshold = ThresholdValue;
             Effect.Divisor = Divisor;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

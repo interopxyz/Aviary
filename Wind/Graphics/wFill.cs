@@ -9,6 +9,7 @@ namespace Wind.Graphics
 {
     abstract public class wFill
     {
+
         public Brush FillBrush = new SolidColorBrush(Colors.White);
         public DrawingBrush DwgBrush = new DrawingBrush();
         public DrawingGroup DwgGroup = new DrawingGroup();

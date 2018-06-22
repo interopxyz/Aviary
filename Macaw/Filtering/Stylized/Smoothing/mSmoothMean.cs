@@ -5,31 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Filtering.Stylized
 {
     public class mSmoothMean : mFilter
     {
-        Mean Effect = new Mean();
-
-        int SmoothSize = 10;
-
-        public mSmoothMean(int SizeValue)
+        public int Divisor = 0;
+        public mSmoothMean(int divisor)
         {
 
-            SmoothSize = SizeValue;
+            Divisor = divisor;
 
-            BitmapType = 1;
+            BitmapType = BitmapTypes.None;
 
-            Effect = new Mean();
+            Mean Effect = new Mean();
 
-            Effect.Divisor = SmoothSize;
+            Effect.Divisor = Divisor;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

@@ -24,9 +24,9 @@ namespace Wind.Containers
 
         public wImage FillBitmap = null;
 
-        public wColor Background = new wColors().White();
-        public wColor Foreground = new wColors().Black();
-        public wColor StrokeColor = new wColors().Black();
+        public wColor Background = wColors.White;
+        public wColor Foreground = wColors.Black;
+        public wColor StrokeColor = wColors.Black;
 
         public Brush WpfFill = new SolidColorBrush(Colors.White);
         public DrawingBrush WpfPattern = new DrawingBrush();
@@ -48,7 +48,7 @@ namespace Wind.Containers
         public enum StrokeCaps { Flat, Round,Square,Triangle};
         public enum StrokeCorners { Bevel, Mitre, Round};
 
-        public double[] StrokePattern = { 0 };
+        public double[] StrokePattern = { 1,0 };
 
         public StrokeCaps StrokeCap = StrokeCaps.Flat;
         public StrokeCorners StrokeCorner = StrokeCorners.Bevel;
@@ -171,12 +171,12 @@ namespace Wind.Containers
 
         public wGraphic BlackOutline()
         {
-            return new wGraphic(new wColors().Transparent(), new wColors().Transparent(), new wColors().Black(), 1);
+            return new wGraphic(wColors.Transparent, wColors.Transparent, wColors.Black, 1);
         }
 
         public wGraphic BlackFill()
         {
-            return new wGraphic(new wColors().Black(), new wColors().Black(), new wColors().Transparent(), 0);
+            return new wGraphic(wColors.Black, wColors.Black, wColors.Transparent, 0);
         }
 
     }

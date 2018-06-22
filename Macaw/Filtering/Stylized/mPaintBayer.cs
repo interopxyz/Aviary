@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Macaw.Filtering.Stylized
 {
-    public class mPaintBayer : mFilter
+    public class mPaintBayer : mFilters
     {
         BayerFilterOptimized Effect = new BayerFilterOptimized();
 

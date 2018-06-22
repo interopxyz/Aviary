@@ -6,6 +6,7 @@ using System.Drawing;
 using Macaw.Build;
 using Wind.Containers;
 using Macaw.Filtering;
+using Grasshopper.Kernel.Parameters;
 
 namespace Macaw_GH.Build
 {
@@ -25,6 +26,11 @@ namespace Macaw_GH.Build
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
+            pManager[0].Optional = true;
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.SetPersistentData(new Bitmap(10, 10));
+
             pManager.AddGenericParameter("Filter", "F", "---", GH_ParamAccess.item);
         }
 
@@ -43,25 +49,32 @@ namespace Macaw_GH.Build
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             // Declare variables
-
-            IGH_Goo X = null;
+            IGH_Goo Z = null;
             IGH_Goo Y = null;
 
             // Access the input parameters 
-            if (!DA.GetData(0, ref X)) return;
+            if (!DA.GetData(0, ref Z)) return;
             if (!DA.GetData(1, ref Y)) return;
 
-            Bitmap A = null;
-            wObject Z = new wObject();
-            mFilter F = new mFilter();
+            wObject X = new wObject();
+            mFilters F = new mFilters();
+            mSequence S = new mSequence();
 
-            if (X != null) { X.CastTo(out A); }
-            Bitmap B = new Bitmap(A);
+            Bitmap A = new Bitmap(10, 10);
+            if (Z != null) { Z.CastTo(out A); }
+            if (Y != null) { Y.CastTo(out X); }
 
-            if (Y != null) { Y.CastTo(out Z); }
-            F = (mFilter)Z.Element;
+            if (X.SubType == "Filters")
+            {
+                S.AddFilter((mFilters)X.Element);
+            }
+            else if (X.SubType == "Filter")
+            {
+                S.AddFilter((mFilter)X.Element);
+            }
+            F = S;
 
-            B = new mApply(B, F).ModifiedBitmap;
+            Bitmap B = new mApplySequence(A, F).ModifiedBitmap;
 
             DA.SetData(0, B);
 

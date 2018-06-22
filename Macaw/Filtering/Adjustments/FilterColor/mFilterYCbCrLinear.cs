@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AForge;
-using AForge.Imaging.Filters;
+using Accord;
+using Accord.Imaging.Filters;
 using Wind.Types;
 using Macaw.Filtering;
 
@@ -31,7 +31,7 @@ namespace Macaw.Filtering.Adjustments.FilterColor
             Crin = CRinRange;
             Crout = CRoutRange;
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
             Effect = new YCbCrLinear();
 
@@ -43,8 +43,7 @@ namespace Macaw.Filtering.Adjustments.FilterColor
             Effect.OutCb = new Range((float)Cbout.T0, (float)Cbout.T1);
             Effect.OutCr = new Range((float)Crout.T0, (float)Crout.T1);
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

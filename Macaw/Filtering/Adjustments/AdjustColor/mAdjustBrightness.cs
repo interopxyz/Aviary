@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -10,20 +10,15 @@ namespace Macaw.Filtering.Adjustments.AdjustColor
 {
     public class mAdjustBrightness : mFilter
     {
-        BrightnessCorrection Effect = new BrightnessCorrection();
-
-        int ShiftValue = 1;
-
-        public mAdjustBrightness(int ShiftCount)
+        public int AdjustValue = 0;
+        public mAdjustBrightness(int adjustValue)
         {
+            AdjustValue = adjustValue;
+            
+            BitmapType = BitmapTypes.None;
 
-            ShiftValue = ShiftCount;
+            filter = new BrightnessCorrection(AdjustValue);
 
-            BitmapType = 1;
-            FilterIterator Effect = new FilterIterator(new BrightnessCorrection(), ShiftValue);
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
         }
 
     }

@@ -1,10 +1,10 @@
 ﻿using System.Drawing;
-using AForge.Imaging.Filters;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Utilities
 {
-    public class mFitCrop : mFilter
+    public class mFitCrop : mFilters
     {
 
         ResizeBicubic EffectA = null;
@@ -13,7 +13,7 @@ namespace Macaw.Utilities
         public mFitCrop(Bitmap SourceBitmap, Bitmap TargetBitmap)
         {
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
             double Xratio = (((double)TargetBitmap.Width) / ((double)SourceBitmap.Width));
             double Yratio = (((double)TargetBitmap.Height) / ((double)SourceBitmap.Height));

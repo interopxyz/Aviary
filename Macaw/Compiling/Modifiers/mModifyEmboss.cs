@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyEmboss : mModifiers
+    public class mModifyEmboss : mModifier
     {
         EmbossFilter Effect = new EmbossFilter();
 
@@ -19,8 +19,7 @@ namespace Macaw.Compiling.Modifiers
             Effect.Amount = Value;
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

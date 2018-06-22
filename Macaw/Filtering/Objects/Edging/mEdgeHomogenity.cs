@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +12,14 @@ namespace Macaw.Filtering.Objects.Edging
     {
         HomogenityEdgeDetector Effect = new HomogenityEdgeDetector();
         
-
         public mEdgeHomogenity()
         {
 
-            BitmapType = 0;
+            BitmapType = mFilter.BitmapTypes.GrayscaleBT709;
 
             Effect = new HomogenityEdgeDetector();
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            
+            filter = Effect;
         }
 
     }

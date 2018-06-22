@@ -49,7 +49,7 @@ namespace Parrot.Layouts
             pan.VerticalAlignment = VerticalAlignment.Stretch;
             pan.HorizontalAlignment = HorizontalAlignment.Stretch;
             
-            tab.BorderBrush = new SolidColorBrush(new wColors().DarkGray().ToMediaColor());
+            tab.BorderBrush = new SolidColorBrush(wColors.DarkGray.ToMediaColor());
             tab.BorderThickness = new Thickness(0, 0, 0, 2);
             tab.Margin = new Thickness(0, 0, 2, 0);
 

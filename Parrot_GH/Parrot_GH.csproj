@@ -125,10 +125,6 @@
     <Compile Include="Controls\PickTime.cs" />
     <Compile Include="Controls\ViewGrid.cs" />
     <Compile Include="Displays\Gradient.cs" />
-    <Compile Include="Drawings\ComposeDrawing.cs" />
-    <Compile Include="Drawings\ComposeSVG.cs" />
-    <Compile Include="Drawings\ViewBasicMesh.cs" />
-    <Compile Include="Drawings\ViewPointCloud.cs" />
     <Compile Include="Layouts\FrameCard.cs" />
     <Compile Include="Controls\CheckList.cs" />
     <Compile Include="Controls\ColorCanvas.cs" />

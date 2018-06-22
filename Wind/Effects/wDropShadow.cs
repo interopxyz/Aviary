@@ -15,7 +15,7 @@ namespace Wind.Effects
         public DropShadowEffect ShapeEffect = new DropShadowEffect();
 
         public double Radius = 1;
-        public wColor Color = new wColors().Black();
+        public wColor Color = wColors.Black;
         public double Direction = 315.0;
         public double Distance = 2.0;
         public double Opacity = 0.75;

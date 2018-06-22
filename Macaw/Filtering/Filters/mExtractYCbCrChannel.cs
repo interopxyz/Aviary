@@ -1,5 +1,5 @@
-﻿using AForge.Imaging;
-using AForge.Imaging.Filters;
+﻿using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -12,18 +12,14 @@ namespace Macaw.Filtering.Filters
 {
     public class mExtractYCbCrChannel : mFilter
     {
-        YCbCrExtractChannel Effect = new YCbCrExtractChannel();
 
         public mExtractYCbCrChannel(short Channel)
         {
+            
+            BitmapType = mFilter.BitmapTypes.None;
 
-
-            BitmapType = 1;
-
-            Effect = new YCbCrExtractChannel(Channel);
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new YCbCrExtractChannel(Channel);
+            
         }
 
     }

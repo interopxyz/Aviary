@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +10,17 @@ namespace Macaw.Filtering.Objects.Erosions
 {
     public class mErosionDilation : mFilter
     {
-        BinaryDilatation3x3 Effect = new BinaryDilatation3x3();
+        BinaryDilation3x3 Effect = new BinaryDilation3x3();
         
 
-        public mErosionDilation(int X, int Y)
+        public mErosionDilation()
         {
 
-            BitmapType = 0;
+            BitmapType = mFilter.BitmapTypes.GrayscaleBT709;
             
-            Effect = new BinaryDilatation3x3();
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            Effect = new BinaryDilation3x3();
+            
+            filter = Effect;
         }
 
     }

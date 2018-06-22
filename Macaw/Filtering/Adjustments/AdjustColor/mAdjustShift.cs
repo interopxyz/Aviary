@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Macaw.Filtering.Adjustments.AdjustColor
 {
-    public class mAdjustShift : mFilter
+    public class mAdjustShift : mFilters
     {
         RotateChannels Effect = new RotateChannels();
 
@@ -19,7 +19,7 @@ namespace Macaw.Filtering.Adjustments.AdjustColor
 
             AdjustValue = Value;
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
             Effect = new RotateChannels();
 

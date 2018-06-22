@@ -5,31 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Filtering.Stylized
 {
     public class mSmoothMedian : mFilter
     {
-        Median Effect = new Median();
-
-        int SmoothSize = 10;
-
-        public mSmoothMedian(int SizeValue)
+        public int EffectSize = 1;
+        public mSmoothMedian(int effectSize)
         {
 
-            SmoothSize = SizeValue;
+            EffectSize = effectSize;
 
-            BitmapType = 1;
+            BitmapType = BitmapTypes.None;
 
-            Effect = new Median();
+            Median Effect = new Median();
 
-            Effect.Size = SmoothSize;
+            Effect.Size = EffectSize;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

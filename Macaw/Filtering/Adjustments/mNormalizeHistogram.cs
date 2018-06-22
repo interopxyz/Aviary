@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using Macaw.Filtering;
 
 namespace Macaw.Filtering.Adjustments
 {
-    public class mNormalizeHistogram : mFilter
+    public class mNormalizeHistogram : mFilters
     {
         HistogramEqualization Effect = new HistogramEqualization();
         
@@ -16,7 +16,7 @@ namespace Macaw.Filtering.Adjustments
         {
             
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
             Effect = new HistogramEqualization();
 

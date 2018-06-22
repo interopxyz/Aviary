@@ -45,6 +45,7 @@ namespace Pollen_GH.Format
             param1.AddNamedValue("Center", 1);
             param1.AddNamedValue("Left", 2);
             param1.AddNamedValue("Right", 3);
+            param1.AddNamedValue("Perp", 4);
 
             Param_Integer param2 = (Param_Integer)Params.Input[2];
             param2.AddNamedValue("None", 0);

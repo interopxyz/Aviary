@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using Macaw.Utilities;
 using System;
@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace Macaw.Build
 {
-    public class mFilterMask : mFilter
+    public class mFilterMask : mFilters
     {
         public MaskedFilter Effect = null;
 
         Bitmap MaskBitmap = null;
 
-        public mFilterMask(Bitmap SourceBitmap, mFilter Filter)
+        public mFilterMask(Bitmap SourceBitmap, mFilters Filter)
         {
 
             BitmapType = 0;
 
             MaskBitmap = new Bitmap(SourceBitmap);
 
-            MaskBitmap = new mSetFormat(MaskBitmap, 3).ModifiedBitmap;
+            MaskBitmap = new mSetFormat(MaskBitmap, mFilter.BitmapTypes.GrayScale16bpp).ModifiedBitmap;
             
             Effect = new MaskedFilter(Filter.Sequence[0], MaskBitmap);
 

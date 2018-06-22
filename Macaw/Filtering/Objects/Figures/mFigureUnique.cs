@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -16,16 +16,17 @@ namespace Macaw.Filtering.Objects.Figures
         wDomain Width = new wDomain(50, 1000);
         wDomain Height = new wDomain(50, 1000);
 
+        bool Coupled = true;
+        bool Blob = true;
+
         public mFigureUnique()
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.Rgb24bpp;
 
             Effect = new ConnectedComponentsLabeling();
 
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
         public mFigureUnique(wDomain WidthRange, wDomain HeightRange)
@@ -34,16 +35,37 @@ namespace Macaw.Filtering.Objects.Figures
             Width = WidthRange;
             Height = HeightRange;
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.Rgb24bpp;
 
             Effect = new ConnectedComponentsLabeling();
             Effect.MinWidth = (int)Width.T0;
-            Effect.MaxWidth = (int)Height.T0;
-            Effect.MinHeight = (int)Width.T1;
+            Effect.MaxWidth = (int)Width.T1;
+            Effect.MinHeight = (int)Height.T0;
             Effect.MaxHeight = (int)Height.T1;
-            
-            Sequence.Clear();
-            Sequence.Add(Effect);
+
+            filter = Effect;
+        }
+
+        public mFigureUnique(wDomain WidthRange, wDomain HeightRange, bool coupled, bool blob)
+        {
+
+            Width = WidthRange;
+            Height = HeightRange;
+            Coupled = coupled;
+            Blob = blob;
+
+            BitmapType = BitmapTypes.Rgb24bpp;
+
+            Effect = new ConnectedComponentsLabeling();
+            Effect.MinWidth = (int)Width.T0;
+            Effect.MaxWidth = (int)Width.T1;
+            Effect.MinHeight = (int)Height.T0;
+            Effect.MaxHeight = (int)Height.T1;
+
+            Effect.CoupledSizeFiltering = Coupled;
+            Effect.FilterBlobs = Blob;
+
+            filter = Effect;
         }
 
     }

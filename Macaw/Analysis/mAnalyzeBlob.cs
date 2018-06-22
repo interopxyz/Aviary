@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using Wind.Types;
 
 namespace Macaw.Analysis
 {
-    public class mAnalyzeBlobs : mFilter
+    public class mAnalyzeBlobs : mFilters
     {
         ConnectedComponentsLabeling Effect = new ConnectedComponentsLabeling();
 

@@ -20,6 +20,9 @@ using Grasshopper.GUI.Base;
 using Wind.Graphics;
 using GH_IO.Serialization;
 using Wind.Presets;
+using Parrot.Displays;
+using Wind.Utilities;
+using Pollen.Charts;
 
 namespace Wind_GH.Formatting
 {
@@ -35,7 +38,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the FillPattern class.
         /// </summary>
         public FillPattern()
-          : base("Pattern", "Pattern", "---" ,"Aviary", "Format")
+          : base("Pattern", "Pattern", "---" ,"Aviary", "2D Format")
         {
             this.UpdateMessage();
         }
@@ -50,13 +53,13 @@ namespace Wind_GH.Formatting
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Scale", "S", "Scale", GH_ParamAccess.item,1);
             pManager[2].Optional = true;
-            pManager.AddColourParameter("Fore", "F", "---", GH_ParamAccess.item, new wColors().LightGray().ToDrawingColor());
+            pManager.AddColourParameter("Fore", "F", "---", GH_ParamAccess.item, wColors.LightGray.ToDrawingColor());
             pManager[3].Optional = true;
-            pManager.AddColourParameter("Back", "B", "---", GH_ParamAccess.item, new wColors().VeryLightGray().ToDrawingColor());
+            pManager.AddColourParameter("Back", "B", "---", GH_ParamAccess.item, wColors.VeryLightGray.ToDrawingColor());
             pManager[4].Optional = true;
 
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(new pSpacer(new GUIDtoAlpha(Convert.ToString(this.Attributes.InstanceGuid.ToString() + Convert.ToString(this.RunCount)), false).Text)));
 
             Param_Integer param = (Param_Integer)pManager[1];
             param.AddNamedValue("Grid", 0);
@@ -90,8 +93,8 @@ namespace Wind_GH.Formatting
             IGH_Goo Element = null;
             int Pattern = 0;
             double Scale = 1;
-            System.Drawing.Color Background = new wColors().VeryLightGray().ToDrawingColor();
-            System.Drawing.Color ForeGround = new wColors().LightGray().ToDrawingColor();
+            System.Drawing.Color Background = wColors.VeryLightGray.ToDrawingColor();
+            System.Drawing.Color ForeGround = wColors.LightGray.ToDrawingColor();
 
             if (!DA.GetData(0, ref Element)) return;
             if (!DA.GetData(1, ref Pattern)) return;
@@ -169,6 +172,21 @@ namespace Wind_GH.Formatting
                             tDataSet.Graphics.WpfPattern = G.WpfPattern;
 
                             W.Element = tDataSet;
+                            break;
+                        case "Chart":
+                        case "Table":
+
+                            pElement pE = (pElement)W.Element;
+                            pChart pC = pE.PollenControl;
+                            pC.Graphics = G;
+                            
+                            pC.Graphics.WpfFill = G.WpfFill;
+                            pC.Graphics.WpfPattern = G.WpfPattern;
+
+                            pC.SetPatternFill();
+
+                            pE.PollenControl = pC;
+                            W.Element = pE;
                             break;
                     }
                     break;

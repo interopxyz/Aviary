@@ -20,7 +20,7 @@ namespace Pollen_GH.Data
 {
     public class SetDataSet : GH_Component
     {
-        bool modeStatus = false;
+        bool modeStatus = true;
 
         public SetDataSet()
           : base("Data Set", "Data", "---", "Aviary", "Charting & Data")
@@ -33,8 +33,8 @@ namespace Pollen_GH.Data
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Data Set", "D", "A list or datatree of Pollen DataPoints", GH_ParamAccess.list);
-            pManager.AddTextParameter("Set Title", "T", "The title of the data series", GH_ParamAccess.item, "");
+            pManager.AddGenericParameter("Data Set", "D", "A list or datatree of Pollen DataPoints", GH_ParamAccess.tree);
+            pManager.AddTextParameter("Set Title", "T", "The title of the data series", GH_ParamAccess.list, "");
             pManager[1].Optional = true;
             
         }
@@ -68,7 +68,6 @@ namespace Pollen_GH.Data
 
                 //Output the formatting Object
                 DataTrees = new DataSetCollection(Tb, TtA.FromObject(Db));
-
             }
             else
             {
@@ -82,16 +81,15 @@ namespace Pollen_GH.Data
 
                 //Output the formatting Object
                 DataTrees = new DataSetCollection(Ta, TlA.FromObject(Da));
-
             }
 
-            DataTrees.Graphics.Background = new wColors().OffWhite();
+            DataTrees.Graphics.Background = wColors.OffWhite;
 
-            DataTrees.Graphics.FontObject.FontColor = new wColors().Gray();
+            DataTrees.Graphics.FontObject.FontColor = wColors.Gray;
             DataTrees.Graphics.FontObject.Justify = wFontBase.Justification.BottomCenter;
             DataTrees.Graphics.FontObject.IsBold = true;
 
-            DataTrees.Graphics.StrokeColor = new wColors().VeryLightGray();
+            DataTrees.Graphics.StrokeColor = wColors.VeryLightGray;
             DataTrees.Graphics.SetUniformStrokeWeight(1);
             DataTrees.Graphics.SetUniformPadding(2);
 

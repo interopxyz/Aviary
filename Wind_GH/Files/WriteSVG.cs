@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-using Hoopoe.Drawing;
+using Hoopoe.SVG.Drawing;
 using System.IO;
 
 namespace Wind_GH.Files
@@ -26,7 +26,7 @@ namespace Wind_GH.Files
             pManager.AddGenericParameter("SVG Object", "SVG", "---", GH_ParamAccess.item);
             pManager.AddTextParameter("File Path", "P", "The target filepath for the image to be saved", GH_ParamAccess.item);
             pManager[1].Optional = true;
-            pManager.AddBooleanParameter("Save", "S", "If true the bitmap will be saved to a bitmap", GH_ParamAccess.item);
+            pManager.AddBooleanParameter("Save", "S", "If true the file will be saved", GH_ParamAccess.item);
         }
 
         /// <summary>

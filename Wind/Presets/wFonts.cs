@@ -7,96 +7,28 @@ using Wind.Types;
 
 namespace Wind.Presets
 {
-    public class wFonts
+    public static class wFonts
     {
-        public wFont Font = new wFont();
-        public enum FontTypes { Regular, ChartPoint, ChartPointDark, ChartGauge, DataGrid, DataGridTitles, AxisLabel, Transparent }
-        public FontTypes FontType = FontTypes.Regular;
+        //Standard Fonts
+        public static wFont Regular = new wFont("Regular");
+        public static wFont Transparent = new wFont("Transparent","Arial", 8, wColors.Transparent);
 
-        public wFonts()
-        {
+        //Chart Point Fonts
+        public static wFont ChartPoint = new wFont("ChartPoint","Arial",8,new wColor(wColors.White, 230),true);
+        public static wFont ChartPointDark = new wFont("ChartPointDark","Arial", 8, new wColor(wColors.Gray, 230));
+        public static wFont ChartGauge = new wFont("ChartGauge","Calibri", 8, wColors.Gray, true);
 
-        }
-
-
-        public wFonts(FontTypes SetFontType)
-        {
-            FontType = SetFontType;
-
-            switch (SetFontType)
-            {
-                default:
-                    SetRegular();
-                    break;
-                case FontTypes.ChartPoint:
-                    SetChartPoint();
-                    break;
-                case FontTypes.Transparent:
-                    SetTransparent();
-                    break;
-                case FontTypes.ChartPointDark:
-                    SetChartPointDark();
-                    break;
-                case FontTypes.ChartGauge:
-                    SetChartGauge();
-                    break;
-                case FontTypes.DataGrid:
-                    SetDataGrid();
-                    break;
-                case FontTypes.DataGridTitles:
-                    SetDataGridTitles();
-                    break;
-                case FontTypes.AxisLabel:
-                    SetAxisLabels();
-                    break;
-            }
-        }
-
-        private void SetRegular()
-        {
-            Font = new wFont();
-        }
-
-        private void SetChartPoint()
-        {
-            Font = new wFont("Arial", 8, new wColors().White());
-            Font.FontColor.A = 230;
-            Font.IsBold = true;
-        }
-
-        private void SetTransparent()
-        {
-            Font = new wFont("Arial", 8, new wColors().Transparent());
-        }
-
-        private void SetChartPointDark()
-        {
-            Font = new wFont("Arial", 8, new wColors().Gray());
-            Font.FontColor.A = 230;
-        }
-
-        private void SetChartGauge()
-        {
-            Font = new wFont("Calibri", 8, new wColors().Gray());
-            Font.IsBold = true;
-        }
-
-        private void SetAxisLabels()
-        {
-            Font = new wFont("Calibri", 8, new wColors().WashedGray());
-        }
-
-        private void SetDataGrid()
-        {
-            Font = new wFont("Calibri", 10, new wColors().Gray());
-        }
-
-        private void SetDataGridTitles()
-        {
-            Font = new wFont("Arial", 10, new wColors().Gray());
-            Font.Justify = wFontBase.Justification.BottomCenter;
-            Font.IsBold = true;
-        }
-
+        //Data Grid Fonts
+        public static wFont AxisLabel = new wFont("AxisLabels","Calibri", 8, wColors.WashedGray);
+        public static wFont DataGrid = new wFont("DataGrid","Calibri", 10, wColors.Gray);
+        public static wFont DataGridTitle = new wFont("DataGridTitle","Arial", 10, wColors.Gray, wFontBase.Justification.BottomCenter, true, false, false, false);
+        
+        //Labels
+        public static wFont Bold = new wFont("Bold","Arial", 24, wColors.Gray, true);
+        public static wFont Title = new wFont("Title","Arial", 24, wColors.DarkGray);
+        public static wFont SubTitle = new wFont("SubTitle","Arial", 14, wColors.Charcoal);
+        public static wFont Text = new wFont("Text","Calibri", 12, wColors.VeryDarkGray);
+        public static wFont Subtext = new wFont("Subtext","Calibri Light", 10.5, wColors.VeryDarkGray);
     }
+
 }

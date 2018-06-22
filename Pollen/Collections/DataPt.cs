@@ -17,7 +17,6 @@ namespace Pollen.Collections
         public string Name = "";
 
         public int Type = 0;
-        public string Format = "G";
 
         //Sets | Formatting Status
         public bool HasFont = false;
@@ -36,8 +35,8 @@ namespace Pollen.Collections
         
 
         //Sets | Graphics, Fonts, Sizing
-        public wGraphic Graphics = new wGraphic(new wColors().LightGray(),new wColors().Gray(), new wColors().DarkGray(), 1.0,1.0,1.0);
-        public wFont Fonts = new wFont("Arial", 8, new wColors().Gray(),0,true,false,false,false);
+        public wGraphic Graphics = new wGraphic(wColors.LightGray,wColors.Gray, wColors.DarkGray, 1.0,1.0,1.0);
+        public wFont Fonts = new wFont("Arial", 8, wColors.Gray,0,true,false,false,false);
         public wSize Sizes = new wSize(1.0,1.0);
 
         //Sets | Marker Properties
@@ -45,6 +44,7 @@ namespace Pollen.Collections
 
         //Sets | Label Properties
         public wLabel Label = new wLabel();
+        public wLabel ToolTip = new wLabel();
 
         //Object | Status
         public int CustomMarkers = 0;
@@ -65,10 +65,18 @@ namespace Pollen.Collections
 
         public void SetLabel(wLabel NewLabel)
         {
+            NewLabel.Content = Label.Content;
+            NewLabel.Format = Label.Format;
+
             Label = NewLabel;
             CustomLabels += 1;
         }
 
+
+        public void SetToolTip(wLabel NewToolTip)
+        {
+            ToolTip = NewToolTip;
+        }
 
         public void SetMarker(wMarker NewMarker)
         {

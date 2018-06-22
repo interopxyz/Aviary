@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,22 +14,24 @@ namespace Macaw.Filtering.Objects.Erosions
 
         int MaxWidth = 20;
         int MaxHeight = 20;
+        bool Couple = false;
 
-        public mErosionFill(int MaxHoleWidth, int MaxHoleHeight)
+        public mErosionFill(int maxWidth, int maxHeight, bool couple)
         {
 
-            MaxWidth = MaxHoleWidth;
-            MaxHeight = MaxHoleHeight;
+            MaxWidth = maxWidth;
+            MaxHeight = maxHeight;
+            Couple = couple;
 
-            BitmapType = 0;
+            BitmapType = mFilter.BitmapTypes.GrayscaleBT709;
 
             Effect = new FillHoles();
 
             Effect.MaxHoleWidth = MaxWidth;
             Effect.MaxHoleHeight = MaxHeight;
+            Effect.CoupledSizeFiltering = couple;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

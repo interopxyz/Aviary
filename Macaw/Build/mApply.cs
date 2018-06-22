@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-using AForge.Imaging;
-using AForge.Imaging.Filters;
-using AForge.Imaging.ColorReduction;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
+using Accord.Imaging.ColorReduction;
 
 using Macaw.Utilities;
 using Macaw.Filtering;
@@ -15,19 +15,33 @@ namespace Macaw.Build
 {
     public class mApply
     {
-
-        public Bitmap ModifiedBitmap = null;
+        public Bitmap ModifiedBitmap = new Bitmap(10,10);
 
         public mApply(Bitmap SourceBitmap, mFilter Filter)
         {
+            Bitmap TargetBitmap = (Bitmap)SourceBitmap.Clone();
+            TargetBitmap = new mSetFormat(TargetBitmap, Filter.BitmapType).ModifiedBitmap;
+            TargetBitmap = Filter.filter.Apply(TargetBitmap);
 
-            SourceBitmap = new mSetFormat(SourceBitmap, Filter.BitmapType).ModifiedBitmap;
+            ModifiedBitmap = (Bitmap)TargetBitmap.Clone();
+            ModifiedBitmap.CopyResolutionFrom(SourceBitmap);
+            ModifiedBitmap = Accord.Imaging.Image.Clone(ModifiedBitmap, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
-            ModifiedBitmap = SourceBitmap;
-            
-            ModifiedBitmap = Filter.Sequence.Apply(SourceBitmap);
+            //ModifiedBitmap.SetResolution(SourceBitmap.HorizontalResolution, SourceBitmap.VerticalResolution);
+
         }
-        
+
+        public mApply(Bitmap SourceBitmap, mFilter Filter, int Width, int Height)
+        {
+            Bitmap TargetBitmap = (Bitmap)SourceBitmap.Clone();
+            TargetBitmap = new mSetFormat(TargetBitmap, Filter.BitmapType).ModifiedBitmap;
+            TargetBitmap = Filter.filter.Apply(TargetBitmap);
+
+            ModifiedBitmap = (Bitmap)TargetBitmap.Clone();
+            ModifiedBitmap.SetResolution(Width, Height);
+            ModifiedBitmap = Accord.Imaging.Image.Clone(ModifiedBitmap, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+        }
+
 
     }
 }

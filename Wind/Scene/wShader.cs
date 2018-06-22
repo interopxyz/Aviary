@@ -10,9 +10,9 @@ namespace Wind.Scene
 {
     public class wShader
     {
-        public wColor DiffuseColor = new wColors().White();
-        public wColor SpecularColor = new wColors().Black();
-        public wColor EmissiveColor = new wColors().Black();
+        public wColor DiffuseColor = wColors.White;
+        public wColor SpecularColor = wColors.Black;
+        public wColor EmissiveColor = wColors.Black;
 
         public double SpecularValue = 0.0;
         public double EmissiveValue = 0.0;

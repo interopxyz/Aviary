@@ -1,9 +1,9 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Editing.Resizing
 {
-    class mCropRectangle : mFilter
+    public class mCropRectangle : mFilters
     {
 
         Crop Effect = null;
@@ -12,7 +12,7 @@ namespace Macaw.Editing.Resizing
         {
             Sequence.Clear();
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
             Effect = new Crop(new System.Drawing.Rectangle(X, Y, W, H));
 

@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Filtering.Stylized
@@ -16,18 +16,19 @@ namespace Macaw.Filtering.Stylized
         HorizontalRunLengthSmoothing Effect = new HorizontalRunLengthSmoothing();
 
         int GapSize = 32;
+        bool Borders = true;
 
-        public mStreakHorizontal(int GapSizeInteger)
+        public mStreakHorizontal(int GapSizeInteger, bool borders)
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
 
             GapSize = GapSizeInteger;
+            Borders = borders;
 
             Effect = new HorizontalRunLengthSmoothing(GapSize);
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            Effect.ProcessGapsWithImageBorders = Borders;
+            filter = Effect;
         }
 
     }

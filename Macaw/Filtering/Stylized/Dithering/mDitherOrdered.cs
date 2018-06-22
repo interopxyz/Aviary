@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -15,12 +15,10 @@ namespace Macaw.Filtering.Stylized
         public mDitherOrdered()
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
 
-            Effect = new OrderedDithering();
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new OrderedDithering();
+            
         }
 
     }

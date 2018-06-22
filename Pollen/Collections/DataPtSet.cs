@@ -21,6 +21,7 @@ namespace Pollen.Collections
         public wGraphic Graphics = new wGraphic();
         public wFont Fonts = new wFont();
         public wSize Sizes = new wSize();
+        public wLabel Label = new wLabel();
 
         //Sets | Data
         public List<DataPt> Points = new List<DataPt>();
@@ -52,6 +53,7 @@ namespace Pollen.Collections
         public DataPtSet(string CollectionTitle, List<DataPt> DataSet)
         {
             Title = CollectionTitle;
+            Label.Content = CollectionTitle;
             Points = DataSet;
             Count = DataSet.Count;
             CalculateDataExtents();
@@ -60,6 +62,7 @@ namespace Pollen.Collections
         public DataPtSet(string CollectionTitle, List<object> DataSet)
         {
             Title = CollectionTitle;
+            Label.Content = CollectionTitle;
             Points = ObjectListToDataPointList(DataSet);
             Count = DataSet.Count;
         }

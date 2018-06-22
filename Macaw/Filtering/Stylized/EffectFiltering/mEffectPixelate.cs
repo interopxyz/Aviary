@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -11,23 +11,19 @@ namespace Macaw.Filtering.Stylized
     public class mEffectPixelate : mFilter
     {
 
-        Pixellate Effect = new Pixellate();
+        public int PixelHeight = 5;
+        public int PixelWidth = 5;
 
-        int PixelHeight = 5;
-        int PixelWidth = 5;
-
-        public mEffectPixelate(int PixelWidthValue, int PixelHeightValue)
+        public mEffectPixelate(int pixelWidth, int pixelHeight)
         {
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
-            PixelWidth = PixelWidthValue;
-            PixelHeight = PixelHeightValue;
+            PixelWidth = pixelWidth;
+            PixelHeight = pixelHeight;
 
-            Effect = new Pixellate(PixelWidth, PixelHeight);
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new Pixellate(PixelWidth, PixelHeight);
+            
         }
 
     }

@@ -15,7 +15,7 @@ namespace Wind_GH.Scene
         /// Initializes a new instance of the LightDirectional class.
         /// </summary>
         public LightDirectional()
-          : base("Directional Light", "Directional", "---", "Aviary", "3D Scene")
+          : base("Directional Light", "Directional", "---", "Aviary", "3D Format")
         {
         }
 

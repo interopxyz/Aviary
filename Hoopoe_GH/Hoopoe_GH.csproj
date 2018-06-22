@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug32</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ABD54A5E-2DBC-4126-8AC4-2174110804F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hoopoe_GH</RootNamespace>
+    <AssemblyName>Hoopoe_GH</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug32|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="RhinoCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rhino Common\RhinoCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Grasshopper">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rhino Common\Grasshopper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GH_IO">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rhino Common\GH_IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Build\ComposeDrawing.cs" />
+    <Compile Include="Build\ComposeSVG.cs" />
+    <Compile Include="Hoopoe_GHInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Types\RhMesh.cs" />
+    <Compile Include="Wind\Geometry\BitmapToShape.cs" />
+    <Compile Include="Wind\Geometry\BrepToShape.cs" />
+    <Compile Include="Wind\Geometry\CurveToShape.cs" />
+    <Compile Include="Wind\Geometry\MeshToShape.cs" />
+    <Compile Include="Wind\Geometry\PointToShape.cs" />
+    <Compile Include="Wind\Geometry\RhCrvToWindCrv.cs" />
+    <Compile Include="Wind\Geometry\TextToShape.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hoopoe\Hoopoe.csproj">
+      <Project>{4776e010-0059-4d08-8bf8-7ac68247462d}</Project>
+      <Name>Hoopoe</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Parrot\Parrot.csproj">
+      <Project>{52909892-248a-429d-8cb3-96104197459d}</Project>
+      <Name>Parrot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pollen\Pollen.csproj">
+      <Project>{a6f7f36d-ca95-4e10-9b4b-e7f0892338d0}</Project>
+      <Name>Pollen</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wind\Wind.csproj">
+      <Project>{16c589b0-cbae-46b1-bc46-24ad34de87f6}</Project>
+      <Name>Wind</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Shape-Curve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Shape-Curve-05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Shape-Mesh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Shape-Point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Shape-Surface-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Shape-Text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind_Shape-Bitmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hoopoe_SVG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hoopoe_WPF.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
+Copy "$(TargetPath)" "$(SolutionDir)Aviary\Build\$(ProjectName).gha"
+Erase "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug32|AnyCPU' ">
+    <StartArguments>
+    </StartArguments>
+    <StartAction>Program</StartAction>
+    <StartProgram>c:\Program Files (x86)\Rhinoceros 5\System\Rhino4.exe</StartProgram>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FallbackCulture>en-US</FallbackCulture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
+    <StartProgram>c:\Program Files\Rhinoceros 5 (64-bit)\System\Rhino.exe</StartProgram>
+    <StartArguments>
+    </StartArguments>
+    <StartAction>Program</StartAction>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+</Project>

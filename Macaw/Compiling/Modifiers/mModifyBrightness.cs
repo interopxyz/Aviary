@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyBrightness : mModifiers
+    public class mModifyBrightness : mModifier
     {
         BrightnessAdjustmentFilter Effect = new BrightnessAdjustmentFilter();
 
@@ -19,8 +19,7 @@ namespace Macaw.Compiling.Modifiers
             Effect.Level = Value;
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

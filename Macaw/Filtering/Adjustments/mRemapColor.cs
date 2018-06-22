@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using Macaw.Filtering;
 
 namespace Macaw.Filtering.Adjustments
 {
-    class mRemapColor : mFilter
+    class mRemapColor : mFilters
     {
         ColorRemapping Effect = new ColorRemapping();
 
@@ -19,7 +19,7 @@ namespace Macaw.Filtering.Adjustments
 
             AdjustValue = Value;
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
             //Effect = new ColorRemapping(AdjustValue);
 

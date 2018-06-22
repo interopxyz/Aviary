@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyBorder : mModifiers
+    public class mModifyBorder : mModifier
     {
         BorderFilter Effect = new BorderFilter();
 
@@ -24,8 +24,7 @@ namespace Macaw.Compiling.Modifiers
             Effect.Width = Radius;
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

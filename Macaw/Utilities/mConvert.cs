@@ -16,7 +16,7 @@ namespace Macaw.Utilities
 
         public mConvert(Bitmap BitmapImg)
         {
-            ImageBitmap = new Bitmap(BitmapImg);
+            ImageBitmap = (Bitmap)BitmapImg.Clone();
         }
 
         public mConvert(BitmapSource BitmapSourceImg)
@@ -31,7 +31,7 @@ namespace Macaw.Utilities
 
         public Bitmap SourceToBitmap()
         {
-            Bitmap bitmap= null;
+            Bitmap bitmap= new Bitmap(10,10);
             using (MemoryStream outStream = new MemoryStream())
             {
                 PngBitmapEncoder enc = new PngBitmapEncoder();

@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +17,16 @@ namespace Macaw.Filtering.Objects.Figures
         wDomain Width = new wDomain(50, 1000);
         wDomain Height = new wDomain(50, 1000);
 
+        bool Coupled = true;
+
         public mFigureFilter()
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
 
             Effect = new BlobsFiltering();
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
         public mFigureFilter(wDomain WidthRange, wDomain HeightRange)
@@ -34,12 +35,28 @@ namespace Macaw.Filtering.Objects.Figures
             Width = WidthRange;
             Height = HeightRange;
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
 
             Effect = new BlobsFiltering((int)Width.T0, (int)Height.T0, (int)Width.T1,(int)Height.T1);
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
+        }
+
+        public mFigureFilter(wDomain WidthRange, wDomain HeightRange, bool coupled)
+        {
+
+            Width = WidthRange;
+            Height = HeightRange;
+
+            Coupled = coupled;
+
+            BitmapType = BitmapTypes.GrayscaleBT709;
+
+            Effect = new BlobsFiltering((int)Width.T0, (int)Height.T0, (int)Width.T1, (int)Height.T1);
+
+            Effect.CoupledSizeFiltering = Coupled;
+
+            filter = Effect;
         }
 
     }

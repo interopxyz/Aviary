@@ -20,11 +20,11 @@ namespace Macaw.Compiling.Modifiers
 
         public mModifyFlatten(Bitmap ForeImage, System.Drawing.Color BackColor)
             {
+            Bitmap InputBitmap = (Bitmap)ForeImage.Clone();
+            LayerA = new mLayerImage(InputBitmap, 0, 100);
 
-            LayerA = new mLayerImage(ForeImage, 0, 0, 0, 100);
 
-
-            mQuickComposite Comp = new mQuickComposite(ForeImage, new mModifiers(), new wColor(BackColor));
+            mQuickComposite Comp = new mQuickComposite(InputBitmap, new mModifiers(), new wColor(BackColor));
 
             ModifiedBitmap = Comp.ModifiedBitmap;
 

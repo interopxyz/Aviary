@@ -34,7 +34,6 @@ namespace Pollen.Charts
             Element = new Gauge();
             Element.DisableAnimations = false;
             Element.Name = InstanceName;
-            Type = "GaugeChart";
 
         }
 
@@ -82,9 +81,8 @@ namespace Pollen.Charts
             
             Element.Stroke = G.GetStrokeBrush();
             Element.StrokeThickness = G.StrokeWeight[0];
-            
+
             Element.Foreground = G.FontObject.GetFontBrush();
-            
 
             switch (Mode)
             {
@@ -118,10 +116,40 @@ namespace Pollen.Charts
             N = (int)Math.Pow(10, (double)Digits);
             return Math.Truncate(Number * N) / N;
         }
-        
+
+
+        // ################################# OVERIDE GRAPHIC PROPERTIES #################################
         public override void SetSolidFill()
         {
-            Element.Background = DataSet.Graphics.GetBackgroundBrush();
+            Element.Background = Graphics.GetBackgroundBrush();
+        }
+
+        public override void SetGradientFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
+        public override void SetPatternFill()
+        {
+            Element.Background = Graphics.WpfPattern;
+        }
+
+        public override void SetStroke()
+        {
+            Element.BorderBrush = Graphics.GetStrokeBrush();
+            Element.BorderThickness = Graphics.GetStroke();
+        }
+        
+        public void SetFont(wGraphic Graphic)
+        {
+            wGraphic G = DataGrid.Sets[0].Points[0].Graphics;
+            Element.Foreground = G.GetFontBrush();
+            Element.FontFamily = G.FontObject.ToMediaFont().Family;
+            Element.FontSize = G.FontObject.Size;
+            Element.HighFontSize = G.FontObject.Size;
+            Element.FontStyle = G.FontObject.ToMediaFont().Italic;
+            Element.FontWeight = G.FontObject.ToMediaFont().Bold;
+
         }
 
         public void SetAxisAppearance()
@@ -136,17 +164,6 @@ namespace Pollen.Charts
         public void SetCorners(wGraphic Graphic)
         {
         }
-
-        public void SetFont(wGraphic Graphic)
-        {
-            wGraphic G = DataGrid.Sets[0].Points[0].Graphics;
-            Element.Foreground = G.GetFontBrush();
-            Element.FontFamily = G.FontObject.ToMediaFont().Family;
-            Element.FontSize = G.FontObject.Size;
-            Element.HighFontSize = G.FontObject.Size;
-            Element.FontStyle = G.FontObject.ToMediaFont().Italic;
-            Element.FontWeight = G.FontObject.ToMediaFont().Bold;
-
-        }
+        
     }
 }

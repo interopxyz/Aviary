@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-using AForge;
-using AForge.Imaging.Filters;
-using AForge.Imaging;
+using Accord;
+using Accord.Imaging.Filters;
+using Accord.Imaging;
 
 using Pot = CsPotrace;
 
@@ -13,7 +13,7 @@ using Wind.Geometry.Vectors;
 
 namespace Macaw.Analysis
 {
-    public class mAnalyzePotrace : mFilter
+    public class mAnalyzePotrace : mFilters
     {
         
         public List<List<wPoint[]>> VectorizedPointArray = new List<List<wPoint[]>>();

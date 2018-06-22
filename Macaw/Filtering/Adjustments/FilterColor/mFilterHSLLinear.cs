@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,18 +26,17 @@ namespace Macaw.Filtering.Adjustments.FilterColor
             LumIn = LuminanceIn;
             LumOut = LuminanceOut;
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
             Effect = new HSLLinear();
             
-            Effect.InSaturation = new AForge.Range((float)SatIn.T0, (float)SatIn.T1);
-            Effect.OutSaturation = new AForge.Range((float)SatOut.T0, (float)SatOut.T1);
+            Effect.InSaturation = new Accord.Range((float)SatIn.T0, (float)SatIn.T1);
+            Effect.OutSaturation = new Accord.Range((float)SatOut.T0, (float)SatOut.T1);
 
-            Effect.InLuminance = new AForge.Range((float)LumIn.T0, (float)LumIn.T1);
-            Effect.OutLuminance = new AForge.Range((float)LumOut.T0, (float)LumOut.T1);
+            Effect.InLuminance = new Accord.Range((float)LumIn.T0, (float)LumIn.T1);
+            Effect.OutLuminance = new Accord.Range((float)LumOut.T0, (float)LumOut.T1);
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

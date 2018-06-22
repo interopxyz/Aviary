@@ -8,17 +8,23 @@ using Macaw.Filtering.Objects.Edging;
 using Grasshopper.Kernel.Types;
 using System.Drawing;
 using Macaw.Build;
+using System.Windows.Forms;
+using GH_IO.Serialization;
 
 namespace Macaw_GH.Filtering.Figure
 {
-    public class Edge : GH_Component
+    public class Edge : GH_Component, IGH_VariableParameterComponent
     {
+        private int ModeIndex = 0;
+        private string[] modes = { "Difference", "Homogenity", "Sobel", "Simple", "Canny" };
+
         /// <summary>
         /// Initializes a new instance of the Edge class.
         /// </summary>
         public Edge()
           : base("Edge", "Edge", "...", "Aviary", "Bitmap Edit")
         {
+            UpdateMessage();
         }
 
         /// <summary>
@@ -28,25 +34,9 @@ namespace Macaw_GH.Filtering.Figure
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
             pManager[0].Optional = true;
+
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(new Bitmap(100, 100)));
-
-            pManager.AddIntegerParameter("Mode", "M", "---", GH_ParamAccess.item, 0);
-            pManager[1].Optional = true;
-            pManager.AddIntegerParameter("Size", "S", "---", GH_ParamAccess.item, 1);
-            pManager[2].Optional = true;
-            pManager.AddIntegerParameter("Low", "L", "---", GH_ParamAccess.item, 0);
-            pManager[3].Optional = true;
-            pManager.AddIntegerParameter("High", "H", "---", GH_ParamAccess.item, 0);
-            pManager[4].Optional = true;
-            
-
-            Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("Simple", 0);
-            param.AddNamedValue("Difference", 1);
-            param.AddNamedValue("Canny", 2);
-            param.AddNamedValue("Homogenity", 3);
-            param.AddNamedValue("Sobel", 4);
+            paramGen.SetPersistentData(new Bitmap(10, 10));
         }
 
         /// <summary>
@@ -66,51 +56,271 @@ namespace Macaw_GH.Filtering.Figure
         {
             // Declare variables
             IGH_Goo X = null;
-            int M = 0;
             int L = 0;
             int H = 0;
             int S = 1;
+            bool Z = false;
 
             // Access the input parameters 
             if (!DA.GetData(0, ref X)) return;
-            if (!DA.GetData(1, ref M)) return;
-            if (!DA.GetData(2, ref S)) return;
-            if (!DA.GetData(3, ref L)) return;
-            if (!DA.GetData(4, ref H)) return;
             
-            Bitmap A = null;
+            Bitmap A = new Bitmap(10, 10);
             if (X != null) { X.CastTo(out A); }
-            Bitmap B = new Bitmap(A);
-            
-            mFilter Filter = new mFilter();
 
-            switch (M)
+            mFilter Filter = new mFilter();
+            
+            switch (ModeIndex)
             {
                 case 0:
-                    Filter = new mEdgeSimple(L,S);
-                    break;
-                case 1:
                     Filter = new mEdgeDifference();
                     break;
-                case 2:
-                    Filter = new mEdgeCanny(L, H, S);
-                    break;
-                case 3:
+                case 1:
                     Filter = new mEdgeHomogenity();
                     break;
+                case 2:
+                    if (!DA.GetData(1, ref Z)) return;
+                    Filter = new mEdgeSobel(Z);
+                    break;
+                case 3:
+                    if (!DA.GetData(1, ref S)) return;
+                    if (!DA.GetData(2, ref L)) return;
+                    if (!DA.GetData(3, ref Z)) return;
+                    Filter = new mEdgeSimple(L, S, Z);
+                    break;
                 case 4:
-                    Filter = new mEdgeSobel();
+                    if (!DA.GetData(1, ref S)) return;
+                    if (!DA.GetData(2, ref L)) return;
+                    if (!DA.GetData(3, ref H)) return;
+                    Filter = new mEdgeCanny(L, H, S);
                     break;
             }
 
-            B = new mApply(A, Filter).ModifiedBitmap;
-            
+
+            Bitmap B = new mApply(A, Filter).ModifiedBitmap;
             wObject W = new wObject(Filter, "Macaw", Filter.Type);
 
 
             DA.SetData(0, B);
             DA.SetData(1, W);
         }
+
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
+        {
+            base.AppendAdditionalMenuItems(menu);
+            Menu_AppendSeparator(menu);
+            Menu_AppendItem(menu, modes[0], ModeA, true, ModeIndex == 0);
+            Menu_AppendItem(menu, modes[1], ModeB, true, ModeIndex == 1);
+            Menu_AppendItem(menu, modes[2], ModeC, true, ModeIndex == 2);
+            Menu_AppendItem(menu, modes[3], ModeD, true, ModeIndex == 3);
+            Menu_AppendItem(menu, modes[4], ModeE, true, ModeIndex == 4);
+        }
+
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void ModeA(Object sender, EventArgs e)
+        {
+            ModeIndex = 0;
+
+            ClearInputs();
+
+            Params.OnParametersChanged();
+            UpdateMessage();
+            ExpireSolution(true);
+        }
+
+        private void ModeB(Object sender, EventArgs e)
+        {
+            ModeIndex = 1;
+
+            ClearInputs();
+
+            Params.OnParametersChanged();
+            UpdateMessage();
+            ExpireSolution(true);
+        }
+
+        private void ModeC(Object sender, EventArgs e)
+        {
+            ModeIndex = 2;
+
+            ClearInputs(2);
+            paramBoolean(1, "Scale", "S", "---", GH_ParamAccess.item, true);
+
+            Params.OnParametersChanged();
+            UpdateMessage();
+            ExpireSolution(true);
+        }
+
+        private void ModeD(Object sender, EventArgs e)
+        {
+            ModeIndex = 3;
+
+            ClearInputs(4);
+            paramInteger(1, "Threshold", "T", "---", GH_ParamAccess.item, 1);
+            paramInteger(2, "Divisor", "D", "---", GH_ParamAccess.item, 255);
+            paramBoolean(3, "Dynamic", "B", "---", GH_ParamAccess.item, true);
+
+            Params.OnParametersChanged();
+            UpdateMessage();
+            ExpireSolution(true);
+        }
+
+        private void ModeE(Object sender, EventArgs e)//Additive
+        {
+            ModeIndex = 4;
+
+            ClearInputs(4);
+            paramInteger(1, "Low", "L", "---", GH_ParamAccess.item, 0);
+            paramInteger(2, "High", "H", "---", GH_ParamAccess.item, 0);
+            paramInteger(3, "Size", "S", "---", GH_ParamAccess.item, 1);
+
+            Params.OnParametersChanged();
+            UpdateMessage();
+            ExpireSolution(true);
+        }
+
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void ClearInputs(int clearFrom = 1)
+        {
+            int j = Params.Input.Count - 1;
+
+            if (Params.Input.Count > (clearFrom = 1))
+            {
+                for (int i = clearFrom - 1; i < j; i++)
+                {
+                    Params.Input[Params.Input.Count - 1].RemoveAllSources();
+                    Params.Input[Params.Input.Count - 1].ClearData();
+                    Params.UnregisterInputParameter(Params.Input[Params.Input.Count - 1]);
+                }
+            }
+            Params.OnParametersChanged();
+
+        }
+
+        private void SetParamProperties(int index, string name, string nickName, string description, GH_ParamAccess access)
+        {
+            Params.Input[index].Name = name;
+            Params.Input[index].NickName = nickName;
+            Params.Input[index].Description = description;
+            Params.Input[index].Access = access;
+        }
+
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void paramInteger(int index, string name, string nickName, string description, GH_ParamAccess access, int Value)
+        {
+            if ((Params.Input.Count - 1) < index)
+            {
+                Params.RegisterInputParam(new Param_Integer(), index);
+                Params.OnParametersChanged();
+            }
+            else
+            {
+                if (Params.Input[index].GetType() != new Param_Integer().GetType())
+                {
+                    Params.Input[index].RemoveAllSources();
+                    Params.Input[index] = new Param_Integer();
+                    Params.OnParametersChanged();
+                }
+            }
+
+            Params.Input[index].ClearData();
+
+            Param_Integer param = (Param_Integer)Params.Input[index];
+            param.PersistentData.ClearData();
+            param.PersistentData.Clear();
+            param.SetPersistentData(Value);
+            SetParamProperties(index, name, nickName, description, access);
+
+        }
+
+        private void paramBoolean(int index, string name, string nickName, string description, GH_ParamAccess access, bool Value)
+        {
+            if ((Params.Input.Count - 1) < index)
+            {
+                Params.RegisterInputParam(new Param_Boolean(), index);
+                Params.OnParametersChanged();
+            }
+            else
+            {
+                if (Params.Input[index].GetType() != new Param_Boolean().GetType())
+                {
+                    Params.Input[index].RemoveAllSources();
+                    Params.Input[index] = new Param_Boolean();
+                    Params.OnParametersChanged();
+                }
+            }
+
+            Params.Input[index].ClearData();
+
+            Param_Boolean param = (Param_Boolean)Params.Input[index];
+            param.PersistentData.ClearData();
+            param.PersistentData.Clear();
+            param.SetPersistentData(Value);
+            SetParamProperties(index, name, nickName, description, access);
+
+        }
+
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void UpdateMessage()
+        {
+            Message = modes[ModeIndex];
+        }
+
+        /// <summary>
+        /// Adds to the default serialization method to save the current child status so it persists on copy/paste and save/reopen.
+        /// </summary>
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("FilterMode", ModeIndex);
+
+            return base.Write(writer);
+        }
+
+        /// <summary>
+        /// Adds to the default deserialization method to retrieve the saved child status so it persists on copy/paste and save/reopen.
+        /// </summary>
+        public override bool Read(GH_IReader reader)
+        {
+            ModeIndex = reader.GetInt32("FilterMode");
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.SetPersistentData(new Bitmap(10, 10));
+
+            UpdateMessage();
+            return base.Read(reader);
+        }
+
+        bool IGH_VariableParameterComponent.CanInsertParameter(GH_ParameterSide side, int index)
+        {
+            return false;
+        }
+
+        bool IGH_VariableParameterComponent.CanRemoveParameter(GH_ParameterSide side, int index)
+        {
+            return false;
+        }
+
+        IGH_Param IGH_VariableParameterComponent.CreateParameter(GH_ParameterSide side, int index)
+        {
+            return new Param_GenericObject(); ;
+        }
+
+        bool IGH_VariableParameterComponent.DestroyParameter(GH_ParameterSide side, int index)
+        {
+            //Nothing to do here by the moment
+            return true;
+        }
+
+        void IGH_VariableParameterComponent.VariableParameterMaintenance()
+        {
+        }
+
+
 
         /// <summary>
         /// Set Exposure level for the component.

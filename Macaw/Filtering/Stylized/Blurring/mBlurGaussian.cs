@@ -5,32 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Filtering.Stylized
 {
     public class mBlurGaussian : mFilter
     {
-        GaussianBlur Effect = new GaussianBlur();
 
-        double Sigma = 0;
-        int EffectSize = 0;
+        double Sigma = 4;
+        int KernalSize = 11;
 
-        public mBlurGaussian(double SigmaValue, int SizeValue)
+        public mBlurGaussian(double sigma, int kernalSize)
         {
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
             
-            Sigma = SigmaValue;
-            EffectSize = SizeValue;
+            Sigma = sigma;
+            KernalSize = kernalSize;
 
-            Effect = new GaussianBlur(Sigma, EffectSize);
+            filter = new GaussianBlur(Sigma, KernalSize);
             
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
 
         }
 

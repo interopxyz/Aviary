@@ -5,33 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Filtering.Stylized
 {
     public class mSharpenGaussian : mFilter
     {
-        GaussianSharpen Effect = new GaussianSharpen();
+        public double Sigma = 4;
+        public int KernalSize = 11;
 
-        double Sigma = 1.4;
-        int EffectSize = 10;
-
-        public mSharpenGaussian(double SigmaValue, int SizeValue)
+        public mSharpenGaussian(int kernalSize, double sigma)
         {
 
-            BitmapType = 1;
+            BitmapType = BitmapTypes.None;
             
-            Sigma = SigmaValue;
-            EffectSize = SizeValue;
+            Sigma = sigma;
+            KernalSize = kernalSize;
 
-            Effect = new GaussianSharpen(Sigma, EffectSize);
+            filter = new GaussianSharpen(Sigma, KernalSize);
             
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
-
         }
 
     }

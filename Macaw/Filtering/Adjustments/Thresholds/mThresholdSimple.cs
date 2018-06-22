@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +11,17 @@ namespace Macaw.Filtering.Adjustments.Thresholds
     public class mThresholdSimple : mFilter
     {
         Threshold Effect = new Threshold();
+        int ThresholdValue = 10;
 
-        public mThresholdSimple()
+        public mThresholdSimple(int thresholdValue)
         {
+            ThresholdValue = thresholdValue;
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
 
-            Effect = new Threshold();
+            Effect = new Threshold(ThresholdValue);
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

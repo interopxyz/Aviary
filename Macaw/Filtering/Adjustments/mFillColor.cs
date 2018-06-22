@@ -1,5 +1,5 @@
-﻿using AForge;
-using AForge.Imaging.Filters;
+﻿using Accord;
+using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -27,7 +27,7 @@ namespace Macaw.Filtering.Adjustments
             Fill = FillColor;
             CoordPoint = new IntPoint(X, Y);
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
             Effect = new PointedColorFloodFill();
 
@@ -35,8 +35,7 @@ namespace Macaw.Filtering.Adjustments
             Effect.FillColor = Fill;
             Effect.StartingPoint = CoordPoint;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

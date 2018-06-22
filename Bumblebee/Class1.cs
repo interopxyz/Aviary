@@ -8,5 +8,11 @@ namespace Bumblebee
 {
     public class Class1
     {
+        #region Public methods
+        public void MethodOnlyWorks2016()
+        {
+
+        }
+        #endregion
     }
 }

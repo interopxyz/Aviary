@@ -46,43 +46,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly\hAnimation.cs" />
-    <Compile Include="Assembly\hDocument.cs" />
-    <Compile Include="Assembly\hFrames.cs" />
-    <Compile Include="Assembly\hGroup.cs" />
-    <Compile Include="Assembly\hPath.cs" />
-    <Compile Include="Assembly\hShape.cs" />
-    <Compile Include="Drawing\CompileSVG.cs" />
-    <Compile Include="Geometry\Compound\hCompoundCurve.cs" />
-    <Compile Include="Geometry\Curves\hPolyline.cs" />
-    <Compile Include="Geometry\Curves\hCubicBezierSpline.cs" />
-    <Compile Include="Geometry\hCurve.cs" />
-    <Compile Include="Geometry\Primitives\hCircle.cs" />
-    <Compile Include="Geometry\Primitives\hEllipse.cs" />
-    <Compile Include="Geometry\Primitives\hLine.cs" />
-    <Compile Include="Geometry\Text\hText.cs" />
-    <Compile Include="Graphics\Effects\hBlur.cs" />
-    <Compile Include="Graphics\Effects\hDropShadow.cs" />
-    <Compile Include="Graphics\Effects\hEffect.cs" />
-    <Compile Include="Graphics\Effects\hFilter.cs" />
-    <Compile Include="Graphics\Fill\hFillBitmap.cs" />
-    <Compile Include="Graphics\Fill\hFillColor.cs" />
-    <Compile Include="Graphics\Fill\hFillGradientLinear.cs" />
-    <Compile Include="Graphics\Fill\hFillGradientRadial.cs" />
-    <Compile Include="Graphics\Fill\hFillOpacity.cs" />
-    <Compile Include="Graphics\hGraphic.cs" />
-    <Compile Include="Graphics\Stroke\hStrokeCap.cs" />
-    <Compile Include="Graphics\Stroke\hStrokeColor.cs" />
-    <Compile Include="Graphics\Stroke\hStrokeCorner.cs" />
-    <Compile Include="Graphics\Stroke\hStrokeMitre.cs" />
-    <Compile Include="Graphics\Stroke\hStrokeOpacity.cs" />
-    <Compile Include="Graphics\Stroke\hStrokePattern.cs" />
-    <Compile Include="Graphics\Stroke\hStrokeWeight.cs" />
-    <Compile Include="Modify\hModify.cs" />
+    <Compile Include="SVG\Assembly\hAnimation.cs" />
+    <Compile Include="SVG\Assembly\hDocument.cs" />
+    <Compile Include="SVG\Assembly\hFrames.cs" />
+    <Compile Include="SVG\Assembly\hGroup.cs" />
+    <Compile Include="SVG\Assembly\hPath.cs" />
+    <Compile Include="SVG\Assembly\hShape.cs" />
+    <Compile Include="SVG\Drawing\CompileSVG.cs" />
+    <Compile Include="SVG\Geometry\Compound\hCompoundCurve.cs" />
+    <Compile Include="SVG\Geometry\Curves\hPolyline.cs" />
+    <Compile Include="SVG\Geometry\Curves\hCubicBezierSpline.cs" />
+    <Compile Include="SVG\Geometry\hCurve.cs" />
+    <Compile Include="SVG\Geometry\Primitives\hCircle.cs" />
+    <Compile Include="SVG\Geometry\Primitives\hEllipse.cs" />
+    <Compile Include="SVG\Geometry\Primitives\hLine.cs" />
+    <Compile Include="SVG\Geometry\Text\hText.cs" />
+    <Compile Include="SVG\Graphics\Effects\hBlur.cs" />
+    <Compile Include="SVG\Graphics\Effects\hDropShadow.cs" />
+    <Compile Include="SVG\Graphics\Effects\hEffect.cs" />
+    <Compile Include="SVG\Graphics\Effects\hFilter.cs" />
+    <Compile Include="SVG\Graphics\Fill\hFillBitmap.cs" />
+    <Compile Include="SVG\Graphics\Fill\hFillColor.cs" />
+    <Compile Include="SVG\Graphics\Fill\hFillGradientLinear.cs" />
+    <Compile Include="SVG\Graphics\Fill\hFillGradientRadial.cs" />
+    <Compile Include="SVG\Graphics\Fill\hFillOpacity.cs" />
+    <Compile Include="SVG\Graphics\hGraphic.cs" />
+    <Compile Include="SVG\Graphics\Stroke\hStrokeCap.cs" />
+    <Compile Include="SVG\Graphics\Stroke\hStrokeColor.cs" />
+    <Compile Include="SVG\Graphics\Stroke\hStrokeCorner.cs" />
+    <Compile Include="SVG\Graphics\Stroke\hStrokeMitre.cs" />
+    <Compile Include="SVG\Graphics\Stroke\hStrokeOpacity.cs" />
+    <Compile Include="SVG\Graphics\Stroke\hStrokePattern.cs" />
+    <Compile Include="SVG\Graphics\Stroke\hStrokeWeight.cs" />
+    <Compile Include="SVG\Modify\hModify.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Modify\hBoolean.cs" />
-    <Compile Include="Transform\hRotate.cs" />
-    <Compile Include="Transform\hTransform.cs" />
+    <Compile Include="SVG\Modify\hBoolean.cs" />
+    <Compile Include="SVG\Transform\hRotate.cs" />
+    <Compile Include="SVG\Transform\hTransform.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -93,7 +93,9 @@
       <Name>Wind</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Wind\Geometry\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>Copy "$(ProjectDir)bin\Debug\$(ProjectName).dll" "$(SolutionDir)Aviary\Build\"</PostBuildEvent>

@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +16,11 @@ namespace Macaw.Filtering.Objects.Edging
         public mEdgeDifference()
         {
 
-            BitmapType = 0;
+            BitmapType = mFilter.BitmapTypes.GrayscaleBT709;
 
             Effect = new DifferenceEdgeDetector();
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            
+            filter = Effect;
         }
 
     }

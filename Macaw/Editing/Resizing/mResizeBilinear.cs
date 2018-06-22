@@ -1,9 +1,9 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Editing.Resizing
 {
-    public class mResizeBilinear : mFilter
+    public class mResizeBilinear : mFilters
     {
 
         ResizeBilinear Effect = null;
@@ -15,7 +15,7 @@ namespace Macaw.Editing.Resizing
         public mResizeBilinear(int ImageWidth, int ImageHeight)
         {
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
             Width = ImageWidth;
             Height = ImageHeight;

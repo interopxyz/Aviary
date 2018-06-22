@@ -32,17 +32,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Accord">
+      <HintPath>..\packages\Accord.3.8.0\lib\net45\Accord.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Accord.Imaging">
+      <HintPath>..\packages\Accord.Imaging.3.8.0\lib\net45\Accord.Imaging.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Accord.Math">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net45\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net45\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics">
+      <HintPath>..\packages\Accord.Statistics.3.8.0\lib\net45\Accord.Statistics.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -62,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Collections\CompiledData.cs" />
     <Compile Include="Collections\CompiledDataSet.cs" />
+    <Compile Include="Containers\wAxes.cs" />
     <Compile Include="Containers\wAxis.cs" />
     <Compile Include="Containers\wEffects.cs" />
     <Compile Include="Containers\wFrames.cs" />
@@ -95,18 +99,21 @@
     <Compile Include="Geometry\Curves\Primitives\wEllipse.cs" />
     <Compile Include="Geometry\Curves\Primitives\wLine.cs" />
     <Compile Include="Geometry\Curves\Primitives\wRectangle.cs" />
+    <Compile Include="Geometry\Utilities\PolylineToMesh.cs" />
     <Compile Include="Graphics\wFill.cs" />
     <Compile Include="Graphics\wFillBitmap.cs" />
     <Compile Include="Graphics\wFillGradient.cs" />
     <Compile Include="Graphics\wFillSolid.cs" />
     <Compile Include="Graphics\wFillSwatch.cs" />
+    <Compile Include="Presets\wCameras.cs" />
     <Compile Include="Presets\wColors.cs" />
     <Compile Include="Presets\wGradients.cs" />
     <Compile Include="Presets\wFonts.cs" />
     <Compile Include="Presets\wStrokes.cs" />
+    <Compile Include="Scene\Cameras\wCameraStandard.cs" />
     <Compile Include="Scene\Lights\wLightAmbient.cs" />
     <Compile Include="Scene\Lights\wLightSpot.cs" />
-    <Compile Include="Scene\wCamera.cs" />
+    <Compile Include="Scene\Cameras\wCamera.cs" />
     <Compile Include="Geometry\Shapes\wCompoundCurve.cs" />
     <Compile Include="Geometry\Shapes\wPath.cs" />
     <Compile Include="Geometry\Shapes\wText.cs" />
@@ -119,16 +126,19 @@
     <Compile Include="Scene\Lights\wLightPoint.cs" />
     <Compile Include="Scene\wLight.cs" />
     <Compile Include="Scene\wShader.cs" />
-    <Compile Include="Types\wFontBase.cs" />
+    <Compile Include="Types\Domain\wDomain3D.cs" />
+    <Compile Include="Types\Domain\wDomain2D.cs" />
+    <Compile Include="Types\Font\wFontBase.cs" />
     <Compile Include="Types\wImage.cs" />
-    <Compile Include="Types\wColor.cs" />
-    <Compile Include="Types\wDomain.cs" />
-    <Compile Include="Types\wFont.cs" />
-    <Compile Include="Types\wFontDrawing.cs" />
-    <Compile Include="Types\wFontMedia.cs" />
+    <Compile Include="Types\Graphic\wColor.cs" />
+    <Compile Include="Types\Domain\wDomain.cs" />
+    <Compile Include="Types\Font\wFont.cs" />
+    <Compile Include="Types\Font\wFontDrawing.cs" />
+    <Compile Include="Types\Font\wFontMedia.cs" />
     <Compile Include="Containers\wSize.cs" />
-    <Compile Include="Types\wGradient.cs" />
-    <Compile Include="Types\wPattern.cs" />
+    <Compile Include="Types\Graphic\wGradient.cs" />
+    <Compile Include="Types\Matrix\wMatrix.cs" />
+    <Compile Include="Types\Graphic\wPattern.cs" />
     <Compile Include="Utilities\AdjustLuminance.cs" />
     <Compile Include="Utilities\GetBitmap.cs" />
     <Compile Include="Utilities\GUIDtoAlpha.cs" />

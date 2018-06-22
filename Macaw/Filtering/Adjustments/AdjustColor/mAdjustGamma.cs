@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +10,17 @@ namespace Macaw.Filtering.Adjustments.AdjustColor
 {
     public class mAdjustGamma : mFilter
     {
-        GammaCorrection Effect = new GammaCorrection();
 
-        double AdjustValue = 1.0;
+        public double Gamma = 0;
 
-        public mAdjustGamma(double Value)
+        public mAdjustGamma(double gamma)
         {
 
-            AdjustValue = Value;
+            Gamma = gamma;
 
-            BitmapType = 2;
+            BitmapType = BitmapTypes.Rgb24bpp;
 
-            Effect = new GammaCorrection(AdjustValue);
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new GammaCorrection(Gamma);
         }
 
     }

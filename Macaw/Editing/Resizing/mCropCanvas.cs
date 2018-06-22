@@ -1,9 +1,9 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Editing.Resizing
 {
-    public class mCropCanvas : mFilter
+    public class mCropCanvas : mFilters
     {
         
         
@@ -11,7 +11,7 @@ namespace Macaw.Editing.Resizing
         {
             Sequence.Clear();
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
             int IW = ImageWidth;
             int IH = ImageHeight;

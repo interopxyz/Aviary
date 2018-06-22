@@ -18,7 +18,7 @@ namespace Wind_GH.Effects
         /// Initializes a new instance of the DropShadow class.
         /// </summary>
         public DropShadow()
-          : base("Drop Shadow", "Shadow", "---", "Aviary", "Format")
+          : base("Drop Shadow", "Shadow", "---", "Aviary", "2D Format")
         {
         }
 

@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 
 
 namespace Macaw.Filtering.Objects.Erosions
@@ -10,12 +10,11 @@ namespace Macaw.Filtering.Objects.Erosions
         public mErosionHatBottom()
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.Rgb24bpp;
 
             Effect = new BottomHat();
-            
-            Sequence.Clear();
-            Sequence.Add(Effect);
+
+            filter = Effect;
         }
 
     }

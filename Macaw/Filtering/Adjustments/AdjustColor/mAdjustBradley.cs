@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -12,21 +12,20 @@ namespace Macaw.Filtering.Adjustments.AdjustColor
     {
         BradleyLocalThresholding Effect = new BradleyLocalThresholding();
 
-        float ShiftValue = (float)0.5;
+        float DifferenceLimit = (float)0.5;
 
-        public mAdjustBradley(float ShiftCount)
+        public mAdjustBradley(float differenceLimit)
         {
 
-            ShiftValue = ShiftCount;
+            DifferenceLimit = differenceLimit;
 
-            BitmapType = 0;
+            BitmapType = mFilter.BitmapTypes.None;
 
             Effect = new BradleyLocalThresholding();
 
-            Effect.PixelBrightnessDifferenceLimit = ShiftValue;
+            Effect.PixelBrightnessDifferenceLimit = DifferenceLimit;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

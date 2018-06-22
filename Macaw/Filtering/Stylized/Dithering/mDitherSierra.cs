@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -11,16 +11,20 @@ namespace Macaw.Filtering.Stylized
     public class mDitherSierra : mFilter
     {
         SierraDithering Effect = new SierraDithering();
-        
-        public mDitherSierra()
+
+        byte ThresholdValue = 32;
+
+        public mDitherSierra(byte thresholdValue)
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
+
+            ThresholdValue = thresholdValue;
 
             Effect = new SierraDithering();
+            Effect.ThresholdValue = ThresholdValue;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

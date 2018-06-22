@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -15,19 +15,18 @@ namespace Macaw.Filtering.Stylized
 
         int Radius = 5;
 
-        public mEffectJitter(int EffectRadius)
+        public mEffectJitter(int radius)
         {
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
-            Radius = EffectRadius;
+            Radius = radius;
 
             Effect = new Jitter();
 
             Effect.Radius = Radius;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

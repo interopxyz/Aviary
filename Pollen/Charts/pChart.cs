@@ -14,16 +14,19 @@ namespace Pollen.Charts
     public class pChart
     {
         public DataSetCollection DataSet = new DataSetCollection();
-        public wGraphic Graphics;
-        public string Type;
+        public wGraphic Graphics = new wGraphic();
+        public string Type = "Chart";
         public p3D View = new p3D();
 
         public enum ChartTypes { Point, Bar, Column, Line, StepLine, Spline, Area, SplineArea, Pie, Doughnut, Polar, Radar, Funnel, Pyramid,Range,RangeColumn,RangeBar,RangeBubble};
 
-
-
-
+        
         public virtual void SetThreeDView()
+        {
+
+        }
+
+        public virtual void SetToolTip()
         {
 
         }

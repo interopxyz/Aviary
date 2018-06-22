@@ -24,9 +24,9 @@ namespace Pollen.Charts
         {
             ChartSeries = new Series();
             
-            ChartSeries.AxisLabel = InstanceName;
-            ChartSeries.XAxisType = AxisType.Primary;
-            ChartSeries.LegendText = InstanceName;
+            //ChartSeries.AxisLabel = InstanceName;
+            //ChartSeries.XAxisType = AxisType.Primary;
+            //ChartSeries.LegendText = InstanceName;
             
             //Set Element info setup
             Type = "PointSeries";
@@ -129,29 +129,20 @@ namespace Pollen.Charts
         public void SetChartLabels( wLabel NewLabel)
         {
             int Mode = (int)NewLabel.Position;
-            ChartSeries.SmartLabelStyle.Enabled = NewLabel.HasLeader;
-            ChartSeries.SmartLabelStyle.CalloutStyle = LabelCalloutStyle.None;
-            
-            Mode = Mode % 9;
-            int[] Indices = { 2, 64, 128, 256, 8, 4, 1, 16, 32 };
-            ChartSeries.SmartLabelStyle.MovingDirection = ((LabelAlignmentStyles)Indices[Mode]);
-
-            ChartSeries.SmartLabelStyle.IsOverlappedHidden = false;
-            ChartSeries.SmartLabelStyle.CalloutLineAnchorCapStyle = LineAnchorCapStyle.Round;
+            ChartSeries.SmartLabelStyle.Enabled = DataList.Points[0].Label.HasLeader;
             ChartSeries.SmartLabelStyle.AllowOutsidePlotArea = LabelOutsidePlotAreaStyle.Yes;
+            ChartSeries.SmartLabelStyle.IsMarkerOverlappingAllowed = false;
+            ChartSeries.SmartLabelStyle.MaxMovingDistance = 600;
+            ChartSeries.SmartLabelStyle.CalloutStyle = LabelCalloutStyle.None;
+            ChartSeries.SmartLabelStyle.CalloutLineAnchorCapStyle = LineAnchorCapStyle.None;
         }
         
         public void SetNumericData(int Mode)
         {
             int cnt = (DataList.Count - ChartSeries.Points.Count);
-            ChartSeries.SmartLabelStyle.Enabled = DataList.Points[0].Label.HasLeader;
-            ChartSeries.SmartLabelStyle.AllowOutsidePlotArea = LabelOutsidePlotAreaStyle.Yes;
-            //ChartSeries.SmartLabelStyle.MovingDirection = (LabelAlignmentStyles)DataList.Points[0].Label.GetPositionIndex();
-            ChartSeries.SmartLabelStyle.IsMarkerOverlappingAllowed = false;
-            ChartSeries.SmartLabelStyle.MaxMovingDistance = 600;
-            ChartSeries.SmartLabelStyle.CalloutStyle = LabelCalloutStyle.Box;
-            ChartSeries.SmartLabelStyle.CalloutLineAnchorCapStyle = LineAnchorCapStyle.None;
-            
+
+            ChartSeries.AxisLabel = DataList.Title;
+            ChartSeries.ToolTip = "";
 
             //Add more data points if the total number of values is higher than the current number of data points in the chart
             if (DataList.Count > ChartSeries.Points.Count)
@@ -181,6 +172,18 @@ namespace Pollen.Charts
 
                 DataPoint Pt = new DataPoint();
                 
+                //Set Tooltip
+                if (D.ToolTip.Enabled)
+                {
+                    Pt.ToolTip = D.Label.Content;
+                    Pt.LabelToolTip = D.ToolTip.Content;
+                }
+                else
+                {
+                    Pt.ToolTip = "";
+                    Pt.LabelToolTip = "";
+                }
+
                 //Set Point [Fill / Line] Color
                 if (StrokeMode) { Pt.Color = D.Graphics.StrokeColor.ToDrawingColor(); } else { Pt.Color = D.Graphics.Background.ToDrawingColor(); }
 
@@ -189,7 +192,8 @@ namespace Pollen.Charts
                 Pt.BorderWidth = (int)G.StrokeWeight[0];
 
                 //Set Label Properties
-                Pt.Label = D.Label.Content;
+                Pt.IsValueShownAsLabel = true;
+                Pt.LabelFormat = "{0:" + D.Label.Format + "}";
                 Pt.Font = G.FontObject.ToDrawingFont().FontObject;
                 
                 Pt.LabelAngle = (int)G.FontObject.Angle;

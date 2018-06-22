@@ -16,8 +16,8 @@ namespace Pollen.Collections
         public string Title = "";
         public int Count = 0;
 
-        public wGraphic Graphics = new wGraphic(new wColors().Transparent(), new wColors().Transparent(), new wColors().LightGray(), 1.0, 300, 300);
-        public wFont Fonts = new wFont("Arial", 8, new wColors().LightGray());
+        public wGraphic Graphics = new wGraphic(wColors.Transparent, wColors.Transparent, wColors.LightGray, 1.0, 300, 300);
+        public wFont Fonts = new wFont("Arial", 8, wColors.LightGray);
 
 
         public bool EnableThreeD = false;
@@ -30,8 +30,9 @@ namespace Pollen.Collections
         public int TotalCustomLabel = 0;
         public int TotalCustomTitles = 0;
 
-        public wAxis Axes = new wAxis();
+        public wAxes Axes = new wAxes(false,false);
         public wLabel Label = new wLabel();
+        public wLabel ToolTip = new wLabel();
 
         public List<DataPtSet> Sets = new List<DataPtSet>();
 
@@ -95,26 +96,7 @@ namespace Pollen.Collections
 
             Sets.Add(TempSet);
         }
-
-
-        public void SetAxis(int Mode, bool Grid, bool Label, int Spacing, wDomain YDomain)
-        {
-            if (Mode != 1)
-            {
-                Axes.HasXLabel = Label;
-                Axes.HasXGrid = Grid;
-                Axes.XGridSpacing = Spacing;
-            }
-
-            if (Mode != 2)
-            {
-                Axes.HasYLabel = Label;
-                Axes.HasYGrid = Grid;
-                Axes.YGridSpacing = Spacing;
-            }
-
-            Axes.DomainY = YDomain;
-        }
+        
 
         public void SetUniformLabel(wLabel NewLabel, double Angle)
         {
@@ -196,11 +178,10 @@ namespace Pollen.Collections
             }
         }
 
-        public void SetDefaultStrokes(wStrokes.StrokeTypes StrokeType, wGradients.GradientTypes ColorPallet, bool IsRandom, bool BySeries)
+        public void SetDefaultStrokes(wStrokes.StrokeTypes StrokeType, wGradient Pallet, bool IsRandom, bool BySeries)
         {
-            wGradients Pallet = new wGradients(ColorPallet);
 
-            int Total = Pallet.Colors.Count;
+            int Total = Pallet.ColorSet.Count;
 
             if (IsRandom)
             {
@@ -211,7 +192,7 @@ namespace Pollen.Collections
                     {
                         int Index = rnd.Next(0, Total);
                         Sets[i].Points[j].Graphics = new wStrokes(Sets[i].Points[j].Graphics, StrokeType).GetGraphic();
-                        Sets[i].Points[j].Graphics.StrokeColor = Pallet.Colors[Index];
+                        Sets[i].Points[j].Graphics.StrokeColor = Pallet.ColorSet[Index];
                     }
                 }
             }
@@ -227,7 +208,7 @@ namespace Pollen.Collections
                     for (int j = 0; j < Sets[i].Points.Count; j++)
                     {
                         Sets[i].Points[j].Graphics = new wStrokes(Sets[i].Points[j].Graphics, StrokeType).GetGraphic();
-                        Sets[i].Points[j].Graphics.StrokeColor = Pallet.Colors[((i * im) + (j * jm)) % Total];
+                        Sets[i].Points[j].Graphics.StrokeColor = Pallet.ColorSet[((i * im) + (j * jm)) % Total];
                     }
                 }
             }
@@ -245,11 +226,21 @@ namespace Pollen.Collections
             }
         }
 
-        public void SetDefaultPallet(wGradients.GradientTypes ColorPallet, bool IsRandom, bool BySeries)
+        public void SetDefaultLabels(wLabel CustomLabel)
         {
-            wGradients Pallet = new wGradients(ColorPallet);
+            for (int i = 0; i < Sets.Count; i++)
+            {
+                for (int j = 0; j < Sets[i].Points.Count; j++)
+                {
+                    Sets[i].Points[j].SetLabel(CustomLabel);
+                }
+            }
+        }
 
-            int Total = Pallet.Colors.Count;
+        public void SetDefaultPallet(wGradient Pallet, bool IsRandom, bool BySeries)
+        {
+
+            int Total = Pallet.ColorSet.Count;
 
             if (IsRandom)
             {
@@ -259,7 +250,7 @@ namespace Pollen.Collections
                     for (int j = 0; j < Sets[i].Points.Count; j++)
                     {
                         int Index = rnd.Next(0, Total);
-                        Sets[i].Points[j].Graphics.Background = Pallet.Colors[Index];
+                        Sets[i].Points[j].Graphics.Background = Pallet.ColorSet[Index];
                     }
                 }
             }
@@ -274,18 +265,17 @@ namespace Pollen.Collections
                 {
                     for (int j = 0; j < Sets[i].Points.Count; j++)
                     {
-                        Sets[i].Points[j].Graphics.Background = Pallet.Colors[((i * im) + (j * jm)) % Total];
+                        Sets[i].Points[j].Graphics.Background = Pallet.ColorSet[((i * im) + (j * jm)) % Total];
                     }
                 }
             }
 
         }
 
-        public void SetDefaultMarkers(wGradients.GradientTypes ColorPallet,wMarker.MarkerType MarkerType, bool IsRandom, bool BySeries)
+        public void SetDefaultMarkers(wGradient Pallet,wMarker.MarkerType MarkerType, bool IsRandom, bool BySeries)
         {
-            wGradients Pallet = new wGradients(ColorPallet);
 
-            int Total = Pallet.Colors.Count;
+            int Total = Pallet.ColorSet.Count;
 
             if (IsRandom)
             {
@@ -295,7 +285,7 @@ namespace Pollen.Collections
                     for (int j = 0; j < Sets[i].Points.Count; j++)
                     {
                         int Index = rnd.Next(0, Total);
-                        Sets[i].Points[j].Marker.Graphics.Background = Pallet.Colors[Index];
+                        Sets[i].Points[j].Marker.Graphics.Background = Pallet.ColorSet[Index];
                         Sets[i].Points[j].Marker.Mode = MarkerType;
                     }
                 }
@@ -311,7 +301,7 @@ namespace Pollen.Collections
                 {
                     for (int j = 0; j < Sets[i].Points.Count; j++)
                     {
-                        Sets[i].Points[j].Marker.Graphics.Background = Pallet.Colors[((i * im) + (j * jm)) % Total];
+                        Sets[i].Points[j].Marker.Graphics.Background = Pallet.ColorSet[((i * im) + (j * jm)) % Total];
                         Sets[i].Points[j].Marker.Mode = MarkerType;
                     }
                 }
@@ -338,6 +328,19 @@ namespace Pollen.Collections
                     Sets[i].Points[j].Marker = UniformMarker;
                     Sets[i].Points[j].CustomMarkers += 1;
                     TotalCustomMarker += 1;
+                }
+            }
+        }
+
+        public void SetUniformTooltips(wLabel newToolTip)
+        {
+            for (int i = 0; i < Sets.Count; i++)
+            {
+                for (int j = 0; j < Sets[i].Points.Count; j++)
+                {
+                    Sets[i].Points[j].ToolTip.Enabled = true;
+                    Sets[i].Points[j].ToolTip.Graphics = newToolTip.Graphics;
+                    Sets[i].Points[j].ToolTip.Font = newToolTip.Font;
                 }
             }
         }

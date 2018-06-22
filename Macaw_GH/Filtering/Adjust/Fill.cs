@@ -17,12 +17,17 @@ namespace Macaw_GH.Filtering.Adjust
 {
     public class Fill : GH_Component
     {
+
+        public int ModeIndex = 0;
+        private string[] modes = { "Color", "Means" };
+
         /// <summary>
         /// Initializes a new instance of the Fill class.
         /// </summary>
         public Fill()
           : base("Fill", "Fill", "...", "Aviary", "Bitmap Edit")
         {
+            UpdateMessage();
         }
 
         /// <summary>
@@ -48,9 +53,8 @@ namespace Macaw_GH.Filtering.Adjust
 
 
             Param_Integer param = (Param_Integer)Params.Input[1];
-            param.AddNamedValue("Color", 0);
-            param.AddNamedValue("Mean", 1);
-            param.AddNamedValue("Key", 2);
+            param.AddNamedValue(modes[0], 0);
+            param.AddNamedValue(modes[1], 1);
         }
 
         /// <summary>
@@ -60,7 +64,6 @@ namespace Macaw_GH.Filtering.Adjust
         {
             pManager.AddGenericParameter("Bitmap", "B", "---", GH_ParamAccess.item);
             pManager.AddGenericParameter("Filter", "F", "---", GH_ParamAccess.item);
-            pManager.AddGenericParameter("Modifier", "M", "---", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -85,41 +88,40 @@ namespace Macaw_GH.Filtering.Adjust
             if (!DA.GetData(4, ref X)) return;
             if (!DA.GetData(5, ref P)) return;
 
-            Bitmap A = null;
-            if (Z != null) { Z.CastTo(out A); }
-            Bitmap B = new Bitmap(A);
+            M = M % 10;
 
+            if (M != ModeIndex)
+            {
+                ModeIndex = M;
+                UpdateMessage();
+            }
+
+            Bitmap A = new Bitmap(10, 10);
+            if (Z != null) { Z.CastTo(out A); }
             mFilter Filter = new mFilter();
-            mModifiers Modifier = new mModifiers();
 
             switch (M)
             {
                 case 0:
                     Filter = new mFillColor(T,F, (int)P.X, (int)P.Y);
-                    Modifier = new mModifyColorKey(new wColor(T.A, T.R, T.G, T.B), (byte)X);
-                    B = new mApply(A, Filter).ModifiedBitmap;
 
                     break;
                 case 1:
                     Filter = new mFillMean(T,(int)P.X, (int)P.Y);
-                    Modifier = new mModifyColorKey(new wColor(T.A, T.R, T.G, T.B), (byte)X);
-                    B = new mApply(A, Filter).ModifiedBitmap;
 
-                    break;
-                case 2:
-                    Filter = new mFillMean(T, (int)P.X, (int)P.Y);
-                    Modifier = new mModifyColorKey(new wColor(T.A, T.R, T.G, T.B), (byte)X);
-                    B = new Bitmap(new mQuickComposite(A,Modifier,new wColor(F.A, F.R, F.G, F.B)).ModifiedBitmap);
                     break;
             }
             
-            wObject W = new wObject(Filter, "Macaw", Filter.Type); 
-            wObject V = new wObject(Modifier, "Macaw", Modifier.Type);
+            Bitmap B = new mApply(A, Filter).ModifiedBitmap;
+            wObject W = new wObject(Filter, "Macaw", Filter.Type);
             
-
             DA.SetData(0, B);
             DA.SetData(1, W);
-            DA.SetData(2, V); 
+        }
+
+        private void UpdateMessage()
+        {
+            Message = modes[ModeIndex];
         }
 
         /// <summary>

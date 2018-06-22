@@ -1,10 +1,10 @@
 ﻿using System.Drawing;
-using AForge.Imaging.Filters;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Utilities
 {
-    public class mFitStretch : mFilter
+    public class mFitStretch : mFilters
     {
 
         ResizeBicubic Effect = null;
@@ -12,7 +12,7 @@ namespace Macaw.Utilities
         public mFitStretch(Bitmap SourceBitmap, Bitmap TargetBitmap)
         {
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
             Effect = new ResizeBicubic(TargetBitmap.Width, TargetBitmap.Height);
 

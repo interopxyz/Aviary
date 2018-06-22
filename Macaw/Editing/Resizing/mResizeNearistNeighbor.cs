@@ -1,9 +1,9 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Editing.Resizing
 {
-    public class mResizeNearistNeighbor : mFilter
+    public class mResizeNearistNeighbor : mFilters
     {
 
         ResizeNearestNeighbor Effect = null;
@@ -14,7 +14,7 @@ namespace Macaw.Editing.Resizing
         public mResizeNearistNeighbor(int ImageWidth, int ImageHeight)
         {
 
-            BitmapType = 1;
+            BitmapType = mFilter.BitmapTypes.None;
 
             Width = ImageWidth;
             Height = ImageHeight;

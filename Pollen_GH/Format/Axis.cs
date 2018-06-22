@@ -9,6 +9,7 @@ using Wind.Types;
 using Rhino.Geometry;
 using Parrot.Containers;
 using Pollen.Charts;
+using GH_IO.Serialization;
 
 namespace Pollen_GH.Format
 {
@@ -20,7 +21,7 @@ namespace Pollen_GH.Format
         /// Initializes a new instance of the Axis class.
         /// </summary>
         public Axis()
-          : base("Format Axis", "Axis","---","Aviary", "Charting & Data")
+          : base("Format Axis", "Axis", "---", "Aviary", "Charting & Data")
         {
             this.UpdateMessage();
         }
@@ -30,18 +31,18 @@ namespace Pollen_GH.Format
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("DataSet", "D", "---", GH_ParamAccess.item);
+            pManager.AddGenericParameter("DataSet", "Dc", "---", GH_ParamAccess.item);
 
             pManager.AddIntegerParameter("Grid Line Spacing", "S", "---", GH_ParamAccess.item, 1);
             pManager[1].Optional = true;
 
-            pManager.AddBooleanParameter("Label", "L", "---", GH_ParamAccess.item, false);
+            pManager.AddBooleanParameter("Label", "L", "---", GH_ParamAccess.item, true);
             pManager[2].Optional = true;
 
             pManager.AddNumberParameter("Angle", "A", "---", GH_ParamAccess.item, 0);
             pManager[3].Optional = true;
 
-            pManager.AddIntervalParameter("Bounds", "B", "---", GH_ParamAccess.item, new Interval(0,0));
+            pManager.AddIntervalParameter("Bounds", "B", "---", GH_ParamAccess.item, new Interval(0, 0));
             pManager[4].Optional = true;
 
         }
@@ -63,7 +64,7 @@ namespace Pollen_GH.Format
             IGH_Goo Element = null;
             int S = 1;
             bool L = true;
-            int A = 0;
+            double A = 0;
             Interval B = new Interval(0, 0);
 
             if (!DA.GetData(0, ref Element)) return;
@@ -75,6 +76,13 @@ namespace Pollen_GH.Format
             wObject W;
             Element.CastTo(out W);
 
+            double B0 = B.T0;
+            double B1 = B.T1;
+            if (B0 == B1)
+            {
+                B1 = B0 + 1;
+            }
+
             switch (W.Type)
             {
                 case "Pollen":
@@ -83,17 +91,18 @@ namespace Pollen_GH.Format
                     {
                         case "DataSet":
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
-
-                            switch(modeStatus)
+                            tDataSet.Axes.Enabled = true;
+                            switch (modeStatus)
                             {
                                 default:
-                                    tDataSet.Axes.SetXYAxes(S, new wDomain(B.T0, B.T1), L, A);
+                                    tDataSet.Axes.AxisX.SetAxisProperties(S, new wDomain(B0, B1), L, A);
+                                    tDataSet.Axes.AxisY.SetAxisProperties(S, new wDomain(B0, B1), L, A);
                                     break;
                                 case 1:
-                                    tDataSet.Axes.SetXAxis(S, new wDomain(B.T0, B.T1), L, A);
+                                    tDataSet.Axes.AxisX.SetAxisProperties(S, new wDomain(B0, B1), L, A);
                                     break;
                                 case 2:
-                                    tDataSet.Axes.SetYAxis(S, new wDomain(B.T0, B.T1), L, A);
+                                    tDataSet.Axes.AxisY.SetAxisProperties(S, new wDomain(B0, B1), L, A);
                                     break;
                             }
 
@@ -102,7 +111,7 @@ namespace Pollen_GH.Format
                     }
                     break;
             }
-            
+
 
             DA.SetData(0, W);
         }
@@ -113,25 +122,42 @@ namespace Pollen_GH.Format
             Menu_AppendSeparator(menu);
 
             Menu_AppendItem(menu, "X&Y Axis", XYAxisMode, true, (modeStatus == 0));
-            Menu_AppendItem(menu, "X Axis", XAxisMode, true, (modeStatus==1));
+            Menu_AppendItem(menu, "X Axis", XAxisMode, true, (modeStatus == 1));
             Menu_AppendItem(menu, "Y Axis", YAxisMode, true, (modeStatus == 2));
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.SetInt32("Mode", modeStatus);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            modeStatus = reader.GetInt32("Mode");
+
+            return base.Read(reader);
         }
 
         private void XYAxisMode(Object sender, EventArgs e)
         {
             modeStatus = 0;
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void XAxisMode(Object sender, EventArgs e)
         {
             modeStatus = 1;
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 
         private void YAxisMode(Object sender, EventArgs e)
         {
             modeStatus = 2;
+            this.UpdateMessage();
             this.ExpireSolution(true);
         }
 

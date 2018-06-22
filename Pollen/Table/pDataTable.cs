@@ -15,6 +15,8 @@ using Wind.Collections;
 using Pollen.Collections;
 using Pollen.Charts;
 
+using MaterialDesignThemes.Wpf;
+
 namespace Parrot.Controls
 {
     public class pDataTable : pChart
@@ -26,12 +28,14 @@ namespace Parrot.Controls
         DataTable Table = new DataTable();
         DataSet DS = new DataSet();
 
+        DataSetCollection DataCollection = new DataSetCollection();
+
         public pDataTable(string InstanceName)
         {
             //Set Element info setup
             Element = new DataGridControl();
             Element.Name = InstanceName;
-            Type = "GridView";
+            Type = "Table";
 
             //Set "Clear" appearance to all elements
         }
@@ -39,8 +43,14 @@ namespace Parrot.Controls
 
         public void SetProperties(DataSetCollection WindDataCollection)
         {
-             Table = new DataTable();
-             DS = new DataSet();
+            Element.SelectionMode = SelectionMode.Extended;
+            Element.SelectionUnit = SelectionUnit.Cell;
+            Element.NavigationBehavior = NavigationBehavior.CellOnly;
+            Element.Foreground = Brushes.Aqua;
+            DataCollection = WindDataCollection;
+
+            Table = new DataTable();
+            DS = new DataSet();
 
             DS.Tables.Add(Table);
             for (int i = 0; i < WindDataCollection.Sets.Count; i++)
@@ -56,27 +66,13 @@ namespace Parrot.Controls
                 for (int j = 0; j < WindDataCollection.Count; j++)
                 {
                     row[WindDataCollection.Sets[j].Title] = WindDataCollection.Sets[j].Points[i].Text;
-                    
+
                 }
                 Table.Rows.Add(row);
             }
 
-            //DataGridCollectionViewSource VS = Table.DefaultView;
-
-            //Element.ColumnStretchMode = ResizeCols;
-            //Element.CanUserResizeRows = ResizeRows;
-
-            //Element.CanUserSortColumns = Sortable;
-
-            //Element.VerticalGridLinesBrush = Element.HorizontalGridLinesBrush;
-
-            //Element.CanUserAddRows = AddRows;
-
-            //Element.point
-
-            //dView.DataContext = able.DefaultView;
-
-            Element.View = dView; 
+            
+            Element.View = dView;
             Element.DataContext = DS.Tables[0].DefaultView;
             Element.ItemsSource = DS.Tables[0].DefaultView;
             Element.AutoCreateColumns = true;
@@ -84,7 +80,7 @@ namespace Parrot.Controls
 
         void SetOverides(bool Alternate)
         {
-
+            
             if (Alternate)
             {
                 //Element.AlternationCount = 2;
@@ -116,7 +112,47 @@ namespace Parrot.Controls
 
             }
         }
-        
 
+        // ################################# OVERIDE GRAPHIC PROPERTIES #################################
+        public override void SetSize()
+        {
+            double W = double.NaN;
+            double H = double.NaN;
+            if (Graphics.Width > 0) { W = Graphics.Width; }
+            if (Graphics.Height > 0) { H = Graphics.Height; }
+
+            Element.Width = W;
+            Element.Height = H;
+
+        }
+
+        public override void SetSolidFill()
+        {
+            Element.Background = Graphics.GetBackgroundBrush();
+        }
+
+        public override void SetGradientFill()
+        {
+            Element.Background = Graphics.WpfFill;
+        }
+
+        public override void SetPatternFill()
+        {
+            Element.Background = Graphics.WpfPattern;
+        }
+
+        public override void SetStroke()
+        {
+            Element.BorderBrush = Graphics.GetStrokeBrush();
+            Element.BorderThickness = Graphics.GetStroke();
+        }
+
+        public override void SetFont()
+        {
+            Element.FontFamily = Graphics.FontObject.ToMediaFont().Family;
+            Element.FontSize = Graphics.FontObject.Size;
+            Element.FontStyle = Graphics.FontObject.ToMediaFont().Italic;
+            Element.FontWeight = Graphics.FontObject.ToMediaFont().Bold;
+        }
     }
 }

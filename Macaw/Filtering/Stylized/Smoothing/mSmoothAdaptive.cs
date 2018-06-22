@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
 using Macaw.Filtering;
 
 namespace Macaw.Filtering.Stylized
@@ -15,19 +15,19 @@ namespace Macaw.Filtering.Stylized
     {
         AdaptiveSmoothing Effect = new AdaptiveSmoothing();
 
-        double Factor = 2.0;
+        public double Factor = 1.0;
 
-        public mSmoothAdaptive(double SmoothFactor)
+        public mSmoothAdaptive(double factor)
         {
 
-            BitmapType = 2;
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
+
+            Factor = factor;
 
             Effect = new AdaptiveSmoothing();
-
             Effect.Factor = Factor;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

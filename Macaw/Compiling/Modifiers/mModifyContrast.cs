@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyContrast : mModifiers
+    public class mModifyContrast : mModifier
     {
         ContrastAdjustmentFilter Effect = new ContrastAdjustmentFilter();
 
@@ -19,8 +19,7 @@ namespace Macaw.Compiling.Modifiers
             Effect.Level = Value;
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

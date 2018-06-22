@@ -15,6 +15,8 @@ using Wind.Types;
 using Grasshopper.Kernel.Parameters;
 using Wind.Graphics;
 using Pollen.Collections;
+using Parrot.Displays;
+using Wind.Utilities;
 
 namespace Wind_GH.Formatting
 {
@@ -29,7 +31,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the FillBitmap class.
         /// </summary>
         public FillBitmap()
-          : base("ImageFill", "ImageFill", "---", "Aviary", "Format")
+          : base("ImageFill", "ImageFill", "---", "Aviary", "2D Format")
         {
         }
 
@@ -72,7 +74,9 @@ namespace Wind_GH.Formatting
             ParamC.AddNamedValue("FlipY", 2);
             ParamC.AddNamedValue("FlipXY", 3);
             ParamC.AddNamedValue("Tile", 4);
-            
+
+            Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(new pSpacer(new GUIDtoAlpha(Convert.ToString(this.Attributes.InstanceGuid.ToString() + Convert.ToString(this.RunCount)), false).Text)));
 
         }
 

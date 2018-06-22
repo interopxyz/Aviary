@@ -27,6 +27,15 @@ namespace Wind.Geometry.Curves
             IsSingle = false;
         }
 
+        public wPolyline(wPoint[] PointArray)
+        {
+
+            Points = PointArray.ToList();
+            Indices = Enumerable.Range(0, Points.Count).ToList();
+
+            IsSingle = false;
+        }
+
         public wPolyline(List<wPoint> PointSet, bool IsCurveClosed)
         {
 
@@ -37,6 +46,38 @@ namespace Wind.Geometry.Curves
             if (IsClosed) { Indices.Add(0); }
 
             IsSingle = false;
+        }
+
+        public bool IsPolylineClosed()
+        {
+
+            return ((Points[0].X == Points[Points.Count - 1].X) && (Points[0].Y == Points[Points.Count - 1].Y) && (Points[0].Z == Points[Points.Count - 1].Z));
+        }
+
+        public void ClosePolyline()
+        {
+            if(!IsPolylineClosed())
+            {
+                Points.Add(new wPoint(Points[0].X, Points[0].Y, Points[0].Z));
+                Indices.Add(Indices.Count);
+            }
+
+        }
+
+        public void OpenPolyline()
+        {
+            if (IsPolylineClosed())
+            {
+                Points.RemoveAt(Points.Count-1);
+                Indices.RemoveAt(Indices.Count - 1);
+            }
+
+        }
+
+
+        public void Flip()
+        {
+            Points.Reverse();
         }
         
     }

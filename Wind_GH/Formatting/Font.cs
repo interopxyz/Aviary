@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 
 using Grasshopper.Kernel;
@@ -14,6 +15,9 @@ using Parrot.Containers;
 using Pollen.Collections;
 using Wind.Geometry.Curves;
 using Parrot.Controls;
+using Wind.Utilities;
+using Parrot.Displays;
+using Pollen.Charts;
 
 namespace Wind_GH.Formatting
 {
@@ -23,7 +27,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the Font class.
         /// </summary>
         public Font()
-          : base("Font Advanced", "Font", "---", "Aviary", "Format")
+          : base("Font Advanced", "Font", "---", "Aviary", "2D Format")
         {
         }
 
@@ -68,9 +72,9 @@ namespace Wind_GH.Formatting
             param.AddNamedValue("Bottom Left", 6);
             param.AddNamedValue("Bottom Center", 7);
             param.AddNamedValue("Bottom Right", 8);
-            
+
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(new pSpacer(new GUIDtoAlpha(Convert.ToString(this.Attributes.InstanceGuid.ToString() + Convert.ToString(this.RunCount)), false).Text)));
         }
 
         /// <summary>
@@ -79,6 +83,7 @@ namespace Wind_GH.Formatting
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("Object", "O", "Updated Wind Object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Font", "F", "Font Object", GH_ParamAccess.item);
             pManager.AddGenericParameter("Graphics", "G", "Graphics Object", GH_ParamAccess.item);
         }
 
@@ -115,10 +120,10 @@ namespace Wind_GH.Formatting
 
             W.Graphics = G;
 
-            switch (W.Type) 
+            switch (W.Type)
             {
                 case "Parrot":
-                pElement E = (pElement)W.Element;
+                    pElement E = (pElement)W.Element;
                     pControl C = (pControl)E.ParrotControl;
 
                     C.Graphics = G;
@@ -137,7 +142,20 @@ namespace Wind_GH.Formatting
                             DataSetCollection tDataSet = (DataSetCollection)W.Element;
                             tDataSet.Graphics = G;
 
+                            tDataSet.TotalCustomTitles += 1;
+
                             W.Element = tDataSet;
+                            break;
+                        case "Chart":
+                        case "Table":
+                            pElement pE = (pElement)W.Element;
+                            pChart pC = pE.PollenControl;
+                            pC.Graphics = G;
+
+                            pC.SetFont();
+
+                            pE.PollenControl = pC;
+                            W.Element = pE;
                             break;
                     }
                     break;
@@ -151,7 +169,8 @@ namespace Wind_GH.Formatting
             }
 
             DA.SetData(0, W);
-            DA.SetData(1, G);
+            DA.SetData(1, G.FontObject);
+            DA.SetData(2, G);
         }
 
 

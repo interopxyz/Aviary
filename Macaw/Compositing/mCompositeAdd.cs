@@ -1,4 +1,5 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
+using Macaw.Filtering;
 using Macaw.Utilities;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace Macaw.Compositing
         public mCompositeAdd(Bitmap UnderlayBitmap, Bitmap OverlayBitmap)
         {
 
-            BitmapUnder = new mSetFormat(UnderlayBitmap, 2).ModifiedBitmap;
-            BitmapOver = new mSetFormat(OverlayBitmap, 2).ModifiedBitmap;
+            BitmapUnder = new mSetFormat(UnderlayBitmap, mFilter.BitmapTypes.Rgb24bpp).ModifiedBitmap;
+            BitmapOver = new mSetFormat(OverlayBitmap, mFilter.BitmapTypes.Rgb24bpp).ModifiedBitmap;
 
             ModifiedBitmap = UnderlayBitmap;
 

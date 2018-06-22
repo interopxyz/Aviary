@@ -112,7 +112,7 @@ namespace Parrot.Windows
         public void SetTransparency(bool AllowTransparent)
         {
             Element.AllowsTransparency = AllowTransparent;
-            if (AllowTransparent) { Element.Background = Brushes.Transparent; } else { Element.Background = new SolidColorBrush(new wColors().OffWhite().ToMediaColor()); }
+            if (AllowTransparent) { Element.Background = Brushes.Transparent; } else { Element.Background = new SolidColorBrush(wColors.OffWhite.ToMediaColor()); }
         }
 
         public override void SetFill()

@@ -1,6 +1,6 @@
-﻿using AForge;
-using AForge.Imaging.Filters;
-using AForge.Math.Random;
+﻿using Accord;
+using Accord.Imaging.Filters;
+using Accord.Math.Random;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -13,21 +13,17 @@ namespace Macaw.Filtering.Stylized
 {
     public class mNoiseAdditive : mFilter
     {
-        AdditiveNoise Effect = new AdditiveNoise();
 
-        wDomain Domain = new wDomain(-50, 50);
+        wDomain Domain = new wDomain(10, 50);
         
         public mNoiseAdditive(wDomain GeneratorDomain)
         {
 
             Domain = GeneratorDomain;
 
-            BitmapType = 2;
-            
-            Effect = new AdditiveNoise(new UniformGenerator(new Range((float)Domain.T0, (float)Domain.T1)));
+            BitmapType = mFilter.BitmapTypes.Rgb24bpp;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new AdditiveNoise();
 
         }
     }

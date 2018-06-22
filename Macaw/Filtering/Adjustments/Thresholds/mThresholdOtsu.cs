@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +15,11 @@ namespace Macaw.Filtering.Adjustments.Thresholds
         public mThresholdOtsu()
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
 
             Effect = new OtsuThreshold();
-            
-            Sequence.Clear();
-            Sequence.Add(Effect);
+
+            filter = Effect;
         }
 
     }

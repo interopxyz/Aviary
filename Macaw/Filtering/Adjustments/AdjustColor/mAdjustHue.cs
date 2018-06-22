@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +10,16 @@ namespace Macaw.Filtering.Adjustments.AdjustColor
 {
     public class mAdjustHue : mFilter
     {
-        HueModifier Effect = new HueModifier();
-
-        int AdjustValue = 50;
-
-        public mAdjustHue(int Value)
+        public int Hue = 0;
+        public mAdjustHue(int hue)
         {
 
-            AdjustValue = Value;
+            Hue = hue;
 
-            BitmapType = 1;
+            BitmapType = BitmapTypes.None;
 
-            Effect = new HueModifier(AdjustValue);
-
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = new HueModifier(Hue);
+            
         }
 
     }

@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifySolarize : mModifiers
+    public class mModifySolarize : mModifier
     {
         SolarizeFilter Effect = new SolarizeFilter();
 
@@ -18,8 +18,7 @@ namespace Macaw.Compiling.Modifiers
             Effect = new SolarizeFilter();
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

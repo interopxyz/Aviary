@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -14,30 +14,31 @@ namespace Macaw.Filtering.Stylized
 
         WaterWave Effect = new WaterWave();
 
-        int HorizontalCount = 5;
-        int VerticalCount = 5;
-        wDomain Amplitude = new wDomain(5,10);
+        public int HorizontalCount = 5;
+        public int VerticalCount = 5;
+        public int HorizontalAmplitude = 10;
+        public int VerticalAmplitude = 5;
 
-        public mEffectRipple(wDomain AmplitudeInterval, int HorizontalWaveCount, int VerticalWaveCount)
+
+        public mEffectRipple(int horizontalAmplitude, int verticalAmplitude,int horizontalCount, int verticalCount)
         {
 
-            BitmapType = 1;
-
-            Amplitude = AmplitudeInterval;
-            HorizontalCount = HorizontalWaveCount;
-            VerticalCount = VerticalWaveCount;
+            BitmapType = mFilter.BitmapTypes.None;
+            
+            HorizontalCount = horizontalCount;
+            VerticalCount = verticalCount;
+            HorizontalAmplitude = horizontalAmplitude;
+            VerticalAmplitude = verticalAmplitude;
 
             Effect = new WaterWave();
 
-            Effect.HorizontalWavesAmplitude = (int)Amplitude.T0;
+            Effect.HorizontalWavesAmplitude = HorizontalAmplitude;
             Effect.HorizontalWavesCount = HorizontalCount;
 
-            Effect.VerticalWavesAmplitude = (int)Amplitude.T1;
+            Effect.VerticalWavesAmplitude = VerticalAmplitude;
             Effect.VerticalWavesCount = VerticalCount;
-            
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

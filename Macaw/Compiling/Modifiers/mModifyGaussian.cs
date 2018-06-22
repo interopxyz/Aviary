@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyGaussian : mModifiers
+    public class mModifyGaussian : mModifier
     {
         GaussianBlurFilter Effect = new GaussianBlurFilter();
 
@@ -19,8 +19,7 @@ namespace Macaw.Compiling.Modifiers
             Effect.Radius= Value;
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

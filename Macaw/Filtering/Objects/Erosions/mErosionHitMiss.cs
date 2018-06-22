@@ -1,9 +1,9 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 
 
 namespace Macaw.Filtering.Objects.Erosions
 {
-    public class mErosionHitMiss : mFilter
+    public class mErosionHitMiss : mFilters
     {
         HitAndMiss Effect = null;
 

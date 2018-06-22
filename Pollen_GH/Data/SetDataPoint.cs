@@ -82,11 +82,12 @@ namespace Pollen_GH.Data
             object obj = new object();
             X.CastTo(out obj);
             DataObj.Value = obj;
-            DataObj.Label.Content = obj.ToString();
 
             DataObj.Type = D;
-            DataObj.Format = F;
             DataObj.Tag = T;
+
+            DataObj.Label.Format = F;
+            DataObj.ToolTip.Format = F;
 
             DataObj.Graphics.Width = 1;
 
@@ -104,7 +105,7 @@ namespace Pollen_GH.Data
                     DataObj.Number = num;
                     DataObj.Text = num.ToString();
                     DataObj.Domain = new Tuple<double, double>(0, num);
-                    DataObj.Label.Content = Convert.ToString(Math.Truncate(num * 1000) / 1000);
+
                     break;
                 case 2:
                     int intg = new int();
@@ -151,20 +152,31 @@ namespace Pollen_GH.Data
             {
                 default:
                     DataObj.Label.Content = "";
+                    DataObj.ToolTip.Content = "";
                     break;
                 case 1:
+                    DataObj.Label.Enabled = true;
                     DataObj.Label.Content = T;
+                    DataObj.ToolTip.Enabled = true;
+                    DataObj.ToolTip.Content = T;
                     break;
                 case 2:
+                    DataObj.Label.Enabled = true;
                     DataObj.Label.Content = L;
+                    DataObj.ToolTip.Enabled = true;
+                    DataObj.ToolTip.Content = L;
                     break;
             }
 
-            DataObj.Graphics.FontObject.FontColor = new wColors().Gray();
-            DataObj.Graphics.Background = new wColors().VeryLightGray();
-            DataObj.Graphics.StrokeColor = new wColors().OffWhite();
+            DataObj.Graphics.FontObject.FontColor = wColors.Gray;
+            DataObj.Graphics.Background = wColors.VeryLightGray;
+            DataObj.Graphics.StrokeColor = wColors.OffWhite;
             DataObj.Graphics.SetUniformStrokeWeight(1);
             DataObj.Graphics.SetUniformPadding(2);
+
+            DataObj.ToolTip.Graphics.Background = new wColor(150, 250, 250, 250);
+            DataObj.ToolTip.Graphics.FontObject.Size = 10;
+            DataObj.ToolTip.Graphics.FontObject.FontColor = wColors.Gray;
 
             wObject WindObject = new wObject(DataObj, "Pollen", "DataPoint");
             WindObject.Graphics = DataObj.Graphics;

@@ -15,6 +15,9 @@ using Wind.Geometry.Curves;
 using Parrot.Controls;
 using System.Windows.Forms;
 using GH_IO.Serialization;
+using Parrot.Displays;
+using Wind.Utilities;
+using Pollen.Charts;
 
 namespace Wind_GH.Formatting
 {
@@ -28,7 +31,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the Stroke class.
         /// </summary>
         public Stroke()
-      : base("Stroke", "Stroke", "---", "Aviary", "Format")
+      : base("Stroke", "Stroke", "---", "Aviary", "2D Format")
         {
         }
 
@@ -46,7 +49,7 @@ namespace Wind_GH.Formatting
             pManager[3].Optional = true;
 
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(new pSpacer(new GUIDtoAlpha(Convert.ToString(this.Attributes.InstanceGuid.ToString() + Convert.ToString(this.RunCount)), false).Text)));
 
         }
 
@@ -146,6 +149,17 @@ namespace Wind_GH.Formatting
                             tDataSet.Graphics = G;
 
                             W.Element = tDataSet;
+                            break;
+                        case "Chart":
+                        case "Table":
+                            pElement pE = (pElement)W.Element;
+                            pChart pC = pE.PollenControl;
+                            pC.Graphics = G;
+
+                            pC.SetStroke();
+
+                            pE.PollenControl = pC;
+                            W.Element = pE;
                             break;
                     }
                     break;

@@ -34,11 +34,11 @@ namespace Pollen_GH.Charts
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             wGraphic TempGraphic = new wGraphic();
-            TempGraphic.Gradient = new wGradients(wGradients.GradientTypes.Metro).GetGradient();
+            TempGraphic.Gradient = wGradients.Metro;
 
             pManager.AddGenericParameter("Data", "D", "---", GH_ParamAccess.item);
             pManager.AddGenericParameter("Graphic", "G", "---", GH_ParamAccess.item);
-            pManager[1].Optional = true;
+
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[1];
             paramGen.PersistentData.Append(new GH_ObjectWrapper(TempGraphic));
 
@@ -94,20 +94,26 @@ namespace Pollen_GH.Charts
 
             wObject W = new wObject();
             wGraphic GR = new wGraphic();
-            GR.Gradient = new wGradients(wGradients.GradientTypes.Metro).GetGradient();
+            GR.Gradient = wGradients.Metro;
             D.CastTo(out W);
             G.CastTo(out GR);
 
 
             DataSetCollection DC = (DataSetCollection)W.Element;
 
-            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(new wFonts(wFonts.FontTypes.ChartPoint).Font); }
-            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.GradientTypes.Transparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFill == 0) { DC.SetDefaultPallet(wGradients.Metro, false, DC.Sets.Count > 1); }
+            if (DC.TotalCustomFont == 0) { DC.SetDefaultFonts(wFonts.ChartPoint); }
+            if (DC.TotalCustomMarker == 0) { DC.SetDefaultMarkers(wGradients.SolidTransparent, wMarker.MarkerType.None, false, DC.Sets.Count > 1); }
             if (DC.TotalCustomStroke == 0) { DC.SetDefaultStrokes(wStrokes.StrokeTypes.Transparent); }
+            if (DC.TotalCustomLabel == 0) { DC.SetDefaultLabels(new wLabel(wLabel.LabelPosition.Center, wLabel.LabelAlignment.Center, new wGraphic(wColors.Transparent))); }
+
 
             pControl.SetProperties(DC);
-            pControl.SetHeatData();
+            pControl.SetPollenSeries();
             pControl.SetFormatting();
+            pControl.SetToolTip();
+            pControl.ForceRefresh();
+            //pControl.SetAxisAppearance();
 
             if (G != null)
             {

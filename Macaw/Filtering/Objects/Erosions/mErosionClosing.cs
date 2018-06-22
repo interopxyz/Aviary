@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +16,11 @@ namespace Macaw.Filtering.Objects.Erosions
         public mErosionClosing()
         {
 
-            BitmapType = 0;
-            
-            Effect = new Closing();
+            BitmapType = mFilter.BitmapTypes.GrayscaleBT709;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            Effect = new Closing();
+            
+            filter = Effect;
         }
 
     }

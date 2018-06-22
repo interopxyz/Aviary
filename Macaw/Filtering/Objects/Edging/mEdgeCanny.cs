@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace Macaw.Filtering.Objects.Edging
             LowValue = LowVal;
             HighValue = HighVal;
 
-            BitmapType = 0;
+            BitmapType = mFilter.BitmapTypes.GrayscaleBT709;
 
             Effect = new CannyEdgeDetector();
 
@@ -31,8 +31,7 @@ namespace Macaw.Filtering.Objects.Edging
 
             Effect.GaussianSize = Size;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

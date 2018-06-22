@@ -1,4 +1,4 @@
-﻿using AForge.Imaging.Filters;
+﻿using Accord.Imaging.Filters;
 using Macaw.Filtering;
 using System;
 using System.Collections.Generic;
@@ -11,16 +11,20 @@ namespace Macaw.Filtering.Stylized
     public class mDitherJarvisJudiceNinke : mFilter
     {
         JarvisJudiceNinkeDithering Effect = new JarvisJudiceNinkeDithering();
-        
-        public mDitherJarvisJudiceNinke()
+
+        byte ThresholdValue = 48;
+
+        public mDitherJarvisJudiceNinke(byte thresholdValue)
         {
 
-            BitmapType = 0;
+            BitmapType = BitmapTypes.GrayscaleBT709;
+
+            ThresholdValue = thresholdValue;
 
             Effect = new JarvisJudiceNinkeDithering();
+            Effect.ThresholdValue = ThresholdValue;
 
-            Sequence.Clear();
-            Sequence.Add(Effect);
+            filter = Effect;
         }
 
     }

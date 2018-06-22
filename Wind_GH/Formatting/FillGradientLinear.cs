@@ -17,6 +17,9 @@ using Wind.Graphics;
 using GH_IO.Serialization;
 using System.Windows.Forms;
 using Pollen.Collections;
+using Parrot.Displays;
+using Wind.Utilities;
+using Pollen.Charts;
 
 namespace Wind_GH.Formatting
 {
@@ -29,7 +32,7 @@ namespace Wind_GH.Formatting
         /// Initializes a new instance of the FillGradient class.
         /// </summary>
         public FillGradientLinear()
-          : base("Linear Gradient", "Linear", "---", "Aviary", "Format")
+          : base("Linear Gradient", "Linear", "---", "Aviary", "2D Format")
         {
             this.UpdateMessage();
         }
@@ -48,7 +51,7 @@ namespace Wind_GH.Formatting
             pManager[3].Optional = true;
 
             Param_GenericObject paramGen = (Param_GenericObject)Params.Input[0];
-            paramGen.PersistentData.Append(new GH_ObjectWrapper(null));
+            paramGen.PersistentData.Append(new GH_ObjectWrapper(new pSpacer(new GUIDtoAlpha(Convert.ToString(this.Attributes.InstanceGuid.ToString() + Convert.ToString(this.RunCount)), false).Text)));
         }
 
         /// <summary>
@@ -136,6 +139,21 @@ namespace Wind_GH.Formatting
                                 tDataSet.Graphics.WpfPattern = G.WpfPattern;
 
                                 W.Element = tDataSet;
+                                break;
+                            case "Chart":
+                            case "Table":
+
+                                pElement pE = (pElement)W.Element;
+                                pChart pC = pE.PollenControl;
+                                pC.Graphics = G;
+
+                                pC.Graphics.WpfFill = G.WpfFill;
+                                pC.Graphics.WpfPattern = G.WpfPattern;
+
+                                pC.SetGradientFill();
+
+                                pE.PollenControl = pC;
+                                W.Element = pE;
                                 break;
                         }
                         break;

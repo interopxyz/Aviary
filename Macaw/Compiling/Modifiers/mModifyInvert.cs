@@ -9,7 +9,7 @@ using Wind.Types;
 
 namespace Macaw.Compiling.Modifiers
 {
-    public class mModifyInvert : mModifiers
+    public class mModifyInvert : mModifier
     {
         InversionFilter Effect = new InversionFilter();
 
@@ -18,8 +18,7 @@ namespace Macaw.Compiling.Modifiers
             Effect = new InversionFilter();
             Effect.Enabled = true;
 
-            Modifiers.Clear();
-            Modifiers.Add(Effect);
+            filter = Effect;
         }
     }
 }

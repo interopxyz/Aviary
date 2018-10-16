@@ -54,7 +54,6 @@ C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Wi
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Wind.pdb
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.dll
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.pdb
-C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.csprojResolveAssemblyReference.cache
 C:\Users\dmans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\obj\Debug\Wind.csprojResolveAssemblyReference.cache
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.dll
 C:\Users\David Mans\Dropbox\Interop\Aviary\Aviary\Aviary_Git\Aviary\Wind\bin\Debug\Accord.Imaging.dll

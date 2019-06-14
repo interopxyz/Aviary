@@ -107,8 +107,7 @@ namespace Macaw_GH.Filtering.Adjust
                 Params.Input[2].Description = "Not used by this filter";
             }
 
-            Bitmap A = new Bitmap(10, 10);
-            if (Z != null) { Z.CastTo(out A); }
+
             mFilter Filter = new mFilter();
 
             switch (ModeIndex)

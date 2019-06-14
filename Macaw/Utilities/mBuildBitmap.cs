@@ -28,13 +28,11 @@ namespace Macaw.Utilities
             {
                 for (int j = 0; j < W; j++)
                 {
-
                     bmp.SetPixel(j, H-i-1, Color.FromArgb(A[k], R[k], G[k], B[k]));
                     k += 1;
                 }
             }
-
-
+            
             OutputBitmap = bmp;
         }
 
